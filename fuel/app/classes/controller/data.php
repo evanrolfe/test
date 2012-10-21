@@ -31,16 +31,14 @@ class Controller_Data extends MyController
 	{
 		$date = Date::forge()->format("%d-%m-%Y %H:%m");
 		header('Content-type: text/plain');
-		//header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
+		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
 
 		$backup = Model_Backup::forge(array(
 			'note' =>'',
 			'type' => 'export',
 		));
 
-		//$backup->save();
-
-		//echo passthru('mysqldump --host=localhost --user=root --password=pass fuel_dev');
+		$backup->save();
 
 		//1. Get the table names
 		$tables_res = DB::query("SHOW TABLES", DB::SELECT)->execute();
@@ -54,7 +52,7 @@ class Controller_Data extends MyController
 
 		foreach($tables as $table)
 		{
-			if(in_array($table, array('yachtshares','buyers','formfields_buyer','emailtemplates','shares','sessions', 'migration')))
+			if(in_array($table, array('shares','sessions', 'migration'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
 				continue;
 
 			echo "INSERT INTO `".$table."` (";
@@ -86,6 +84,7 @@ class Controller_Data extends MyController
 					if($col['type'] == 'string')
 					{
 						//$val = Security::clean($val, array('strip_tags', 'htmlentities'));
+						$val = addslashes($val);
 						echo "'".$val."'";
 					}else{
 						echo $val;

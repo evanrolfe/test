@@ -32,28 +32,73 @@ class Controller_File extends MyController
 
 	}
 
+/* Whats inside $tmp_file:
+Array
+        (
+            [name] => Man___Nature_by_chaneljay.jpg
+            [type] => image/jpeg
+            [tmp_name] => /tmp/phppxtQef
+            [error] => 0
+            [size] => 1180805
+        )
+*/
 	public function action_upload()
 	{
 		$this->logged_in_as(array('admin','seller'));
 		if(Input::method() == 'POST')
 		{
-			// Custom configuration for this upload
-			$config = array(
-				'path' => DOCROOT.'uploads',
-				'randomize' => true,
-			);
+		//1. process the uploaded files in $_FILES
 
-			// process the uploaded files in $_FILES
-			Upload::process($config);
+				$config = array(
+					'path' => DOCROOT.'uploads',
+					'randomize' => true,
+				);
+				Upload::process($config);
 
-			// if there are any valid files then save them
+		//2. Check for errors
+
+				$errors = Upload::get_errors();				
+				$max_upload_size = (int)(ini_get('upload_max_filesize'));
+
+				//If there are errors then display the error message in flash session
+				//and redirect to the upload form
+				if(count($errors) > 0)
+				{
+					$error_message = $errors[0]['errors'][0]['message'];
+					Session::set_flash('error', 'Your '.$type_arr[0].' was not uploaded due to an error: '.$error_message.'. The max file size limit is: '.$max_upload_size);	
+					Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
+				}
+
+		//3. Resize if the file is an image with width > 800px
+			$tmp_file = Input::file();
+			$tmp_file = $tmp_file['file'];
+			$tmp_file_loc = $tmp_file['tmp_name'];
+			exit($tmp_file_loc);
+			//IF it is an image
+			$mime_arr = explode('.',$tmp_file['name']);
+			if(in_array(strtolower($mime_arr[1]),array('jpg','png','gif')))
+			{
+				//exit($file_loc);
+
+				$sizes = Image::sizes($tmp_file_loc);
+
+				//IF it is too big
+				if($sizes->width > 800)
+				{
+					Image::load($tmp_file_loc)->resize(800)->save($tmp_file_loc);
+						//exit("COULD NOT RESIZE!");
+				}
+			}
+
+		//3. Otherwise upload them to the public/assets/uploads directory
 			(Upload::is_valid()) and Upload::save();
 
 			foreach(Upload::get_files() as $file)
 			{
+		//4. Insert the file details into DB
 				$type_arr = explode("/", $file['mimetype']);
 				$public = (Input::post('public_image')) ? 1 : 0;
-				//Save it to the database
+
 				$file_db = Model_Image::forge(array(
 					'belongs_to_id' => Input::post('belongs_to_id'),
 					'belongs_to' => Input::post('belongs_to'),
@@ -61,6 +106,8 @@ class Controller_File extends MyController
 					'url' => $file['saved_as'],
 					'type' => $type_arr[0],
 				));
+				
+				exit("DONE");
 
 				if($file_db and $file_db->save())
 				{

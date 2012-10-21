@@ -8,6 +8,46 @@ function replace_tag(label)
 }
 
 var selected_options = [];
+var options = [];
+
+function add_option()
+{
+	options.push($("#option_add_input").val());
+	refresh_options();
+}
+
+function del_option(index)
+{
+	options.splice(index,1);
+
+	refresh_options();
+}
+
+function refresh_options()
+{
+	//2. Set input value as these options
+	$("#options").val(JSON.stringify(options));
+
+	//3. Display the options to html
+	var options_html = "";
+
+	for(var i=0; i<options.length; i++)
+	{
+		options_html += '<a href="#" onclick="del_option('+i+')">[X]</a> '+options[i]+'<br>';
+	}
+
+	$("#options_display").html(options_html);
+}
+
+window.onload = function () {
+	if("<?=$field->type;?>" == 'dropdown')
+	{
+		//1. Parse the dropdown options from mysql into javascript (via json)
+		options = <?=$field->options;?>;
+
+		refresh_options();
+	}
+}
 </script>
 <?= render('settings/_nav'); ?>
 
@@ -69,6 +109,18 @@ var selected_options = [];
 		</div>
         <div class="clear"></div>
     </div>
+	<? elseif($field->type == 'dropdown'): ?>
+	<div class="formRow" id="textarea">
+	    <div class="grid3"><label>Options to choose from:</label></div>
+	    <div class="grid9">
+			<input type='text' name='options' id='options'>
+			<hr>
+			<input type='text' id="option_add_input" style="width: 150px;" /> <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
+			<div id='options_display'>
+			</div>
+		</div>
+	    <div class="clear"></div>
+	</div>
 	<? else: ?>
     <div class="formRow" id="textarea">
         <div class="grid3"><label>Options:</label></div>

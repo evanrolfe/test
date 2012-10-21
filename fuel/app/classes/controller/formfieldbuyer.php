@@ -149,7 +149,7 @@ class Controller_Formfieldbuyer extends MyController
 
 
 		$this->template->title = "Form Fields";
-		$this->template->content = View::forge('formfieldbuyer/edit',$data);			
+		$this->template->content = View::forge('formfieldbuyer/edit',$data,false);			
 	}
 
 	public function action_delete($id = null)

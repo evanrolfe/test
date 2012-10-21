@@ -52,8 +52,10 @@ class Controller_Data extends MyController
 
 		foreach($tables as $table)
 		{
-			if(in_array($table, array('shares','sessions', 'migration'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
+			if(in_array($table, array('shares','sessions', 'migration','backups','users'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
 				continue;
+
+			echo "TRUNCATE `".$table."`;";
 
 			echo "INSERT INTO `".$table."` (";
 			$columns = DB::list_columns($table);
@@ -139,18 +141,17 @@ class Controller_Data extends MyController
 			{
 				$sql = File::read($file['file'],true);
 
-				$query = DB::query($sql);
-
-				if(!$query->execute())
-					$errors++;
+				try
+				{
+					DB::query($sql)->execute();					
+				}catch(Fuel\Core\Database_Exception $e)
+				{
+					$e = (strlen($e) > 1000) ? substr($e,0,400) : $e;
+					Session::set_flash('error', 'There was an error restoring the database, please copy the following error an report/email it to the developer: '.$e);				
+				}
 			}
 
-			if($errors == 0)
-			{
-					Session::set_flash('success', 'The backup file has been succesfully restored.');				
-			}else{
-					Session::set_flash('error', 'The database could not be updated due to an error!');				
-			}
+			Session::set_flash('success', 'The backup file has been succesfully restored.');				
 
 			Response::redirect('data');
 		}

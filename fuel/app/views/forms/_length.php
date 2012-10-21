@@ -6,6 +6,9 @@
 				<option value="m">Metres</option>
 				<option value="ft">Feet</option>
 		</select>
+	<? if(!empty($field->description)): ?>
+		<span><?=$field->description;?></span>
+	<? endif;?>
 	</div>
 	 <div class="clear"></div>
 </div>

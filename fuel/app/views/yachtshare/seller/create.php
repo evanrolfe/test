@@ -56,13 +56,13 @@ function save_form()
 <? foreach($formfields as $field): ?>
 
 	<? if($field->type == 'text'): ?>
-		<?= render('forms/_text',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_text',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'dropdown'): ?>
-		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'textarea'): ?>
-		<?= render('forms/_textarea',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_textarea',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'length'): ?>
-		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->tag == 'share_size'): ?>
 <div class="formRow">
         <div class="grid3"><label>Share Size:</label></div>

@@ -7,6 +7,9 @@
 					<option value="<?=$type;?>" <?if($type==$value):?>selected="yes"<?endif;?>><?=$type;?></option>
 				<? endforeach; ?>
 			</select>
+	<? if(!empty($field->description)): ?>
+		<span><?=$field->description;?></span>
+	<? endif;?>
 		</div>
 		<div class="clear"></div>
 	</div>

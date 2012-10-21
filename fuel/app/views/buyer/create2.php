@@ -62,15 +62,15 @@ function save_form()
 <? foreach($fields_search as $field): ?>
 
 	<? if($field->type == 'text'): ?>
-		<?= render('forms/_text',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_text',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'dropdown'): ?>
-		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'textarea'): ?>
-		<?= render('forms/_textarea',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_textarea',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'text_fraction'): ?>
-		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' =>$saved_form_data[$field->tag.'_num'],'den' => $saved_form_data[$field->tag.'_den']))); ?>
+		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' =>$saved_form_data[$field->tag.'_num'],'den' => $saved_form_data[$field->tag.'_den'])),false); ?>
 	<? elseif($field->type == 'length'): ?>
-		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag])); ?>
+		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? endif; ?>
 
 <? endforeach; ?>

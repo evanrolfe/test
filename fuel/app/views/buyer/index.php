@@ -49,11 +49,11 @@ $(function(){
 					<form action="<?= Uri::create($current_page); ?>" method="POST" accept-charset="utf-8" id="filter_form">
 					<input type="hidden" name="filter" value="1" />
 
-					<?= render('forms/_dropdown',array('field'=>$type,'value' => $search_terms['type'], 'width'=>175)); ?>
+					<?= render('forms/_dropdown',array('field'=>$type,'value' => $search_terms['type'], 'width'=>175),false); ?>
 
-					<?= render('forms/_dropdown',array('field'=>$location_general,'value' => $search_terms['location_general'], 'width'=>175)); ?>
+					<?= render('forms/_dropdown',array('field'=>$location_general,'value' => $search_terms['location_general'], 'width'=>175),false); ?>
 
-					<?= render('forms/_dropdown',array('field'=>$location_specific,'value' => $search_terms['location_specific'], 'width'=>175)); ?>
+					<?= render('forms/_dropdown',array('field'=>$location_specific,'value' => $search_terms['location_specific'], 'width'=>175),false); ?>
 
 					<div class="formRow">
 						<div class="grid3"><label>Price:</label></div>

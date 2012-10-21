@@ -37,7 +37,7 @@ abstract class Controller_Template extends \Controller
 		if ( ! empty($this->template) and is_string($this->template))
 		{
 			// Load the template
-			$this->template = \View::forge($this->template);
+			$this->template = \View::forge($this->template,array(),false);
 		}
 
 		return parent::before();

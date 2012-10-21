@@ -67,7 +67,7 @@ return array(
 	'extension'			=> '',
 
 	// default path the uploaded files will be saved to
-	'path'				=> '',
+	'path'				=> 'public/uploads',
 
 	// create the path if it doesn't exist
 	'create_path'		=> true,

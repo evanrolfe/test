@@ -1,0 +1,19 @@
+[24-Sep-2012 09:11:16 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'invalid data source name' in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php:82
+Stack trace:
+#0 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php(82): PDO->__construct('', NULL, NULL, Array)
+#1 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php(309): Fuel\Core\Database_PDO_Connection->connect()
+#2 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/connection.php(488): Fuel\Core\Database_PDO_Connection->escape('0ba08c407f56517...')
+#3 [internal function]: Fuel\Core\Database_Connection->quote('0ba08c407f56517...')
+#4 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/query/builder/insert.php(168): array_map(Array, Array)
+#5 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/query.php(228): Fuel\Core\Database_Query_Builder in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php on line 87
+[24-Sep-2012 09:11:17 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'invalid data source name' in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php:82
+Stack trace:
+#0 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php(82): PDO->__construct('', NULL, NULL, Array)
+#1 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php(309): Fuel\Core\Database_PDO_Connection->connect()
+#2 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/connection.php(488): Fuel\Core\Database_PDO_Connection->escape('3fdc77db99ba197...')
+#3 [internal function]: Fuel\Core\Database_Connection->quote('3fdc77db99ba197...')
+#4 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/query/builder/insert.php(168): array_map(Array, Array)
+#5 /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/query.php(228): Fuel\Core\Database_Query_Builder in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/database/pdo/connection.php on line 87
+[24-Sep-2012 18:03:29 UTC] PHP Fatal error:  Call to undefined function Fuel\Core\finfo_open() in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/upload.php on line 341
+[25-Sep-2012 08:37:46 UTC] PHP Fatal error:  Call to undefined function Fuel\Core\finfo_open() in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/upload.php on line 341
+[25-Sep-2012 17:55:10 UTC] PHP Fatal error:  Call to undefined function Fuel\Core\finfo_open() in /home/evanrolf/public_html/uploads/boat_manager_stable/fuel/core/classes/upload.php on line 341

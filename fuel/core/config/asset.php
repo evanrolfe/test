@@ -32,7 +32,7 @@ return array(
 	 *
 	 * Paths specified here are suffixed with the sub-folder paths defined below.
 	 */
-	'paths' => array('assets/'),
+	'paths' => array('public/assets/'),
 
 	/**
 	 * Asset Sub-folders
@@ -47,7 +47,7 @@ return array(
 	 *
 	 * This MUST include the trailing slash ('/')
 	 */
-	'img_dir' => 'img/',
+	'img_dir' => 'images/',
 	'js_dir' => 'js/',
 	'css_dir' => 'css/',
 

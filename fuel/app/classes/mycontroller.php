@@ -23,6 +23,8 @@ class MyController extends Controller_Template
 
 		$this->template->user = Session::get('user');
 
+		$offline_config = Config::load('offline');
+		$this->template->offline = $offline_config['offline_on?'];
 		$this->template->yachtshares_on_hold = Model_Yachtshare::find_on_hold();
 	}
 

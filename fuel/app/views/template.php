@@ -84,8 +84,20 @@
 
     <!-- Main Section -->   
     <div class="wrapper" style='padding-top: 7px;'>
-	
-	<h1><?= $title; ?></h1>
+
+	<? if($offline): ?>
+		<div class="nNote nFailure">
+			<h1>Currently in Offline Mode</h1>
+			<br>
+			This site is currrently running in offline mode, you may view data but you cannot edit/create data.
+		</div>
+		<br>
+		<? $heading = 'h2'; ?>
+	<? else: ?>
+		<? $heading = 'h1'; ?>
+	<? endif;?>
+
+	<<?=$heading;?>><?= $title; ?></<?=$heading;?>>
     <!-- Flash Messages -->   
 		<? if (Session::get_flash('success')): ?>
 		<div class="nNote nSuccess">

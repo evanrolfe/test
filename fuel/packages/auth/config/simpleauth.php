@@ -46,6 +46,8 @@ return array(
 	 * Groups as id => array(name => <string>, roles => <array>)
 	 */
 	'groups' => array(
+		1 => array('name' => 'Administrators', 'roles' => array('admin')),
+		2 => array('name' => 'Sellers', 'roles' => array())
 		/**
 		 * Examples
 		 * ---

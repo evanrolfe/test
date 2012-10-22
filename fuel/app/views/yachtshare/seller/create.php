@@ -1,10 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta charset="utf-8">
-</head>
-	<?php echo render('_includes'); ?>
-<?php echo render('_flash_messages'); ?>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#create_form").validate({
@@ -41,8 +34,7 @@ function save_form()
 <input type="hidden" name="insert" value="1">
 <input type="hidden" name="form_type" value="yachtshare">
 
-<div align="center">
-<div class="widget fluid" style="width: 70%;">
+<div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
 		<h6>New Yacht Share</h6>
@@ -111,7 +103,4 @@ function select_shares(n)
 	</div>
 
 </div>
-<a href="<? Uri::create('session/logout'); ?>">Logout</a>
-</div>
 </form>
-<br>

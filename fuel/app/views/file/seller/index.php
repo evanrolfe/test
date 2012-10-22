@@ -1,6 +1,4 @@
-	<?php echo render('_includes'); ?>
-<?php echo render('_flash_messages'); ?>
-<div style="width: 100%;" align="center"	>
+
 <div class="widget fluid" style="width: 450px;">
     <div class="whead">
 		<h6>Files</h6>
@@ -68,9 +66,13 @@ $(function(){
 	</div>
 
 	<div class="formRow">
-	    <div class="grid3"><label>Is this an image you want to show to the public?</label></div>
-	    <div class="grid9" align="left">
-			<input type='checkbox' name="public_image"/>
+	    <div class="grid3"><label>File Type:</label></div>
+	    <div class="grid9 noSearch" align="left">
+			<select class='select' name="type">
+					<option value="private">Private document or photo</option>
+					<option value="public_header">Public header photo for website</option>
+					<option value="public_gallery">Public gallery photo for website</option>
+			</select>
 		</div>
 		 <div class="clear"></div>
 	</div>
@@ -82,6 +84,5 @@ $(function(){
 		</div>
 		<div class="clear"></div>
 	</div>
-</div>
 </div>
 </form>

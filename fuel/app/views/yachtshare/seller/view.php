@@ -1,5 +1,3 @@
-	<?php echo render('_includes'); ?>
-<?php echo render('_flash_messages'); ?>
 <script type="text/javascript">
 $(function(){
 	var $dialog = $('<div></div>')

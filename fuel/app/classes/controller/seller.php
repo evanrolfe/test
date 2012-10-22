@@ -31,7 +31,12 @@ class Controller_Seller extends MyController
 
 				if(count($matches)>0)
 				{
-		 	   		return new Response(View::forge('seller/search_results', $data));
+					$this->template = \View::forge('public_template',array(),false);
+					$this->template->user = $this->user;
+					$this->template->title = 'Yacht Fractions: Seller Registration';
+					$this->template->content = View::forge('seller/search_results',$data);
+					return new Response($this->template);
+
 				}else{
 					Response::redirect('yachtshare/create');
 				}	
@@ -41,7 +46,10 @@ class Controller_Seller extends MyController
 			}
 		}
 
-        return new Response(View::forge('seller/create'));
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->title = 'Yacht Fractions: Buyer Enquiry';
+		$this->template->content = View::forge('seller/create');
 	}
 
 	public function action_index()
@@ -52,7 +60,10 @@ class Controller_Seller extends MyController
 		$data['yachtshares'] = Model_Yachtshare::find('all', array("where" => array("user_id" => $this->user->id)));
 		$data['user'] = $this->user;
 
-        return new Response(View::forge('seller/index',$data));	
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->title = 'Yacht Fractions: Seller Panel';
+		$this->template->content = View::forge('seller/index',$data,false);
 	}
 
 	public function action_search()
@@ -70,9 +81,15 @@ class Controller_Seller extends MyController
 
 			$data['yachtshares'] = $matches;
 
-     	   return new Response(View::forge('seller/search_results', $data));	
+			$this->template = \View::forge('public_template',array(),false);
+			$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Seller Panel';
+			$this->template->content = View::forge('seller/search_results',$data,false);	
 		}else{
-    	    return new Response(View::forge('seller/find_by_name', $data));	
+			$this->template = \View::forge('public_template',array(),false);
+			$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Seller Panel';
+			$this->template->content = View::forge('seller/find_by_name',$data,false);	
 		}
 
 

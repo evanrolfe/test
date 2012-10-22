@@ -27,7 +27,10 @@ class Controller_Session extends MyController
 			}
 		}
 
-        return new Response(View::forge('session/login'));
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = false;
+		$this->template->title = 'Yacht Fractions: Login';
+		$this->template->content = View::forge('session/login');
 	}
 
 	//Make sure this doesn't delete save forms

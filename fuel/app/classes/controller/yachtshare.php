@@ -95,7 +95,10 @@ class Controller_Yachtshare extends MyController
 		{
 			$this->template->content = View::forge('yachtshare/admin/view',$data,false);			
 		}else{
-			return new Response(View::forge('yachtshare/seller/view', $data, false));			
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->title = 'Yacht Fractions: Viewing Yachtshare';
+		$this->template->content = View::forge('yachtshare/seller/view',$data,false);
 		}
 
 	}
@@ -288,8 +291,10 @@ class Controller_Yachtshare extends MyController
 
 		if($this->user->type == 'seller')
 		{
-			$data['types'] = array("Sailing boats shares UK", "Sailing boat shares overseas", "Motor boat shares UK");
-			return new Response(View::forge('yachtshare/seller/create', $data, false));
+			$this->template = \View::forge('public_template',array(),false);
+			$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Create Yachtshare';
+			$this->template->content = View::forge('yachtshare/seller/create',$data,false);
 		}else{
 			$data['types'] = array("Sailing boats shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");
 			$this->template->links['shares']['current'] = true;
@@ -309,7 +314,10 @@ class Controller_Yachtshare extends MyController
 
 		if($this->user->type == 'seller')
 		{
-			return new Response(View::forge('yachtshare/seller/edit', $data));
+			$this->template = \View::forge('public_template',array(),false);
+			$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Viewing Yachtshare';
+			$this->template->content = View::forge('yachtshare/seller/edit',$data,false);
 		}elseif($this->user->type == 'admin'){
 			$this->template->links['shares']['current'] = true;
 			$this->template->content = View::forge('yachtshare/admin/edit',$data);

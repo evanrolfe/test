@@ -1,11 +1,7 @@
-	<?php echo render('_includes'); ?>
-<?php echo render('_flash_messages'); ?>
-
-<div align="center">
 <form action="<?= Uri::create('yachtshare/handle_post'); ?>" method="POST" accept-charset="utf-8">
 <input type="hidden" name="update" value="1">
 <input type="hidden" name="yachtshare_id" value="<?=$yachtshare->id;?>">
-<div class="widget fluid" style="width: 70%;">
+<div class="widget fluid" style="width: 75%;">
     <div class="whead">
 		<h6>Edit Yacht Share</h6>
 		<div class="clear"></div>
@@ -20,16 +16,16 @@
 		} ?>
 
 	<? if($field->type == 'text'): ?>
-		<?= render('forms/_text',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_text',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'dropdown'): ?>
-		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'textarea'): ?>
-		<?= render('forms/_textarea',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_textarea',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'text_fraction'): ?>
 		<? $numprop = $field->tag."_num"; $denprop = $field->tag."_den"; ?>
-		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' => $yachtshare->$numprop,'den' => $yachtshare->$denprop))); ?>
+		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' => $yachtshare->$numprop,'den' => $yachtshare->$denprop)),false); ?>
 	<? elseif($field->type == 'length'): ?>
-		<?= render('forms/_length',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_length',array('field'=>$field,'value'=>$value),false); ?>
 	<? endif; ?>	
 
 <? endforeach; ?>
@@ -44,4 +40,3 @@
 
 </div>
 </form>
-<br>

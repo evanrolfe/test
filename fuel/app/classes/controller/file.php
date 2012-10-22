@@ -27,7 +27,10 @@ class Controller_File extends MyController
 		{
 			$this->template->content = View::forge('file/index',$data,false);				
 		}else{
-			return new Response(View::forge('file/seller/index', $data, false));					
+			$this->template = \View::forge('public_template',array(),false);
+			$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Seller Panel';
+			$this->template->content = View::forge('file/seller/index',$data,false);	
 		}
 
 	}

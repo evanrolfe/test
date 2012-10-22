@@ -1,13 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta charset="utf-8">
-	<title>Yacht Fractions</title>
-	<?php echo render('_includes'); ?>
-</head>
-<body>
-<?php echo render('_flash_messages'); ?>
-<div style="width: 100%;" align="center">
 <div class="widget" style="width: 600px;">
     <div class="whead">
 		<div>
@@ -61,6 +51,4 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-</div>
-<a href="<? Uri::create('session/logout'); ?>">Logout</a>
 </div>

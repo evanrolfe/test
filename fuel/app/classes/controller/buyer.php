@@ -239,7 +239,11 @@ class Controller_Buyer extends MyController
 			$data['fields'][$field->tag] = $field->label;
 		}
 
-		return new Response(View::forge('buyer/thankyou', $data, false));		
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->content_width = $this->content_width;
+		$this->template->title = 'Yacht Fractions: Buyer Enquiry';
+		$this->template->content = View::forge('buyer/thankyou', $data,false);
 	}
 
 	public function action_create()
@@ -313,7 +317,11 @@ class Controller_Buyer extends MyController
 		$data['fields_search'] = $this->fields_search;
 
         // returned Response object takes precedence and will show content without template
-        return new Response(View::forge('buyer/create2', $data, false));
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->content_width = $this->content_width;
+		$this->template->title = 'Yacht Fractions: Buyer Enquiry';
+		$this->template->content = View::forge('buyer/create2', $data,false);
 	}
 
 	public function action_edit($id = null)

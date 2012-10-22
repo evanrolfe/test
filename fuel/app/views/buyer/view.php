@@ -44,7 +44,7 @@
 		<? endforeach; ?>
 	<? else: ?>
 	<div class="formRow">
-		The yachtshare has not been introduced to any yachts yet.
+		The buyer has not been introduced to any yachtshares yet.
    		<div class="clear"></div>
 	</div>
 	<? endif; ?>

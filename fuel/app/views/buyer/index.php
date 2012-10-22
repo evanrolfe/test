@@ -188,7 +188,7 @@ $(function(){
 					<? elseif($col == 'sale_progress'): ?>
 							<td>
 							<? foreach($buyer->yachtshares(true) as $b): ?>
-						<ul  class="ui-progressbar ui-widget ui-widget-content ui-corner-all" ><? foreach($b->actionsteps as $actionstep): ?><? $width = 10; ?><li title="<?= $actionstep->title; ?><br>Buyer:<?=$b->name;?><br><?= Date::forge($actionstep->occurred_at)->format('%d %b %Y'); ?>" class="tipN ui-progressbar-value ui-widget-header ui-corner-left" style="margin-left: 0; width: <?= $width; ?>%; " original-title="hello world"></li><? endforeach; ?></ul>
+						<ul  class="ui-progressbar ui-widget ui-widget-content ui-corner-all" ><? foreach($b->actionsteps as $actionstep): ?><? $width = 10; ?><li title="<?= $actionstep->title; ?><br>Yacht:<?=$b->name;?><br><?= Date::forge($actionstep->occurred_at)->format('%d %b %Y'); ?>" class="tipN ui-progressbar-value ui-widget-header ui-corner-left" style="margin-left: 0; width: <?= $width; ?>%; " original-title="hello world"></li><? endforeach; ?></ul>
 							<? endforeach; ?>
 							</td>
 					<? endif; ?>

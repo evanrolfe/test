@@ -173,7 +173,7 @@ $(function(){
         </thead>
         <tbody>
 	<?php foreach ($yachtshares as $yachtshare): ?>
-	        <tr class="boat">
+	        <tr class="boat" <? if(isset($yachtshares_interest) and in_array($yachtshare->id, $yachtshares_interest)): ?>style="background-color: #729fcf;"<? endif; ?>>
 				<? foreach($columns as $col): ?>
 					<td class="boatname">
 						<? if($col == 'introductions'): ?>
@@ -182,7 +182,7 @@ $(function(){
 
 						<? elseif($col == 'name'): ?>
 
-							<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id); ?>"><?=$yachtshare->name;?></a>
+							<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id); ?>" <? if(isset($yachtshares_interest) and in_array($yachtshare->id, $yachtshares_interest)): ?>class="tipS" title="The buyer has marked a specific interest in this yachtshare."<? endif; ?>><?=$yachtshare->name;?></a>
 
 						<? elseif($col == 'last_activity'): ?>
 

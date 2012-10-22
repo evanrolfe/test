@@ -50,6 +50,8 @@ class Controller_Yachtshare extends MyController
 			'on_hold' => true,
 			'sale_in_progress' => true,
 		);
+		$str = $data['buyer']->preferences['boats_interest'];
+		$data['yachtshares_interest'] = explode(",",substr($str,0,-1));
 
 		$this->render_list('buyer/find_yachtshares/'.$id, $data,$search_terms);
 	}

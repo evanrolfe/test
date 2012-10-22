@@ -118,6 +118,7 @@ class Controller_Buyer extends MyController
 		$this->template->content = View::forge('buyer/view', $data);
 	}
 
+
 	public function action_handle_post()
 	{
 		if (Input::method() == 'POST')
@@ -146,11 +147,18 @@ class Controller_Buyer extends MyController
 				}elseif($field->tag == 'min_budget' || $field->tag == 'max_budget'){
 					$input[$field->tag] = $this->handle_price(Input::post($field->tag));
 
+
+
+					
+
 				//Or handle normal (direct) input
 				}else{
 					$input[$field->tag] = Input::post($field->tag);
 				}
 			}
+
+			//Handle boats interested
+			$input['boats_interest'] = Input::post('interest1').','.Input::post('interest2').','.Input::post('interest3');
 
 			//2. Encode into json format
 			$preferences = json_encode($input);	
@@ -246,6 +254,11 @@ class Controller_Buyer extends MyController
 		$this->template->content = View::forge('buyer/thankyou', $data,false);
 	}
 
+/*
+* DEPRACATED!
+*
+* See action_handle_post() instead
+*/
 	public function action_create()
 	{
 		//$this->logged_in_as(array('admin'));
@@ -254,11 +267,14 @@ class Controller_Buyer extends MyController
 		{
 			//1. Gather all search fields into one array
 			$input = array();
-
+			echo "<pre>";
+			print_r($input);
+			echo "</pre>";
+			exit;
 			foreach($this->fields_search as $field)
 			{
 				//Skip the email and name fields since they have their own column in the mysql table
-				if(in_array($field->tag, array('email', 'name')))
+				if(in_array($field->tag, array('email', 'name','boats_interest')))
 					continue;
 
 				//Handle fraction input
@@ -277,10 +293,14 @@ class Controller_Buyer extends MyController
 				}
 			}
 
-			//2. Encode into json format
+			//2. Handle boats_interest
+			
+
+
+			//3. Encode into json format
 			$preferences = json_encode($input);
 
-			//3. Insert into DB
+			//4. Insert into DB
 			$buyer = Model_Buyer::forge(array(
 				'name' => Input::post('name'),
 				'email' => Input::post('email'),
@@ -298,7 +318,7 @@ class Controller_Buyer extends MyController
 
 		}
 
-		$data['yachtshares'] = Model_Yachtshare::find('all');
+		$data['yachtshares'] = Model_Yachtshare::find('all',array('order_by' => array('make' => 'ASC')));
 
 		$shares_for_json = array();
 		foreach($data['yachtshares'] as $share)

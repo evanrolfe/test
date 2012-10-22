@@ -51,7 +51,7 @@ class Controller_Yachtshare extends MyController
 			'sale_in_progress' => true,
 		);
 		$str = $data['buyer']->preferences['boats_interest'];
-		$data['yachtshares_interest'] = explode(",",substr($str,0,-1));
+		$data['yachtshares_interest'] = explode(",",$str);
 
 		$this->render_list('buyer/find_yachtshares/'.$id, $data,$search_terms);
 	}

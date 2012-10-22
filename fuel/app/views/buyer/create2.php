@@ -63,15 +63,28 @@ function save_form()
 <? endforeach; ?>
 
     <div class="formRow">
-        <div class="grid3"><label>Specifiy boats which interest you</label></div>
+        <div class="grid3"><label>Select three yachts which interest you:</label></div>
         <div class="grid9 searchDrop" align="left">
-			<select name="" class="select" id="interested_boats">
+			<select name="interest1" class="select">
 				<option value="">Select</option>
 				<? foreach($yachtshares as $share): ?>
-					<option value="<?= $share->id; ?>"><?= $share->name; ?></option>
+					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
 				<? endforeach; ?>
 			</select>
-			<button class="buttonS bBlue" style="margin: 6px 6px;" type="button" onclick="select_share()">Add</button>
+			<br>
+			<select name="interest2" class="select">
+				<option value="">Select</option>
+				<? foreach($yachtshares as $share): ?>
+					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
+				<? endforeach; ?>
+			</select>
+			<br>
+			<select name="interest3" class="select">
+				<option value="">Select</option>
+				<? foreach($yachtshares as $share): ?>
+					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
+				<? endforeach; ?>
+			</select>
 		</div>
         <div class="clear"></div>
     </div>
@@ -80,7 +93,6 @@ function save_form()
 	    <div class="grid3"><label>Selected Boats</label></div>
 	    <div class="grid9" id="selected_shares_content" align="left">
 		</div>
-		<input type="hidden" name="boats_interest" id="boats_interest" />
 	    <div class="clear"></div>
 	</div>
 

@@ -24,5 +24,5 @@
 */
 
 return array(
-	'offline_on?' => true,
+	'offline_on?' => false,
 );

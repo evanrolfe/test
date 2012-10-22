@@ -32,7 +32,7 @@ class Controller_File extends MyController
 
 	}
 
-/* Whats inside $tmp_file:
+/* Whats inside Input::file():
 Array
         (
             [name] => Man___Nature_by_chaneljay.jpg
@@ -41,6 +41,27 @@ Array
             [error] => 0
             [size] => 1180805
         )
+
+
+Also, whats inside Upload::get_files() as $file:
+Array
+(
+    [name] => Man___Nature_by_chaneljay.jpg
+    [type] => image/jpeg
+    [error] => 
+    [size] => 1180805
+    [field] => file
+    [file] => /tmp/phpWdc7Zb
+    [errors] => Array
+        (
+        )
+
+    [extension] => jpg
+    [filename] => Man___Nature_by_chaneljay
+    [mimetype] => image/jpeg
+    [saved_to] => /home/evan/www/yacht/public/uploads/
+    [saved_as] => 90014aed5ba8af8d70bef0eed6f05af5.jpg
+)
 */
 	public function action_upload()
 	{
@@ -69,27 +90,6 @@ Array
 					Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
 				}
 
-		//3. Resize if the file is an image with width > 800px
-			$tmp_file = Input::file();
-			$tmp_file = $tmp_file['file'];
-			$tmp_file_loc = $tmp_file['tmp_name'];
-			exit($tmp_file_loc);
-			//IF it is an image
-			$mime_arr = explode('.',$tmp_file['name']);
-			if(in_array(strtolower($mime_arr[1]),array('jpg','png','gif')))
-			{
-				//exit($file_loc);
-
-				$sizes = Image::sizes($tmp_file_loc);
-
-				//IF it is too big
-				if($sizes->width > 800)
-				{
-					Image::load($tmp_file_loc)->resize(800)->save($tmp_file_loc);
-						//exit("COULD NOT RESIZE!");
-				}
-			}
-
 		//3. Otherwise upload them to the public/assets/uploads directory
 			(Upload::is_valid()) and Upload::save();
 
@@ -107,7 +107,22 @@ Array
 					'type' => $type_arr[0],
 				));
 				
-				exit("DONE");
+		//5. Resize if the file is an image with width > 800px
+			$file_loc = $file['saved_to'].$file['saved_as'];
+
+
+			//IF it is an image
+			$mime_arr = explode('/',$file['mimetype']);
+			if($mime_arr[0] == 'image')
+			{
+				$sizes = Image::sizes($file_loc);
+
+				//IF it is too big
+				if($sizes->width > 800)
+				{
+					Image::load($file_loc)->resize(800)->save($file_loc);
+				}
+			}
 
 				if($file_db and $file_db->save())
 				{

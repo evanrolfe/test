@@ -33,6 +33,7 @@ function select_type(type)
 	}
 
 	$("#public").show();
+	$("#description").show();
 }
 
 function replace_tag(label)
@@ -60,7 +61,7 @@ function add_option()
     <div class="whead">
 		<h6>New Buyer Form Field</h6>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('formfield'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;">Back</button></a>
+			<a href="<?= Uri::create('formfieldbuyer'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button">Back</button></a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -120,6 +121,14 @@ function add_option()
         <div class="clear"></div>
     </div>
 
+    <div class="formRow" id="description" style="display: none;">
+        <div class="grid3"><label>Description:</label></div>
+        <div class="grid9">
+			<textarea name='description'></textarea>
+		</div>
+        <div class="clear"></div>
+    </div>
+
     <div class="formRow" id="public"  style="display: none;">
         <div class="grid3"><label>Publicly viewable?</label></div>
         <div class="grid9">
@@ -132,7 +141,7 @@ function add_option()
     <div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right'>
-			<button class="buttonS bGreen" style="margin: 6px 6px;">Save</button>
+			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Save</button>
 		</div>
 		<div class="clear"></div>
     </div>

@@ -46,6 +46,7 @@ class Controller_Formfieldbuyer extends MyController
 					'tag' => Input::post('tag'),
 					'type' => Input::post('type'),
 					'belongs_to' => Input::post('belongs_to'),
+					'description' => Input::post('description'),
 					'options' => $options,
 					'search_field' => 0,
 					'public' => $public,

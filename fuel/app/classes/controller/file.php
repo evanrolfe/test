@@ -62,6 +62,12 @@ Array
     [saved_to] => /home/evan/www/yacht/public/uploads/
     [saved_as] => 90014aed5ba8af8d70bef0eed6f05af5.jpg
 )
+
+Also each file can be of the type:
+
+	1. Private file				"private_file"
+	2. Public header image		"public_header"
+	3. Public gallery image		"public_gallery"
 */
 	public function action_upload()
 	{
@@ -70,11 +76,23 @@ Array
 		{
 		//1. process the uploaded files in $_FILES
 
-				$config = array(
-					'path' => DOCROOT.'uploads',
-					'randomize' => true,
-				);
-				Upload::process($config);
+			$config = array(
+				'path' => DOCROOT.'uploads',
+				'randomize' => true,
+			);
+
+			//Save as file name: yachtshare_id_+_num_+.*
+			Upload::register('before', function (&$file) {
+				//2. Find the total number of other files for this item
+				$files_in_db = Model_Image::find('all', array('where' => array('belongs_to' => Input::post('belongs_to'), 'belongs_to_id' => Input::post('belongs_to_id'))));;
+				$num = count($files_in_db);
+				if ($file['error'] == Upload::UPLOAD_ERR_OK)
+				{
+					$file['saved_as'] = Input::post('belongs_to').'_id_'.Input::post('belongs_to_id').'_num_'.($num+1).'.'.$file['extension'];
+				}
+			});
+
+			Upload::process($config);
 
 		//2. Check for errors
 
@@ -86,7 +104,7 @@ Array
 				if(count($errors) > 0)
 				{
 					$error_message = $errors[0]['errors'][0]['message'];
-					Session::set_flash('error', 'Your '.$type_arr[0].' was not uploaded due to an error: '.$error_message.'. The max file size limit is: '.$max_upload_size);	
+					Session::set_flash('error', 'Your '.$type_arr[0].' was not uploaded due to an error: '.$error_message.'. The max file size limit is: '.$max_upload_size.' MB');	
 					Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
 				}
 
@@ -96,15 +114,14 @@ Array
 			foreach(Upload::get_files() as $file)
 			{
 		//4. Insert the file details into DB
-				$type_arr = explode("/", $file['mimetype']);
-				$public = (Input::post('public_image')) ? 1 : 0;
+				$public = (Input::post('type') == 'private') ? 0 : 1;
 
 				$file_db = Model_Image::forge(array(
 					'belongs_to_id' => Input::post('belongs_to_id'),
 					'belongs_to' => Input::post('belongs_to'),
 					'public_image' => $public,
 					'url' => $file['saved_as'],
-					'type' => $type_arr[0],
+					'type' => Input::post('type'),
 				));
 				
 		//5. Resize if the file is an image with width > 800px

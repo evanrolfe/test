@@ -4,8 +4,11 @@
     <div class="whead">
 		<h6>Data</h6>
 		<div style='text-align: right'>
+		<? if($offline): ?>
 			<a href="<?= Uri::create('data/import'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button"><span class="icon-upload"></span><span>Import</span></button></a>
+		<? else: ?>
 			<a href="<?= Uri::create('data/export'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button"><span class="icon-download"></span><span>Export</span></button></a>
+		<? endif; ?>
 		</div>
 		<div class="clear"></div>
 	</div>

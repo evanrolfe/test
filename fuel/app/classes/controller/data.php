@@ -12,6 +12,9 @@ class Controller_Data extends MyController
 	{
 		$data = array();
 		$data['backups'] = Model_Backup::find('all', array("order_by" => array("created_at" => "DESC"))); 
+
+		$data['offline'] = $this->offline;
+
 		$this->template->title = "Data Management";
 		$this->template->content = View::forge('data/index', $data);		
 	}

@@ -25,6 +25,8 @@ class MyController extends Controller_Template
 
 		$offline_config = Config::load('offline');
 		$this->template->offline = $offline_config['offline_on?'];
+		$this->offline = $this->template->offline;
+
 		$this->template->yachtshares_on_hold = Model_Yachtshare::find_on_hold();
 	}
 

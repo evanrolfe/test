@@ -19,7 +19,7 @@ class Controller_Emailnew extends MyController
 			$email = Email::forge();
 
 			//2. Populate email data
-			$email->from('yachtfractions@evanrolf.com', 'Yacht Fractions');
+			$email->from('yachtfractions@evanrolfe.info', 'Yacht Fractions');
 			$email->to(array(Input::post('to'), "yachtfractions@gmail.com"));
 			$email->subject(Input::post('subject'));	
 			$email->body(Input::post('body'));
@@ -124,7 +124,7 @@ class Controller_Emailnew extends MyController
 
 			//2. Populate email data
 			$email = Email::forge();
-			$email->from('yachtfractions@evanrolf.com', 'Yacht Fractions');
+			$email->from('yachtfractions@evanrolfe.info', 'Yacht Fractions');
 			$email->to("yachtfractions@gmail.com");
 			$email->subject("Yachtfractions Data");	
 			$email->body("");

@@ -32,6 +32,75 @@ class Controller_Data extends MyController
 
 	public function action_export()
 	{
+
+		//1. Get the table names
+		$tables_res = DB::query("SHOW TABLES", DB::SELECT)->execute();
+		$tables = array();
+		foreach($tables_res as $table_arr)
+		{
+			$tables[] = $table_arr['Tables_in_yachtfractions'];		
+		}
+
+
+		$out = "";
+		foreach($tables as $table)
+		{
+			if(in_array($table, array('shares','sessions', 'migration','backups','users'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
+				continue;
+
+			$out .= "TRUNCATE `".$table."`;";
+
+			$out .= "INSERT INTO `".$table."` (";
+			$columns = DB::list_columns($table);
+
+			$i=1;
+			foreach($columns as $key => $col)
+			{
+				$out .= "`".$key."`";
+				if($i < count($columns))
+					$out .= ", ";
+				$i++;
+			}
+			
+			$out .= ") VALUES ";
+	
+			$rows = DB::query('SELECT * FROM `'.$table.'`',DB::SELECT)->execute();
+
+			$j=1;
+			foreach($rows as $row)
+			{
+				$out .= "(";
+				$i=1;
+				foreach($columns as $key => $col)
+				{
+					$val = (is_null($row[$key])) ? "NULL" : $row[$key];
+
+
+					if($col['type'] == 'string')
+					{
+						//$val = Security::clean($val, array('strip_tags', 'htmlentities'));
+						$val = addslashes($val);
+						$out .= "'".$val."'";
+					}else{
+						$out .= $val;
+					}
+
+					if($i < count($columns))
+						$out .= ", ";
+					$i++;
+				}
+
+				$out .= ")";
+
+				if($j < count($rows))
+				{
+					$out .= ",";
+				}else{
+					$out .= ";";
+				}
+				$j++;
+			}
+		}
 		$date = Date::forge()->format("%d-%m-%Y %H:%m");
 		header('Content-type: text/plain');
 		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
@@ -43,74 +112,7 @@ class Controller_Data extends MyController
 
 		$backup->save();
 
-		//1. Get the table names
-		$tables_res = DB::query("SHOW TABLES", DB::SELECT)->execute();
-		$tables = array();
-		foreach($tables_res as $table_arr)
-		{
-			$tables[] = $table_arr['Tables_in_yachtfractions'];		
-		}
-
-
-
-		foreach($tables as $table)
-		{
-			if(in_array($table, array('shares','sessions', 'migration','backups','users'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
-				continue;
-
-			echo "TRUNCATE `".$table."`;";
-
-			echo "INSERT INTO `".$table."` (";
-			$columns = DB::list_columns($table);
-
-			$i=1;
-			foreach($columns as $key => $col)
-			{
-				echo "`".$key."`";
-				if($i < count($columns))
-					echo ", ";
-				$i++;
-			}
-			
-			echo ") VALUES ";
-	
-			$rows = DB::query('SELECT * FROM `'.$table.'`',DB::SELECT)->execute();
-
-			$j=1;
-			foreach($rows as $row)
-			{
-				echo "(";
-				$i=1;
-				foreach($columns as $key => $col)
-				{
-					$val = (is_null($row[$key])) ? "NULL" : $row[$key];
-
-
-					if($col['type'] == 'string')
-					{
-						//$val = Security::clean($val, array('strip_tags', 'htmlentities'));
-						$val = addslashes($val);
-						echo "'".$val."'";
-					}else{
-						echo $val;
-					}
-
-					if($i < count($columns))
-						echo ", ";
-					$i++;
-				}
-
-				echo ")";
-
-				if($j < count($rows))
-				{
-					echo ",";
-				}else{
-					echo ";";
-				}
-				$j++;
-			}
-		}
+		echo $out;
 		exit;
 
 		//Response::redirect('data');

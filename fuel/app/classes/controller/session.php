@@ -30,8 +30,8 @@ class Controller_Session extends MyController
 		$this->template = \View::forge('public_template',array(),false);
 		$this->template->user = false;
 		$this->template->title = 'Yacht Fractions: Login';
-		$offline_config = Config::load('offline');
-		$this->template->offline = $offline_config['offline_on?'];
+
+		$this->template->offline = $this->offline;
 		$this->template->content = View::forge('session/login');
 	}
 

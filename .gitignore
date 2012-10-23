@@ -5,3 +5,5 @@ fuel/app/config/development/db.php
 fuel/app/config/production/db.php
 fuel/app/config/config.php
 .htaccess
+fuel/app/config/session.php
+fuel/app/config/offline.php

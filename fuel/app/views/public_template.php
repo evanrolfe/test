@@ -7,8 +7,20 @@
 </head>
 <body>
 <div style="width: 100%; padding-top: 20px;" align="center">
+	<? if($offline): ?>
+		<div class="nNote nFailure">
+			<h1>Currently in Offline Mode</h1>
+			<br>
+			This site is currrently running in offline mode, you may view data but you cannot edit/create data.
+		</div>
+		<br>
+		<? $heading = 'h2'; ?>
+	<? else: ?>
+		<? $heading = 'h1'; ?>
+	<? endif;?>
 
-	<h1><?=$title;?></h1>
+	<<?=$heading;?>><?= $title; ?></<?=$heading;?>>
+
 	<div style="width: 80%;">
 		<?php echo render('_flash_messages'); ?>
 	</div>

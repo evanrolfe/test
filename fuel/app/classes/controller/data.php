@@ -34,12 +34,7 @@ class Controller_Data extends MyController
 	{
 
 		//1. Get the table names
-		$tables_res = DB::query("SHOW TABLES", DB::SELECT)->execute();
-		$tables = array();
-		foreach($tables_res as $table_arr)
-		{
-			$tables[] = $table_arr['Tables_in_yachtfractions'];		
-		}
+		$tables = array('actionsteps','asnames','buyers','emails','emailtemplates','formfields_buyer','images','yachtshares');
 
 
 		$out = "";

@@ -33,6 +33,24 @@ class Controller_Data extends MyController
 	public function action_export()
 	{
 
+		
+		$date = Date::forge()->format("%d-%m-%Y %H:%m");
+		header('Content-type: text/plain');
+		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
+
+		$backup = Model_Backup::forge(array(
+			'note' =>'',
+			'type' => 'export',
+		));
+
+		$backup->save();
+
+		echo $this->get_sql_string();
+		exit;
+	}
+
+	public function get_sql_string()
+	{
 		//1. Get the table names
 		$tables = array('actionsteps','asnames','buyers','emails','emailtemplates','formfields_buyer','images','yachtshares');
 
@@ -96,21 +114,8 @@ class Controller_Data extends MyController
 				$j++;
 			}
 		}
-		$date = Date::forge()->format("%d-%m-%Y %H:%m");
-		header('Content-type: text/plain');
-		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
 
-		$backup = Model_Backup::forge(array(
-			'note' =>'',
-			'type' => 'export',
-		));
-
-		$backup->save();
-
-		echo $out;
-		exit;
-
-		//Response::redirect('data');
+		return $out;		
 	}
 
 	public function action_import()

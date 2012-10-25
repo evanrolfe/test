@@ -10,7 +10,7 @@
 
 	<h1><?= $title; ?></h1>
 
-	<? if($offline): ?>
+	<? if(isset($offline) and $offline): ?>
 		<div class="nNote nFailure" style="width: 75%;">
 			<h1>Currently in Offline Mode</h1>
 			<br>

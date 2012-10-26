@@ -9,23 +9,13 @@
 
 <script type="text/javascript">
 
-	function PopIt() { 
-		$("a.trigger").trigger('click');
-		window.onbeforeunload = UnPopIt;
-		return "Would you like to join our mailing list for other offers?"; 
-	}
-	function UnPopIt()  { /* nothing to return */ } 
+     function PopIt() { return ""; }
+     function UnPopIt()  { /* nothing to return */ } 
  
-	window.onbeforeunload = PopIt;
- 
-	$(document).ready(function() {
-	    $("a[id!=trigger]").click(function(){ window.onbeforeunload = UnPopIt; });
- 
-	    $("a#trigger").fancybox({
-			'hideOnContentClick': false,
-			'showCloseButton': false
-		});
-	});
+     $(document).ready(function() {
+     	window.onbeforeunload = PopIt;
+		$("a").click(function(){ window.onbeforeunload = UnPopIt; });
+     });
 </script>
 
 	<? endif; ?>

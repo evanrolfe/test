@@ -341,6 +341,7 @@ class Controller_Buyer extends MyController
 		$this->template->user = $this->user;
 		$this->template->content_width = $this->content_width;
 		$this->template->title = 'Yacht Fractions: Buyer Enquiry';
+		$this->template->form_page = true;												//To set the html body to display "are you sure" popup on exit
 		$this->template->content = View::forge('buyer/create2', $data,false);
 	}
 

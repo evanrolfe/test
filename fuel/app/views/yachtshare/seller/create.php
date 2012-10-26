@@ -31,6 +31,7 @@ function save_form()
 		}
 	});
 }
+
 </script>
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">

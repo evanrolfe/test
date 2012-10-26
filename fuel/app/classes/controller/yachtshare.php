@@ -296,6 +296,7 @@ class Controller_Yachtshare extends MyController
 			$this->template = \View::forge('public_template',array(),false);
 			$this->template->user = $this->user;
 			$this->template->title = 'Yacht Fractions: Create Yachtshare';
+			$this->template->form_page = true;												//To set the html body to display "are you sure" popup on exit
 			$this->template->content = View::forge('yachtshare/seller/create',$data,false);
 		}else{
 			$data['types'] = array("Sailing boats shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");

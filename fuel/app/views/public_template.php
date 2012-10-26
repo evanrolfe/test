@@ -4,8 +4,33 @@
 	<meta charset="utf-8">
 	<title><?=$title;?></title>
 	<?php echo render('_includes'); ?>
+
+	<? if(isset($form_page) and $form_page): ?>
+
+<script type="text/javascript">
+
+	function PopIt() { 
+		$("a.trigger").trigger('click');
+		window.onbeforeunload = UnPopIt;
+		return "Would you like to join our mailing list for other offers?"; 
+	}
+	function UnPopIt()  { /* nothing to return */ } 
+ 
+	window.onbeforeunload = PopIt;
+ 
+	$(document).ready(function() {
+	    $("a[id!=trigger]").click(function(){ window.onbeforeunload = UnPopIt; });
+ 
+	    $("a#trigger").fancybox({
+			'hideOnContentClick': false,
+			'showCloseButton': false
+		});
+	});
+</script>
+
+	<? endif; ?>
 </head>
-<body>
+<body <? if(isset($form_page) and $form_page): ?>onbeforeunload="return confirmExit()"<? endif; ?>>
 <div style="width: 100%; padding-top: 20px;" align="center">
 
 	<h1><?= $title; ?></h1>

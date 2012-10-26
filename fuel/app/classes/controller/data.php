@@ -148,7 +148,10 @@ class Controller_Data extends MyController
 
 				try
 				{
-					DB::query($sql)->execute();					
+					DBUtil::set_connection('unlocked');
+					DB::query($sql)->execute();
+					DBUtil::set_connection(null);
+					
 				}catch(Fuel\Core\Database_Exception $e)
 				{
 					$e = (strlen($e) > 1000) ? substr($e,0,400) : $e;

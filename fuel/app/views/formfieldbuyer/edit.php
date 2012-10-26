@@ -123,6 +123,7 @@ window.onload = function () {
 	    <div class="grid3"><label>Advanced</label></div>
 	    <div class="grid9">
 			<input type='text' name='options' id='options'>
+			<span class="note">Change the order of options as they will appear in a dropdown box. Make sure that the list follows the syntax of ["option1","option2","option3"]</span>
 		</div>
 	    <div class="clear"></div>
 	</div>

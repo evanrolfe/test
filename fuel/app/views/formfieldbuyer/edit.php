@@ -113,11 +113,16 @@ window.onload = function () {
 	<div class="formRow" id="textarea">
 	    <div class="grid3"><label>Options to choose from:</label></div>
 	    <div class="grid9">
-			<input type='text' name='options' id='options'>
-			<hr>
 			<input type='text' id="option_add_input" style="width: 150px;" /> <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
 			<div id='options_display'>
 			</div>
+		</div>
+	    <div class="clear"></div>
+	</div>
+	<div class="formRow">
+	    <div class="grid3"><label>Advanced</label></div>
+	    <div class="grid9">
+			<input type='text' name='options' id='options'>
 		</div>
 	    <div class="clear"></div>
 	</div>

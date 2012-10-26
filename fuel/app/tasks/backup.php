@@ -10,7 +10,7 @@ class Backup
 
 			//1. Create an instance
 			$email = \Email::forge();
-			echo $date;
+
 			//2. Populate email data
 			$email->from('yachtfractions@evanrolfe.info', 'Yacht Fractions');
 			$email->to(array( $email));

@@ -26,6 +26,7 @@ function save_form()
 		data: { form : saved_form},
 		success: function(data) {
 			$("#text_bar").html(data);
+			$("#text_bar2").html(data);
 			//setTimeout(function(){ save_form(); },3000);
 		}
 	});
@@ -37,7 +38,7 @@ function save_form()
 		<div style="text-align: right">
 			<span id="text_bar">
 			</span>
-			<button class="buttonS bGreen" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
+			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -57,7 +58,7 @@ function save_form()
 	<? elseif($field->type == 'length'): ?>
 		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'terms_and_conditions'): ?>
-		<?= render('forms/_terms_and_conditions',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
+		<?= render('forms/_terms_and_conditions',array('field'=>$field),false); ?>
 	<? elseif($field->tag == 'share_size'): ?>
 <div class="formRow">
         <div class="grid3"><label>Share Size:</label></div>
@@ -82,6 +83,9 @@ function save_form()
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
+			<span id="text_bar2">
+			</span>
+			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Submit</button>
 		</div>
 		<div class="clear"></div>

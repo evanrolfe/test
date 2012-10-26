@@ -38,7 +38,7 @@ function save_form()
 		<div style="text-align: right">
 			<span id="text_bar">
 			</span>
-			<button class="buttonS bGreen" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
+			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -58,6 +58,8 @@ function save_form()
 		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' =>$saved_form_data[$field->tag.'_num'],'den' => $saved_form_data[$field->tag.'_den'])),false); ?>
 	<? elseif($field->type == 'length'): ?>
 		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
+	<? elseif($field->type == 'terms_and_conditions'): ?>
+		<?= render('forms/_terms_and_conditions',array('field'=>$field),false); ?>
 	<? endif; ?>
 
 <? endforeach; ?>
@@ -99,6 +101,9 @@ function save_form()
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
+			<span id="text_bar">
+			</span>
+			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Submit</button>
 		</div>
 		<div class="clear"></div>

@@ -167,6 +167,16 @@ class Error
 
 			$data['non_fatal'] = static::$non_fatal_cache;
 
+			//Evan's Addition:
+			\DB::query("INSERT INTO `error_log` (`id`, `severity`, `type`, `message`, `filepath`, `linenum`) VALUES (NULL, '".$data['severity']."', '".$data['type']."', '".$data['message']."', '".$data['filepath']."', '".$data['error_line']."');")->execute();
+
+			$email = \Email::forge();
+			$email->from('error@evanrolfe.info', 'Yachtfractions');
+			$email->to('evanrolfe@gmail.com', 'Evan Rolfe');
+			$email->subject('An Error Occured!');
+			$email->html_body(\View::forge('errors'.DS.'php_fatal_error', $data, false));
+			$email->send();
+
 			try
 			{
 				exit(\View::forge('errors'.DS.'php_fatal_error', $data, false));

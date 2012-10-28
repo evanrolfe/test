@@ -7,7 +7,7 @@
 
 3.  Open /.htaccess (in the application root) and change line num 4 from:
 
-	```RewriteBase /yacht/public```
+    ```RewriteBase /yacht/public```
 
 	 replace /yacht/ with the name of the directory containing the app. i.e. if the app is located in /home/evan/www/yacht_fractions then .htaccess should contain:
 
@@ -15,7 +15,7 @@
 
 4.  Open /fuel/app/config/config.php update line 26, do not forget the trailing slash!!!
 
-```'base_url'  => 'http://localhost/yacht/',```
+    ```'base_url'  => 'http://localhost/yacht/',```
 
 5.  Open /fuel/app/config/production/db.php according to the DB (straightforward).
 

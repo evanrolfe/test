@@ -91,7 +91,5 @@ class Controller_Seller extends MyController
 			$this->template->title = 'Yacht Fractions: Seller Panel';
 			$this->template->content = View::forge('seller/find_by_name',$data,false);	
 		}
-
-
 	}
 }

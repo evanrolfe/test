@@ -27,5 +27,6 @@ return array(
 	'offline_on?' => false,
 
 	//Set the percentage of the width of the content box on public pages
+	//IGNORE if you dont know what this is
 	'content_width' => 50,
 );

@@ -23,8 +23,13 @@
 
 6.  Optional: to set to offline mode, update /fuel/app/config/offline.php
 
-7.  
+7.  Now enter phpmyadmin, click on the corresponding database in the sidepanel, click on the "Import" tab, then import the SQL file located at /database_install.sql (in root dir)
 
+8.  Go to http://yourdomain.com/your_yacht_folder/install/admin to create an admin user
+
+9.  IMPORTANT: delete the file located at: /fuel/app/classes/controller/install.phpmyadmin
+
+FINISHED!
 
 *Trouble Shooting:*
 ================================

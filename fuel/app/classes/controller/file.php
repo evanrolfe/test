@@ -91,7 +91,7 @@ Also each file can be of the type:
 				$num = count($files_in_db);
 				if ($file['error'] == Upload::UPLOAD_ERR_OK)
 				{
-					$file['saved_as'] = Input::post('belongs_to').'_id_'.Input::post('belongs_to_id').'_num_'.($num+1).'.'.$file['extension'];
+					$file['saved_as'] = Input::post('belongs_to').'_id_'.Input::post('belongs_to_id').'_num_'.($num+1).'_'.Input::post('type').'.'.$file['extension'];
 				}
 			});
 

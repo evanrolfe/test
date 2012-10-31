@@ -29,9 +29,10 @@ function select_type(type)
 			$("#textarea").hide();
 			$("#dropdown").show();
 			$("#dropdown2").show();
-		break;
+		break;    
 	}
 
+	$("#required").show();
 	$("#public").show();
 	$("#description").show();
 }
@@ -127,6 +128,15 @@ function add_option()
         <div class="grid3"><label>Description:</label></div>
         <div class="grid9">
 			<textarea name='description'></textarea>
+		</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow" id="required" style="display: none;">
+        <div class="grid3"><label>Required Field?</label></div>
+        <div class="grid9">
+			<input type="checkbox" name="required" />
+			<span class="note">Is this a field that the user MUST enter a value in order to submit the form?</span>
 		</div>
         <div class="clear"></div>
     </div>

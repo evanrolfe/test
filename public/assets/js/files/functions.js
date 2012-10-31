@@ -166,73 +166,6 @@ $(function() {
 
 	//===== Usual validation engine=====//
 
-	$("#usualValidate").validate({
-		rules: {
-			firstname: "required",
-			minChars: {
-				required: true,
-				minlength: 3
-			},
-			maxChars: {
-				required: true,
-				maxlength: 6
-			},
-			mini: {
-				required: true,
-				min: 3
-			},
-			maxi: {
-				required: true,
-				max: 6
-			},
-			range: {
-				required: true,
-				range: [6, 16]
-			},
-			emailField: {
-				required: true,
-				email: true
-			},
-			urlField: {
-				required: true,
-				url: true
-			},
-			dateField: {
-				required: true,
-				date: true
-			},
-			digitsOnly: {
-				required: true,
-				digits: true
-			},
-			enterPass: {
-				required: true,
-				minlength: 5
-			},
-			repeatPass: {
-				required: true,
-				minlength: 5,
-				equalTo: "#enterPass"
-			},
-			customMessage: "required",
-			topic: {
-				required: "#newsletter:checked",
-				minlength: 2
-			},
-			agree: "required"
-		},
-		messages: {
-			customMessage: {
-				required: "Bazinga! This message is editable",
-			},
-			agree: "Please accept our policy"
-		}
-	});
-	
-	
-	//===== Validation engine =====//
-	
-	$("#validate").validationEngine();
 
 	
 	//===== iButtons =====//
@@ -309,51 +242,6 @@ $(function() {
 
 	
 	//===== Wizards =====//
-	
-	$("#wizard1").formwizard({
-		formPluginEnabled: true, 
-		validationEnabled: false,
-		focusFirstInput : false,
-		disableUIStyles : true,
-	
-		formOptions :{
-			success: function(data){$("#status1").fadeTo(500,1,function(){ $(this).html("<span>Form was submitted!</span>").fadeTo(5000, 0); })},
-			beforeSubmit: function(data){$("#w1").html("<span>Form was submitted with ajax. Data sent to the server: " + $.param(data) + "</span>");},
-			resetForm: true
-		}
-	});
-	
-	$("#wizard2").formwizard({ 
-		formPluginEnabled: true,
-		validationEnabled: true,
-		focusFirstInput : false,
-		disableUIStyles : true,
-	
-		formOptions :{
-			success: function(data){$("#status2").fadeTo(500,1,function(){ $(this).html("<span>Form was submitted!</span>").fadeTo(5000, 0); })},
-			beforeSubmit: function(data){$("#w2").html("<span>Form was submitted with ajax. Data sent to the server: " + $.param(data) + "</span>");},
-			dataType: 'json',
-			resetForm: true
-		},
-		validationOptions : {
-			rules: {
-				bazinga: "required",
-				email: { required: true, email: true }
-			},
-			messages: {
-				bazinga: "Bazinga. This note is editable",
-				email: { required: "Please specify your email", email: "Correct format is name@domain.com" }
-			}
-		}
-	});
-	
-	$("#wizard3").formwizard({
-		formPluginEnabled: false, 
-		validationEnabled: false,
-		focusFirstInput : false,
-		disableUIStyles : true
-	});
-	
 	
 	
 	//===== WYSIWYG editor =====//
@@ -504,7 +392,6 @@ $(function() {
 		"sDom": '<"H"fl>t<"F"ip>'
 	});
 	
-
 	//===== Dynamic table toolbars =====//		
 	
 	$('#dyn .tOptions').click(function () {
@@ -771,8 +658,7 @@ $(function() {
         $('#dialog-modal').dialog('open');
         return false;
     });
-	
-	
+
 	//===== jQuery UI stuff =====//
 	
 	// default mode
@@ -865,9 +751,6 @@ $(function() {
 	});
 	$( "#maxRangeAmount" ).val( $( ".uMax" ).slider( "value" ) );	
 
-
-
-
 	//===== Add class on #content resize. Needed for responsive grid =====//
 	
 	$('#content').resize(function () {
@@ -888,8 +771,7 @@ $(function() {
 
 	//===== Form elements styling =====//
 	
-	$("select, .check, .check :checkbox, input:radio, input:file").uniform();
-
+	$(".check, .check :checkbox, input:radio, input:file").uniform();
 	
 });
 

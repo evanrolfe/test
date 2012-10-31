@@ -42,8 +42,8 @@ FINISHED!
 *Todo (from Skype convo on 29/10/2012):*
 ================================
 Tasks from convo:
-* yachtshare/create: validate share size screws up that formrow
-* file/yachtshare/X: set dropdown to "Any" by default then validate something is selected
+* ~~yachtshare/create: validate share size screws up that formrow~~ (Completed 31/10/12 - 10:15)
+* ~~file/yachtshare/X: set dropdown to "Any" by default then validate something is selected~~ (Completed 31/10/12 - 12:45)
 * append file type (i.e. "_public_header") to file name
 * make "Logout" link on public pages more prominent
 * Selected boats row should not appear?
@@ -60,5 +60,5 @@ Older tasks:
 * HTML scrape inactive boats from http://www.yachtfractions.co.uk/fracadmin.asp
 * "Save for later" saves on logout
 * Jquery interface for change order of formfields
-* Fix dropdowns going off screen problem
+* ~~Fix dropdowns going off screen problem~~ (Completed 31/10/12 - 12:45)
 * Validate dropdowns in buyer/create, yachtshare/create,actionstep/create

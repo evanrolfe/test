@@ -40,6 +40,7 @@ class Controller_Formfieldbuyer extends MyController
 				}
 
 				$public = (Input::post('public')) ? 1 : 0;	
+				$required = (Input::post('required')) ? 'required' : '';	
 
 				$formfield = Model_Formfieldbuyer::forge(array(
 					'label' => Input::post('label'),
@@ -47,6 +48,7 @@ class Controller_Formfieldbuyer extends MyController
 					'type' => Input::post('type'),
 					'belongs_to' => Input::post('belongs_to'),
 					'description' => Input::post('description'),
+					'validation' => $required,
 					'options' => $options,
 					'search_field' => 0,
 					'public' => $public,
@@ -131,6 +133,7 @@ class Controller_Formfieldbuyer extends MyController
 			$field->description = Input::post('description');
 			$field->options = Input::post('options');			
 			$field->public = (Input::post('public')) ? 1 : 0;
+      $field->validation = (Input::post('required')) ? 'required' : '';	
 
 			if($field->save())
 			{

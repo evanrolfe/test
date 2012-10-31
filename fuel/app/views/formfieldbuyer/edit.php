@@ -87,7 +87,9 @@ window.onload = function () {
 					<option value="textarea" <?if($field->type == "textarea"):?>selected="yes"<?endif;?>>Mutli line text field</option>
 					<option value="text_fraction" <?if($field->type == "text_fraction"):?>selected="yes"<?endif;?>>Single line text field for fractions (i.e. share size)</option>
 					<option value="dropdown" <?if($field->type == "dropdown"):?>selected="yes"<?endif;?>>Dropdown box</option>
-					<option value="dropdown" <?if($field->type == "other"):?>selected="yes"<?endif;?>>Other</option>
+
+					<option value="length" <?if($field->type == "length"):?>selected="yes"<?endif;?>>Measure of length</option>
+					<option value="terms_and_conditions" <?if($field->type == "terms_and_conditions"):?>selected="yes"<?endif;?>>Terms and conditions checkbox</option>
 			</select>
 		</div>
         <div class="clear"></div>

@@ -1,6 +1,11 @@
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#create_form").validate();
+	$("#create_form").validate({
+    errorPlacement: function(error, element) {
+       if (element.attr("name") != "share_1_num" )
+         error.insertAfter(element);
+     }
+  });
 });
 
 function select_shares(n)

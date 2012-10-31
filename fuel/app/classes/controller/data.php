@@ -191,4 +191,267 @@ class Controller_Data extends MyController
 			return new Response(View::forge('data/sellers_letter',$data));			
 		}
 	}
+
+
+//==========================================================================================
+// HTML SCRAPER FUNCTIONS/AND
+//==========================================================================================
+	public function import_from_inactive()
+	{
+		 $ch = curl_init();
+		 curl_setopt($ch, CURLOPT_URL, $url);
+		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		 $contents = curl_exec ($ch);
+		 curl_close ($ch);
+
+		$doc = new DOMDocument();
+		@$doc->loadHTML($contents);
+
+		$urls = array();
+		$links = $doc->getElementsByTagName("a");
+
+		foreach($links as $link)
+		{
+			$href = $link->attributes->getNamedItem('href')->nodeValue;
+
+			if(preg_match())
+		}
+	}
+
+
+	public function import_from_yachtfractions($url,$type,$loc_general,$loc_specific)
+	{
+		 $ch = curl_init();
+		 curl_setopt($ch, CURLOPT_URL, $url);
+		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		 $contents = curl_exec ($ch);
+		 curl_close ($ch);
+
+		$doc = new DOMDocument();
+		@$doc->loadHTML($contents);
+
+		$urls = array();
+		$links = $doc->getElementsByTagName("a");
+
+		foreach($links as $link){
+			$parsed_url = explode("=",$link->attributes->getNamedItem('href')->nodeValue);
+			($link->nodeValue == "More details...") and $urls[] = $parsed_url[1];
+		}
+
+		$data = array();
+		foreach($urls as $id){
+			$data[] = $this->get_data_for_id($id);
+		}
+
+		foreach($data as $boat)
+		{
+			echo "Saving boat name: ".$boat_db->name."<br>";
+
+			$name = $boat['name'];
+			$images = $boat['images'];
+			$price = $boat['price'];
+			$length = $boat['length'];
+			$share_size = $boat['share_size'];
+			unset($boat['name']);
+			unset($boat['images']);
+			unset($boat['length']);
+			unset($boat['price']);
+			unset($boat['share_size']);
+			$details = json_encode($boat);
+
+		//Convert share size fration to floating point number
+		$share_size_arr = explode("/", $share_size);
+		$share_size = (float) $share_size_arr[0]/$share_size_arr[1];
+
+		if(is_null($share_size_arr[0]) || is_null($share_size_arr[1]))
+		{
+				echo "\tCould not save boat with name: ".$boat->db->name;
+				continue;
+		}
+			$boat_db = Model_YachtShare::forge(array(
+				'name' 			=> $name,
+				'type' 			=> $type,
+				'location_general' => $loc_general,
+				'location_specific' => $loc_specific,
+				'length' => $length,
+				'price' => $price,
+				'share_size' => $share_size,
+				'share_size_num' => $share_size_arr[0],
+				'share_size_den' => $share_size_arr[1],
+				'location' 		=> 	$boat['lying'],
+				'boat_details' 	=> 	$details,
+				'active'		=> 1,
+			));
+
+			
+		if(!$boat_db->save())
+		{
+				echo "\tCould not save boat with name: ".$boat->db->name;
+				continue;
+		}
+
+			foreach($images as $url){
+				$this->insert_image($url, $boat_db->id);		
+			}
+		}
+	}
+
+	//================================================
+	//IMPORTANT: to use php's copy() function,
+	//allow_url_fopen must be set as on in php.ini!!!
+	//================================================
+	protected static function insert_image($url, $boat_id)
+	{
+		$parsed_url = explode("/", $url);
+		$url = str_replace(" ", "%20", $url);
+		$filename = str_replace(" ", '_', array_pop($parsed_url));
+
+		if(!file_exists("uploads/".$filename))
+			copy($url, "uploads/".$filename);
+
+		$image = Model_Image::forge(array(
+			'belongs_to_id' => $boat_id,
+			'belongs_to' => 'yachtshare',
+			'public_image' => 1,
+			'url' => $filename,
+		));
+
+		$image->save();
+	}
+
+	public static function get_data_for_id($id)
+	{
+		 $ch = curl_init();
+
+		 curl_setopt($ch, CURLOPT_URL, "http://www.yachtfractions.co.uk/UK/detail.asp?ID=".$id);
+
+		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+		 $contents = curl_exec ($ch);
+
+		 curl_close ($ch);
+
+		$doc = new DOMDocument();
+		@$doc->loadHTML($contents);
+		//echo $doc->saveHTML();
+
+		$data = array();
+
+		//1. Get the NAME
+		//-----------------------
+		$hs = $doc->getElementsByTagName("h1");
+		$children = $hs->item(0)->childNodes; 
+		$innerHTML = "";
+		foreach ($children as $child) { 
+		    $innerHTML .= @$child->ownerDocument->saveXML( $child ); 
+		} 
+
+		$data['name'] = $innerHTML; 
+
+		//2. Get the IMAGES
+		//-----------------------
+		$imgs = $doc->getElementsByTagName("img");
+		$children = $hs->item(0)->childNodes; 
+		$data['images'] = array();
+		foreach ($imgs as $img) { 
+			$data['images'][] = "http://www.yachtfractions.co.uk/".(substr($img->attributes->getNamedItem('src')->nodeValue, 2));
+		} 
+
+
+		//3. Get the UL/LI ELEMENTS
+		//--------------------------
+		$lists = $doc->getElementsByTagName("ul");
+
+		$i=0;
+		foreach($lists as $ul){
+			//echo $i.") ".$ul->nodeValue."<hr>";
+	
+			switch($i)
+			{
+				case 0:
+					$key = "equipment";
+				break;
+
+				case 1:
+					$key = "engine";
+				break;
+
+				case 2:
+					$key = "navigation";
+				break;
+
+				case 3:
+					$key = "accomodation";
+				break;
+
+				case 4:
+					$key = "dinghy";
+				break;
+
+				case 5:
+					$key = "owners_comments";
+				break;
+
+				case 6:
+					$key = "annual_costs";
+				break;
+			}
+
+			$data[$key] = $ul->nodeValue;
+			$i++;
+		}
+
+		//4. Get the TABLE ELEMENTS
+		//--------------------------
+		$cells = $doc->getElementsByTagName("td");
+
+		$i=0;
+
+		foreach($cells as $td){
+			//echo $i.") ".$td->nodeValue->nodeValue."<hr>";
+
+			switch($i)
+			{
+				case 2:
+					$data['length'] = substr($td->nodeValue,0,-3);
+				break;
+
+				case 5:
+					$data['lwl'] = $td->nodeValue;
+				break;
+
+				case 8:
+					$data['beam'] = $td->nodeValue;
+				break;
+
+				case 11:
+					$data['draft'] = $td->nodeValue;
+				break;
+
+				case 14:
+					$data['keel'] = $td->nodeValue;
+				break;
+
+				case 17:
+					$data['built'] = $td->nodeValue;
+				break;
+
+				case 20:
+					$data['lying'] = $td->nodeValue;
+				break;
+
+				case 25:
+					$price_arr = explode(" ", $td->nodeValue);
+					$data['price'] = substr($price_arr[0],2);
+				break;
+
+				case 28:
+					$data['share_size'] = $td->nodeValue;
+				break;
+			}
+			$i++;
+		}
+
+		return $data;
+	}
 }

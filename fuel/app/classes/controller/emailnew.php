@@ -37,6 +37,8 @@ class Controller_Emailnew extends MyController
 				}
 			}
 
+			Session::set_flash('success', 'Your email has been sent.');
+
 			//4. Send the Email
 			try
 			{
@@ -51,15 +53,18 @@ class Controller_Emailnew extends MyController
 			}
 			catch(\EmailValidationFailedException $e)
 			{
-				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
+				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);
+        Session::delete_flash('success');	
 			}
 			catch(\EmailSendingFailedException $e)
 			{
-				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
+				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);	
+        Session::delete_flash('success');								
 			}
       catch(\AttachmentNotFoundException $e)
       {
-				Session::set_flash('error', 'Your email has not been sent because one of the attachments was not found on file.<br>Please make sure the file exists in the correct folder or try sending the email without attachments.');								        
+				Session::set_flash('error', 'Your email has not been sent because one of the attachments was not found on file.<br>Please make sure the file exists in the correct folder or try sending the email without attachments.');	
+        Session::delete_flash('success');							        
       }
 
 			//5. Redirect to appropriate destination
@@ -73,7 +78,6 @@ class Controller_Emailnew extends MyController
 			{
 				$url = 'yachtshare'				;
 			}
-			Session::set_flash('success', 'Your email has been sent.');
 			Response::redirect($url);
 		}
 
@@ -138,18 +142,20 @@ class Controller_Emailnew extends MyController
 			$email->string_attach($content_buyers, "yachtfractions_data.htm");
 
 			//4. Send email
-				Session::set_flash('message', 'Your email has been sent.');
+			  Session::set_flash('success', 'Your email has been sent.');
 			try
 			{
 				$email->send();
 			}
 			catch(\EmailValidationFailedException $e)
 			{
-				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
+				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);
+			  Session::delete_flash('success');				
 			}
 			catch(\EmailSendingFailedException $e)
 			{
-				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
+				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);
+			  Session::delete_flash('success');									
 			}
 
 			Response::redirect('mobile');

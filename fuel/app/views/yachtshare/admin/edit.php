@@ -19,16 +19,16 @@
 		} ?>
 
 	<? if($field->type == 'text'): ?>
-		<?= render('forms/_text',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_text',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'dropdown'): ?>
-		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_dropdown',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'textarea'): ?>
-		<?= render('forms/_textarea',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_textarea',array('field'=>$field,'value'=>$value),false); ?>
 	<? elseif($field->type == 'text_fraction'): ?>
 		<? $numprop = $field->tag."_num"; $denprop = $field->tag."_den"; ?>
-		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' => $yachtshare->$numprop,'den' => $yachtshare->$denprop))); ?>
+		<?= render('forms/_text_fraction',array('field'=>$field,'value'=>array('num' => $yachtshare->$numprop,'den' => $yachtshare->$denprop)),false); ?>
 	<? elseif($field->type == 'length'): ?>
-		<?= render('forms/_length',array('field'=>$field,'value'=>$value)); ?>
+		<?= render('forms/_length',array('field'=>$field,'value'=>$value),false); ?>
 	<? endif; ?>
 
 <? endforeach; ?>

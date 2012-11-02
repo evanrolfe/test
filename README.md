@@ -48,7 +48,7 @@ Tasks from convo:
 * ~~make "Logout" link on public pages more prominent~~ (Completed 02/11/12 - 11:30)
 * ~~buyer/create: selected boats should give name and not just ID's (also in email templates)~~ (Completed 02/11/12 - 12:00)
 * ~~actionstep/create: should have buttons "Introduce" and "Introduce with email"~~ (Completed 02/11/12 - 12:20)
-* yachtshare/edit: show html descriptions
+* ~~yachtshare/edit and buyer/edit: show html descriptions~~ (Completed 02/11/12 -  12:30)
 * mobile export: does not link telephone numbers
 * image upload: php memory_limit???
 * have config file for email address in emailnew controller

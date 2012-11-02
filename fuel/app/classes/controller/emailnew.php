@@ -7,8 +7,6 @@ class Controller_Emailnew extends MyController
 	{
 		parent::before();
 		$this->logged_in_as(array('admin'));
-
-    echo "HELLO WORLD: ".$this->offline_config['from_email'];
 	}
 
 	public function action_create()
@@ -140,10 +138,10 @@ class Controller_Emailnew extends MyController
 			$email->string_attach($content_buyers, "yachtfractions_data.htm");
 
 			//4. Send email
+				Session::set_flash('message', 'Your email has been sent.');
 			try
 			{
 				$email->send();
-				Session::set_flash('message', 'Your email has been sent.');
 			}
 			catch(\EmailValidationFailedException $e)
 			{

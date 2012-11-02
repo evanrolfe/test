@@ -89,7 +89,7 @@ return array(
 		 * SMTP settings
 		 */
 		'smtp'	=> array(
-			'host'		=> 'localhost',
+			'host'		=> 'mail.evanrolfe.info',
 			'port'		=> 25,
 			'username'	=> '',
 			'password'	=> '',

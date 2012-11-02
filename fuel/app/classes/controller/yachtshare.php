@@ -323,7 +323,7 @@ class Controller_Yachtshare extends MyController
 			$this->template->content = View::forge('yachtshare/seller/edit',$data,false);
 		}elseif($this->user->type == 'admin'){
 			$this->template->links['shares']['current'] = true;
-			$this->template->content = View::forge('yachtshare/admin/edit',$data);
+			$this->template->content = View::forge('yachtshare/admin/edit',$data,false);
 		}
 	}
 

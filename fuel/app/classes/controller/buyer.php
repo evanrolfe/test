@@ -367,7 +367,7 @@ class Controller_Buyer extends MyController
 		$data['buyer'] = $buyer;
 
 		$this->template->title = "Buyer: ".$data['buyer']->name;
-		$this->template->content = View::forge('buyer/edit', $data);
+		$this->template->content = View::forge('buyer/edit', $data,false);
 
 	}
 

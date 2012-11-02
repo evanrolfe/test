@@ -27,7 +27,10 @@
         <div class="grid3"><label>Attachments:</label></div>
         <div class="grid9">
 			<? foreach($attachments as $file): ?>
+        <? if(file_exists(DOCROOT."/uploads/".$file->url)): ?>
+
 				<input type="checkbox" name="file_<?=$file->id;?>" checked="yes"> <a href="<?=Uri::create('public/uploads/'.$file->url);?>"><?= $file->url; ?></a><br>
+        <? endif; ?>
 			<? endforeach; ?>
 		</div>
         <div class="clear"></div>

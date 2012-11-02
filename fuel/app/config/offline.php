@@ -9,7 +9,7 @@ return array(
   'from_name'   =>    'Yacht Fractions',
 
   //All emails will be cc'ed to this email, also data exports (for mobile) will be emailed here
-  'admin_email'  =>    'evanrolfe@gmail.info',  
+  'admin_email'  =>    'evanrolfe@gmail.com',  
 
 	//Set the percentage of the width of the content box on public pages
 	//IGNORE if you dont know what this is

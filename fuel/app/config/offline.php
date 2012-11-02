@@ -1,30 +1,15 @@
 <?php
-/*
-* Set this to true if the application is to be run in offline mode which does nothing more than display a big warning banner at the top of each page
-*
-* In order to make database read-only:
-*
-*	In phpmyadmin:
-*	1. Click on "Privileges" in top horizontal nav bar
-*	2. Click "Add a new user"
-*	3. Use details:
-		Login information:
-
-			User name: whatever you want (say 'offline_user')
-			Host: localhost
-			Password: whatever you want
-
-		Database for user:
-
-			Select: None
-
-		Global Privileges:
-			CHECK: Select
-	4. 
-*/
-
 return array(
 	'offline_on?' => false,
+
+  //All generated emails to public users will be sent from this email_sent
+  //it MUST be from an email on the same domain as the site
+  //it DOES NOT NEED to be a working email address, i.e. no need to receive emails on this account (can be a noreply@ email(
+  'from_email'  =>    'noreply@evanrolfe.info',
+  'from_name'   =>    'Yacht Fractions',
+
+  //All emails will be cc'ed to this email, also data exports (for mobile) will be emailed here
+  'admin_email'  =>    'evanrolfe@gmail.info',  
 
 	//Set the percentage of the width of the content box on public pages
 	//IGNORE if you dont know what this is

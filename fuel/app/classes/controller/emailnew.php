@@ -7,6 +7,8 @@ class Controller_Emailnew extends MyController
 	{
 		parent::before();
 		$this->logged_in_as(array('admin'));
+
+    echo "HELLO WORLD: ".$this->offline_config['from_email'];
 	}
 
 	public function action_create()
@@ -19,8 +21,8 @@ class Controller_Emailnew extends MyController
 			$email = Email::forge();
 
 			//2. Populate email data
-			$email->from('yachtfractions@evanrolfe.info', 'Yacht Fractions');
-			$email->to(array(Input::post('to'), "yachtfractions@gmail.com"));
+			$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
+			$email->to(array(Input::post('to'), $this->offline_config['admin_email']));
 			$email->subject(Input::post('subject'));	
 			$email->body(Input::post('body'));
 
@@ -128,8 +130,8 @@ class Controller_Emailnew extends MyController
 
 			//2. Populate email data
 			$email = Email::forge();
-			$email->from('yachtfractions@evanrolfe.info', 'Yacht Fractions');
-			$email->to("yachtfractions@gmail.com");
+			$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
+			$email->to($this->offline_config['admin_email']);
 			$email->subject("Yachtfractions Data");	
 			$email->body("");
 

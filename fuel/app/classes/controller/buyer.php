@@ -232,8 +232,8 @@ class Controller_Buyer extends MyController
 		$template = Model_Emailtemplate::find(3);
 
 		//2. Populate email data
-		$email->from('yachtfractions@evanrolf.com', 'Yacht Fractions');
-		$email->to(array($data['buyer']->email));
+			$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
+		$email->to(array($data['buyer']->email,$this->offline_config['admin_email']));
 		$email->subject(Controller_Emailnew::replace_buyer_tags($template->subject,$data['buyer']));	
 		$body = Controller_Emailnew::replace_buyer_tags($template->body,$data['buyer']);
 		$email->body($body);

@@ -142,7 +142,7 @@ class Controller_Emailnew extends MyController
 			$email->string_attach($content_buyers, "yachtfractions_data.htm");
 
 			//4. Send email
-			  Session::set_flash('success', 'Your email has been sent.');
+			  Session::set_flash('success', 'Your email has been sent to: '.$this->offline_config['admin_email']);
 			try
 			{
 				$email->send();

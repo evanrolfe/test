@@ -211,6 +211,20 @@ class Controller_Emailnew extends MyController
 				array_pop($replace);
 				$replace[] = $buyer->preferences[$field->tag.'_fraction'];
 			}
+
+			//Override 'boats_interest' element to display the boat's names instead of just their ID's
+			if($field->tag == 'boats_interest')
+			{
+        $boats_ids = explode(",",$buyer->preferences['boats_interest']);
+        foreach($boats_ids as $id)
+        {
+          $yachtshare = Model_Yachtshare::find($id);
+          $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
+        }
+
+				  array_pop($replace);
+          $replace[] = $string;
+			}
 		}
 
 		return preg_replace($search,$replace,$str);

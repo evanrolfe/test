@@ -101,6 +101,18 @@ class Controller_Buyer extends MyController
 				$data['buyer_info'][$field->label] = $data['buyer']->preferences[$field->tag.'_fraction'];
 				$data['boat_specifications'][$field->label] = $data['buyer']->preferences[$field->tag.'_fraction'];
 			}
+
+			//Override 'boats_interest' element to display the boat's names instead of just their ID's
+			if($field->tag == 'boats_interest')
+			{
+        $boats_ids = explode(",",$data['buyer']->preferences['boats_interest']);
+        foreach($boats_ids as $id)
+        {
+          $yachtshare = Model_Yachtshare::find($id);
+          $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
+        }
+				$data['buyer_info'][$field->label] = $string;
+			}
 		}
 /*
 		$spec_keys = array("Keel type:", "Mooring type:", "Do you need school holidays?", "Boat make/style preference?", "Number of years as skipper:", "Number of years total sailing:","Number of berths:","Number of cabins:","Minimum length LOA:","Maximum length LOA:","Share size: (eg quarter/third/half)","Budget minimum:","Budget maximum:","Preferred Location (General)","Preferred Location (Specific)","Typical number of days you expect to have on board per holiday:","Typical sailing range:");

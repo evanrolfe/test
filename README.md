@@ -47,7 +47,7 @@ Tasks from convo:
 * ~~append file type (i.e. "_public_header") to file name~~ (Completed 31/10/12 - 18:30)
 * ~~make "Logout" link on public pages more prominent~~ (Completed 02/11/12 - 11:30)
 * ~~buyer/create: selected boats should give name and not just ID's (also in email templates)~~ (Completed 02/11/12 - 12:00)
-* actionstep/create: should have buttons "Introduce" and "Introduce with email"
+* ~~actionstep/create: should have buttons "Introduce" and "Introduce with email"~~ (Completed 02/11/12 - 12:20)
 * yachtshare/edit: show html descriptions
 * mobile export: does not link telephone numbers
 * image upload: php memory_limit???

@@ -10,7 +10,6 @@ function select_type(type)
 			$("#date").show();
 			$("#hold_period").show();
 			$("#note").show();
-			$("#email_too").show();
 		break;
 
 		case "action":
@@ -52,7 +51,15 @@ function select_type(type)
 		break;
 	}
 
-	$("#save_row").show();
+  //Submit button row
+  if(type == 'introduction')
+  {
+    $("#introduce_submit").show();
+	  $("#save_row").hide();
+  }else{
+    $("#introduce_submit").hide();
+	  $("#save_row").show();
+  }
 }
 
 $(function (){
@@ -197,18 +204,21 @@ $(function (){
         <div class="clear"></div>
     </div>
 
-    <div class="formRow" id="email_too" style="display:none;">
-        <div class="grid3"><label>Send an email to the buyer as well?</label></div>
-        <div class="grid9"><input type="checkbox" name="email"/></div>
+    <div class="whead" id="introduce_submit" style="display:none;">
+		  <h6 style="opacity: 0.0;">-</h6>
+		  <div style='text-align: right;'>
+			  <button class="buttonS bBlue" style="margin: 6px 6px;" type="submit" name="email">Introduce with Email</button>
+			  <button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" name="submit">Only Introduce</button>
+      </div>
         <div class="clear"></div>
     </div>
 
 	<div class="whead" style="display:none;" id="save_row">
-		<h6 style="opacity: 0.0;">-</h6>
-		<div style='text-align: right;'>
-			<button class="buttonS bGreen" style="margin: 6px 6px;">Save</button>
-		</div>
-		<div class="clear"></div>
+		  <h6 style="opacity: 0.0;">-</h6>
+		  <div style='text-align: right;'>
+			  <button class="buttonS bGreen" style="margin: 6px 6px;">Save</button>
+		  </div>
+		  <div class="clear"></div>
 	</div>
 
 </div>

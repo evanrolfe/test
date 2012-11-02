@@ -57,6 +57,10 @@ class Controller_Emailnew extends MyController
 			{
 				Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
 			}
+      catch(\AttachmentNotFoundException $e)
+      {
+				Session::set_flash('error', 'Your email has not been sent because one of the attachments was not found on file.<br>Please make sure the file exists in the correct folder or try sending the email without attachments.');								        
+      }
 
 			//5. Redirect to appropriate destination
 			if(Input::post('from_page') == 'yachtshare')

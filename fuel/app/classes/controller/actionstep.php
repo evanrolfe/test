@@ -123,7 +123,7 @@ class Controller_Actionstep extends MyController
 			}
 
 			$from_page = Input::post('from_page');
-			if(Input::post('email'))
+			if(isset($_POST['email']))
 			{
 				$url = '/email/create/template/1/'.Input::post('buyer_id').'/'.Input::post('boat_share_id').'/'.$from_page;
 			}else{

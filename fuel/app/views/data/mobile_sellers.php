@@ -7,9 +7,9 @@
   <?= $yachtshare->location_specific; ?><br />
   <?= $yachtshare->share_size_num; ?>/<?= $yachtshare->share_size_den; ?> share £<?= $yachtshare->price; ?></p>
 <p>Email: <a href="mailto:c.rolfe@ais.at">c.rolfe@ais.at</a></p>
-<p>Home: <a href="tel:<?=$yachtshare->boat_details['telephone_home'];?>"><?=$yachtshare->boat_details['telephone_home'];?></a></p>
-<p>Work: <a href="tel:<?=$yachtshare->boat_details['telephone_work'];?>"><?=$yachtshare->boat_details['telephone_work'];?></a></p>
-<p>Mobile: <a href="tel:<?=$yachtshare->boat_details['telephone_mobile'];?>"><?=$yachtshare->boat_details['telephone_mobile'];?></a></p>
+<p>Home: <?=$yachtshare->boat_details['telephone_home'];?></p>
+<p>Work: <?=$yachtshare->boat_details['telephone_work'];?></p>
+<p>Mobile: <?=$yachtshare->boat_details['telephone_mobile'];?></p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <? endforeach; ?>

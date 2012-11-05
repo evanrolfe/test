@@ -137,27 +137,12 @@ class Controller_Emailnew extends MyController
 			$email->subject("Yachtfractions Data");	
 			$email->body("");
 
-			//3. Attach the data
-			//$email->string_attach($content_sellers, "yachtfractions_sellers_data.htm");
-			//$email->string_attach($content_buyers, "yachtfractions_buyers_data.htm");
-
-			//Create the backup files
-			Session::set_flash('success', 'Your email has been sent to: '.Input::post('email'));
-			try
-			{
-				File::update(DOCROOT, 'sellers.htm', $content_sellers);
-				File::update(DOCROOT, 'buyers.htm', $content_buyers);
-			}catch(\FileAccessException $e)
-			{
-				Session::set_flash('error', 'Your email has not been sent due to a file access error.<br>'.$e);
-			 	Session::delete_flash('success');				
-			}
-
-			$email->attach(DOCROOT.'sellers.htm');
-			$email->attach(DOCROOT.'buyers.htm');
+			//3. Attach the data string
+			$email->string_attach($content_sellers, "yachtfractions_sellers_data.htm");
+			$email->string_attach($content_buyers, "yachtfractions_buyers_data.htm");
 
 			//4. Send email
-
+			Session::set_flash('success', 'Your email has been sent to: '.$this->offline_config['admin_email']);
 			try
 			{
 				$email->send();

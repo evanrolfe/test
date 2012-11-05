@@ -37,7 +37,7 @@ class Controller_Emailnew extends MyController
 				}
 			}
 
-			Session::set_flash('success', 'Your email has been sent.');
+			Session::set_flash('success', 'Your email has been sent to: '.Input::post('to')." and cc'ed to: ".$this->offline_config['admin_email']);
 
 			//4. Send the Email
 			try

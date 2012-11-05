@@ -91,8 +91,8 @@ return array(
 		'smtp'	=> array(
 			'host'		=> 'mail.evanrolfe.info',
 			'port'		=> 25,
-			'username'	=> '',
-			'password'	=> '',
+			'username'	=> 'evan',
+			'password'	=> '5ygHwJTs',
 			'timeout'	=> 5,
 		),
 

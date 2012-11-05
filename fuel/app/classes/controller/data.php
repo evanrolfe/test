@@ -21,7 +21,26 @@ class Controller_Data extends MyController
 
 	public function action_cols()
 	{
-		$columns = DB::list_columns('asnames');		
+		$columns = DB::list_columns('yachtshares');		
+
+    	foreach($columns as $col)
+		{
+			 switch($col['data_type'])
+			{
+				case "int":
+					$constraint = $col['display'];
+				break;
+
+				case "varchar":
+					$constraint = $col['character_maximum_length'];
+				break;
+	
+				default:
+					$constraint = null;
+			}
+
+			echo $col['name'].", type: ".$col['data_type'].", constraint: ".$constraint."<br>";
+		}
 
 		echo "<pre>";
 		print_r($columns);
@@ -31,9 +50,7 @@ class Controller_Data extends MyController
 	}
 
 	public function action_export()
-	{
-
-		
+	{	
 		$date = Date::forge()->format("%d-%m-%Y %H:%m");
 		header('Content-type: text/plain');
 		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
@@ -214,7 +231,7 @@ class Controller_Data extends MyController
 		{
 			$href = $link->attributes->getNamedItem('href')->nodeValue;
 
-			if(preg_match())
+			//if(preg_match())
 		}
 	}
 

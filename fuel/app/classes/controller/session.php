@@ -61,7 +61,7 @@ class Controller_Session extends MyController
 				// Create an instance
 				$email = Email::forge();
 
-				$email->from('yachtfractions@evanrolf.com', 'Yacht Fractions');
+				$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
 				$email->to($user->email);
 				$email->subject('Password Reset');	
 				$email->body("Your password has been reset to: ".$new_password);

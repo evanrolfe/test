@@ -1,8 +1,8 @@
-*Dad's Notes*
+*Chris*
 ================================
 * 
 
-*Todo*
+*Evan's Todo*
 ================================
 Added 04/11/12:
 * Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel

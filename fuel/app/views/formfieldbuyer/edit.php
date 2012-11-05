@@ -39,6 +39,28 @@ function refresh_options()
 	$("#options_display").html(options_html);
 }
 
+var updateForm = function()
+{
+	var index_arr = $("#sortable").sortable("toArray");
+
+	var new_options = [];
+
+	for(var i=0; i<index_arr.length; i++)
+	{
+		new_options.push(options[index_arr[i]]);
+	}
+
+	options = new_options;
+
+	refresh_options();
+}
+
+$(function() {
+	$( "#sortable" ).sortable({
+								update : updateForm
+								});
+});
+
 window.onload = function () {
 	if("<?=$field->type;?>" == 'dropdown')
 	{
@@ -50,6 +72,13 @@ window.onload = function () {
 }
 </script>
 <?= render('settings/_nav'); ?>
+<link href="<?= Uri::create('public/assets/css/jquery-sortable/jquery.ui.all.css'); ?>" rel="stylesheet" type="text/css" />
+<style>
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 1px 1px 1px; padding: 1px; font-size: 1.2em; font-weight: bold; height: 1.5em; }
+html>body #sortable li { height: 1.5em; line-height: 1.2em; }
+.ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+</style>
 
 <form action="<?= Uri::create('formfieldbuyer/edit/'.$field->id); ?>" method="POST" accept-charset="utf-8">
 <div class="widget fluid">
@@ -65,7 +94,7 @@ window.onload = function () {
     <div class="formRow">
         <div class="grid3"><label>Label:</label></div>
         <div class="grid9"><input type='text' name='label' value="<?=$field->label;?>"/>
-			<span>This is the label for the field which will be displayed to the users.
+			<span class="note">This is the label for the field which will be displayed to the users.
 			</span></div>
         <div class="clear"></div>
     </div>
@@ -73,7 +102,7 @@ window.onload = function () {
     <div class="formRow">
         <div class="grid3"><label>Tag:</label></div>
         <div class="grid9"><input type='text' name='tag' value="<?=$field->tag;?>" />
-			<span>Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
+			<span class="note">Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
 			</span>
 		</div>
         <div class="clear"></div>
@@ -81,8 +110,8 @@ window.onload = function () {
 
     <div class="formRow">
         <div class="grid3"><label>Type:</label></div>
-        <div class="grid9 noSearch">
-			<select class="select" onchange="select_type(this.value)" name="type">
+        <div class="grid9">
+			<select class="" onchange="select_type(this.value)" name="type">
 					<option value="text" <?if($field->type == "text"):?>selected="yes"<?endif;?>>Single line text field</option>
 					<option value="textarea" <?if($field->type == "textarea"):?>selected="yes"<?endif;?>>Mutli line text field</option>
 					<option value="text_fraction" <?if($field->type == "text_fraction"):?>selected="yes"<?endif;?>>Single line text field for fractions (i.e. share size)</option>
@@ -153,6 +182,20 @@ window.onload = function () {
         <div class="grid9">
 			<input type="checkbox" name="public" <?if($field->public):?>checked="yes"<?endif;?> />
 			<span class="note">Do you want the data users enter into this field to be viewable to the public?</span>
+		</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow">
+        <div class="grid3"><label>Order</label></div>
+        <div class="grid9" id="order_test">
+			<ul id="sortable">
+				<? $i=0; ?>
+				<? foreach(json_decode($field->options) as $option): ?>
+					<li class="ui-state-default" id="<?=$i;?>"><?=$option;?></li>
+					<? $i++; ?>
+				<? endforeach; ?>
+			</ul>
 		</div>
         <div class="clear"></div>
     </div>

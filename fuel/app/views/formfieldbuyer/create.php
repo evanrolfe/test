@@ -70,7 +70,7 @@ function add_option()
     <div class="formRow">
         <div class="grid3"><label>Label:</label></div>
         <div class="grid9"><input type='text' name='label' onkeyup="replace_tag(this.value)"/>
-			<span>This is the label for the field which will be displayed to the users.
+			<span class="note">This is the label for the field which will be displayed to the users.
 			</span></div>
         <div class="clear"></div>
     </div>
@@ -78,7 +78,7 @@ function add_option()
     <div class="formRow">
         <div class="grid3"><label>Tag:</label></div>
         <div class="grid9"><input type='text' name='tag' />
-			<span>Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
+			<span class="note">Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
 			</span>
 		</div>
         <div class="clear"></div>
@@ -86,8 +86,8 @@ function add_option()
 
     <div class="formRow">
         <div class="grid3"><label>Type:</label></div>
-        <div class="grid9 noSearch">
-			<select class="select" onchange="select_type(this.value)" name="type">
+        <div class="grid9">
+			<select class="" onchange="select_type(this.value)" name="type">
 				<option value="">Select</option>
 					<option value="text">Single line text field</option>
 					<option value="textarea">Mutli line text field</option>

@@ -141,9 +141,6 @@ class Controller_Emailnew extends MyController
 			$email->string_attach($content_sellers, "yachtfractions_data.htm");
 			$email->string_attach($content_buyers, "yachtfractions_data.htm");
 
-echo $content_buyers;
-exit;
-
 			//4. Send email
 			Session::set_flash('success', 'Your email has been sent to: '.$this->offline_config['admin_email']);
 			try

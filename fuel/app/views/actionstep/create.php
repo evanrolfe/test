@@ -67,10 +67,12 @@ $(function (){
 	{
 		select_type("<?= $selected_actionstep; ?>");
 	}
+
+	$("#create_form").validate();
 });
 </script>
 
-<form action="<?= Uri::create('actionstep/create'); ?>" method="POST" accept-charset="utf-8">
+<form action="<?= Uri::create('actionstep/create'); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <input type="hidden" name="note_only">
 <input type="hidden" name="introduction">
 <input type="hidden" name="cancel">
@@ -88,8 +90,8 @@ $(function (){
 				<?= $buyer->email; ?>
 				<input type="hidden" name="buyer_id" value="<?= $buyer->id; ?>">
 			<? else: ?>
-				<div class="noSearch">
-					<select name="buyer_id" class="select" onchange="$('#buyer_info').show()">
+				<div class="">
+					<select name="buyer_id" class="" onchange="$('#buyer_info').show()">
 						<option value="">Select buyer</option>
 						<? foreach($buyers as $buyer): ?>
 						<option value="<?= $buyer->id; ?>"><?= $buyer->name; ?></option>
@@ -131,9 +133,9 @@ $(function (){
 
   <div class="formRow">
         <div class="grid3"><label>Select Type:</label></div>
-        <div class="grid9 noSearch">
+        <div class="grid9">
 	<? $types = array('introduction' => 'Introduction', 'action' => 'Action Step', 'note' => 'Note', 'hold' => 'Put yachtshare on hold', 'complete' => 'Sale Complete', 'cancel' => 'Cancel Sale'); ?>
-				<select id="type" class="select" onchange="select_type(this.value)">
+				<select id="type" class="required" onchange="select_type(this.value)">
 					<option value="">Select</option>
 					<? foreach($types as $key => $value): ?>
 						<option value="<?=$key;?>" <? if($selected_actionstep == $key): ?>selected="yes"<? endif; ?>><?=$value;?></option>
@@ -156,7 +158,7 @@ $(function (){
         <div class="grid3"><label>Action step:</label></div>
         <div class="grid9">
 			<div class="noSearch">
-				<select name="actionstep_set_id" class="select" style="width: 250px;">
+				<select name="actionstep_set_id" class="" style="width: 250px;">
 					<option value="">Select Action Step</option>
 					<? foreach($actionsteps as $step): ?>
 					<option value="<?= $step->id; ?>"><?= $step->order; ?>.  <?= $step->title; ?></option>
@@ -171,8 +173,8 @@ $(function (){
         <div class="grid3"><label>Mark as on hold:</label></div>
         <div class="grid9">
 
-			<div class="noSearch">
-				<select name="hold_days" class="select"  style="width: 70px;">
+			<div class="">
+				<select name="hold_days" class=""  style="width: 70px;">
 					<option value="">Days</option>
 
 					<? for($i=1; $i<=100; $i++): ?>
@@ -182,7 +184,7 @@ $(function (){
 
 			 Days / 
 
-				<select name="hold_hours" class="select"  style="width: 70px;">
+				<select name="hold_hours" class=""  style="width: 70px;">
 					<option value="">Hours</option>
 
 					<? for($i=1; $i<=24; $i++): ?>

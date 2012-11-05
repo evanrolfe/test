@@ -60,7 +60,7 @@ Tasks from convo:
 
 Older tasks:
 * HTML scrape inactive boats from http://www.yachtfractions.co.uk/fracadmin.asp
-* "Save for later" saves on logout
+* ~~"Save for later" saves on logout~~ (Completed 04/11/12 12:45)
 * ~~Jquery interface for change order of formfields~~ (Completed 04/11/12 12:30)
 * ~~Fix dropdowns going off screen problem~~ (Completed 31/10/12 - 12:45)
 * ~~Validate dropdowns in buyer/create, yachtshare/create,actionstep/create`~~ (Completed 04/11/12 12:00)

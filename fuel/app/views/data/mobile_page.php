@@ -9,7 +9,9 @@
 	</div>
 
 	<div class="formRow">
-			Click on send to send an email to your mobile containing all data for buyers and sellers.
+			Click on send to send an email to the following email address containing all data for buyers and sellers.
+			<br>
+			<input type="text" name="email" value="<?=$email;?>">
 		 <div class="clear"></div>
 	</div>
 

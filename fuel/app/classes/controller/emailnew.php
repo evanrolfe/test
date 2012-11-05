@@ -133,7 +133,7 @@ class Controller_Emailnew extends MyController
 			//2. Populate email data
 			$email = Email::forge();
 			$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
-			$email->to($this->offline_config['admin_email']);
+			$email->to(Input::post('email'));
 			$email->subject("Yachtfractions Data");	
 			$email->body("");
 
@@ -141,8 +141,11 @@ class Controller_Emailnew extends MyController
 			$email->string_attach($content_sellers, "yachtfractions_data.htm");
 			$email->string_attach($content_buyers, "yachtfractions_data.htm");
 
+echo $content_buyers;
+exit;
+
 			//4. Send email
-			  Session::set_flash('success', 'Your email has been sent to: '.$this->offline_config['admin_email']);
+			Session::set_flash('success', 'Your email has been sent to: '.$this->offline_config['admin_email']);
 			try
 			{
 				$email->send();
@@ -162,7 +165,7 @@ class Controller_Emailnew extends MyController
 		}
 
 		$this->template->title = "Export to Mobile";
-		$this->template->content = View::forge('data/mobile_page');
+		$this->template->content = View::forge('data/mobile_page', array('email'=>$this->offline_config['admin_email']));
 	}
 
 	public function action_test()

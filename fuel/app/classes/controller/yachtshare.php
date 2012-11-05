@@ -260,14 +260,17 @@ class Controller_Yachtshare extends MyController
 
 		//2. If the user has saved form data in the DB then retrieve it:
 		$yachtshare = Model_Yachtshare::find('first', array('where' => array('temp' => 1, 'user_id' => $this->user->id)));
-		
+
 		//3. If the user has specified which boat details are to be copied then retreive the details
 		if($this->param('boat_id'))
 			$yachtshare = Model_Yachtshare::find($this->param('boat_id'));				
+	
+		//$yachtshare and print("ONE SAVED ALREADY");
 
 		//Form data from a session has precedence over form data from mysql db / "copy details"
 		if($yachtshare && sizeof($data['saved_form_data']) == 0)
 		{
+
 			foreach($this->formfields as $field)
 			{
 				$tag = $field->tag;
@@ -289,7 +292,7 @@ class Controller_Yachtshare extends MyController
 			}
 		}
 
-		$data['html'] = "<ul><li>one</li><li>two</li></ul>";
+		//$data['html'] = "<ul><li>one</li><li>two</li></ul>";
 
 		if($this->user->type == 'seller')
 		{

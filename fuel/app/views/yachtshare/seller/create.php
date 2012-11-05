@@ -68,9 +68,9 @@ function save_form()
 	<? elseif($field->tag == 'share_size'): ?>
 <div class="formRow">
         <div class="grid3"><label>Share Size:</label></div>
-        <div class="grid9 noSearch" align="left">
-			<select class='select required' onchange="select_shares(this.value)" id="select_share">
-				<option value="">Number of Shares</option>
+        <div class="grid9" align="left">
+			Number of Shares: 
+			<select class='' onchange="select_shares(this.value)" id="select_share">
 				<? for($i=1; $i<=10; $i++): ?>
 					<option value="<?= $i; ?>"><?= $i; ?></option>
 				<? endfor; ?>

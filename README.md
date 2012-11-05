@@ -41,6 +41,9 @@ FINISHED!
 
 *Todo (from Skype convo on 29/10/2012):*
 ================================
+Added 04/11/12:
+* Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel
+
 Tasks from convo:
 * ~~yachtshare/create: validate share size screws up that formrow~~ (Completed 31/10/12 - 10:15)
 * ~~file/yachtshare/X: set dropdown to "Any" by default then validate something is selected~~ (Completed 31/10/12 - 12:45)

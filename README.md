@@ -1,3 +1,34 @@
+*Dad's Notes*
+================================
+* 
+
+*Todo*
+================================
+Added 04/11/12:
+* Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel
+
+Tasks (from Skype convo on 29/10/2012):
+* ~~yachtshare/create: validate share size screws up that formrow~~ (Completed 31/10/12 - 10:15)
+* ~~file/yachtshare/X: set dropdown to "Any" by default then validate something is selected~~ (Completed 31/10/12 - 12:45)
+* ~~append file type (i.e. "_public_header") to file name~~ (Completed 31/10/12 - 18:30)
+* ~~make "Logout" link on public pages more prominent~~ (Completed 02/11/12 - 11:30)
+* ~~buyer/create: selected boats should give name and not just ID's (also in email templates)~~ (Completed 02/11/12 - 12:00)
+* ~~actionstep/create: should have buttons "Introduce" and "Introduce with email"~~ (Completed 02/11/12 - 12:20)
+* ~~yachtshare/edit and buyer/edit: show html descriptions~~ (Completed 02/11/12 -  12:30)
+* mobile export: does not link telephone numbers
+* image upload: php memory_limit???
+* ~~have config file for email address in emailnew controller~~ (Completed 04/11/12 12:00) (NOTE: configure email in fuel/app/config/offline.php)
+* Errors in production mode send email?
+
+Older tasks:
+* HTML scrape inactive boats from http://www.yachtfractions.co.uk/fracadmin.asp
+* ~~"Save for later" saves on logout~~ (Completed 04/11/12 12:45)
+* ~~Jquery interface for change order of formfields~~ (Completed 04/11/12 12:30)
+* ~~Fix dropdowns going off screen problem~~ (Completed 31/10/12 - 12:45)
+* ~~Validate dropdowns in buyer/create, yachtshare/create,actionstep/create`~~ (Completed 04/11/12 12:00)
+
+
+
 *Installation (by Evan)*
 ================================
 
@@ -31,36 +62,10 @@
 
 FINISHED!
 
-*Trouble Shooting:*
+*Trouble Shooting*
 ================================
 *  Session errors occuring in offline mode: change line num 33 in /fuel/app/config/session.php from ```'driver'			=> 'db',``` to ```'driver'			=> 'cookie',```
 
 *  Uploads not working due to PHP missing fileinfo extensions: add the following line to php.ini ```extension=fileinfo.so```
 
 *  If you get a permission denied error pertaining to the logs then a probable solution will be to set the permissions of /fuel/app/logs directory to writable by the web server's user account. i.e. in linux run command: ```chmod -R 777 fuel/app/logs/*```
-
-*Todo (from Skype convo on 29/10/2012):*
-================================
-Added 04/11/12:
-* Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel
-
-Tasks from convo:
-* ~~yachtshare/create: validate share size screws up that formrow~~ (Completed 31/10/12 - 10:15)
-* ~~file/yachtshare/X: set dropdown to "Any" by default then validate something is selected~~ (Completed 31/10/12 - 12:45)
-* ~~append file type (i.e. "_public_header") to file name~~ (Completed 31/10/12 - 18:30)
-* ~~make "Logout" link on public pages more prominent~~ (Completed 02/11/12 - 11:30)
-* ~~buyer/create: selected boats should give name and not just ID's (also in email templates)~~ (Completed 02/11/12 - 12:00)
-* ~~actionstep/create: should have buttons "Introduce" and "Introduce with email"~~ (Completed 02/11/12 - 12:20)
-* ~~yachtshare/edit and buyer/edit: show html descriptions~~ (Completed 02/11/12 -  12:30)
-* mobile export: does not link telephone numbers
-* image upload: php memory_limit???
-* ~~have config file for email address in emailnew controller~~ (Completed 04/11/12 12:00) (NOTE: configure email in fuel/app/config/offline.php)
-* Errors in production mode send email?
-
-
-Older tasks:
-* HTML scrape inactive boats from http://www.yachtfractions.co.uk/fracadmin.asp
-* ~~"Save for later" saves on logout~~ (Completed 04/11/12 12:45)
-* ~~Jquery interface for change order of formfields~~ (Completed 04/11/12 12:30)
-* ~~Fix dropdowns going off screen problem~~ (Completed 31/10/12 - 12:45)
-* ~~Validate dropdowns in buyer/create, yachtshare/create,actionstep/create`~~ (Completed 04/11/12 12:00)

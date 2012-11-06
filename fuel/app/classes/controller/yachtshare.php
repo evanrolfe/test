@@ -29,7 +29,7 @@ class Controller_Yachtshare extends MyController
 			{
 				$time = explode("/",Input::post('expires_at'));
 				$expires_at= mktime(0,0,0,(int)$time[1],(int)$time[0],(int)$time[2]);
-				$reminder = Input::post('reminder');		
+				$reminder = addslashes(Input::post('reminder'));		
 			}elseif(isset($post['delete']))
 			{
 				$expires_at = 0;

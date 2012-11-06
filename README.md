@@ -1,11 +1,11 @@
-*Chris*
-================================
-* 
-
 *Evan's Todo*
 ================================
+Added 05/11/12
+* Find way to have yachtshare->location and buyer->location fields have the same options
+* formfield->dropdown->change order should open a new window
+
 Added 04/11/12:
-* Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel
+* ~~Formfields can have data which will "expire" at a certain date, show expiring data in sidebar of admin panel~~ (Completed 06/11/12 - 13:00)
 
 Tasks (from Skype convo on 29/10/2012):
 * ~~yachtshare/create: validate share size screws up that formrow~~ (Completed 31/10/12 - 10:15)

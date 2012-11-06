@@ -50,3 +50,5 @@ $(function(){
     </div>
 	<? endif; ?>
 </div>
+
+<?= render('yachtshare/admin/_reminder',array('yachtshare' => $yachtshare)); ?>

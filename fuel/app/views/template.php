@@ -71,6 +71,20 @@
 				<? else: ?>
 					There are no yacht shares currently on hold.
 				<? endif; ?>
+
+		     <!-- Yachtshares Reminder -->      
+		        <div class="divider"><span></span></div>
+				<? if(sizeof($yachtshares_remind) > 0): ?>
+
+				<b>Active Reminders for:</b>
+				<ul class="">
+					<? foreach($yachtshares_remind as $yachtshare): ?>
+					<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>"><li><?=$yachtshare->name;?></li></a>
+					<? endforeach; ?>
+		        </ul>
+				<? else: ?>
+					There are currently not active reminders.
+				<? endif; ?>
        </div> 
        <div class="clear"></div>
    </div>

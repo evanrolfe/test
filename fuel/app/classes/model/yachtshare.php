@@ -80,6 +80,17 @@ class Model_Yachtshare extends \Orm\Model
 	}
 
 /**
+* Fetch all yachtshares which have a reminder active
+*
+* @return array
+*/
+	public static function find_with_active_reminder()
+	{
+		$query = DB::query('SELECT * FROM `yachtshares` WHERE reminder_expires_at < UNIX_TIMESTAMP(NOW()) AND reminder_expires_at > 0');
+		return $query->as_object()->execute();
+	}
+
+/**
 * Find actionsteps that have still not been added to this yachtshare
 *
 * @return array

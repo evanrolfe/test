@@ -30,6 +30,7 @@ class MyController extends Controller_Template
 		$this->content_width = $this->offline_config['content_width'];
 
 		$this->template->yachtshares_on_hold = Model_Yachtshare::find_on_hold();
+		$this->template->yachtshares_remind = Model_Yachtshare::find_with_active_reminder();
 	}
 
 	public function logged_in_as($types=array())

@@ -218,7 +218,7 @@ ul.userNav li a.sidebar { background: url(../images/icons/usernav/sidebar.png) n
 #sidebar { display: block; background: url(../images/backgrounds/body.jpg) repeat-y; min-height: 100%; position: absolute; z-index: 999; border-right: 1px solid #c3c3c3;}
 .mainNav { width: 100px; background: url(../images/backgrounds/sidebar.jpg); float: left; padding-top: 15px; position: relative; z-index: 99; }
 .secNav { position: relative; padding-left: 100px; z-index: 98; padding-top: 0px; }
-.secNav h6 { font-size: 12px; padding: 0 15px; }
+.secNav h6 { font-size: 14px; padding: 0 15px; }
 .secNav .secWrapper { float:left; width: 226px; }
 .sideWidget { padding: 0 15px; }
 #sidebar .legend { display: none; }
@@ -230,7 +230,7 @@ ul.userNav li a.sidebar { background: url(../images/icons/usernav/sidebar.png) n
 
 /* === User nav dropdown === */
 
-.leftUser { display: none; position: absolute; top: 16px; font-size: 11px; width: 137px; padding-left: 7px; left: 106px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; text-align: left; background: url(../images/elements/other/userArrow.png) 0 11px no-repeat; z-index: 1000; }
+.leftUser { display: none; position: absolute; top: 16px; font-size: 13px; width: 137px; padding-left: 7px; left: 106px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; text-align: left; background: url(../images/elements/other/userArrow.png) 0 11px no-repeat; z-index: 1000; }
 .leftUser li { border-bottom: 1px solid #343434; border-top: 1px solid #545454; background: url(../images/backgrounds/sidebar.jpg);  }
 .leftUser li:hover { background: #454545; }
 .leftUser li:first-child { border-top: none; -webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px;  }
@@ -270,7 +270,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#da8854', end
 
 .nav { text-align: center; border-top: 1px solid #2e2e2e; margin-top: 10px; border-bottom: 1px solid #555555; }
 .nav li { border-top: 1px solid #555555; border-bottom: 1px solid #2e2e2e; position: relative; }
-.nav li a { display: block; padding: 14px 0 8px 0; color: #bababa; font-size: 11px; width: 100px; 
+.nav li a { display: block; padding: 14px 0 8px 0; color: #bababa; font-size: 13px; width: 100px; 
 background: -moz-linear-gradient(top,  rgba(86,86,86,0.2) 0%, rgba(54,54,54,0.2) 100%);
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(86,86,86,0.2)), color-stop(100%,rgba(54,54,54,0.2)));
 background: -webkit-linear-gradient(top,  rgba(86,86,86,0.2) 0%,rgba(54,54,54,0.2) 100%);
@@ -302,7 +302,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33565656', e
 .nav > li > a:hover { color: #f4f4f4; -webkit-transition: all 0.3s ease-in-out; -moz-transition: all 0.3s ease-in-out; transition: all 0.3s ease-in-out; }
 
 .nav li:hover ul { display: block; }
-.nav li ul { display: none; position: absolute; top: 0; font-size: 11px; min-width: 170px; white-space: nowrap; padding-left: 12px; left: 100px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; text-align: left; background: url(../images/elements/other/userArrow.png) 5px 11px no-repeat; z-index: 1000; }
+.nav li ul { display: none; position: absolute; top: 0; font-size: 13px; min-width: 170px; white-space: nowrap; padding-left: 12px; left: 100px; border-radius: 2px; -webkit-border-radius: 2px; -moz-border-radius: 2px; text-align: left; background: url(../images/elements/other/userArrow.png) 5px 11px no-repeat; z-index: 1000; }
 .nav li ul li { border-bottom: 1px solid #343434; border-top: 1px solid #545454; background: url(../images/backgrounds/sidebar.jpg);  }
 .nav li ul li:hover { background: #454545; }
 .nav li ul li:first-child { border-top: none; -webkit-border-top-left-radius: 2px; -webkit-border-top-right-radius: 2px;  }

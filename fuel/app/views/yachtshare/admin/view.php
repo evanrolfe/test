@@ -60,6 +60,8 @@
 </div>
 <? endif; ?>
 
+<?= render('yachtshare/admin/_reminder',array('yachtshare' => $yachtshare)); ?>
+
 <div class="widget fluid">
 
     <div class="whead">

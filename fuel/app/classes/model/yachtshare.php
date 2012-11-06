@@ -30,6 +30,8 @@ class Model_Yachtshare extends \Orm\Model
 		'updated_at',
 		'active',
 		'temp',
+		'reminder',
+		'reminder_expires_at',
 	);
 
 	protected static $_observers = array(

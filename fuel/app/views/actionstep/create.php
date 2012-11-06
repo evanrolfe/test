@@ -148,7 +148,7 @@ $(function (){
    <div class="formRow" id="date" style="display:none;">
         <div class="grid3"><label>Date:</label></div>
         <div class="grid9">
-			<input type="text" class="maskDate" id="maskDate" name="date" style="width: 75px;">
+			<input type="text" class="maskDate" id="maskDate" name="date" style="width: 100px;">
 			<span class="note">Example: 31/12/2012. Leave blank for today's date.</span>
 		</div>
         <div class="clear"></div>

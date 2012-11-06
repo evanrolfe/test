@@ -18,6 +18,37 @@ class Controller_Yachtshare extends MyController
 		$this->render_list('yachtshare',array('show_new_button' => true, 'from_page' => 'yachtshare'));
 	}
 
+	public function action_set_reminder()
+	{
+		if(Input::method() == 'POST')
+		{
+			$post = Input::post();
+			$id = Input::post('yachtshare_id');
+
+			if(isset($post['update']))
+			{
+				$time = explode("/",Input::post('expires_at'));
+				$expires_at= mktime(0,0,0,(int)$time[1],(int)$time[0],(int)$time[2]);
+				$reminder = Input::post('reminder');		
+			}elseif(isset($post['delete']))
+			{
+				$expires_at = 0;
+				$reminder = "";
+			}
+
+			$query = DB::query('UPDATE `yachtshares` SET reminder="'.$reminder.'",reminder_expires_at='.$expires_at.' WHERE id='.$id);
+
+			if($query and $query->execute())
+			{
+				Session::set_flash('success', 'Your reminder has been set for: '.Input::post('expires_at'));
+			}else{
+				Session::set_flash('error', 'Your reminder could not be set due to an error.');				
+			}
+
+			Response::redirect('yachtshare/'.Input::post('from_page').'/'.$id);																				
+		}
+	}
+
 	//Search yachtshares for a specific buyer_id
 	public function action_find_for_buyer()
 	{

@@ -1,4 +1,5 @@
 <script type="text/javascript">
+var changes_made = false;
 
 function replace_tag(label)
 {
@@ -12,12 +13,14 @@ var options = [];
 
 function add_option()
 {
+	changes_made = true;
 	options.push($("#option_add_input").val());
 	refresh_options();
 }
 
 function del_option(index)
 {
+	changes_made = true;
 	options.splice(index,1);
 
 	refresh_options();
@@ -71,9 +74,15 @@ window.onload = function () {
 
 jQuery(document).ready(function($) {
     jQuery('a.popup').live('click', function(){
-        newwindow=window.open($(this).attr('href'),'','height=600,width=350');
-        if (window.focus) {newwindow.focus()}
-        return false;
+		if(changes_made)
+		{
+			alert("Warning, you have made some changes to the list of options for this dropdown. In order to change the order please click 'Update' and then change the order.");
+			return false;
+		}else{
+	        newwindow=window.open($(this).attr('href'),'','height=600,width=350');
+	        if (window.focus) {newwindow.focus()}
+	        return false;
+		}
     });
 });
 </script>
@@ -87,6 +96,7 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 </style>
 
 <form action="<?= Uri::create('formfieldbuyer/edit/'.$field->id); ?>" method="POST" accept-charset="utf-8">
+<input type="hidden" name="options" id="options">
 <div class="widget fluid">
 
     <div class="whead">

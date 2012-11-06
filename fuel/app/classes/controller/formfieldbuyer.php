@@ -168,7 +168,7 @@ class Controller_Formfieldbuyer extends MyController
 			{
 				Session::set_flash('success', 'Updated form field #' . $id);
 
-				Response::redirect('formfieldbuyer');				
+				Response::redirect('formfieldbuyer/edit/'.$id);				
 			}else{
 				Session::set_flash('error', 'Error: could not update form field #' . $id);				
 			}

@@ -216,6 +216,8 @@ CREATE TABLE IF NOT EXISTS `yachtshares` (
   `updated_at` int(11) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   `temp` tinyint(1) DEFAULT '0',
+  `reminder` varchar(255) DEFAULT NULL,
+  `reminder_expires_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 

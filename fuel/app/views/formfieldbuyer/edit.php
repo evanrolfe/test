@@ -56,9 +56,7 @@ var updateForm = function()
 }
 
 $(function() {
-	$( "#sortable" ).sortable({
-								update : updateForm
-								});
+	$( "#sortable" ).sortable({update : updateForm});
 });
 
 window.onload = function () {
@@ -70,6 +68,14 @@ window.onload = function () {
 		refresh_options();
 	}
 }
+
+jQuery(document).ready(function($) {
+    jQuery('a.popup').live('click', function(){
+        newwindow=window.open($(this).attr('href'),'','height=600,width=350');
+        if (window.focus) {newwindow.focus()}
+        return false;
+    });
+});
 </script>
 <?= render('settings/_nav'); ?>
 <link href="<?= Uri::create('public/assets/css/jquery-sortable/jquery.ui.all.css'); ?>" rel="stylesheet" type="text/css" />
@@ -144,17 +150,11 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 	<div class="formRow" id="textarea">
 	    <div class="grid3"><label>Options to choose from:</label></div>
 	    <div class="grid9">
-			<input type='text' id="option_add_input" style="width: 150px;" /> <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
+			<input type='text' id="option_add_input" style="width: 150px;" />
+			 <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
+			 <a href="<?=Uri::create('formfieldbuyer/dropdown/'.$field->id);?>" class="popup"><button class="buttonS bGreen" type="button">Change Order</button></a>
 			<div id='options_display'>
 			</div>
-		</div>
-	    <div class="clear"></div>
-	</div>
-	<div class="formRow">
-	    <div class="grid3"><label>Advanced</label></div>
-	    <div class="grid9">
-			<input type='text' name='options' id='options'>
-			<span class="note">Change the order of options as they will appear in a dropdown box. Make sure that the list follows the syntax of ["option1","option2","option3"]</span>
 		</div>
 	    <div class="clear"></div>
 	</div>
@@ -182,20 +182,6 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
         <div class="grid9">
 			<input type="checkbox" name="public" <?if($field->public):?>checked="yes"<?endif;?> />
 			<span class="note">Do you want the data users enter into this field to be viewable to the public?</span>
-		</div>
-        <div class="clear"></div>
-    </div>
-
-    <div class="formRow">
-        <div class="grid3"><label>Order</label></div>
-        <div class="grid9" id="order_test">
-			<ul id="sortable">
-				<? $i=0; ?>
-				<? foreach(json_decode($field->options) as $option): ?>
-					<li class="ui-state-default" id="<?=$i;?>"><?=$option;?></li>
-					<? $i++; ?>
-				<? endforeach; ?>
-			</ul>
 		</div>
         <div class="clear"></div>
     </div>

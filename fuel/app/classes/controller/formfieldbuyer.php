@@ -8,6 +8,35 @@ class Controller_Formfieldbuyer extends MyController
 		$this->logged_in_as(array('admin'));
 	}
 
+	public function action_dropdown()
+	{
+		is_null($this->param('id')) and exit("You must select a formfield.");
+		$id = $this->param('id');
+		$field = Model_Formfieldbuyer::find($id);	
+		$data['close_window'] = 'false';
+
+		if(Input::method() == 'POST')
+		{
+		
+			//$query = DB::query("UPDATE `formfields_buyer` SET options='".Input::post('options')."' WHERE id=".$id);
+			//$query->execute();
+
+			$field->options = Input::post('options');
+
+			if($field->save())
+			{
+				$data['close_window'] = 'true';
+			}else{
+				exit("Error");
+			}
+		}
+
+		$data['field'] = $field;
+		$data['field']->options = json_encode($field->options);
+		$this->template->title = "Form Fields";
+		return new Response(View::forge('formfieldbuyer/dropdown_order',$data,false));				
+	}
+
 	public function action_index()
 	{
 		$data['seller_fields'] = Model_Formfieldbuyer::find('all', array("order_by" => "order", "where" => array("belongs_to" => "seller")));

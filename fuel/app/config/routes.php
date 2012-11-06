@@ -26,6 +26,7 @@ return array(
 	'file/delete/:id' => 'file/delete',
 	'file/:item/:id' => 'file/index',
 	'data/print/:type/:yachtshare_id' => 'data/print',
+	'formfieldbuyer/dropdown/:id' => 'formfieldbuyer/dropdown',
 	//'yachtshare/:all'			=> 'yachtshare/index',
 	//'buyer/:all'			=> 'buyer/index',
 	//'step/create/:yachtshare_id/:buyer_id' => 'actionstep/create',

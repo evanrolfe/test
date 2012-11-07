@@ -1,7 +1,7 @@
 *Evan's Todo*
 ================================
 Added 05/11/12
-* Find way to have yachtshare->location and buyer->location fields have the same options
+* ~~Find way to have yachtshare->location and buyer->location fields have the same options~~ (Completed 07/11/12 - 22:30)
 * ~~formfield->dropdown->change order should open a new window~~ (Completed 06/11/12 - 16:00)
 
 Added 04/11/12:

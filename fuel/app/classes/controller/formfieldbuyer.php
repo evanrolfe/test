@@ -7,19 +7,6 @@ class Controller_Formfieldbuyer extends MyController
 		$this->template->links['settings']['current'] = true;
 		$this->logged_in_as(array('admin'));
 	}
-
-	public function action_test()
-	{
-		$fields = Model_Formfieldbuyer::find('all',array('where'=>array('type' => 'dropdown')));
-
-		foreach ($fields as $field)
-		{
-			$link = $field->custom;
-			echo $field->id."; ".$field->options.". Are options linked?: ".$link."<br>";
-		}
-
-		exit;
-	}
 	
 	public function action_dropdown()
 	{
@@ -161,6 +148,21 @@ class Controller_Formfieldbuyer extends MyController
 		$this->template->content = View::forge('formfieldbuyer/order',$data);	
 	}
 
+	public function action_test()
+	{
+		$dropdowns = Model_Formfieldbuyer::find('all', array('where' => array('type' => 'dropdown')));		
+
+		foreach($dropdowns as $field)
+		{
+			echo $field->id."; ".$field->label."<br>";
+			echo "<pre>";
+			print_r($field->options);
+			echo "</pre>";
+			
+		}
+		exit;
+	}
+
 	public function action_edit($id = null)
 	{
 		is_null($id) and Response::redirect('Formfieldbuyer');
@@ -173,9 +175,9 @@ class Controller_Formfieldbuyer extends MyController
 			$field->tag = Input::post('tag');
 			$field->type = Input::post('type');
 			$field->description = Input::post('description');
-			$field->options = Input::post('options');			
+			$field->options = (Input::post('are_options_linked') == '1') ? "ID:".Input::post('linked_options') : Input::post('options');			
 			$field->public = (Input::post('public')) ? 1 : 0;
-      $field->validation = (Input::post('required')) ? 'required' : '';	
+     	 	$field->validation = (Input::post('required')) ? 'required' : '';	
 
 			if($field->save())
 			{
@@ -187,6 +189,15 @@ class Controller_Formfieldbuyer extends MyController
 			}
 		}
 
+		$dropdowns = Model_Formfieldbuyer::find('all', array('where' => array('type' => 'dropdown')));
+
+		//Remove the ones that have linked options
+		$data['formfields_dropdowns'] = array();
+		foreach($dropdowns as $ffield)
+		{
+			if(!$ffield->are_options_linked)
+				$data['formfields_dropdowns'][] = $ffield;
+		}
 		$data['field'] = $field;
 
 		//Decode the json

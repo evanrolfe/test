@@ -210,7 +210,7 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			'orm','auth','email','fuel-exposable-model',
+			'orm','auth','email','fuel-custom-model-properties',
 		),
 
 		/**

@@ -1,14 +1,14 @@
 <?php
 
-namespace Exposable;
+namespace Evan;
 
 class Model extends \Orm\Model
 {
-	protected static $_computed_properties = array();
+	//protected static $_computed_properties = array();
 
 	public function __construct(array $data = array(), $new = true, $view = null)
 	{
-		parent::__construct(array(), true, null);
+		parent::__construct($data, $new, $view);
 	}
 
 	/**

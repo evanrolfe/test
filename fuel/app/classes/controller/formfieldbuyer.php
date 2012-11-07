@@ -64,9 +64,11 @@ class Controller_Formfieldbuyer extends MyController
 					break;		
 
 					case 'dropdown':
-						$options = Input::post('selected_options');
+						$options = (Input::post('dropdown_linked') == "") ? Input::post('selected_options') : "ID:".Input::post('dropdown_linked');
 					break;							
 				}
+
+				echo "DROPDOWN LINKED: ".Input::post('dropdown_linked');
 
 				$public = (Input::post('public')) ? 1 : 0;	
 				$required = (Input::post('required')) ? 'required' : '';	
@@ -97,6 +99,16 @@ class Controller_Formfieldbuyer extends MyController
 		}
 
 		(is_null($this->param('belongs_to')) || !in_array($this->param('belongs_to'), array('buyer','seller'))) and Response::redirect('formfieldbuyer');
+
+		$dropdowns = Model_Formfieldbuyer::find('all', array('where' => array('type' => 'dropdown')));
+		//Remove the ones that have linked options
+		$data['formfields_dropdowns'] = array();
+		foreach($dropdowns as $ffield)
+		{
+			if(!$ffield->are_options_linked)
+				$data['formfields_dropdowns'][] = $ffield;
+		}
+
 		$data['belongs_to'] = $this->param('belongs_to');
 		$this->template->title = "Form Fields";
 		$this->template->content = View::forge('formfieldbuyer/create',$data);	

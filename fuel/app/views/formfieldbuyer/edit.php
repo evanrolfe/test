@@ -185,7 +185,7 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 			<div class="formRow dropdown_opt" id="dropdown_<?=$formfield->id;?>" <? if($formfield->id != $field->linked_formfield->id): ?>style="display: none;"<? endif; ?>>
 				<div class="grid3">Selected:</div>
 				<div class="grid9">
-					<b><?=$formfield->label;?></b> - <a href="<?=Uri::create('formfieldbuyer/edit/'.$formfield->id);?>">Edit</a>
+					<b><?=$formfield->label;?></b> - <a href="<?=Uri::create('formfieldbuyer/edit/'.$formfield->id);?>" target="_blank">Edit</a>
 					<br>
 						<ul class="liDone">
 						<? foreach($formfield->options as $opt): ?>

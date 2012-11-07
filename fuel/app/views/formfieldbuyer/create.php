@@ -8,6 +8,7 @@ function select_type(type)
 			$("#textarea").hide();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
+			$("#dropdown_linked").hide();
 		break;
 
 		case "textarea":
@@ -15,6 +16,7 @@ function select_type(type)
 			$("#textarea").show();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
+			$("#dropdown_linked").hide();
 		break;
 
 		case "text_fraction":
@@ -22,6 +24,7 @@ function select_type(type)
 			$("#textarea").hide();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
+			$("#dropdown_linked").hide();
 		break;
 
 		case "dropdown":
@@ -29,6 +32,7 @@ function select_type(type)
 			$("#textarea").hide();
 			$("#dropdown").show();
 			$("#dropdown2").show();
+			$("#dropdown_linked").show();
 		break;    
 	}
 
@@ -113,13 +117,21 @@ function add_option()
         <div class="grid9">
 			<input type='text' id="option" style="width: 150px;" /> <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
 			<input type='hidden' name='selected_options'>
+			<div id="selected_options">
+			</div>
 		</div>
         <div class="clear"></div>
     </div>
 
-    <div class="formRow" id="dropdown2"  style="display: none;">
-        <div class="grid3"><label>Options:</label></div>
-        <div class="grid9" id="selected_options">
+<div class="formRow" id="dropdown_linked"  style="display: none;">
+        <div class="grid3"><label>OR: Set this dropdown to always have the same options as another dropdown field:</label></div>
+        <div class="grid9">
+			<select class="" onchange="select_link(this.value)" name="dropdown_linked">
+					<option value="">Choose Another Dropdown Field</option>
+				<? foreach($formfields_dropdowns as $formfield): ?>
+					<option value="<?=$formfield->id;?>"><?= $formfield->label; ?></option>
+				<? endforeach; ?>
+			</select>
 		</div>
         <div class="clear"></div>
     </div>

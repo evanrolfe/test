@@ -8,6 +8,19 @@ class Controller_Formfieldbuyer extends MyController
 		$this->logged_in_as(array('admin'));
 	}
 
+	public function action_test()
+	{
+		$fields = Model_Formfieldbuyer::find('all',array('where'=>array('type' => 'dropdown')));
+
+		foreach ($fields as $field)
+		{
+			$link = $field->custom;
+			echo $field->id."; ".$field->options.". Are options linked?: ".$link."<br>";
+		}
+
+		exit;
+	}
+	
 	public function action_dropdown()
 	{
 		is_null($this->param('id')) and exit("You must select a formfield.");

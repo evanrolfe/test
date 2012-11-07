@@ -20,7 +20,7 @@ function toggle_reminder(from_href_link)
 <div class="widget fluid">
     <div class="whead">
 		<div>
-			<h6>Reminder Status:</h6> <span style="display: inline-block; margin-top: 3px;" class="greenBack">NOT SET</span>
+			<h6>Reminder:</h6>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -33,7 +33,7 @@ function toggle_reminder(from_href_link)
 	<div class="formRow" id="reminder_form" style="display:none;">
         <div class="grid3">Reminder:</div>
         <div class="grid9">
-			<input type="text" name="reminder" id="reminder" value="<?=$yachtshare->reminder;?>">
+			<input type="text" name="reminder" id="reminder" value="<?=$yachtshare->reminder;?>" class="required">
 		</div>
    		<div class="clear"></div>
 	</div>
@@ -41,7 +41,7 @@ function toggle_reminder(from_href_link)
 	<div class="formRow" id="reminder_form2" style="display:none;">
         <div class="grid3">Remind me on:</div>
         <div class="grid9">
-			<input type="text" class="maskDate" id="maskDate" name="expires_at" style="width: 100px;" value="<? if($yachtshare->reminder_expires_at > 0){ echo Date::forge($yachtshare->reminder_expires_at)->format('%d/%m/%Y'); }?>">
+			<input type="text" class="maskDate" id="maskDate" name="expires_at" style="width: 100px;" value="<? if($yachtshare->reminder_expires_at > 0){ echo Date::forge($yachtshare->reminder_expires_at)->format('%d/%m/%Y'); }?>" class="required">
 			<span class="note">Example: 31/12/2012.</span>			
 		</div>
    		<div class="clear"></div>

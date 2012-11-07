@@ -51,4 +51,7 @@ $(function(){
 	<? endif; ?>
 </div>
 
-<?= render('yachtshare/admin/_reminder',array('yachtshare' => $yachtshare)); ?>
+<!-- UNLESS THE REMINDER HAS BEEN SET BUT NOT EXPIRED-->
+<? if(!($yachtshare->reminder_expires_at > time() && $yachtshare->reminder_expires_at > 0)): ?>
+	<?= render('yachtshare/admin/_reminder',array('yachtshare' => $yachtshare)); ?>
+<? endif; ?>

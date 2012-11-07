@@ -1,4 +1,10 @@
-<form action="<?= Uri::create('yachtshare/set_reminder'); ?>" method="POST" accept-charset="utf-8">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#reminder_form_main").validate();
+});
+</script>
+
+<form action="<?= Uri::create('yachtshare/set_reminder'); ?>" method="POST" accept-charset="utf-8" id="reminder_form_main">
 <input type="hidden" name="yachtshare_id" value="<?=$yachtshare->id;?>">
 <input type="hidden" name="from_page" value="view">
 	<!--- 1. Reminder has been set -->

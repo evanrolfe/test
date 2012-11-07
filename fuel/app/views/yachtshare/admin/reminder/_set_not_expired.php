@@ -1,7 +1,7 @@
 <div class="widget fluid">
     <div class="whead">
 		<div>
-			<h6>Reminder Status:</h6> <span style="display: inline-block; margin-top: 3px;" class="blueBack">SET TO REMIND ON <?=Date::forge($yachtshare->reminder_expires_at)->format('%d/%m/%Y');?></span>
+			<h6>Reminder Status:</h6> <span style="display: inline-block; margin-top: 8px;" class="">SET TO REMIND ON <?=Date::forge($yachtshare->reminder_expires_at)->format('%d/%m/%Y');?></span>
 		</div>
 		<div class="clear"></div>
 	</div>

@@ -28,7 +28,7 @@ class Controller_Yachtshare extends MyController
 			if(isset($post['update']))
 			{
 				$time = explode("/",Input::post('expires_at'));
-				$expires_at= mktime(0,0,0,(int)$time[1],(int)$time[0],(int)$time[2]);
+				$expires_at= ((Input::post('expires_at')) != "") ? mktime(0,0,0,(int)$time[1],(int)$time[0],(int)$time[2]) : time();
 				$reminder = addslashes(Input::post('reminder'));		
 			}elseif(isset($post['delete']))
 			{
@@ -40,7 +40,7 @@ class Controller_Yachtshare extends MyController
 
 			if($query and $query->execute())
 			{
-				Session::set_flash('success', 'Your reminder has been set for: '.Input::post('expires_at'));
+				Session::set_flash('success', 'Your reminder has been set for: '.Input::post('expires_at').', to edit the reminder: scroll to the bottom of the page for the form.');
 			}else{
 				Session::set_flash('error', 'Your reminder could not be set due to an error.');				
 			}

@@ -129,7 +129,8 @@ function add_option()
 			<select class="" onchange="select_link(this.value)" name="dropdown_linked">
 					<option value="">Choose Another Dropdown Field</option>
 				<? foreach($formfields_dropdowns as $formfield): ?>
-					<option value="<?=$formfield->id;?>"><?= $formfield->label; ?></option>
+							<? $type = ($formfield->belongs_to == 'buyer') ? 'Buyer Form' : 'Yacht Form'; ?>
+							<option value="<?=$formfield->id;?>"><?= $formfield->label; ?> (<?=$type;?>)</option>
 				<? endforeach; ?>
 			</select>
 		</div>

@@ -171,7 +171,8 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 				<div class="grid9">
 					<select class="" onchange="select_link(this.value)" name="linked_options">
 						<? foreach($formfields_dropdowns as $formfield): ?>
-							<option value="<?=$formfield->id;?>" <?if($field->linked_formfield->id == $formfield->id):?>selected="yes"<?endif;?>><?= $formfield->label; ?></option>
+							<? $type = ($formfield->belongs_to == 'buyer') ? 'Buyer Form' : 'Yacht Form'; ?>
+							<option value="<?=$formfield->id;?>" <?if($field->linked_formfield->id == $formfield->id):?>selected="yes"<?endif;?>><?= $formfield->label; ?> (<?=$type;?>)</option>
 						<? endforeach; ?>
 					</select>
 

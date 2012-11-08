@@ -52,6 +52,21 @@ class Controller_Data extends MyController
 	public function action_export()
 	{	
 		$date = Date::forge()->format("%d-%m-%Y %H:%m");
+
+		$backup = Model_Backup::forge(array(
+			'note' =>'',
+			'type' => 'export',
+		));
+
+		$backup->save();
+		$filename = "backup.sql";
+		File::update(DOCROOT, $filename, $this->get_sql_string());
+		Response::redirect(Uri::create('public/'.$filename));
+	}
+
+	public function action_export_old()
+	{	
+		$date = Date::forge()->format("%d-%m-%Y %H:%m");
 		header('Content-type: text/plain');
 		header('Content-Disposition: attachment; filename="backup at '.$date.'.sql"');	
 

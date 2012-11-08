@@ -84,8 +84,7 @@ class Controller_Data extends MyController
 	public function get_sql_string()
 	{
 		//1. Get the table names
-		$tables = array('actionsteps','asnames','buyers','emails','emailtemplates','formfields_buyer','images','yachtshares');
-
+		$tables = array('actionsteps','asnames','buyers','emailtemplates','formfields_buyer','images','yachtshares');
 
 		$out = "";
 		foreach($tables as $table)

@@ -18,17 +18,40 @@ Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 
 Seller
 
-Registration: http://yacht-fractions.co.uk/seller/create
+Seller: Registration: http://yacht-fractions.co.uk/seller/create
 * (PASS) Validates: valid email, matching passwords, all fields required
 * (PASS) Validates: email is not already used
 
-NOTE: Should this send some kind of confirmation email to the seller?
-NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
+- NOTE: Should this send some kind of confirmation email to the seller?
 
-Creating a Yachtshare
+- NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
+
+Seller: Creating a Yachtshare
 * (CHRIS) save for later logout, close browser and log back in - did it save?
+* (PASS) "Save for later" - check it saves on window close
+* (FAIL) "Save for later" - saved form data should be cleared once the yachtshare has been created.
+* Able to search for boats by name
+* (FAIL: login as seller and go to http://yacht-fractions.co.uk/yachtshare/create/114) "This is my boat copy the details" => Private fields are NOT copied.
+* Select multiple shares creates multiple yachtshares with corresponding share sizes
+* (PASS) Closing the browser prompts the user "Are you sure..."
+* (FAIL) Does NOT prompt "Are you sure..." the user on submit
+* (PASS) Validates: all required fields, valid email address, terms and conditions must be checked
+* (PASS) Validates: a number is entered in share size, budget, length
+* (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
 
-Uploading files for a yachtshare
+Seller: Viewing a Yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
+* (FAIL) Display share size as fraction
+* (FAIL) Do NOT show terms and conditions field
+
+- NOTE: Do we want the seller to be able to delete their own yachtshare?
+
+Seller: Uploading files for a yachtshare
+* (PASS) able to upload
+* Displays (formatted) error message to user if file is too big
+* (PASS) user able to select from file types "Private doc/photo", "Public header photo", "Public gallery photo"
+* (PASS) Seller able to delete their own photos
+
+- NOTE: include explanation of different file types for user?
 
 Admin
 
@@ -102,6 +125,7 @@ Older tasks:
 9.  IMPORTANT: delete the file located at: /fuel/app/classes/controller/install.phpmyadmin
 
 10. Should you need to change development/production mode it can be done by changing the one line in: fuel/app/bootstrap.php
+
 FINISHED!
 
 *Trouble Shooting*

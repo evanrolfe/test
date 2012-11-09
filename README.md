@@ -56,7 +56,7 @@
 * (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
 * (PASS) Convert feet to meters if feet selected
 
--NOTE: Do we want the seller to be able to edit their own yachtshare? I think not, if they need to correct details they should email chris hawes because otherwise he will not necessarily know about changes to the yachts being sold.
+- NOTE: Do we want the seller to be able to edit their own yachtshare? I think not, if they need to correct details they should email chris hawes because otherwise he will not necessarily know about changes to the yachts being sold.
 
 ### Seller: Uploading files for a yachtshare
 * (PASS) able to upload
@@ -156,11 +156,23 @@ Clicking on "Introduce" for a buyer in table
 * (PASS) Redirect to email form with email body generated from template if "Introduce with email" button is clicked.
 
 ### Yachtshare -> Deactivate
-* Sets yachtshare status to "deactivated"
-* Displays "Activate" button instead
-* Displays "Delete Permanently" link
-* Clicking "Delete Permanently" gives "Are you sure?" prompt then deletes it if YES is clicked
+* (PASS) Sets yachtshare status to "deactivated"
+* (PASS) Displays "Activate" button instead
+* (PASS) Displays "Delete Permanently" link
+* (PASS) Clicking "Delete Permanently" gives "Are you sure?" prompt then deletes it if YES is clicked
 
+### Buyer List: http://yacht-fractions.co.uk/buyer
+* Able to filter according to:
+* (PASS) Type
+* (PASS) Location General
+* (PASS) Location Specific
+* (PASS) Price
+* (PASS) Length
+* (PASS) Share size
+* (PASS) Search box performs live search on already existing table of yachtshares below
+* (FAIL) Have "Clear Search" button next to search input field
+* (PASS) Able to select columns, each column displays correct information in table
+* (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 
 ### Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)

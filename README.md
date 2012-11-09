@@ -21,6 +21,7 @@ Seller
 Registration: http://yacht-fractions.co.uk/seller/create
 * Validates: valid email, matching passwords, all fields required
 * Validates: email is not already used
+* CHRIS save for later logout, close browser and log back in - did it save?
 
 Creating a Yachtshare
 
@@ -31,6 +32,7 @@ Admin
 Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field
+*CHRIS - are pcitures listed and available with existing shares?
 
 
 

@@ -27,6 +27,8 @@ Seller: Registration: http://yacht-fractions.co.uk/seller/create
 - NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
 
 Seller: Creating a Yachtshare
+* (FAIL) There is some kind of line being shown below the box at http://yacht-fractions.co.uk/seller/search, remove it.
+* (FAIL) Back button does not work at http://yacht-fractions.co.uk/seller/search
 * (CHRIS) save for later logout, close browser and log back in - did it save?
 * (PASS) "Save for later" - check it saves on window close
 * (FAIL) "Save for later" - saved form data should be cleared once the yachtshare has been created.
@@ -38,12 +40,21 @@ Seller: Creating a Yachtshare
 * (PASS) Validates: all required fields, valid email address, terms and conditions must be checked
 * (PASS) Validates: a number is entered in share size, budget, length
 * (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
+* (PASS) Convert feet to meters if feet selected
 
-Seller: Viewing a Yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
+Seller: Viewing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
 * (FAIL) Display share size as fraction
 * (FAIL) Do NOT show terms and conditions field
 
 - NOTE: Do we want the seller to be able to delete their own yachtshare?
+
+Seller: Editing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/edit/116
+* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
+* (FAIL) Validates: a number is entered in share size, budget, length
+* (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
+* (PASS) Convert feet to meters if feet selected
+
+-NOTE: Do we want the seller to be able to edit their own yachtshare? I think not, if they need to correct details they should email chris hawes because otherwise he will not necessarily know about changes to the yachts being sold.
 
 Seller: Uploading files for a yachtshare
 * (PASS) able to upload
@@ -58,7 +69,7 @@ Admin
 Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field
-*CHRIS - are pcitures listed and available with existing shares?
+* (FAIL: need to import these) CHRIS - are pcitures listed and available with existing shares?
 
 
 

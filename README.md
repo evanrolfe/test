@@ -87,6 +87,60 @@ TODO: Add "Clear Search" button, validate price/share size/length as numbers (if
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 *
 
+### Yachtshare -> View (Detail Page): http://yacht-fractions.co.uk/yachtshare/view/1
+Reminder:
+If no reminder set:
+* (PASS) Display "Set Reminder?" checkbox which, when checked, shows the rest of the form
+* (PASS) Able to create reminder
+* (PASS) Validates a reminder messange has been entered
+
+If reminder set but not yet active:
+* (PASS) Show form at bottom of page
+* (PASS) Able to update reminder
+* (PASS) Able to delete reminder
+
+If reminder is active:
+* (FAIL: must remove the red highlighted text) Display at top of page
+* (PASS) Display link to yachtshare in sidebar
+
+Active Sales: Example - http://yacht-fractions.co.uk/yachtshare/view/57
+If there is an ongoing sale:
+* (PASS) Link to buyer associated with the active sale
+* (PASS) Link to delete actionstep
+* (PASS) Delete actionstep displays "Are you sure?" prompt
+* (PASS) List actionsteps with this sale
+* (PASS) Link to add a new actionstep to sale
+If not:
+* (PASS) Display "This yacht share has not been introduced to any buyers yet. "
+
+Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
+* (FAIL) Validate: actionstep has been selected
+* (PASS) "Select Actionstep" dropdown should list only those actionsteps which have not already been added to the sale
+* (PASS) Should redirect back to yachtshare/view page
+
+
+"This yachtshare has been sold!": Example - http://yacht-fractions.co.uk/yachtshare/view/108
+* Show invoice link: http://yacht-fractions.co.uk/data/print/invoice/108
+* Show buyer letter link: http://yacht-fractions.co.uk/data/print/letter_buyer/108
+* Show seller letter link: http://yacht-fractions.co.uk/data/print/letter_seller/108
+
+Details:
+* (PASS) List yachtshare information
+* (FAIL) do NOT show terms and conditions field
+### Yachtshare -> Edit: http://yacht-fractions.co.uk/yachtshare/edit/1
+
+### Yachtshare -> Upload Files: http://yacht-fractions.co.uk/file/yachtshare/1
+
+### Yachtshare -> Find Buyers: http://yacht-fractions.co.uk/yachtshare/find_buyers/1
+
+### Yachtshare -> Deactivate
+* Sets yachtshare status to "deactivated"
+* Displays "Activate" button instead
+* Displays "Delete Permanently" link
+* Clicking "Delete Permanently" gives "Are you sure?" prompt then deletes it if YES is clicked
+
+
+
 ### Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field

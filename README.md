@@ -1,6 +1,8 @@
 *Evan's Tests*
 ================================
-Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
+## Buyer
+
+### Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 * (FAIL: Email Address) Validates: valid email address, all required fields, terms and conditions checked
 * (FAIL: Error message displays twice on share sizes) Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max
 * (FAIL) Validates: email is not already used
@@ -16,9 +18,9 @@ Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 * (PASS) Closing the browser prompts the user "Are you sure..."
 * (FAIL) Does NOT prompt "Are you sure..." the user on submit
 
-Seller
+## Seller
 
-Seller: Registration: http://yacht-fractions.co.uk/seller/create
+### Seller: Registration: http://yacht-fractions.co.uk/seller/create
 * (PASS) Validates: valid email, matching passwords, all fields required
 * (PASS) Validates: email is not already used
 
@@ -26,7 +28,7 @@ Seller: Registration: http://yacht-fractions.co.uk/seller/create
 
 - NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
 
-Seller: Creating a Yachtshare
+### Seller: Creating a Yachtshare
 * (FAIL) There is some kind of line being shown below the box at http://yacht-fractions.co.uk/seller/search, remove it.
 * (FAIL) Back button does not work at http://yacht-fractions.co.uk/seller/search
 * (CHRIS) save for later logout, close browser and log back in - did it save?
@@ -42,13 +44,13 @@ Seller: Creating a Yachtshare
 * (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
 * (PASS) Convert feet to meters if feet selected
 
-Seller: Viewing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
+### Seller: Viewing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
 * (FAIL) Display share size as fraction
 * (FAIL) Do NOT show terms and conditions field
 
 - NOTE: Do we want the seller to be able to delete their own yachtshare?
 
-Seller: Editing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/edit/116
+### Seller: Editing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/edit/116
 * (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
 * (FAIL) Validates: a number is entered in share size, budget, length
 * (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
@@ -56,7 +58,7 @@ Seller: Editing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/ed
 
 -NOTE: Do we want the seller to be able to edit their own yachtshare? I think not, if they need to correct details they should email chris hawes because otherwise he will not necessarily know about changes to the yachts being sold.
 
-Seller: Uploading files for a yachtshare
+### Seller: Uploading files for a yachtshare
 * (PASS) able to upload
 * Displays (formatted) error message to user if file is too big
 * (PASS) user able to select from file types "Private doc/photo", "Public header photo", "Public gallery photo"
@@ -65,9 +67,9 @@ Seller: Uploading files for a yachtshare
 
 - NOTE: include explanation of different file types for user?
 
-Admin
+## Admin
 
-Yachtshare List: http://yacht-fractions.co.uk/yachtshare
+### Yachtshare List: http://yacht-fractions.co.uk/yachtshare
 * Able to filter according to:
 * (PASS) Type
 * (PASS) Location General
@@ -85,7 +87,7 @@ TODO: Add "Clear Search" button, validate price/share size/length as numbers (if
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 *
 
-Buyer Detail
+### Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field
 * (FAIL: need to import these) CHRIS - are pcitures listed and available with existing shares?

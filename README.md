@@ -3,6 +3,7 @@
 Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 * (FAIL: Email Address) Validates: valid email address, all required fields, terms and conditions checked
 * (FAIL: Error message displays twice on share sizes) Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max
+* (FAIL) Validates: email is not already used
 * (PASS) Budget Min/Max Field: the following input should be accepted: "10000.00", "10 000", "10,000"
 * (PASS) Select three yachts which interest you" should be highlighted in Admin->Buyer->Find Yachtshares
 * (PASS) Email sent to buyer and admin containing correct information
@@ -16,6 +17,14 @@ Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 * (FAIL) Does NOT prompt "Are you sure..." the user on submit
 
 Seller
+
+Registration: http://yacht-fractions.co.uk/seller/create
+* Validates: valid email, matching passwords, all fields required
+* Validates: email is not already used
+
+Creating a Yachtshare
+
+Uploading files for a yachtshare
 
 Admin
 
@@ -87,6 +96,7 @@ Older tasks:
 
 9.  IMPORTANT: delete the file located at: /fuel/app/classes/controller/install.phpmyadmin
 
+10. Should you need to change development/production mode it can be done by changing the one line in: fuel/app/bootstrap.php
 FINISHED!
 
 *Trouble Shooting*

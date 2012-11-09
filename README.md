@@ -1,21 +1,27 @@
 *Evan's Tests*
 ================================
-Buyer Enquiry
-* <font color="red">Testing: http://yacht-fractions.co.uk/buyer/create</font>
-* <font color="red">Validates: valid email address, all required fields, terms and conditions checked</font>
-* <font color="red">Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max</font>
-* <font color="red">Budget Min/Max Field: the following input should be accepted: "10000.00", "10 000", "10,000"</font>
-* <font color="red">"Select three yachts which interest you" should be highlighted in Admin->Buyer->Find Yachtshares</font>
-* <font color="red">Email sent to buyer and admin containing correct information</font>
-* <font color="red">Email displays fractions instead of decimals for share sizes</font>
-* <font color="red">Terms and conditions appears at end of form</font>
-* <font color="red">"Save for Later" - check it works on closing the window.</font>
-* <font color="red">"Save for Later" - Also check it works on logging out.</font>
-* <font color="red">After submitting display thank you page with link back to yachtfractions home page</font>
+Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
+* (FAIL: Email Address) Validates: valid email address, all required fields, terms and conditions checked
+* (FAIL: Error message displays twice on share sizes) Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max
+* (PASS) Budget Min/Max Field: the following input should be accepted: "10000.00", "10 000", "10,000"
+* (PASS) Select three yachts which interest you" should be highlighted in Admin->Buyer->Find Yachtshares
+* (PASS) Email sent to buyer and admin containing correct information
+* (PASS) Email displays fractions instead of decimals for share sizes
+* (PASS) Terms and conditions appears at end of form
+* (PASS) Conversion of feet to meters (if feet selected)
+* (FAIL: Does not save feet/meters dropdown and selected boats of interest, saves everything else though) "Save for later" - check it works on closing the window
+* (PASS) "Save for later" - Does not save the terms and conditions check box
+* (PASS) After submitting display thank you page with link back to yachtfractions home page
+* (PASS) Closing the browser prompts the user "Are you sure..."
+* (FAIL) Does NOT prompt "Are you sure..." the user on submit
 
 Seller
 
 Admin
+
+Buyer Detail
+* (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
+* (FAIL) Do not show terms and conditions field
 
 
 

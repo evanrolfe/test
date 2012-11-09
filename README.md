@@ -19,11 +19,14 @@ Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
 Seller
 
 Registration: http://yacht-fractions.co.uk/seller/create
-* Validates: valid email, matching passwords, all fields required
-* Validates: email is not already used
-* CHRIS save for later logout, close browser and log back in - did it save?
+* (PASS) Validates: valid email, matching passwords, all fields required
+* (PASS) Validates: email is not already used
+
+NOTE: Should this send some kind of confirmation email to the seller?
+NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
 
 Creating a Yachtshare
+* (CHRIS) save for later logout, close browser and log back in - did it save?
 
 Uploading files for a yachtshare
 

@@ -85,7 +85,6 @@ TODO: Add "Clear Search" button, validate price/share size/length as numbers (if
 * (FAIL) Have "Clear Search" button next to search input field
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
-*
 
 ### Yachtshare -> View (Detail Page): http://yacht-fractions.co.uk/yachtshare/view/1
 Reminder:
@@ -127,11 +126,34 @@ Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
 Details:
 * (PASS) List yachtshare information
 * (FAIL) do NOT show terms and conditions field
+
 ### Yachtshare -> Edit: http://yacht-fractions.co.uk/yachtshare/edit/1
+* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
+* (FAIL) Validates: a number is entered in share size, budget, length
+* (FAIL) Price field: input "10 000" - will force validation
+* (PASS) Price field: the following input should be accepted: "10000.00", "10,000"
+* (PASS) Convert feet to meters if feet selected
 
 ### Yachtshare -> Upload Files: http://yacht-fractions.co.uk/file/yachtshare/1
+* (PASS) able to upload
+* Displays (formatted) error message to user if file is too big
+* (PASS) admin able to select from file types "Private doc/photo", "Public header photo", "Public gallery photo"
+* (PASS) admin able to delete upload files
+* Resize images with width > 800px
+
 
 ### Yachtshare -> Find Buyers: http://yacht-fractions.co.uk/yachtshare/find_buyers/1
+* (PASS) Yachtshare's details already entered into buyer filter form
+* (PASS) Able to change filters
+* (PASS) Display "Introduce"/"Already Introduced" link next to each buyer to create introduction actionstep
+* (PASS) Able to use search box
+* (PASS) Able to select which columns to display
+
+Clicking on "Introduce" for a buyer in table
+* (FAIL) Validate form
+* (PASS) Put on hold if hold period is specified.
+* (PASS) Date automatically entered if this field is left blank
+* (PASS) Redirect to email form with email body generated from template if "Introduce with email" button is clicked.
 
 ### Yachtshare -> Deactivate
 * Sets yachtshare status to "deactivated"
@@ -140,13 +162,10 @@ Details:
 * Clicking "Delete Permanently" gives "Are you sure?" prompt then deletes it if YES is clicked
 
 
-
 ### Buyer Detail
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field
 * (FAIL: need to import these) CHRIS - are pcitures listed and available with existing shares?
-
-
 
 *Evan's Todo*
 ================================

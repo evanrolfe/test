@@ -1,5 +1,5 @@
-*Evan's Tests*
-================================
+#Testing
+
 ## Buyer
 
 ### Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
@@ -174,10 +174,49 @@ Clicking on "Introduce" for a buyer in table
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 
-### Buyer Detail
+### Buyer -> View (Detail Page): http://yacht-fractions.co.uk/buyer/view/2
+Active Sales:
+If there is an ongoing sale:
+* (PASS) Link to yachtshare associated with the active sale
+* (PASS) Link to delete actionstep
+* (PASS) Delete actionstep displays "Are you sure?" prompt
+* (PASS) List actionsteps with this sale
+* (PASS) Link to add a new actionstep to sale
+If not:
+* (PASS) Display "The buyer has not been introduced to any yachtshares yet."
+
+Boat Specification Required:
+* (PASS) Show boat specifications correctly
+
+Details of Buyer:
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
 * (FAIL) Do not show terms and conditions field
-* (FAIL: need to import these) CHRIS - are pcitures listed and available with existing shares?
+* (FAIL) Do not show "Boat specification" fields as they have already been shown right above
+
+### Buyer -> Edit: http://yacht-fractions.co.uk/buyer/edit/2
+* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
+* (FAIL) Validates: a number is entered in share size, budget, length
+* (FAIL) Price field: input "10 000" - will force validation
+* (PASS) Price field: the following input should be accepted: "10000.00", "10,000"
+* (PASS) Convert feet to meters if feet selected
+
+### Buyer -> Upload Files: http://yacht-fractions.co.uk/file/buyer/2
+* (PASS) able to upload
+* Displays (formatted) error message to user if file is too big
+* (PASS) admin able to select from file types "Private doc/photo", "Public header photo", "Public gallery photo"
+* (PASS) admin able to delete upload files
+* Resize images with width > 800px
+
+### Buyer -> Find Yachtshares: http://yacht-fractions.co.uk/buyer/find_yachtshare/2
+* (PASS) Yachtshare's details already entered into buyer filter form
+* (PASS) Able to change filters
+* (PASS) Display "Introduce"/"Already Introduced" link next to each buyer to create introduction actionstep
+* (PASS) Able to use search box
+* (PASS) Able to select which columns to display
+
+### Buyer -> Delete
+* (PASS) Gives "Are you sure?" prompt then deletes when YES is clicked
+* (FAIL) The button does not work from buyer/find_yachtshares though it does work on all other pages
 
 *Evan's Todo*
 ================================

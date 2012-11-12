@@ -185,6 +185,16 @@ class Controller_Buyer extends MyController
 					'preferences' => $preferences,
 				));
 
+				$all_buyers = Model_Buyer::find('all');
+				foreach($all_buyers as $a_buyer)
+				{
+					if($buyer->email == $a_buyer->email)
+					{
+						Session::set_flash('error', 'Error: could not save the enquiry because the email, '.$buyer->email.' you have entered is already in use.');
+						Response::redirect('buyer/create');						
+					}
+				}
+
 				if ($buyer and $buyer->save())
 				{
 

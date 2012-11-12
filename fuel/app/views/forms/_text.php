@@ -1,3 +1,4 @@
+<? if($field->tag=='email'){ $field->validation .= " email"; } ?>
 <div class="formRow">
     <div class="grid3"><label><?= $field->label; ?></label></div>
     <div class="grid9 noSearch" align="left">

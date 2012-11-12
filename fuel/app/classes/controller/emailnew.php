@@ -226,10 +226,11 @@ class Controller_Emailnew extends MyController
 			if($field->tag == 'boats_interest')
 			{
         $boats_ids = explode(",",$buyer->preferences['boats_interest']);
+		$string = "";
         foreach($boats_ids as $id)
         {
           $yachtshare = Model_Yachtshare::find($id);
-          $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
+          $yachtshare and $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
         }
 
 				  array_pop($replace);

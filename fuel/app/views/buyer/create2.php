@@ -14,7 +14,28 @@ function select_share()
 }
 
 $(document).ready(function(){
-	$("#create_form").validate();
+	$("#create_form").validate({
+    errorPlacement: function(error, element) {
+       if (element.attr("name") != "max_share_size_num" &&  element.attr("name") != "min_share_size_num")
+         error.insertAfter(element);
+     }
+  });
+
+		var preventUnloadPrompt;
+		var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
+		//var redirectAfterPrompt = "http://www.google.co.in";
+		$('a').live('click', function() { preventUnloadPrompt = true; });
+		$('form').live('submit', function() { preventUnloadPrompt = true; });
+		$(window).bind("beforeunload", function(e) { 
+			var rval;
+			if(preventUnloadPrompt) {
+				return;
+			} else {
+				//location.replace(redirectAfterPrompt);
+				return messageBeforeUnload;
+			}
+			return rval;
+		})
 });
 
 function save_form()
@@ -36,11 +57,6 @@ function save_form()
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
 		<h6>Buyer Enquiry Form</h6>
-		<div style="text-align: right">
-			<span id="text_bar">
-			</span>
-			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
-		</div>
 		<div class="clear"></div>
 	</div>
 

@@ -16,6 +16,9 @@
 		<div>
 			<h6>Search Results</h6>
 		</div>
+		<div style='text-align: right;'>
+			<a href="<?=Uri::create('yachtshare/create');?>"><button class="buttonS bBlue" style="margin: 6px 6px;">My yacht is not listed here, I will enter the details myself.</button></a>
+		</div>
 		<div class="clear"></div>
 	</div>
 

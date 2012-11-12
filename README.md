@@ -48,8 +48,8 @@
 * (PASS) Convert feet to meters if feet selected
 
 ### Seller: Viewing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
-* (FAIL) Display share size as fraction
-* (FAIL) Do NOT show terms and conditions field
+* 1. (PASS) (Completed 12/11/12 - 22:10) Display share size as fraction
+* 2. (PASS) (Completed 12/11/12 - 22:10) Do NOT show terms and conditions field
 
 - NOTE: Do we want the seller to be able to delete their own yachtshare?
 

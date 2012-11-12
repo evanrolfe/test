@@ -36,12 +36,18 @@ $(function(){
 	</div>
 
 	<? foreach($formfields as $field): ?>
+		<? if($field->type == 'terms_and_conditions'){ continue; } ?>
     <div class="formRow">
         <div class="grid3"><label><?= $field->label; ?>:</label></div>
         <div class="grid9" align="left">
 			<? if($field->search_field): ?>
 				<? $tag = $field->tag; ?>
-				<?= $yachtshare->$tag;?>
+
+				<? if($tag == 'share_size'): ?>
+					<?= $yachtshare->share_size_num;?>/<?= $yachtshare->share_size_den;?>
+				<? else: ?>
+					<?= $yachtshare->$tag;?>
+				<? endif; ?>
 			<? else: ?>
 				<?= str_replace("\n", "<br>", $yachtshare->boat_details[$field->tag]); ?>
 			<? endif; ?>

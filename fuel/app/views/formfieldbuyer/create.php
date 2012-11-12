@@ -124,7 +124,7 @@ function add_option()
     </div>
 
 <div class="formRow" id="dropdown_linked"  style="display: none;">
-        <div class="grid3"><label>OR: Set this dropdown to always have the same options as another dropdown field:</label></div>
+        <div class="grid3"><label>OR: Set this dropdown to always have the same options as another dropdown field:<br>(the new formfield's items in the dropdown will be automatically updated as this selected dropdown's items are changed.</label></div>
         <div class="grid9">
 			<select class="" onchange="select_link(this.value)" name="dropdown_linked">
 					<option value="">Choose Another Dropdown Field</option>

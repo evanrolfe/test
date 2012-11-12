@@ -5,8 +5,7 @@
             <td class="sortCol"><div>label<span></span></div></td>
             <td class="sortCol"><div>Tag<span></span></div></td>
             <td class="sortCol"><div>Type<span></span></div></td>
-            <td class="sortCol"><div>Options<span></span></div></td>
-            <td class="sortCol"><div>Delete?<span></span></div></td>
+            <td class="sortCol"><div>Actions<span></span></div></td>
         </tr>
     </thead>
     <tbody>
@@ -41,7 +40,6 @@
             <td><?= $formfield->label; ?></td>
             <td><?= $formfield->tag; ?></td>
             <td><?= $formfield->type; ?></td>
-            <td><?= $formfield->options; ?></td>
             <td><a href="<?=Uri::create('formfieldbuyer/edit/'.$formfield->id);?>">Edit</a><? if(!$formfield->search_field): ?> - <a href="#" id="formfield_<?=$formfield->id;?>">Del</a><? endif; ?></td>
         </tr>
 <? endforeach; ?>

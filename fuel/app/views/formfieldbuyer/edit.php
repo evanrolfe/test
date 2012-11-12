@@ -107,9 +107,6 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 
     <div class="whead">
 		<h6>Edit Form Field</h6>
-		<div style='text-align: right'>
-			<a href="<?= Uri::create('formfield'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;">Back</button></a>
-		</div>
 		<div class="clear"></div>
 	</div>
 
@@ -241,7 +238,8 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
     <div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right'>
-			<button class="buttonS bGreen" style="margin: 6px 6px;">Update</button>
+			<a href="<?= Uri::create('formfieldbuyer'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button">Cancel</button></a>
+			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Save</button>
 		</div>
 		<div class="clear"></div>
     </div>

@@ -106,11 +106,12 @@ $(function(){
 
 					<div class="widget searchWidget noBorderB" style="width: 270px; margin-top: 0px;">
 						<div class="whead" style="width: 248px;">
-							<input type="text" name="srch" class="" placeholder="Search..." style="width: 217px;" id="search" onkeyup="search_for()">
+							<input type="text" name="srch" class="" placeholder="Search..." style="width: 217px;" id="search" onkeyup="search_for();$('#clear_search_button').show();">
 							<button type="submit" name="swSubmit"><span class="icos-search"></span></button>
 						</div>
 					</div>
 
+					<button id='clear_search_button' type="button" class="buttonS bBlue" style="display: none;" onclick="$('#search').val('');search_for();$('#clear_search_button').hide();">Clear Search</button>
 				</div>
 
 				<div id="tabb3" class="tab_content" style="display: block; ">

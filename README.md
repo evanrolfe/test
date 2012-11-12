@@ -66,7 +66,7 @@
 * Displays (formatted) error message to user if file is too big
 * (PASS) user able to select from file types "Private doc/photo", "Public header photo", "Public gallery photo"
 * (PASS) Seller able to delete their own photos
-* Resize images with width > 800px
+* (PASS) Resize images with width > 800px
 
 - NOTE: include explanation of different file types for user?
 
@@ -85,7 +85,7 @@
 TODO: Add "Clear Search" button, validate price/share size/length as numbers (if something is entered). Validate share_size_max > share_size_min.
 
 * (PASS) Search box performs live search on already existing table of yachtshares below
-* (FAIL) Have "Clear Search" button next to search input field
+* 1. (PASS) (Completed 12/11/12 - 22:20)Have "Clear Search" button next to search input field
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 

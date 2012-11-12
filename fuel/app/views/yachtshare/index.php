@@ -91,6 +91,7 @@ $(function(){
 							<input type="checkbox" name="on_hold" <? if(isset($search_terms['on_hold'])): ?>checked="yes"<? endif; ?>> On hold<br>
 							<input type="checkbox" name="sold" <? if(isset($search_terms['sold'])): ?>checked="yes"<? endif; ?>> Sold<br>
 							<input type="checkbox" name="deactivated" <? if(isset($search_terms['deactivated'])): ?>checked="yes"<? endif; ?>> Deactivated<br>
+							<input type="checkbox" name="temp" <? if(isset($search_terms['temp'])): ?>checked="yes"<? endif; ?>> Temporarily Saved Forms<br>
 						</div>
 						<div class="clear"></div>
 					</div>

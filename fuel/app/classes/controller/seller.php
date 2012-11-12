@@ -57,7 +57,8 @@ class Controller_Seller extends MyController
 		$this->logged_in_as(array('seller'));
 
 		$data = array();
-		$data['yachtshares'] = Model_Yachtshare::find('all', array("where" => array("user_id" => $this->user->id)));
+		$data['yachtshares'] = Model_Yachtshare::find('all', array("where" => array("user_id" => $this->user->id, 'temp' => 0)));
+		$data['yachtshares_saved_for_later'] = Model_Yachtshare::find('all', array("where" => array("user_id" => $this->user->id, 'temp' => '1')));
 		$data['user'] = $this->user;
 
 		$this->template = \View::forge('public_template',array(),false);

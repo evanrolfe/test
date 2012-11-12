@@ -151,9 +151,9 @@ class MyController extends Controller_Template
 			}
 
 			//4. Filter according to status
-			$statuss = array("Available" => "available", "Sale in progress" => "sale_in_progress", "On hold" => "on_hold", "Sold" => "sold", "Deactivated" => "deactivated");
+			$statuss = array("Available" => "available", "Sale in progress" => "sale_in_progress", "On hold" => "on_hold", "Sold" => "sold", "Deactivated" => "deactivated","Temporarily Saved Form" => "temp");
 			
-			$stat = array("available","sale_in_progress","on_hold","sold","deactivated");
+			$stat = array("available","sale_in_progress","on_hold","sold","deactivated","temp");
 
 			//4.1 Find which status's the user has inputted as to be included
 			$included_status = array();

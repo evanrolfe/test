@@ -30,8 +30,6 @@ $(function(){
     <div class="whead">
 		<h6>Details</h6>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('yachtshare/edit/'.$yachtshare->id); ?>"><button class="buttonS bGreen" style="margin: 6px 6px;">Edit</button></a>
-			<a href="#" id="opener"><button class="buttonS bRed" style="margin: 6px 6px;">Delete</button></a>
 			<a href="<?= Uri::create('seller'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;">Back</button></a>
 		</div>
 		<div class="clear"></div>

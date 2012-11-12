@@ -174,7 +174,6 @@ class Controller_Yachtshare extends MyController
 				{
 					if(Input::post("share_".$i."_num"))
 					{
-
 						$num = Input::post("share_".$i."_num");
 						$den = Input::post("share_".$i."_den");
 						$float = $this->toFloat($num."/".$den);
@@ -202,6 +201,32 @@ class Controller_Yachtshare extends MyController
 					//Handle length field
 					$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
 
+					//If the user clicked "Save for later" button then insert this as a temporary yachtshare_create_form
+					$save_for_later_clicked = (isset($_POST['save_for_later']));
+					$submit_clicked = (isset($_POST['submit']));
+					$from_temp_form = (Input::post('temp') == '1') ? true : false;
+
+					//If this is updating a saved form and "Save for later" has been clicked
+					if($from_temp_form and $save_for_later_clicked)
+					{
+						echo "Updating an already saved temporary yachtshare";
+						$yachtshare = $this->update_yachtshare_without_save(Input::post(),Input::post('yachtshare_id'),true);
+
+					}elseif($from_temp_form and $submit_clicked)
+					{
+						echo "Updating and setting temp=0 on already saved temporary yachtshare";
+						$yachtshare = $this->update_yachtshare_without_save(Input::post(),Input::post('yachtshare_id'),false);
+
+					}elseif(!$from_temp_form and $save_for_later_clicked)
+					{
+						echo "Saving a yachtshare with temp=1";
+
+					}elseif(!$from_temp_form and $submit_clicked)
+					{
+						echo "Saving a yachtshare with temp=0";						
+
+					}
+
 					$yachtshare = Model_Yachtshare::forge(array(
 						"name" 				=> $name,
 						"make" 				=> Input::post("make"),
@@ -216,6 +241,7 @@ class Controller_Yachtshare extends MyController
 						"boat_details"		=> json_encode($input),
 						"user_id"			=> $this->user->id,
 						"active"			=> true,
+						"temp"				=> $save_for_later_clicked,
 					));
 
 					//Save
@@ -270,8 +296,138 @@ class Controller_Yachtshare extends MyController
 		}
 	}
 
+	//Parameters: $post = Input::post()
+	protected function update_yachtshare_without_save($post, $yachtshare_id, $temp=false)
+	{
+		$yachtshare = Model_Yachtshare::find($yachtshare_id);
+
+		$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
+
+		$yachtshare->name 				= Input::post('name');
+		$yachtshare->make 				= Input::post('make');		
+		$yachtshare->type 				= Input::post('type');		
+		$yachtshare->location_general 	= Input::post('location_general');
+		$yachtshare->location_specific 	= Input::post('location_specific');
+		$yachtshare->length 			= $length;		
+		$yachtshare->price 				= preg_replace("/,/","",Input::post("price"));		
+
+		$yachtshare->share_size_num = Input::post("share_size_num");
+		$yachtshare->share_size_den = Input::post("share_size_den");
+		$yachtshare->share_size = $this->toFloat($yachtshare->share_size_num."/".$yachtshare->share_size_den);	
+
+		$yachtshare->boat_details = json_encode($input);
+		$yachtshare->temp = $temp;
+
+		return $yachtshare;		
+	}
+
 	public function action_create()
 	{
+		if(Input::method() == 'POST')
+		{
+			$formfields = Model_Formfieldbuyer::find('all', array('order_by' => array('order' => 'ASC'), 'where' => array('belongs_to' => 'seller')));	
+			$mysql_columns = array("name","make","type","location_general","location_specific","length","price","share_size","share_size_num","share_size_den");
+
+			//1. Go through each formfield and extract the necessary data from POST input
+			foreach($formfields as $field)
+			{
+				//Skip those which have their own mysql columns
+				if(in_array($field->tag,$mysql_columns))
+					continue;
+
+				//Handle length input (i.e. meters/feet)
+				if($field->type == 'length')
+				{
+					$input[$field->tag] = (Input::post($field->tag.'_unit') == 'm') ? Input::post($field->tag) : round(Input::post($field->tag)*0.3048,2);
+
+				//Handle price input => remove commas
+				}elseif($field->tag == 'price'){
+					$input[$field->tag] = preg_replace(array('/,/','/\./'),"",Input::post($field->tag));
+
+				//Or handle normal (direct) input
+				}else{
+					$input[$field->tag] = Input::post($field->tag);
+				}
+			}
+
+			//2.1 Find out out many shares are to be inserted and what size each one is
+			$shares = array();
+			for($i=1; $i<=10; $i++)
+			{
+				if(Input::post("share_".$i."_num"))
+				{
+					$num = Input::post("share_".$i."_num");
+					$den = Input::post("share_".$i."_den");
+					$float = $this->toFloat($num."/".$den);
+
+					$shares[] = array('num' => $num, 'den' => $den, 'float' => $float);
+				}
+			}				
+
+			//Check that the user has inputted a sharesize
+			if(count($shares)==0)
+			{
+				Session::set_flash('error', 'You must enter a share size!');
+				Response::redirect('yachtshare/create');																
+			}
+
+			//2.2 Now insert each share into the DB
+			$i=1;
+			$errors=0;
+			foreach($shares as $share_size)
+			{
+				//If there are more than one shares to be inserted the append (#) to the name
+				$name = (count($shares) > 1) ? Input::post('name')." (".$i.")" : Input::post('name');
+				$i++;
+
+				//Handle length field
+				$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
+
+				//If the user clicked "Save for later" button then insert this as a temporary yachtshare_create_form
+				$save_for_later_clicked = (isset($_POST['save_for_later']));
+
+				if($save_for_later_clicked)
+				{
+					echo "Saving a yachtshare with temp=1";
+				}else{
+					echo "Saving a yachtshare with temp=0";
+				}
+
+				$yachtshare = Model_Yachtshare::forge(array(
+					"name" 				=> $name,
+					"make" 				=> Input::post("make"),
+					"type" 				=> Input::post("type"),
+					"location_general"	=> Input::post("location_general"),
+					"location_specific" => Input::post("location_specific"),
+					"length" 			=> $length,
+					"price" 			=> $this->handle_price(Input::post("price")),
+					"share_size" 		=> $share_size['float'],
+					"share_size_num" 	=> $share_size['num'],
+					"share_size_den" 	=> $share_size['den'],
+					"boat_details"		=> json_encode($input),
+					"user_id"			=> $this->user->id,
+					"active"			=> true,
+					"temp"				=> $save_for_later_clicked,
+				));
+
+				//Save
+				($yachtshare->save()) or $errors++;
+			}
+
+			//Redirect
+			if($errors > 0)
+			{
+				Session::set_flash('error', 'The yachtshare could not be created due to an error!');
+				Response::redirect('yachtshare/create');											
+			}else{
+				//Delete the saved_form session
+				Session::delete('buyer_create_form');
+
+				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
+				$url = ($this->user->type == 'seller') ? 'seller' : 'yachtshare/view/'.$yachtshare->id;
+				Response::redirect($url);						
+			}			
+		}
 		//Session::delete('yachtshare_create_form');
 		$this->logged_in_as(array('seller', 'admin'));
 		$this->template->title = "Yachtshare: Create";
@@ -283,24 +439,10 @@ class Controller_Yachtshare extends MyController
 		$data['user'] = $this->user;
 		$data['formfields'] = $this->formfields;
 
-		//SAVED FORM DATA
-		//Three possible sources: user has saved it in session OR user has saved it in db OR user has specified yachtshare ID in url
-		//1. IF the user has saved form data in a session then retrieve it.
-		$data['saved_form_data'] = array();
-		$data['saved_form_data'] = Session::get('yachtshare_create_form');
-
-		//2. If the user has saved form data in the DB then retrieve it:
-		$yachtshare = Model_Yachtshare::find('first', array('where' => array('temp' => 1, 'user_id' => $this->user->id)));
-
-		//3. If the user has specified which boat details are to be copied then retreive the details
+		//If the user has specified which boat details are to be copied then retreive the details
 		if($this->param('boat_id'))
-			$yachtshare = Model_Yachtshare::find($this->param('boat_id'));				
-	
-		//$yachtshare and print("ONE SAVED ALREADY");
-
-		//Form data from a session has precedence over form data from mysql db / "copy details"
-		if($yachtshare && sizeof($data['saved_form_data']) == 0)
 		{
+			$yachtshare = Model_Yachtshare::find($this->param('boat_id'));				
 
 			foreach($this->formfields as $field)
 			{
@@ -321,17 +463,27 @@ class Controller_Yachtshare extends MyController
 				}
 				//echo "<br>";
 			}
+		}else{
+			foreach($this->formfields as $field)
+			{
+				$data['saved_form_data'][$field->tag] = '';				
+			}			
 		}
-
-		//$data['html'] = "<ul><li>one</li><li>two</li></ul>";
 
 		if($this->user->type == 'seller')
 		{
 			$this->template = \View::forge('public_template',array(),false);
 			$this->template->user = $this->user;
-			$this->template->title = 'Yacht Fractions: Create Yachtshare';
 			$this->template->form_page = true;												//To set the html body to display "are you sure" popup on exit
-			$this->template->content = View::forge('yachtshare/seller/create',$data,false);
+
+			if($data['yachtshare']->temp)
+			{
+				$this->template->title = 'Yacht Fractions: Your saved (but incomplete) yachtshare';
+				$this->template->content = View::forge('yachtshare/seller/update_incomplete_form',$data,false);				
+			}else{
+				$this->template->title = 'Yacht Fractions: Create Yachtshare';
+				$this->template->content = View::forge('yachtshare/seller/create',$data,false);
+			}
 		}else{
 			$data['types'] = array("Sailing boats shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");
 			$this->template->links['shares']['current'] = true;
@@ -391,9 +543,17 @@ class Controller_Yachtshare extends MyController
 
 	public function action_delete($id = null)
 	{
-		$this->logged_in_as(array('admin'));
+		$this->logged_in_as(array('admin','seller'));
+
 		if ($yachtshare = Model_Yachtshare::find($id))
 		{
+
+			if(($this->user->type == 'seller') and ($yachtshare->user_id != $this->user->id))
+			{
+				Session::set_flash('error', 'You do not have permission to delete that yachtshare!');
+				Response::redirect('seller');				
+			}
+
 			$yachtshare->delete();
 
 			Session::set_flash('success', 'Deleted yachtshare #'.$id);
@@ -408,24 +568,102 @@ class Controller_Yachtshare extends MyController
 		Response::redirect($url);
 	}
 
-	//Switches the columns name and make
+
 	public function action_update()
 	{
-		$yachtshares = Model_Yachtshare::find('all');
-		$errors = 0;
-		foreach($yachtshares as $yachtshare)
-		{
-			if(preg_match('/-/',$yachtshare->name))
-			{
-				$name_arr = explode("-", $yachtshare->name);
-				$name = $name_arr[1];
-				$make = $name_arr[0];
+		$this->logged_in_as(array('seller'));
+		$yachtshare = Model_Yachtshare::find((int) $this->param('boat_id'));
 
-				$query = DB::query('UPDATE `yachtshares` SET name="'.$name.'", make="'.$make.'" WHERE id='.$yachtshare->id);
-				$query->execute() or $errors++;
+		if($yachtshare->user_id != $this->user->id)
+		{
+			Session::set_flash('error', 'You do not have permission to access that page!');
+			Response::redirect('seller');
+		}
+
+		if(Input::method() == 'POST')
+		{
+			$formfields = Model_Formfieldbuyer::find('all', array('order_by' => array('order' => 'ASC'), 'where' => array('belongs_to' => 'seller')));	
+			$mysql_columns = array("name","make","type","location_general","location_specific","length","price","share_size","share_size_num","share_size_den");
+
+			//1. Go through each formfield and extract the necessary data from POST input
+			foreach($formfields as $field)
+			{
+				//Skip those which have their own mysql columns
+				if(in_array($field->tag,$mysql_columns))
+					continue;
+
+				//Handle length input (i.e. meters/feet)
+				if($field->type == 'length')
+				{
+					$input[$field->tag] = (Input::post($field->tag.'_unit') == 'm') ? Input::post($field->tag) : round(Input::post($field->tag)*0.3048,2);
+
+				//Handle price input => remove commas
+				}elseif($field->tag == 'price'){
+					$input[$field->tag] = preg_replace(array('/,/','/\./'),"",Input::post($field->tag));
+
+				//Or handle normal (direct) input
+				}else{
+					$input[$field->tag] = Input::post($field->tag);
+				}
+			}
+
+			$yachtshare = Model_Yachtshare::find(Input::post('yachtshare_id'));
+
+			$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
+
+			$yachtshare->name 				= Input::post('name');
+			$yachtshare->make 				= Input::post('make');		
+			$yachtshare->type 				= Input::post('type');		
+			$yachtshare->location_general 	= Input::post('location_general');
+			$yachtshare->location_specific 	= Input::post('location_specific');
+			$yachtshare->length 			= $length;		
+			$yachtshare->price 				= preg_replace("/,/","",Input::post("price"));		
+
+			$yachtshare->share_size_num = Input::post("share_size_num");
+			$yachtshare->share_size_den = Input::post("share_size_den");
+			$yachtshare->share_size = $this->toFloat($yachtshare->share_size_num."/".$yachtshare->share_size_den);	
+
+			$yachtshare->boat_details = json_encode($input);							
+
+			$save_for_later_clicked = (isset($_POST['save_for_later']));
+			$yachtshare->temp = $save_for_later_clicked;
+
+	//Redirect
+			if($yachtshare->save())
+			{
+				Session::set_flash('success', 'The yacht share has been successfully updated!');
+				Response::redirect('seller');											
+			}else{
+				Session::set_flash('error', 'The yachtshare could not be updated due to an error!');
+				Response::redirect('yachtshare/update/'.$yachtshare->id);						
+			}			
+		}
+
+		$data['user'] = $this->user;
+		$data['saved_form_data'] = array();
+		$this->logged_in_as(array('seller', 'admin'));
+		//$this->template->title = "Yachtshare: Create";
+		$data['yachtshare'] = $yachtshare;
+		$data['formfields'] = $this->formfields;
+
+		foreach($this->formfields as $field)
+		{
+			$tag = $field->tag;
+			if($field->search_field)
+			{
+				//echo "a value";
+				$data['saved_form_data'][$tag] = $data['yachtshare']->$tag;
+			}else{
+				//echo "a value from an array";
+				$data['saved_form_data'][$tag] = (isset($data['yachtshare']->boat_details[$tag])) ? $data['yachtshare']->boat_details[$tag] : '';
 			}
 		}
 
-		die("Number of errors occured: ".$errors);
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $this->user;
+		$this->template->form_page = true;												//To set the html body to display "are you sure" popup on exit
+
+		$this->template->title = 'Yacht Fractions: Your saved (but incomplete) yachtshare';
+		$this->template->content = View::forge('yachtshare/seller/update_incomplete_form',$data,false);				
 	}
 }

@@ -46,7 +46,7 @@ function save_form()
 		<div class="clear"></div>
 	</div>
 
-<form action="<?= Uri::create('yachtshare/create'); ?>" method="POST" accept-charset="utf-8" id="create_form">
+<form action="<?= Uri::create('yachtshare/update/'.$yachtshare->id); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <input type="hidden" name="user_id" value="<?= $user->id; ?>">
 <input type="hidden" name="insert" value="1">
 <input type="hidden" name="form_type" value="yachtshare">
@@ -64,37 +64,17 @@ function save_form()
 	<? elseif($field->type == 'length'): ?>
 		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'terms_and_conditions'): ?>
-		<?= render('forms/_terms_and_conditions',array('field'=>$field),false); ?>
+
 	<? elseif($field->tag == 'share_size'): ?>
 
-		<? if($yachtshare->temp): ?>
-			<div class="formRow">
-				<div class="grid3"><label>Share Size:</label></div>
-				<div class="grid9" align="left">
-						<input type='text' name="share_size>_num" style='width: 45px;' class="required number" /> / <input type='text' name="share_size_den" style='width: 45px;' class="required number" />
-				</div>
-				<div class="clear"></div>
+		<div class="formRow">
+			<div class="grid3"><label>Share Size:</label></div>
+			<div class="grid9" align="left">
+					<input type='text' name="share_size_num" style='width: 45px;' class="required number" value="<?= $yachtshare->share_size_num; ?>"/> / <input type='text' name="share_size_den" style='width: 45px;' class="required number" value="<?=$yachtshare->share_size_den?>" />
 			</div>
-		<? else: ?>
-			<div class="formRow">
-				<div class="grid3"><label>Share Size:</label></div>
-				<div class="grid9" align="left">
-					Number of Shares: 
-					<select class='' onchange="select_shares(this.value)" id="select_share">
-						<? for($i=1; $i<=10; $i++): ?>
-							<option value="<?= $i; ?>"><?= $i; ?></option>
-						<? endfor; ?>
-					</select>
-
-					<? for($i=1; $i<=10; $i++): ?>
-						<div id="share_<?= $i; ?>" <? if($i>1):?>style="display: none;"<?endif;?>>Share #<?= $i; ?> <input type='text' name="share_<?= $i; ?>_num" style='width: 45px;' class="required number" /> / <input type='text' name="share_<?= $i; ?>_den" style='width: 45px;' class="required number" /></div>
-					<? endfor; ?>
-				</div>
-				<div class="clear"></div>
-			</div>
-		<? endif; ?>
+			<div class="clear"></div>
+		</div>
 	<? endif; ?>
-
 <? endforeach; ?>
 
 	<div class="whead">

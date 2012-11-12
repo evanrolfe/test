@@ -5,7 +5,7 @@
 	<title><?=$title;?></title>
 	<?php echo render('_includes'); ?>
 
-	<? if(isset($form_page) and $form_page): ?>
+	<? if(false)://isset($form_page) and $form_page): ?>
 
 <script type="text/javascript">
 

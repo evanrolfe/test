@@ -2,6 +2,16 @@
 
 class Model_Yachtshare extends \Orm\Model
 {
+	protected static $_belongs_to = array(
+		'seller' => array(
+		    'key_from' => 'user_id',
+		    'model_to' => 'Model_User',
+		    'key_to' => 'id',
+		    'cascade_save' => true,
+		    'cascade_delete' => false,
+		)
+	);
+
 	protected static $_has_many = array(
 		'actionsteps' => array(
 		    'key_from' => 'id',
@@ -224,6 +234,8 @@ class Model_Yachtshare extends \Orm\Model
 			return "Sale in progress";
 		}elseif($this->is_onhold()){
 			return "On hold";
+		}elseif($this->temp == true){
+			return "Temporarily Saved Form";
 		}else{
 			return "Available";
 		}

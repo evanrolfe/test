@@ -1,6 +1,15 @@
 <?= render('yachtshare/admin/_nav',array('yachtshare' => $yachtshare)); ?>
-
-<form action="<?= Uri::create('yachtshare/handle_post'); ?>" method="POST" accept-charset="utf-8">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#create_form").validate({
+    errorPlacement: function(error, element) {
+       if (element.attr("name") != "share_size_num" )
+         error.insertAfter(element);
+     }
+ 	});
+});
+</script>
+<form action="<?= Uri::create('yachtshare/handle_post'); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <input type="hidden" name="update" value="1">
 <input type="hidden" name="yachtshare_id" value="<?=$yachtshare->id;?>">
 <div class="widget fluid">
@@ -36,7 +45,7 @@
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
-			<button class="buttonS bGreen" style="margin: 6px 6px;">Save</button>
+			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Save</button>
 		</div>
 		<div class="clear"></div>
 	</div>

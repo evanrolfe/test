@@ -130,9 +130,9 @@ Details:
 * 2. (PASS) (Completed 12/11/12 - 22:30) do NOT show terms and conditions field
 
 ### Yachtshare -> Edit: http://yacht-fractions.co.uk/yachtshare/edit/1
-* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
-* (FAIL) Validates: a number is entered in share size, budget, length
-* (FAIL) Price field: input "10 000" - will force validation
+* 1. (PASS) (Completed 12/11/12 - 22:15) Validates: all required fields, valid email address
+* 2. (PASS) (Completed 12/11/12 - 22:15)  Validates: a number is entered in share size, budget, length
+* 3. (PASS) (Completed 12/11/12 - 22:15) Price field: input "10 000" - will force validation
 * (PASS) Price field: the following input should be accepted: "10000.00", "10,000"
 * (PASS) Convert feet to meters if feet selected
 

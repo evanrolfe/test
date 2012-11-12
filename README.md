@@ -152,7 +152,7 @@ Details:
 * (PASS) Able to select which columns to display
 
 Clicking on "Introduce" for a buyer in table
-* (FAIL) Validate form
+* (PASS) Validate form
 * (PASS) Put on hold if hold period is specified.
 * (PASS) Date automatically entered if this field is left blank
 * (PASS) Redirect to email form with email body generated from template if "Introduce with email" button is clicked.
@@ -192,13 +192,13 @@ Boat Specification Required:
 
 Details of Buyer:
 * (PASS) Do not show unecessary fields (i.e. "Select Yachtshare of Interest" displays names and not ID numbers)
-* (FAIL) Do not show terms and conditions field
-* (FAIL) Do not show "Boat specification" fields as they have already been shown right above
+* (PASS) Do not show terms and conditions field
+* (PASS) Do not show "Boat specification" fields as they have already been shown right above
 
 ### Buyer -> Edit: http://yacht-fractions.co.uk/buyer/edit/2
-* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
-* (FAIL) Validates: a number is entered in share size, budget, length
-* (FAIL) Price field: input "10 000" - will force validation
+* 1. *(PASS) (Completed 12/11/12 - 23:45) Validates: all required fields, valid email address, terms and conditions must be checked*
+* 2. *(PASS) (Completed 12/11/12 - 23:45)Validates: a number is entered in share size, budget, length*
+* 3. *(PASS) (Completed 12/11/12 - 23:45) Price field: input "10 000" - will force validation*
 * (PASS) Price field: the following input should be accepted: "10000.00", "10,000"
 * (PASS) Convert feet to meters if feet selected
 

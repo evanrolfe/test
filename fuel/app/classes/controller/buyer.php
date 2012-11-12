@@ -105,12 +105,18 @@ class Controller_Buyer extends MyController
 			//Override 'boats_interest' element to display the boat's names instead of just their ID's
 			if($field->tag == 'boats_interest')
 			{
-        $boats_ids = explode(",",$data['buyer']->preferences['boats_interest']);
-        foreach($boats_ids as $id)
-        {
-          $yachtshare = Model_Yachtshare::find($id);
-          $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
-        }
+				$boats_ids = explode(",",$data['buyer']->preferences['boats_interest']);
+				$string = "";
+
+				if(!empty($boats_ids[0]) and !empty($boats_ids[1]) and !empty($boats_ids[2]))
+				{
+					foreach($boats_ids as $id)
+					{
+					  $yachtshare = Model_Yachtshare::find($id);
+					  $string .= $yachtshare->make.' - "'.$yachtshare->name.'", ';
+					}
+				}
+
 				$data['buyer_info'][$field->label] = $string;
 			}
 		}

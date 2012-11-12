@@ -1,6 +1,17 @@
 <?= render('buyer/_nav',array('buyer' => $buyer)); ?>
 
-<form action="<?= Uri::create('buyer/handle_post/'); ?>" method="POST" accept-charset="utf-8">
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#create_form").validate({
+    errorPlacement: function(error, element) {
+       if (element.attr("name") != "max_share_size_num" &&  element.attr("name") != "min_share_size_num")
+         error.insertAfter(element);
+     }
+  });
+});
+</script>
+
+<form action="<?= Uri::create('buyer/handle_post/'); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <input type="hidden" name="update" value="1" />
 <input type="hidden" name="buyer_id" value="<?=$buyer->id;?>" />
 <div class="widget fluid">

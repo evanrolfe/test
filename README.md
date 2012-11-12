@@ -1,3 +1,7 @@
+# Important Notes
+* Check that the formfields have the right public/private settings (for copying private data in yachtshare/create)
+* Check the values of columns: active,temp in table: yachtshares
+
 #Testing
 
 ## Buyer
@@ -28,16 +32,16 @@
 - NOTE: If no yachtshare with similar name is found then it goes straight to yachtshare/create form.
 
 ### Seller: Creating a Yachtshare
-* (FAIL) There is some kind of line being shown below the box at http://yacht-fractions.co.uk/seller/search, remove it.
-* (FAIL) Back button does not work at http://yacht-fractions.co.uk/seller/search
-* (CHRIS) save for later logout, close browser and log back in - did it save?
+
+* 1. (PASS) (Completed 12/11/12 - 22:00) Back button does not work at http://yacht-fractions.co.uk/seller/search
+* 2. (PASS) (Completed 12/11/12) "Save for later" - saved form data should be cleared once the yachtshare has been created.
+* 3. (PASS) (Completed 12/11/12 - 22:05) "This is my boat copy the details" => Private fields are NOT copied. (Example: login as seller and go to http://yacht-fractions.co.uk/yachtshare/create/114)
+* 4. (PASS) (Completed 12/11/12 - 22:05) Does NOT prompt "Are you sure..." the user on submit
 * (PASS) "Save for later" - check it saves on window close
-* (FAIL) "Save for later" - saved form data should be cleared once the yachtshare has been created.
-* Able to search for boats by name
-* (FAIL: login as seller and go to http://yacht-fractions.co.uk/yachtshare/create/114) "This is my boat copy the details" => Private fields are NOT copied.
-* Select multiple shares creates multiple yachtshares with corresponding share sizes
+* (PASS) There is some kind of line being shown below the box at http://yacht-fractions.co.uk/seller/search, remove it.
+* (PASS) Able to search for boats by name
+* (PASS) Select multiple shares creates multiple yachtshares with corresponding share sizes
 * (PASS) Closing the browser prompts the user "Are you sure..."
-* (FAIL) Does NOT prompt "Are you sure..." the user on submit
 * (PASS) Validates: all required fields, valid email address, terms and conditions must be checked
 * (PASS) Validates: a number is entered in share size, budget, length
 * (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"

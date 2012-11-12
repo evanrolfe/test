@@ -3,6 +3,9 @@
 		<div>
 			<h6>New Yacht Share</h6>
 		</div>
+		<div style='text-align: right'>
+			<a href="<?=Uri::create('seller');?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button"><span>Back</span></button></a>
+		</div>
 		<div class="clear"></div>
 	</div>
 

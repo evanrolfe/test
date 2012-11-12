@@ -38,6 +38,7 @@ class Controller_Seller extends MyController
 					return new Response($this->template);
 
 				}else{
+					Session::set_flash('success', 'There were no yachtshares with the name '.Input::post('boat_name').' found in our database, please start the form from scratch:');
 					Response::redirect('yachtshare/create');
 				}	
 			}else{
@@ -48,7 +49,7 @@ class Controller_Seller extends MyController
 
 		$this->template = \View::forge('public_template',array(),false);
 		$this->template->user = $this->user;
-		$this->template->title = 'Yacht Fractions: Buyer Enquiry';
+		$this->template->title = 'Yacht Fractions: Seller Enquiry';
 		$this->template->content = View::forge('seller/create');
 	}
 

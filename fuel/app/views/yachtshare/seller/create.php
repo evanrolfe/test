@@ -6,6 +6,22 @@ $(document).ready(function(){
          error.insertAfter(element);
      }
   });
+
+		var preventUnloadPrompt;
+		var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
+		//var redirectAfterPrompt = "http://www.google.co.in";
+		$('a').live('click', function() { preventUnloadPrompt = true; });
+		$('form').live('submit', function() { preventUnloadPrompt = true; });
+		$(window).bind("beforeunload", function(e) { 
+			var rval;
+			if(preventUnloadPrompt) {
+				return;
+			} else {
+				//location.replace(redirectAfterPrompt);
+				return messageBeforeUnload;
+			}
+			return rval;
+		})
 });
 
 function select_shares(n)

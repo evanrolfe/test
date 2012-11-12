@@ -5,7 +5,7 @@
 			<h6>Search Yacht Shares</h6>
 		</div>
 		<div style='text-align: right'>
-			<button class="buttonS bRed" style="margin: 6px 6px;" onclick="$('#search_form').hide();$('#new_share').show();"><span>Back</span></button>
+			<a href="<?=Uri::create('seller');?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button"><span>Back</span></button></a>
 		</div>
 		<div class="clear"></div>
 	</div>

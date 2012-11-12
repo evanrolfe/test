@@ -68,7 +68,15 @@ $(function (){
 		select_type("<?= $selected_actionstep; ?>");
 	}
 
-	$("#create_form").validate();
+	$("#create_form").validate({
+		rules : {
+			hold_hours : {
+				required : {
+					depends : function(element){ return $("#type").val() == 'hold';}
+				}
+			}
+		}
+	});
 });
 </script>
 
@@ -158,7 +166,7 @@ $(function (){
         <div class="grid3"><label>Action step:</label></div>
         <div class="grid9">
 			<div class="noSearch">
-				<select name="actionstep_set_id" class="" style="width: 250px;">
+				<select name="actionstep_set_id" class="required" style="width: 250px;">
 					<option value="">Select Action Step</option>
 					<? foreach($actionsteps as $step): ?>
 					<option value="<?= $step->id; ?>"><?= $step->order; ?>.  <?= $step->title; ?></option>
@@ -184,7 +192,7 @@ $(function (){
 
 			 Days / 
 
-				<select name="hold_hours" class=""  style="width: 70px;">
+				<select name="hold_hours" id="hold_hours" class=""  style="width: 70px;">
 					<option value="">Hours</option>
 
 					<? for($i=1; $i<=24; $i++): ?>

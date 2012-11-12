@@ -74,6 +74,7 @@
 	</div>
 
 	<? foreach($formfields as $field): ?>
+		<? if($field->type == 'terms_and_conditions'){ continue; } ?>
     <div class="formRow">
         <div class="grid3"><label><?= $field->label; ?>:</label></div>
         <div class="grid9">

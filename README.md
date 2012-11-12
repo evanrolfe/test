@@ -102,7 +102,7 @@ If reminder set but not yet active:
 * (PASS) Able to delete reminder
 
 If reminder is active:
-* (FAIL: must remove the red highlighted text) Display at top of page
+* (PASS) Display at top of page
 * (PASS) Display link to yachtshare in sidebar
 
 Active Sales: Example - http://yacht-fractions.co.uk/yachtshare/view/57
@@ -116,10 +116,9 @@ If not:
 * (PASS) Display "This yacht share has not been introduced to any buyers yet. "
 
 Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
-* (FAIL) Validate: actionstep has been selected
+* 1. (PASS) (Completed 12/11/12 - 22:20) Validate: actionstep has been selected
 * (PASS) "Select Actionstep" dropdown should list only those actionsteps which have not already been added to the sale
 * (PASS) Should redirect back to yachtshare/view page
-
 
 "This yachtshare has been sold!": Example - http://yacht-fractions.co.uk/yachtshare/view/108
 * Show invoice link: http://yacht-fractions.co.uk/data/print/invoice/108
@@ -128,7 +127,7 @@ Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
 
 Details:
 * (PASS) List yachtshare information
-* (FAIL) do NOT show terms and conditions field
+* 2. (PASS) (Completed 12/11/12 - 22:30) do NOT show terms and conditions field
 
 ### Yachtshare -> Edit: http://yacht-fractions.co.uk/yachtshare/edit/1
 * (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked

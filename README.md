@@ -7,10 +7,10 @@
 ## Buyer
 
 ### Buyer Enquiry: http://yacht-fractions.co.uk/buyer/create
-* 1. *(PASS) (Completed 12/11/12 - 20:45) Validates: valid email address, all required fields, terms and conditions checked*
-* 2. *(PASS) (Completed 12/11/12 - 20:55) Error message displays twice on share sizes. Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max*
-* 3. *(PASS) (Completed 12/11/12 - 21:00) Validates: email is not already used*
-* 4. *(PASS) (Completed 12/11/12 - 21:45) Does NOT prompt "Are you sure..." the user on submit*
+1. *(PASS) (Completed 12/11/12 - 20:45) Validates: valid email address, all required fields, terms and conditions checked*
+2. *(PASS) (Completed 12/11/12 - 20:55) Error message displays twice on share sizes. Validates: only numbers can be entered for: share size min/max, budget min/max, length min/max*
+3. *(PASS) (Completed 12/11/12 - 21:00) Validates: email is not already used*
+4. *(PASS) (Completed 12/11/12 - 21:45) Does NOT prompt "Are you sure..." the user on submit*
 * (PASS) Budget Min/Max Field: the following input should be accepted: "10000.00", "10 000", "10,000"
 * (PASS) Select three yachts which interest you" should be highlighted in Admin->Buyer->Find Yachtshares
 * (PASS) Email sent to buyer and admin containing correct information
@@ -33,10 +33,10 @@
 
 ### Seller: Creating a Yachtshare
 
-* 1. *(PASS) (Completed 12/11/12 - 22:00) Back button does not work at http://yacht-fractions.co.uk/seller/search*
-* 2. *(PASS) (Completed 12/11/12) "Save for later" - saved form data should be cleared once the yachtshare has been created.*
-* 3. *(PASS) (Completed 12/11/12 - 22:05) "This is my boat copy the details" => Private fields are NOT copied. (Example: login as seller and go to http://yacht-fractions.co.uk/yachtshare/create/114)*
-* 4. *(PASS) (Completed 12/11/12 - 22:05) Does NOT prompt "Are you sure..." the user on submit*
+1. *(PASS) (Completed 12/11/12 - 22:00) Back button does not work at http://yacht-fractions.co.uk/seller/search*
+2. *(PASS) (Completed 12/11/12) "Save for later" - saved form data should be cleared once the yachtshare has been created.*
+3. *(PASS) (Completed 12/11/12 - 22:05) "This is my boat copy the details" => Private fields are NOT copied. (Example: login as seller and go to http://yacht-fractions.co.uk/yachtshare/create/114)*
+4. *(PASS) (Completed 12/11/12 - 22:05) Does NOT prompt "Are you sure..." the user on submit*
 * (PASS) "Save for later" - check it saves on window close
 * (PASS) There is some kind of line being shown below the box at http://yacht-fractions.co.uk/seller/search, remove it.
 * (PASS) Able to search for boats by name
@@ -48,8 +48,8 @@
 * (PASS) Convert feet to meters if feet selected
 
 ### Seller: Viewing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/view/116
-* 1. *(PASS) (Completed 12/11/12 - 22:10) Display share size as fraction*
-* 2. *(PASS) (Completed 12/11/12 - 22:10) Do NOT show terms and conditions field*
+1. *(PASS) (Completed 12/11/12 - 22:10) Display share size as fraction*
+2. *(PASS) (Completed 12/11/12 - 22:10) Do NOT show terms and conditions field*
 
 - NOTE: Do we want the seller to be able to delete their own yachtshare?
 
@@ -85,7 +85,7 @@
 TODO: Add "Clear Search" button, validate price/share size/length as numbers (if something is entered). Validate share_size_max > share_size_min.
 
 * (PASS) Search box performs live search on already existing table of yachtshares below
-* 1. *(PASS) (Completed 12/11/12 - 22:20)Have "Clear Search" button next to search input field*
+1. *(PASS) (Completed 12/11/12 - 22:20)Have "Clear Search" button next to search input field*
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 
@@ -116,7 +116,7 @@ If not:
 * (PASS) Display "This yacht share has not been introduced to any buyers yet. "
 
 Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
-* 1. (PASS) (Completed 12/11/12 - 22:20) Validate: actionstep has been selected
+1. (PASS) (Completed 12/11/12 - 22:20) Validate: actionstep has been selected
 * (PASS) "Select Actionstep" dropdown should list only those actionsteps which have not already been added to the sale
 * (PASS) Should redirect back to yachtshare/view page
 
@@ -127,12 +127,12 @@ Click on "Add Actionstep": http://yacht-fractions.co.uk/yachtshare/view/57
 
 Details:
 * (PASS) List yachtshare information
-* 2. *(PASS) (Completed 12/11/12 - 22:30) do NOT show terms and conditions field*
+2. *(PASS) (Completed 12/11/12 - 22:30) do NOT show terms and conditions field*
 
 ### Yachtshare -> Edit: http://yacht-fractions.co.uk/yachtshare/edit/1
-* 1. *(PASS) (Completed 12/11/12 - 22:15) Validates: all required fields, valid email address*
-* 2. *(PASS) (Completed 12/11/12 - 22:15)  Validates: a number is entered in share size, budget, length*
-* 3. *(PASS) (Completed 12/11/12 - 22:15) Price field: input "10 000" - will force validation*
+1. *(PASS) (Completed 12/11/12 - 22:15) Validates: all required fields, valid email address*
+2. *(PASS) (Completed 12/11/12 - 22:15)  Validates: a number is entered in share size, budget, length*
+3. *(PASS) (Completed 12/11/12 - 22:15) Price field: input "10 000" - will force validation*
 * (PASS) Price field: the following input should be accepted: "10000.00", "10,000"
 * (PASS) Convert feet to meters if feet selected
 

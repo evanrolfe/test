@@ -218,6 +218,19 @@ Details of Buyer:
 * (PASS) Gives "Are you sure?" prompt then deletes when YES is clicked
 * (FAIL) The button does not work from buyer/find_yachtshares though it does work on all other pages
 
+
+## Admin -> Other
+
+### Formfields List
+* (PASS) Displays list of formfields for buyer and yachtshare including links to edit/delete and change the order of fieldds as they appear in the front-end form
+
+### Formfields -> Edit
+* (FAIL) Able to switch between formfield types (i.e. text/dropdown/big text box etc.) using the type dropdown
+* (PASS) DROPDOWN FORMFIELDS ONLY: able to change order of the items in dropdown
+* (PASS) Buttons should say "Save" and "Cancel", submitting the form or going back to formfield list resepectively
+
+### 
+
 *Evan's Todo*
 ================================
 Added 05/11/12

@@ -1,4 +1,4 @@
-# Important Notes
+### Important Notes (for evan)
 * Check that the formfields have the right public/private settings (for copying private data in yachtshare/create)
 * Check the values of columns: active,temp in table: yachtshares
 

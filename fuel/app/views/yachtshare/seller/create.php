@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 
 	var preventUnloadPrompt;
-	var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
+	var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form and your data will remain there when you come back.";
 
 	//var redirectAfterPrompt = "http://www.google.co.in";
 	$('a').live('click', function() { preventUnloadPrompt = true; });

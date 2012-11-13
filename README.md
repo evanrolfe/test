@@ -214,7 +214,7 @@ Details of Buyer:
 
 ### Buyer -> Delete
 * (PASS) Gives "Are you sure?" prompt then deletes when YES is clicked
-* (FAIL) The button does not work from buyer/find_yachtshares though it does work on all other pages
+* (PASS) The button does not work from buyer/find_yachtshares though it does work on all other pages
 
 
 ## Admin -> Other

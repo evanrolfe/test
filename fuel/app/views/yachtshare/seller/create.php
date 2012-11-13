@@ -1,19 +1,33 @@
 <script type="text/javascript">
 $(document).ready(function(){
-	$("#create_form").validate({
-    errorPlacement: function(error, element) {
-       if (element.attr("name") != "share_1_num" )
-         error.insertAfter(element);
-     }
-  });
+	$("#create_form").validate
+	({
+		errorPlacement: function(error, element)
+		{
+			if (element.attr("name") != "share_1_num" )
+				error.insertAfter(element);
+		}
+	});
 
-		var preventUnloadPrompt;
-		var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
-		//var redirectAfterPrompt = "http://www.google.co.in";
-		$('a').live('click', function() { preventUnloadPrompt = true; });
-		$('form').live('submit', function() { preventUnloadPrompt = true; });
-		$(window).bind("beforeunload", function(e) { 
-			var rval;
+		//If a text input has been changed
+		$("input[type='text']").keyup( function() { has_form_input_changed_since_last_save = true; });
+		//If a text area has been changed
+		$("textarea").keyup( function() { has_form_input_changed_since_last_save = true; });
+		//If a dropdown has been changed
+		$("select").change( function() { has_form_input_changed_since_last_save = true; });
+
+
+	var preventUnloadPrompt;
+	var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
+
+	//var redirectAfterPrompt = "http://www.google.co.in";
+	$('a').live('click', function() { preventUnloadPrompt = true; });
+	$('form').live('submit', function() { preventUnloadPrompt = true; });
+
+	$(window).bind("beforeunload", function(e) { 
+		var rval;
+		if(has_form_input_changed_since_last_save)
+		{
 			if(preventUnloadPrompt) {
 				return;
 			} else {
@@ -21,7 +35,8 @@ $(document).ready(function(){
 				return messageBeforeUnload;
 			}
 			return rval;
-		})
+		}
+	})
 });
 
 function select_shares(n)
@@ -35,22 +50,6 @@ function select_shares(n)
 	{
 		$("#share_"+i).show();
 	}
-}
-
-function save_form()
-{
-	var saved_form = $("#create_form").serializeArray();
-
-	var request = $.ajax({
-		url: "<?=Uri::create('session/save_form');?>",
-		type: "POST",
-		data: { form : saved_form},
-		success: function(data) {
-			$("#text_bar").html(data);
-			$("#text_bar2").html(data);
-			//setTimeout(function(){ save_form(); },3000);
-		}
-	});
 }
 
 </script>

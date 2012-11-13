@@ -1,6 +1,8 @@
 <script type="text/javascript">
 var shares = <?= $json_shares; ?>
 
+var has_form_input_changed_since_last_save = false;
+
 function select_share()
 {
 	id = $('#interested_boats').val();
@@ -21,20 +23,39 @@ $(document).ready(function(){
      }
   });
 
+	//If a text input has been changed
+	$("input[type='text']").keyup( function() {
+		has_form_input_changed_since_last_save = true;
+	});
+
+	//If a text area has been changed
+	$("textarea").keyup( function() {
+		has_form_input_changed_since_last_save = true;
+	});
+	//If a dropdown has been changed
+	$("select").change( function() {
+		has_form_input_changed_since_last_save = true;
+	});
+
 		var preventUnloadPrompt;
-		var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form.";
+		var messageBeforeUnload = "You have unsaved changes made to the form. Would you like to click 'Save for later' so you can come back to this form with your data still there?"
 		//var redirectAfterPrompt = "http://www.google.co.in";
 		$('a').live('click', function() { preventUnloadPrompt = true; });
 		$('form').live('submit', function() { preventUnloadPrompt = true; });
 		$(window).bind("beforeunload", function(e) { 
+
+			//Only display the "are you sure" prompt if the form has been changed list last save
 			var rval;
-			if(preventUnloadPrompt) {
-				return;
-			} else {
-				//location.replace(redirectAfterPrompt);
-				return messageBeforeUnload;
+			if(has_form_input_changed_since_last_save)
+			{
+				if(preventUnloadPrompt) {
+					return;
+				} else {
+					//location.replace(redirectAfterPrompt);
+					return messageBeforeUnload;
+				}
+				return rval;
 			}
-			return rval;
 		})
 });
 
@@ -50,6 +71,7 @@ function save_form()
 			$("#text_bar").html(data);
 			$("#text_bar2").html(data);
 			//setTimeout(function(){ save_form(); },3000);
+			has_form_input_changed_since_last_save = false;
 		}
 	});
 }

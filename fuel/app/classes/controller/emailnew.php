@@ -273,4 +273,26 @@ class Controller_Emailnew extends MyController
 
 		return preg_replace($search,$replace,$str);
 	}
+
+	public static function tags()
+	{
+		$tags = array();
+
+		$fields = Model_Formfieldbuyer::find('all', array('where' => array('belongs_to' => 'seller')));
+		foreach($fields as $field)
+		{
+			$tags[] = "/{yachtshare_".$field->tag."}/";
+		}
+
+		$fields = Model_Formfieldbuyer::find('all', array('where' => array('belongs_to' => 'buyer')));
+
+		foreach($fields as $field)
+		{
+			$tags[] = "/{buyer_".$field->tag."}/";
+		}
+
+		$tags[] = "{hold_expires_at}";
+
+		return $tags;
+	}
 }

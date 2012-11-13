@@ -71,8 +71,8 @@ class Controller_Emailtemplate extends MyController
 
 		$emailtemplate = Model_Emailtemplate::find($id);
 
-		$tags_arr = Controller_Email::tags();
-		$data['tags'] = array_values($tags_arr);
+		$tags_arr = Controller_Emailnew::tags();
+		$data['tags'] = $tags_arr;
 
 		$val = Model_Emailtemplate::validate('edit');
 

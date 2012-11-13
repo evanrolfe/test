@@ -51,6 +51,12 @@ class Controller_Session extends MyController
 			$users = Model_User::find()->where('email', Input::post('email'));
 			$user = $users->get_one();
 
+			if(!$user)
+			{
+				Session::set_flash('error', 'There is no user with the email: '.Input::post('email').' in our database!');
+				Response::redirect('session/forgot');
+			}
+
 			$new_password = $this->random_string();
 			$hashed_password = crypt($new_password);
 
@@ -87,7 +93,13 @@ class Controller_Session extends MyController
 				Response::redirect('session/create');
 			}
 		}
-        return new Response(View::forge('session/forgot'));
+
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = false;
+		$this->template->title = 'Yacht Fractions: Forgot Password';
+
+		$this->template->offline = $this->offline;
+		$this->template->content = View::forge('session/forgot');
 	}
 
 	public function action_save_form()

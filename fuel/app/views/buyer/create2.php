@@ -120,7 +120,7 @@ function save_form()
 		<div style='text-align: right;'>
 			<span id="text_bar2">
 			</span>
-			<button class="buttonS bBlue" style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
+			<button class="buttonS bBlue tipS" original-title="Click here and the data that you entered in the form will be saved so that you can close the browser and come back to this page later." style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Submit</button>
 		</div>
 		<div class="clear"></div>

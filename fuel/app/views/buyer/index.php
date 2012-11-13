@@ -27,7 +27,6 @@ function show_search()
 
 $(function(){
 	$("#search_form").hide();
-	$("#menu").easytabs();
 
 	//$("#filter_form").validate();
 });

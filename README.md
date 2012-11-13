@@ -82,10 +82,7 @@
 * (PASS) Share size
 * (PASS) Yachtshare status
 
-TODO: Add "Clear Search" button, validate price/share size/length as numbers (if something is entered). Validate share_size_max > share_size_min.
-
 * (PASS) Search box performs live search on already existing table of yachtshares below
-* 1. *(PASS) (Completed 12/11/12 - 22:20)Have "Clear Search" button next to search input field*
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 
@@ -172,7 +169,6 @@ Clicking on "Introduce" for a buyer in table
 * (PASS) Length
 * (PASS) Share size
 * (PASS) Search box performs live search on already existing table of yachtshares below
-* (FAIL) Have "Clear Search" button next to search input field
 * (PASS) Able to select columns, each column displays correct information in table
 * (PASS) "Sale Progress" column shows progress bar with tooltip information (when cursor is moved over a portion of the progress bar)
 

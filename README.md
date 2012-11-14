@@ -54,10 +54,7 @@
 - NOTE: Do we want the seller to be able to delete their own yachtshare?
 
 ### Seller: Editing their own yachtshare: http://yacht-fractions.co.uk/yachtshare/edit/116
-* (FAIL) Validates: all required fields, valid email address, terms and conditions must be checked
-* (FAIL) Validates: a number is entered in share size, budget, length
-* (PASS) Price field: the following input should be accepted: "10000.00", "10 000" - will force validation, "10,000"
-* (PASS) Convert feet to meters if feet selected
+- Not included (decided on 13/11/12)
 
 - NOTE: Do we want the seller to be able to edit their own yachtshare? I think not, if they need to correct details they should email chris hawes because otherwise he will not necessarily know about changes to the yachts being sold.
 

@@ -283,8 +283,9 @@ class Controller_Buyer extends MyController
 	}
 
 /*
+*=====================================================
 * DEPRACATED!
-*
+**=====================================================
 * See action_handle_post() instead
 */
 	public function action_create()
@@ -345,6 +346,13 @@ class Controller_Buyer extends MyController
 			}
 
 		}
+
+/*
+*=====================================================
+*  </ DEPRACATED>
+**=====================================================
+*/
+
 
 		$data['yachtshares'] = Model_Yachtshare::find('all',array('order_by' => array('make' => 'ASC')));
 

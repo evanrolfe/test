@@ -99,43 +99,44 @@ function save_form()
 		<?= render('forms/_length',array('field'=>$field,'value'=>$saved_form_data[$field->tag]),false); ?>
 	<? elseif($field->type == 'terms_and_conditions'): ?>
 		<?= render('forms/_terms_and_conditions',array('field'=>$field),false); ?>
+
+	<? elseif($field->type == 'other'): ?>
+	<div class="formRow">
+		    <div class="grid3"><label>Select three yachts which interest you:</label></div>
+		    <div class="grid9 searchDrop" align="left">
+				<select name="interest1" class="">
+					<option value="">Select</option>
+					<? foreach($yachtshares as $share): ?>
+						<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
+					<? endforeach; ?>
+				</select>
+				<br>
+				<select name="interest2" class="">
+					<option value="">Select</option>
+					<? foreach($yachtshares as $share): ?>
+						<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
+					<? endforeach; ?>
+				</select>
+				<br>
+				<select name="interest3" class="">
+					<option value="">Select</option>
+					<? foreach($yachtshares as $share): ?>
+						<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
+					<? endforeach; ?>
+				</select>
+			</div>
+		    <div class="clear"></div>
+		</div>
+
+		<div class="formRow" id="selected_shares" style="display: none;">
+			<div class="grid3"><label>Selected Boats</label></div>
+			<div class="grid9" id="selected_shares_content" align="left">
+			</div>
+			<div class="clear"></div>
+		</div>
 	<? endif; ?>
 
 <? endforeach; ?>
-
-    <div class="formRow">
-        <div class="grid3"><label>Select three yachts which interest you:</label></div>
-        <div class="grid9 searchDrop" align="left">
-			<select name="interest1" class="">
-				<option value="">Select</option>
-				<? foreach($yachtshares as $share): ?>
-					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
-				<? endforeach; ?>
-			</select>
-			<br>
-			<select name="interest2" class="">
-				<option value="">Select</option>
-				<? foreach($yachtshares as $share): ?>
-					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
-				<? endforeach; ?>
-			</select>
-			<br>
-			<select name="interest3" class="">
-				<option value="">Select</option>
-				<? foreach($yachtshares as $share): ?>
-					<option value="<?= $share->id; ?>"><?= $share->make; ?> - "<?= $share->name; ?>"</option>
-				<? endforeach; ?>
-			</select>
-		</div>
-        <div class="clear"></div>
-    </div>
-
-	<div class="formRow" id="selected_shares" style="display: none;">
-	    <div class="grid3"><label>Selected Boats</label></div>
-	    <div class="grid9" id="selected_shares_content" align="left">
-		</div>
-	    <div class="clear"></div>
-	</div>
 
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>

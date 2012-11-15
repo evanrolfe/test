@@ -197,6 +197,7 @@ class Controller_Buyer extends MyController
 					if($buyer->email == $a_buyer->email)
 					{
 						Session::set_flash('error', 'Error: could not save the enquiry because the email, '.$buyer->email.' you have entered is already in use.');
+						Session::set_flash('form', Input::post());
 						Response::redirect('buyer/create');						
 					}
 				}
@@ -212,6 +213,7 @@ class Controller_Buyer extends MyController
 
 				}else{
 					Session::set_flash('error', 'Could not save buyer.');
+					Session::set_flash('form', Input::post());
 					Response::redirect('buyer/create');
 				}
 
@@ -362,7 +364,9 @@ class Controller_Buyer extends MyController
 			$shares_for_json[$share->id] = $share->name;
 		}
 
-		$data['saved_form_data'] = Session::get('buyer_create_form');
+		$data['saved_form_data'] = (Session::get_flash('form')) ? Session::get_flash('form') : Session::get('buyer_create_form');
+		$data['prompt_user_on_exit'] = (Session::get_flash('form')) ? true : false;
+
 		$data['types'] = array("Sailing boat shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");
 		$data['json_shares'] = json_encode($shares_for_json);
 

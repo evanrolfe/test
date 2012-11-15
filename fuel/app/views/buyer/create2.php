@@ -21,7 +21,11 @@ $(document).ready(function(){
        if (element.attr("name") != "max_share_size_num" &&  element.attr("name") != "min_share_size_num")
          error.insertAfter(element);
      }
-  });
+	});
+
+	//So this can be called from PHP. i.e. if a buyer has entered an already used email
+	if(<?=$prompt_user_on_exit;?>)
+		has_form_input_changed_since_last_save = true;
 
 	//If a text input has been changed
 	$("input[type='text']").keyup( function() {

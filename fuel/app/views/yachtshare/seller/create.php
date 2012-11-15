@@ -1,12 +1,28 @@
 <script type="text/javascript">
+var submitClicked = false;
+
 $(document).ready(function(){
-	$("#create_form").validate
-	({
+	$('#create_form_submit').click(function() {
+		submitClicked = true;
+		$('#create_form').submit();    
+		return false;
+	});
+
+	$("#create_form").validate({
 		errorPlacement: function(error, element)
 		{
 			if (element.attr("name") != "share_1_num" )
 				error.insertAfter(element);
-		}
+		},
+
+		showErrors: function(errorMap, errorList) {
+			this.defaultShowErrors();
+			if (submitClicked && errorList.length > 0)
+			{
+				submitClicked = false;
+				alert("Some of required form fields are missing your input, please review the form!");
+			}
+		}	
 	});
 
 		//If a text input has been changed
@@ -118,7 +134,7 @@ function select_shares(n)
 			<span id="text_bar2">
 			</span>
 			<button class="buttonS bBlue tipS" style="margin: 6px 6px;" type="submit" name="save_for_later" original-title="Click here if you want to finish the form later.">Save for Later</button>
-			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="submit" name="submit" original-title="Click here to finalize and submit the yacht share.">Submit</button>
+			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="submit" name="submit" original-title="Click here to finalize and submit the yacht share." id="create_form_submit">Submit</button>
 		</div>
 		<div class="clear"></div>
 	</div>

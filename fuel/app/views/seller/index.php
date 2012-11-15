@@ -16,7 +16,7 @@
             <tr>
                 <td class="sortCol"><div>Name<span></span></div></td>
                 <td class="sortCol"><div>Location<span></span></div></td>
-                <td class="sortCol"><div>Actions<span></span></div></td>
+                <td class="sortCol" width="70px"><div>Actions<span></span></div></td>
             </tr>
         </thead>
         <tbody>
@@ -24,7 +24,7 @@
 	        <tr class="boat">
 	            <td class="boatname"><a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id); ?>"><?= $yachtshare->name; ?></a></td>
 	            <td><?= $yachtshare->location_specific; ?></td>
-	            <td><a href="<?= Uri::create('file/yachtshare/'.$yachtshare->id); ?>">Upload Files</a></td>
+	            <td align="center"><a href="<?=Uri::create('file/yachtshare/'.$yachtshare->id);?>" class="tablectrl_small bBlue tipS" original-title="Upload Files for this yacht share"><span class="iconb" data-icon=""></span></a></td>
 	        </tr>
 	<?php endforeach; ?>
 <?php else: ?>
@@ -34,8 +34,6 @@
         </tbody>
 <?php endif; ?>
     </table>
-
-	<br>
 </div>
 
 <div class="widget fluid" style="width: 500px;">
@@ -53,7 +51,7 @@
             <tr>
                 <td class="sortCol"><div>Name<span></span></div></td>
                 <td class="sortCol"><div>Location<span></span></div></td>
-                <td class="sortCol" width="50px"><div>Actions<span></span></div></td>
+                <td class="sortCol" width="70px"><div>Actions<span></span></div></td>
             </tr>
         </thead>
         <tbody>
@@ -86,7 +84,10 @@
 	        <tr class="boat">
 	            <td class="boatname"><a href="<?= Uri::create('yachtshare/update/'.$yachtshare->id); ?>"><?= $yachtshare->name; ?></a></td>
 	            <td><?= $yachtshare->location_specific; ?></td>
-	            <td align="center"><a href="#" id="delete_<?=$yachtshare->id;?>" class="tablectrl_small bRed tipS" original-title="Delete"><span class="iconb" data-icon=""></span></a></td>
+	            <td align="center">
+					<a href="<?=Uri::create('file/yachtshare/'.$yachtshare->id);?>" class="tablectrl_small bBlue tipS" original-title="Upload Files for this yacht share"><span class="iconb" data-icon=""></span></a>
+					<a href="#" id="delete_<?=$yachtshare->id;?>" class="tablectrl_small bRed tipS" original-title="Delete"><span class="iconb" data-icon=""></span></a> 
+				</td>
 	        </tr>
 	<?php endforeach; ?>
         </tbody>

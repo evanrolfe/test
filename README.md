@@ -227,6 +227,13 @@ Details of Buyer:
 * (PASS) DROPDOWN FORMFIELDS ONLY: able to change order of the items in dropdown
 * (PASS) Buttons should say "Save" and "Cancel", submitting the form or going back to formfield list resepectively
 
+## Emails
+* (PASS) (Tested 14/11/12 - 18:00) Sent on "Buyer Enquiry" (buyer/create) (Using emailtemplate ID=3) (cc. Admin)
+* Sent on forgot password (session/forgot)
+* Sent emails from Controller_Emailnew (using templates from DB):
+	1. Hold Reminder Email (cc. Admin)
+	2. Yachtshare introduction to buyer  (cc. Admin)
+
 ### 
 
 *Evan's Todo*
@@ -302,3 +309,8 @@ FINISHED!
 *  Uploads not working due to PHP missing fileinfo extensions: add the following line to php.ini ```extension=fileinfo.so```
 
 *  If you get a permission denied error pertaining to the logs then a probable solution will be to set the permissions of /fuel/app/logs directory to writable by the web server's user account. i.e. in linux run command: ```chmod -R 777 fuel/app/logs/*```
+
+# Notes for developer
+* Emails are being sent in the following methods:
+	1. Controller_Buyer::action_thankyou($id);
+	2. 

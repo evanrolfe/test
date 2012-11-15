@@ -44,11 +44,9 @@ $(function(){
         </ul>
     </div>
 
-	<? if($yachtshare->status() == 'Deactivated'): ?>
     <div class="formRow" align="right">
 		<a href="#" id="opener">Delete Permanently</a>
     </div>
-	<? endif; ?>
 </div>
 
 <!-- UNLESS THE REMINDER HAS BEEN SET BUT NOT EXPIRED-->

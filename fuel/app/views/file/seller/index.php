@@ -36,12 +36,6 @@ $(function(){
 		return false;
 	});
 
-  $.validator.addMethod("option_required", 
-    function(value, element) {
-      return 0;
-    }
-  , "Please select an option.");
-
   $("#upload_form").validate();
 });
 </script>
@@ -77,10 +71,10 @@ $(function(){
 	      <div class="grid3"><label>File Type:</label></div>
 	      <div class="grid9" align="left">
 			  <select name="type" class="required">
-            <option value="">Select</option>
-					  <option value="private">Private document or photo</option>
-					  <option value="public_header">Public header photo for website</option>
-					  <option value="public_gallery">Public gallery photo for website</option>
+            		<option value="">Select</option>
+					<option value="private">Private document or photo</option>
+					<option value="public_header">Public header photo for website</option>
+					<option value="public_gallery">Public gallery photo for website</option>
 			  </select>
 		  </div>
 		   <div class="clear"></div>

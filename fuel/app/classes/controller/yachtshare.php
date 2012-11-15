@@ -209,21 +209,21 @@ class Controller_Yachtshare extends MyController
 					//If this is updating a saved form and "Save for later" has been clicked
 					if($from_temp_form and $save_for_later_clicked)
 					{
-						echo "Updating an already saved temporary yachtshare";
+						//echo "Updating an already saved temporary yachtshare";
 						$yachtshare = $this->update_yachtshare_without_save(Input::post(),Input::post('yachtshare_id'),true);
 
 					}elseif($from_temp_form and $submit_clicked)
 					{
-						echo "Updating and setting temp=0 on already saved temporary yachtshare";
+						//echo "Updating and setting temp=0 on already saved temporary yachtshare";
 						$yachtshare = $this->update_yachtshare_without_save(Input::post(),Input::post('yachtshare_id'),false);
 
 					}elseif(!$from_temp_form and $save_for_later_clicked)
 					{
-						echo "Saving a yachtshare with temp=1";
+						//echo "Saving a yachtshare with temp=1";
 
 					}elseif(!$from_temp_form and $submit_clicked)
 					{
-						echo "Saving a yachtshare with temp=0";						
+						//echo "Saving a yachtshare with temp=0";						
 
 					}
 
@@ -422,6 +422,33 @@ class Controller_Yachtshare extends MyController
 			}else{
 				//Delete the saved_form session
 				Session::delete('buyer_create_form');
+
+				if($yachtshare->temp == false)
+				{
+					//Send the automated email
+					//1. Create an instance
+					$email = Email::forge();
+
+					//2. Populate email data
+					$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
+					$email->to($this->offline_config['admin_email']);
+					$email->subject("New Yachtshare submitted by Seller");	
+					$email->body("A new yachtshare has been submitted, view more at: ".Uri::create('yachtshare/view/'.$yachtshare->id));
+
+					//4. Sending the email
+					try
+					{
+						$email->send();
+					}
+					catch(\EmailValidationFailedException $e)
+					{
+						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
+					}
+					catch(\EmailSendingFailedException $e)
+					{
+						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
+					}
+				}
 
 				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
 				$url = ($this->user->type == 'seller') ? 'seller' : 'yachtshare/view/'.$yachtshare->id;
@@ -628,9 +655,36 @@ class Controller_Yachtshare extends MyController
 			$save_for_later_clicked = (isset($_POST['save_for_later']));
 			$yachtshare->temp = $save_for_later_clicked;
 
-	//Redirect
+			//Redirect
 			if($yachtshare->save())
 			{
+				if($yachtshare->temp == false)
+				{
+					//Send the automated email
+					//1. Create an instance
+					$email = Email::forge();
+
+					//2. Populate email data
+					$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
+					$email->to($this->offline_config['admin_email']);
+					$email->subject("New Yachtshare submitted by Seller");	
+					$email->body("A new yachtshare has been submitted, view more at: ".Uri::create('yachtshare/view/'.$yachtshare->id));
+
+					//4. Sending the email
+					try
+					{
+						$email->send();
+					}
+					catch(\EmailValidationFailedException $e)
+					{
+						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
+					}
+					catch(\EmailSendingFailedException $e)
+					{
+						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
+					}
+				}
+
 				Session::set_flash('success', 'The yacht share has been successfully updated!');
 				Response::redirect('seller');											
 			}else{

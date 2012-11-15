@@ -354,8 +354,6 @@ class Controller_Buyer extends MyController
 *  </ DEPRACATED>
 **=====================================================
 */
-
-
 		$data['yachtshares'] = Model_Yachtshare::find('all',array('order_by' => array('make' => 'ASC')));
 
 		$shares_for_json = array();
@@ -365,7 +363,7 @@ class Controller_Buyer extends MyController
 		}
 
 		$data['saved_form_data'] = (Session::get_flash('form')) ? Session::get_flash('form') : Session::get('buyer_create_form');
-		$data['prompt_user_on_exit'] = (Session::get_flash('form')) ? true : false;
+		$data['prompt_user_on_exit'] = (Session::get_flash('form')) ? 'true' : 'false';
 
 		$data['types'] = array("Sailing boat shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");
 		$data['json_shares'] = json_encode($shares_for_json);

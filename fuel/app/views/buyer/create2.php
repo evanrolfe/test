@@ -2,6 +2,7 @@
 var shares = <?= $json_shares; ?>
 
 var has_form_input_changed_since_last_save = false;
+var submitClicked = false;
 
 function select_share()
 {
@@ -16,11 +17,29 @@ function select_share()
 }
 
 $(document).ready(function(){
+
+
+	$('#create_form_submit').click(function() {
+		submitClicked = true;
+		$('#create_form').submit();    
+		return false;
+	});
+
 	$("#create_form").validate({
-    errorPlacement: function(error, element) {
-       if (element.attr("name") != "max_share_size_num" &&  element.attr("name") != "min_share_size_num")
-         error.insertAfter(element);
-     }
+
+		errorPlacement: function(error, element) {
+			if (element.attr("name") != "max_share_size_num" &&  element.attr("name") != "min_share_size_num")
+				error.insertAfter(element);
+		},
+
+		showErrors: function(errorMap, errorList) {
+			this.defaultShowErrors();
+			if (submitClicked && errorList.length > 0)
+			{
+				submitClicked = false;
+				alert("Some of required form fields are missing your input, please review the form!");
+			}
+		}	
 	});
 
 	//So this can be called from PHP. i.e. if a buyer has entered an already used email
@@ -148,8 +167,9 @@ function save_form()
 			<span id="text_bar2">
 			</span>
 			<button class="buttonS bBlue tipS" original-title="Click here and the data that you entered in the form will be saved so that you can close the browser and come back to this page later." style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
-			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Submit</button>
+			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" id="create_form_submit">Submit</button>
 		</div>
 		<div class="clear"></div>
 	</div>
 </div>
+</form>

@@ -1,4 +1,29 @@
 <? if($yachtshare->temp): ?>
+	<script type="text/javascript">
+	$(function(){
+		var $dialog = $('<div></div>')
+			.html('Are you sure you want to delete this temporarily saved yachtshare form?<br>Keep in mind the user may still want to complete this form.')
+			.dialog({
+				autoOpen: false,
+				title: "Deleting Saved Yachtshare Form",
+				modal: true,
+				buttons: {
+				    "Yes": function () {
+						location.href="<?= Uri::create('yachtshare/delete/'.$yachtshare->id); ?>";
+				    },
+				    "No": function () {
+				        $(this).dialog("close");
+				    }
+				}
+			});
+
+		$('#delete').click(function() {
+			$dialog.dialog('open');
+			// prevent the default action, e.g., following a link
+			return false;
+		});
+	});
+	</script>
 	<br>
 	<h3>The seller: <?=$yachtshare->seller->name; ?>, has temporarily saved this form:</h3>
 <? else: ?>
@@ -70,6 +95,11 @@
 
     <div class="whead">
 		<h6>Details</h6>
+		<? if($yachtshare->temp): ?>
+			<div style='text-align: right'>
+				<a href="#" id="delete"><button class="buttonS bRed tipS" style="margin: 6px 6px;" type="button" original-title="Be careful deleting these, the seller may still want to submit this yachtshare.">Delete</button></a>
+			</div>
+		<? endif; ?>
 		<div class="clear"></div>
 	</div>
 

@@ -235,7 +235,7 @@ class Controller_Data extends MyController
 		{
 			$exists = file_exists(DOCROOT.'uploads/'.$image->url) ? '<font color="green">exists</font>' : '<font color="red">Does not exist</font> - (<a href="'.Uri::create('yachtshare/view/'.$image->belongs_to_id).'">Yacht</a>';
 
-			echo $image->url."\t\t".$exists."<br>";
+			echo 'Image_ID: '.$image->id.'; filename: '.$image->url."\t\t".$exists."<br>";
 		}
 
 		exit;

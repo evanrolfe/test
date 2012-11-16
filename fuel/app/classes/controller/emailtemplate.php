@@ -16,60 +16,17 @@ class Controller_Emailtemplate extends MyController
 
 	}
 
-	public function action_view($id = null)
-	{
-		$data['emailtemplate'] = Model_Emailtemplate::find($id);
-
-		is_null($id) and Response::redirect('Emailtemplate');
-
-		$this->template->title = "Emailtemplate";
-		$this->template->content = View::forge('emailtemplate/view', $data);
-
-	}
-
-	public function action_create()
-	{
-		if (Input::method() == 'POST')
-		{
-			$val = Model_Emailtemplate::validate('create');
-			
-			if ($val->run())
-			{
-				$emailtemplate = Model_Emailtemplate::forge(array(
-					'subject' => Input::post('subject'),
-					'tag' => Input::post('tag'),
-					'body' => Input::post('body'),
-				));
-
-				if ($emailtemplate and $emailtemplate->save())
-				{
-					Session::set_flash('success', 'Added emailtemplate #'.$emailtemplate->id.'.');
-
-					Response::redirect('emailtemplate');
-				}
-
-				else
-				{
-					Session::set_flash('error', 'Could not save emailtemplate.');
-				}
-			}
-			else
-			{
-				Session::set_flash('error', $val->error());
-			}
-		}
-
-		$this->template->title = "Emailtemplates";
-		$this->template->content = View::forge('emailtemplate/create');
-
-	}
-
 	public function action_edit($id = null)
 	{
-		is_null($id) and Response::redirect('Emailtemplate');
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		$this->template->links['settings']['current'] = true;
 
 		$emailtemplate = Model_Emailtemplate::find($id);
+
+		if(!$emailtemplate)
+			throw new HttpNotFoundException;
 
 		$tags_arr = Controller_Emailnew::tags();
 		$data['tags'] = $tags_arr;
@@ -113,24 +70,4 @@ class Controller_Emailtemplate extends MyController
 		$this->template->content = View::forge('emailtemplate/edit',$data);
 
 	}
-
-	public function action_delete($id = null)
-	{
-		if ($emailtemplate = Model_Emailtemplate::find($id))
-		{
-			$emailtemplate->delete();
-
-			Session::set_flash('success', 'Deleted emailtemplate #'.$id);
-		}
-
-		else
-		{
-			Session::set_flash('error', 'Could not delete emailtemplate #'.$id);
-		}
-
-		Response::redirect('emailtemplate');
-
-	}
-
-
 }

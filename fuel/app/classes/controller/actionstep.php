@@ -16,17 +16,6 @@ class Controller_Actionstep extends MyController
 
 	}
 
-	public function action_view($id = null)
-	{
-		$data['actionstep'] = Model_Actionstep::find($id);
-
-		is_null($id) and Response::redirect('Actionstep');
-
-		$this->template->title = "Actionstep";
-		$this->template->content = View::forge('actionstep/view', $data);
-
-	}
-
 	public function action_create()
 	{
 		if (Input::method() == 'POST')

@@ -23,6 +23,10 @@ class Controller_Buyer extends MyController
 		$this->logged_in_as(array('admin'));
 		$id = $this->param('yachtshare_id');
 		$data['yachtshare'] = Model_Yachtshare::find($id);
+
+		if(!$data['yachtshare'])
+			throw new HttpNotFoundException;
+
 		$data['from_page'] = 'yachtshare';
 		$this->template->title = "Yachtshare: ".$data['yachtshare']->name;
 		$this->template->links['buyers']['current'] = false;
@@ -78,9 +82,15 @@ class Controller_Buyer extends MyController
 	public function action_view($id = null)
 	{
 		$this->logged_in_as(array('admin'));
-		is_null($id) and Response::redirect('Buyer');
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
 
 		$data['buyer'] = Model_Buyer::find($id);
+
+		if(!$data['buyer'])
+			throw new HttpNotFoundException;
+
 		$this->template->title = "Buyer: ".$data['buyer']->name;
 
 		//Sort the data into two categores: Buyer details and boat specification details
@@ -240,9 +250,13 @@ class Controller_Buyer extends MyController
 
 	public function action_thankyou($id = null)
 	{
-		is_null($id) and Response::redirect('buyer/create');
+		if(is_null($id))
+			throw new HttpNotFoundException;
 
 		$data['buyer'] = Model_Buyer::find($id);
+
+		if(!$data['buyer'])
+			throw new HttpNotFoundException;
 
 		//Send the automated email
 		//1. Create an instance
@@ -386,8 +400,15 @@ class Controller_Buyer extends MyController
 	public function action_edit($id = null)
 	{
 		$this->logged_in_as(array('admin'));
-		is_null($id) and Response::redirect('Buyer');
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		$buyer = Model_Buyer::find($id);
+
+		if(!$buyer)
+			throw new HttpNotFoundException;
+
 		$data['formfields'] = $this->fields_search;
 
 		$data['buyer'] = $buyer;
@@ -400,6 +421,10 @@ class Controller_Buyer extends MyController
 	public function action_delete($id = null)
 	{
 		$this->logged_in_as(array('admin'));
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		if ($buyer = Model_Buyer::find($id))
 		{
 			$buyer->delete();

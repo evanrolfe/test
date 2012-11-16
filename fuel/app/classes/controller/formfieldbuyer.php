@@ -10,9 +10,16 @@ class Controller_Formfieldbuyer extends MyController
 	
 	public function action_dropdown()
 	{
-		is_null($this->param('id')) and exit("You must select a formfield.");
 		$id = $this->param('id');
-		$field = Model_Formfieldbuyer::find($id);	
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
+		$field = Model_Formfieldbuyer::find($id);
+
+		if(!$field)
+			throw new HttpNotFoundException;
+	
 		$data['close_window'] = 'false';
 
 		if(Input::method() == 'POST')
@@ -153,7 +160,9 @@ class Controller_Formfieldbuyer extends MyController
 
 		}
 
-		(is_null($this->param('belongs_to')) || !in_array($this->param('belongs_to'), array('buyer','seller'))) and Response::redirect('formfieldbuyer');
+		if(is_null($this->param('belongs_to')) || !in_array($this->param('belongs_to'), array('buyer','seller')))
+			throw new HttpNotFoundException;
+
 		$data['belongs_to'] = $this->param('belongs_to');
 		$data['formfields'] = Model_Formfieldbuyer::find('all', array("order_by" => "order", "where" => array("belongs_to" => $this->param('belongs_to'))));
 		$this->template->title = "Form Fields";
@@ -177,9 +186,13 @@ class Controller_Formfieldbuyer extends MyController
 
 	public function action_edit($id = null)
 	{
-		is_null($id) and Response::redirect('Formfieldbuyer');
+		if(is_null($id))
+			throw new HttpNotFoundException;
 
 		$field = Model_Formfieldbuyer::find($id);
+
+		if(!$field)
+			throw new HttpNotFoundException;
 
 		if(Input::method() == 'POST')
 		{
@@ -193,7 +206,7 @@ class Controller_Formfieldbuyer extends MyController
 
 			if($field->save())
 			{
-				Session::set_flash('success', 'Updated form field #' . $id);
+				Session::set_flash('success', 'Updated form field: ' . $field->label.', Click the blue "Forms" button below to go back.');
 
 				Response::redirect('formfieldbuyer/edit/'.$id);				
 			}else{
@@ -223,6 +236,9 @@ class Controller_Formfieldbuyer extends MyController
 
 	public function action_delete($id = null)
 	{
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		if ($field = Model_Formfieldbuyer::find($id))
 		{
 			$field->delete();

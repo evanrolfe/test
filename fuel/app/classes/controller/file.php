@@ -5,17 +5,28 @@ class Controller_File extends MyController
 	public function action_index()
 	{
 		$this->logged_in_as(array('admin','seller'));
-		(is_null($this->param('item')) || !in_array($this->param('item'), array('yachtshare','buyer'))) and Response::redirect('yachtshare');
+
+		if(is_null($this->param('item')) || !in_array($this->param('item'), array('yachtshare','buyer')))
+			throw new HttpNotFoundException;
+
 		$id = $this->param('id');
 
 		if($this->param('item') == 'yachtshare')
 		{
 			$data['item'] = Model_Yachtshare::find($id);
+
+			if(!$data['item'])
+				throw new HttpNotFoundException;
+
 			$data['type'] = 'yachtshare';
 			$this->template->title = "Yachtshare: ".$data['item']->name;
 			$this->template->links['shares']['current'] = true;
 		}else{
 			$data['item'] = Model_Buyer::find($id);
+
+			if(!$data['item'])
+				throw new HttpNotFoundException;
+
 			$data['type'] = 'buyer';
 			$this->template->title = "Buyer: ".$data['item']->name;
 			$this->template->links['buyers']['current'] = true;

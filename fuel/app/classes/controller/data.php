@@ -227,6 +227,28 @@ class Controller_Data extends MyController
 //==========================================================================================
 // HTML SCRAPER FUNCTIONS/AND
 //==========================================================================================
+	public function action_missing_images()
+	{
+		$images = Model_Image::find('all');
+
+		foreach ($images as $image)
+		{
+			$exists = file_exists(DOCROOT.'uploads/'.$image->url) ? '<font color="green">exists</font>' : '<font color="red">Does not exist</font> - (<a href="'.Uri::create('yachtshare/view/'.$image->belongs_to_id).'">Yacht</a>';
+
+			echo $image->url."\t\t".$exists."<br>";
+		}
+
+		exit;
+	}
+
+	public function action_scrap()
+	{
+		//$this->import_from_yachtfractions("http://www.yachtfractions.co.uk/OS/sail.asp","Sailing boat shares overseas","Mediterranean", "Greece");
+		$this->import_from_yachtfractions("http://www.yachtfractions.co.uk/UK/sail.asp","Sailing boat shares UK","UK", "UK: south coast");
+		//$this->import_from_yachtfractions("http://www.yachtfractions.co.uk/MY/sail.asp","Motor boat shares UK","UK", "UK: south coast");
+		exit;
+	}
+
 	public function import_from_inactive()
 	{
 		 $ch = curl_init();
@@ -264,19 +286,37 @@ class Controller_Data extends MyController
 		$urls = array();
 		$links = $doc->getElementsByTagName("a");
 
-		foreach($links as $link){
+		foreach($links as $link)
+		{
 			$parsed_url = explode("=",$link->attributes->getNamedItem('href')->nodeValue);
 			($link->nodeValue == "More details...") and $urls[] = $parsed_url[1];
 		}
 
-		$data = array();
-		foreach($urls as $id){
-			$data[] = $this->get_data_for_id($id);
-		}
-
-		foreach($data as $boat)
+		foreach($urls as $id)
 		{
-			echo "Saving boat name: ".$boat_db->name."<br>";
+			echo "<a href='http://www.yachtfractions.co.uk/UK/detail.asp?ID=".$id."'>http://www.yachtfractions.co.uk/UK/detail.asp?ID=".$id."</a>";
+			$boat = $this->get_data_for_id($id);
+			echo "<pre>";
+			print_r($boat);
+			echo "</pre>";
+
+			$all_yachtshares = Model_Yachtshare::find('all');
+
+			$found_yachtshares = Search::find($boat['name'])
+				->in($all_yachtshares) // the data to search through
+				->by('name', 'make') // the fields you wan't to search through
+				->execute();
+
+			echo "Num of matched yachtshares: ".sizeof($found_yachtshares);
+			echo "<hr>";
+		}
+		exit;
+/*
+		$str ="";
+		foreach($urls as $id)
+		{
+			$boat = $this->get_data_for_id($id);
+
 
 			$name = $boat['name'];
 			$images = $boat['images'];
@@ -289,42 +329,60 @@ class Controller_Data extends MyController
 			unset($boat['price']);
 			unset($boat['share_size']);
 			$details = json_encode($boat);
+*/
+			//Convert share size fration to floating point number
+			//$share_size_arr = explode("/", $share_size);
+			//$share_size = (float) $share_size_arr[0]/$share_size_arr[1];
+/*
+			if(is_null($share_size_arr[0]) || is_null($share_size_arr[1]))
+			{
+					echo "\tCould not save boat with name: ".$boat->db->name;
+					continue;
+			}
+*/
+/*
+				$boat_db = Model_YachtShare::forge(array(
+					'name' 			=> $name,
+					'type' 			=> $type,
+					'location_general' => $loc_general,
+					'location_specific' => $loc_specific,
+					'length' => $length,
+					'price' => $price,
+					//'share_size' => $share_size,
+					//'share_size_num' => $share_size_arr[0],
+					//'share_size_den' => $share_size_arr[1],
+					'location' 		=> 	$boat['lying'],
+					'boat_details' 	=> 	$details,
+					'active'		=> 1,
+				));
 
-		//Convert share size fration to floating point number
-		$share_size_arr = explode("/", $share_size);
-		$share_size = (float) $share_size_arr[0]/$share_size_arr[1];
+			$str .= $boat_db->name." (".$boat_db->make.") | ".$price." has images called: ";
+			foreach($images as $url)
+			{
+				$parsed_url = explode("/", $url);
+				$filename = str_replace(" ", '_', array_pop($parsed_url));
 
-		if(is_null($share_size_arr[0]) || is_null($share_size_arr[1]))
-		{
-				echo "\tCould not save boat with name: ".$boat->db->name;
-				continue;
-		}
-			$boat_db = Model_YachtShare::forge(array(
-				'name' 			=> $name,
-				'type' 			=> $type,
-				'location_general' => $loc_general,
-				'location_specific' => $loc_specific,
-				'length' => $length,
-				'price' => $price,
-				'share_size' => $share_size,
-				'share_size_num' => $share_size_arr[0],
-				'share_size_den' => $share_size_arr[1],
-				'location' 		=> 	$boat['lying'],
-				'boat_details' 	=> 	$details,
-				'active'		=> 1,
-			));
+				$exists = file_exists(DOCROOT.'uploads/'.$filename) ? 'exists' : '<font color="red">Does not exist</font>';
+				$str .= "<br>------->".$filename;
+			}
+			$str.= "<hr>";
+*/
+/*			
+			if(!$boat_db->save())
+			{
+					echo "\tCould not save boat with name: ".$boat->db->name;
+					continue;
+			}
 
-			
-		if(!$boat_db->save())
-		{
-				echo "\tCould not save boat with name: ".$boat->db->name;
-				continue;
-		}
-
-			foreach($images as $url){
+			foreach($images as $url)
+			{
 				$this->insert_image($url, $boat_db->id);		
 			}
-		}
+*/
+			//echo $str;
+		//}
+
+
 	}
 
 	//================================================
@@ -356,6 +414,7 @@ class Controller_Data extends MyController
 
 		 curl_setopt($ch, CURLOPT_URL, "http://www.yachtfractions.co.uk/UK/detail.asp?ID=".$id);
 
+
 		 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
 		 $contents = curl_exec ($ch);
@@ -385,9 +444,9 @@ class Controller_Data extends MyController
 		$children = $hs->item(0)->childNodes; 
 		$data['images'] = array();
 		foreach ($imgs as $img) { 
-			$data['images'][] = "http://www.yachtfractions.co.uk/".(substr($img->attributes->getNamedItem('src')->nodeValue, 2));
+			$data['images'][] = "http://www.yachtfractions.co.uk".(substr($img->attributes->getNamedItem('src')->nodeValue, 2));
 		} 
-
+/*
 
 		//3. Get the UL/LI ELEMENTS
 		//--------------------------
@@ -482,7 +541,7 @@ class Controller_Data extends MyController
 			}
 			$i++;
 		}
-
+*/
 		return $data;
 	}
 }

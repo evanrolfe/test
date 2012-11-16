@@ -9,7 +9,7 @@
  * @package  app
  * @extends  Controller
  */
-class Controller_Welcome extends Controller
+class Controller_Welcome extends MyController
 {
 
 	/**
@@ -43,6 +43,10 @@ class Controller_Welcome extends Controller
 	 */
 	public function action_404()
 	{
-		return Response::forge(ViewModel::forge('welcome/404'), 404);
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = false;//$this->user;
+
+		$this->template->title = 'Yacht Fractions: Page not Found';
+		$this->template->content = '';//View::forge('404');	
 	}
 }

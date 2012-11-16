@@ -61,7 +61,7 @@ class MyController extends Controller_Template
 	{
 		if($this->user)
 		{
-			Session::set_flash('error', 'You are already logged in!');
+			//Session::set_flash('error', 'You are already logged in!');
 			$url = ($this->user->type == 'admin') ? 'yachtshare' : 'seller';
 			Response::redirect($url);			
 		}

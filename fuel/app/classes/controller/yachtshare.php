@@ -53,7 +53,15 @@ class Controller_Yachtshare extends MyController
 	public function action_find_for_buyer()
 	{
 		$id = $this->param('buyer_id');
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		$data['buyer'] = Model_Buyer::find($id);
+
+		if(!$data['buyer'])
+			throw new HttpNotFoundException;
+
 		$data['from_page'] = 'buyer';
 
 		$this->logged_in_as(array('admin'));
@@ -111,8 +119,14 @@ class Controller_Yachtshare extends MyController
 	public function action_view($id = null)
 	{
 		$this->logged_in_as(array('admin', 'seller'));
-		is_null($id) and Response::redirect('yachtshare');
+
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
 		$data['yachtshare'] = Model_Yachtshare::find($id);
+
+		if(!$data['yachtshare'])
+			throw new HttpNotFoundException;
 
 		$this->template->title = "Yachtshare: ".$data['yachtshare']->name;
 		$this->template->links['shares']['current'] = true;
@@ -457,8 +471,12 @@ class Controller_Yachtshare extends MyController
 		}
 		//Session::delete('yachtshare_create_form');
 		$this->logged_in_as(array('seller', 'admin'));
+
 		$this->template->title = "Yachtshare: Create";
 		$data['yachtshare'] = ($this->param('boat_id')) ? Model_Yachtshare::find((int) $this->param('boat_id')): Model_Yachtshare::forge();
+
+		if($this->param('boat_id') and !$data['yachtshare'])
+			throw new HttpNotFoundException;
 
 		$data['location_general'] = array("UK","Mediterranean","Northern Europe","Caribbean","Only define specific area");
 		$data['location_specific'] = array("UK: south-east","UK: south coast", "UK: west", "UK: Wales", "Greece", "Turkey", "Croatia", "France (Med Coast)", "France (Atlantic Coast)", "Spain");
@@ -521,9 +539,15 @@ class Controller_Yachtshare extends MyController
 	public function action_edit($id = null)
 	{
 		$this->logged_in_as(array('seller', 'admin'));
-		is_null($id) and Response::redirect('yachtshare');
+		if(is_null($id))
+			throw new HttpNotFoundException;
 
 		$data['yachtshare'] = Model_Yachtshare::find($id);
+
+		if(!$data['yachtshare'])
+			throw new HttpNotFoundException;
+
+
 		$data['formfields'] = $this->formfields;
 		$data['user'] = $this->user;
 		$this->template->title = "Yachtshare: ".$data['yachtshare']->name;
@@ -600,6 +624,9 @@ class Controller_Yachtshare extends MyController
 	{
 		$this->logged_in_as(array('seller'));
 		$yachtshare = Model_Yachtshare::find((int) $this->param('boat_id'));
+
+		if(!$yachtshare)
+			throw new HttpNotFoundException;
 
 		if($yachtshare->user_id != $this->user->id)
 		{

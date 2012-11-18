@@ -85,7 +85,7 @@
 	            <td class="boatname"><?= $yachtshare->name; ?></td>
 	            <td><?= $yachtshare->location_specific; ?></td>
 	            <td align="center">
-					<a href="<?=Uri::create('yachtshare/update'.$yachtshare->id);?>" class="tablectrl_small bGreen tipS" original-title="Continue editing this form"><span class="iconb" data-icon=""></span></a>
+					<a href="<?=Uri::create('yachtshare/update/'.$yachtshare->id);?>" class="tablectrl_small bGreen tipS" original-title="Continue editing this form"><span class="iconb" data-icon=""></span></a>
 					<a href="<?=Uri::create('file/yachtshare/'.$yachtshare->id);?>" class="tablectrl_small bBlue tipS" original-title="Upload Files for this yacht share"><span class="iconb" data-icon=""></span></a>
 					<a href="#" id="delete_<?=$yachtshare->id;?>" class="tablectrl_small bRed tipS" original-title="Delete"><span class="iconb" data-icon=""></span></a> 
 				</td>

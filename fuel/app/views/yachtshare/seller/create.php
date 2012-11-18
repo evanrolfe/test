@@ -20,7 +20,7 @@ $(document).ready(function(){
 			if (submitClicked && errorList.length > 0)
 			{
 				submitClicked = false;
-				alert("Some of required form fields are missing your input, please review the form!");
+				alert("Please complete the required fields before your form can be saved");
 			}
 		}	
 	});

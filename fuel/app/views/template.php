@@ -83,7 +83,7 @@
 					<? endforeach; ?>
 		        </ul>
 				<? else: ?>
-					There are currently not active reminders.
+					There are currently no active reminders.
 				<? endif; ?>
        </div> 
        <div class="clear"></div>

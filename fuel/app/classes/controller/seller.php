@@ -71,7 +71,7 @@ class Controller_Seller extends MyController
 	public function action_search()
 	{
 		$this->logged_in_as(array('seller'));
-		$data['yachtshares'] = Model_Yachtshare::find('all');
+		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('temp' => 0)));
 
 		if(Input::method() == 'POST')
 		{

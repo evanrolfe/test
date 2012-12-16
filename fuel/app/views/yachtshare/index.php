@@ -130,6 +130,9 @@ $(function(){
 							<input type="checkbox" name="last_activity" <? if(in_array('last_activity',$columns)): ?>checked="yes"<? endif; ?> /> Date of last activity<br>
 							<input type="checkbox" name="sale_progress" <? if(in_array('sale_progress',$columns)): ?>checked="yes"<? endif; ?> /> Sale progress bar<br>
 							<input type="checkbox" name="status" <? if(in_array('status',$columns)): ?>checked="yes"<? endif; ?> />Status of Yachtshare<br>
+							<input type="checkbox" name="seller_name" <? if(in_array('seller_name',$columns)): ?>checked="yes"<? endif; ?> />Seller's Name<br>
+							<input type="checkbox" name="created_at" <? if(in_array('created_at',$columns)): ?>checked="yes"<? endif; ?> />Registration Date<br>
+
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -200,6 +203,16 @@ $(function(){
 						<? elseif($col == 'share_size'): ?>
 
 							<?=$yachtshare->boat_details['share_size_fraction']; ?>
+
+						<? elseif($col == 'seller_name'): ?>
+
+							<? if(isset($yachtshare->boat_details['seller_first_name']) and isset($yachtshare->boat_details['seller_last_name'])): ?>
+								<?=$yachtshare->boat_details['seller_first_name']; ?> <?=$yachtshare->boat_details['seller_last_name']; ?>
+							<? endif; ?>
+
+						<? elseif($col == 'created_at'): ?>
+
+							<?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y"); ?>
 
 						<? else: ?>
 

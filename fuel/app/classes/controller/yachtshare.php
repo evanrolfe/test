@@ -105,7 +105,22 @@ class Controller_Yachtshare extends MyController
 		$data['yachtshares'] = ($this->param('all')) ? Model_Yachtshare::find('all') : $this->data['yachtshares'];
 		$data['columns'] = (Session::get('columns')) ? Session::get('columns') : array('name', 'location_specific', 'length', 'price', 'share_size', 'sale_progress');
 
-		$data['column_labels'] = array('name' => 'Name', 'make' => 'Make', 'type' => 'Type', 'location_specific' => 'Location Specific', 'location_general' => 'Location General', 'length' => 'Length (m)', 'price' => 'Price', 'share_size' => 'Share Size', 'sale_progress' => 'Sale Progress', 'status' => 'Status', 'introductions' => '# Introductions', 'last_activity' => 'Date of last activity');
+		$data['column_labels'] = array(
+									'name' => 'Name', 
+									'make' => 'Make', 
+									'type' => 'Type', 
+									'location_specific' => 'Location Specific', 
+									'location_general' => 'Location General', 
+									'length' => 'Length (m)', 
+									'price' => 'Price', 
+									'share_size' => 'Share Size', 
+									'sale_progress' => 'Sale Progress', 
+									'status' => 'Status', 
+									'introductions' => '# Introductions', 
+									'last_activity' => 'Date of last activity',
+									'seller_name' => 'Seller Name',
+									'created_at' => 'Registration Date',
+									);
 
 		//Filter form fields OPTIONS for select dropdowns
 		$data['type'] =  Model_Formfieldbuyer::find('first', array('where' => array('tag'=>'type','belongs_to'=>'seller')));

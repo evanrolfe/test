@@ -72,7 +72,7 @@ class MyController extends Controller_Template
 		//If the user wants to change columns displayed
 		if(isset($post_arr['column'])){
 			//Determine which columns are to be displayed depending on user form input
-			$columns = array('name', 'make', 'type', 'location_general', 'location_specific', 'length', 'price', 'share_size', 'status', 'introductions', 'last_activity', 'sale_progress');
+			$columns = array('name', 'make', 'type', 'location_general', 'location_specific', 'length', 'price', 'share_size', 'status', 'introductions', 'last_activity', 'sale_progress', 'created_at', 'seller_name');
 			$show_columns = array();
 
 			foreach($columns as $key)
@@ -134,7 +134,7 @@ class MyController extends Controller_Template
 				$where[] = array("length", ">=", $search['min_loa']);
 			}
 
-			$this->data['yachtshares'] = (count($where) > 0) ? Model_Yachtshare::find()->where($where)->get() : Model_Yachtshare::find('all');
+			$this->data['yachtshares'] = (count($where) > 0) ? Model_Yachtshare::find()->where($where)->order_by("name", "ASC")->get() : Model_Yachtshare::find('all',array("order_by" => array("name" => "ASC")));
 
 			$this->data['search_terms'] = $search;
 
@@ -196,7 +196,7 @@ class MyController extends Controller_Template
 					'deactivated' => true,
 			);
 
-			$this->data['yachtshares'] = Model_Yachtshare::find('all');
+			$this->data['yachtshares'] = Model_Yachtshare::find('all',array("order_by" => array("name" => "ASC")));
 
 		//3. Otherwise use default search
 		}else{
@@ -220,7 +220,7 @@ class MyController extends Controller_Template
 					'min_share_size_denomenator' =>	'',
 			);
 
-			$this->data['yachtshares'] = Model_Yachtshare::find('all');
+			$this->data['yachtshares'] = Model_Yachtshare::find('all', array("order_by" => array("name" => "ASC")));
 
 			$included_status = array("Available","Sale in progress","On hold", "Sold");
 			//Then filter out those which are not of those included status's

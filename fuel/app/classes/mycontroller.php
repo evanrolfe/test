@@ -82,8 +82,6 @@ class MyController extends Controller_Template
 			}
 
 			//Set the session columns as inputted and redirect
-			Session::set('columns', $show_columns);
-
 			$this->user->selected_yacht_cols = json_encode($show_columns);
 			$this->user->save();
 
@@ -252,7 +250,8 @@ class MyController extends Controller_Template
 			}
 			//$data['columns'] = $show_columns;
 			//Set the session columns as inputted and redirect
-			Session::set('columns_buyer', $show_columns);
+			$this->user->selected_buyer_cols = json_encode($show_columns);
+			$this->user->save();
 			Response::redirect($current_page);			
 		}
 

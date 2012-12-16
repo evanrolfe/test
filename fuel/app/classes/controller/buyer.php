@@ -65,7 +65,8 @@ class Controller_Buyer extends MyController
 				'min_share_size' => '',
 		);
 
-		$data['columns'] = (Session::get('columns_buyer')) ? Session::get('columns_buyer') : array('name', 'email', 'num_introductions', 'price_range', 'share_size_range', 'length_range');
+		$default_cols = array('name', 'email', 'num_introductions', 'price_range', 'share_size_range', 'length_range');
+		$data['columns'] = ($this->user->selected_buyer_cols != "") ? json_decode($this->user->selected_buyer_cols) : $default_cols;
 
 		$data['column_labels'] = array('name' => 'Name', 'email' => 'Email', 'location_general' => 'Location (general)', 'location_specific' => 'Location (specific)', 'type' => 'Type', 'num_introductions' => '# Introductions', 'price_range' => 'Price range', 'share_size_range' => 'Share size range', 'length_range' => 'Length Range', 'sale_progress' => 'Sale Progress');
 

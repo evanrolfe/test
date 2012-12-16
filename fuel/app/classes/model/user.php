@@ -10,7 +10,9 @@ class Model_User extends \Orm\Model
 		'password',
 		'salt',
 		'created_at',
-		'updated_at'
+		'updated_at',
+		'selected_yacht_cols',
+		'selected_buyer_cols'
 	);
 
 	protected static $_observers = array(

@@ -19,7 +19,7 @@ class MyController extends Controller_Template
 										"settings" =>	array("uri" => "formfieldbuyer/", "name" => "Other", "current" => false, "icon" => "icon-settings"),
 										);
 
-		$this->user = Session::get('user');
+		$this->user = Model_User::find(Session::get('user')->id);
 
 		$this->template->user = Session::get('user');
 
@@ -83,6 +83,10 @@ class MyController extends Controller_Template
 
 			//Set the session columns as inputted and redirect
 			Session::set('columns', $show_columns);
+
+			$this->user->selected_yacht_cols = json_encode($show_columns);
+			$this->user->save();
+
 			Response::redirect($current_page);
 		}
 

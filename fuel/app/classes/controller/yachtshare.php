@@ -103,7 +103,11 @@ class Controller_Yachtshare extends MyController
 		$data['search_terms'] = $this->data['search_terms'];
 		
 		$data['yachtshares'] = ($this->param('all')) ? Model_Yachtshare::find('all') : $this->data['yachtshares'];
-		$data['columns'] = (Session::get('columns')) ? Session::get('columns') : array('name', 'location_specific', 'length', 'price', 'share_size', 'sale_progress');
+
+		//If the columns have been set in the database then use that otherwise use default
+		$default_cols = array('name', 'location_specific', 'length', 'price', 'share_size', 'sale_progress');
+
+		$data['columns'] = ($this->user->selected_yacht_cols != "") ? json_decode($this->user->selected_yacht_cols) : $default_cols;
 
 		$data['column_labels'] = array(
 									'name' => 'Name', 

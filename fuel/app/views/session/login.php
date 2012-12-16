@@ -21,6 +21,8 @@
 
     <div class="formRow" align="left">
 <a href="<?= Uri::create('session/forgot');?>">Forgot Password?</a>
+<br>
+<a href="<?= Uri::create('seller/create');?>">Register as a new seller</a>
         <div class="clear"></div>
     </div>
 	<div class="whead">

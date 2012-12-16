@@ -40,7 +40,11 @@
             <td><?= $formfield->label; ?></td>
             <td><?= $formfield->tag; ?></td>
             <td><?= $formfield->type; ?></td>
-            <td><a href="<?=Uri::create('formfieldbuyer/edit/'.$formfield->id);?>">Edit</a><? if(!$formfield->search_field): ?> - <a href="#" id="formfield_<?=$formfield->id;?>">Del</a><? endif; ?></td>
+            <td><a href="<?=Uri::create('formfieldbuyer/edit/'.$formfield->id);?>">Edit</a>
+            	<? if(!$formfield->search_field && !$formfield->volatile): ?>
+            	 - <a href="#" id="formfield_<?=$formfield->id;?>">Del</a>
+            	<? endif; ?>
+            </td>
         </tr>
 <? endforeach; ?>
 <? else: ?>

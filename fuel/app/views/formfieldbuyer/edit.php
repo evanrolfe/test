@@ -119,15 +119,6 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
     </div>
 
     <div class="formRow">
-        <div class="grid3"><label>Tag:</label></div>
-        <div class="grid9"><input type='text' name='tag' value="<?=$field->tag;?>" />
-			<span class="note">Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
-			</span>
-		</div>
-        <div class="clear"></div>
-    </div>
-
-    <div class="formRow">
         <div class="grid3"><label>Type:</label></div>
         <div class="grid9">
 			<select class="" onchange="select_type(this.value)" name="type">

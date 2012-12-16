@@ -197,7 +197,7 @@ class Controller_Formfieldbuyer extends MyController
 		if(Input::method() == 'POST')
 		{
 			$field->label = Input::post('label');
-			$field->tag = Input::post('tag');
+			//$field->tag = Input::post('tag');
 			$field->type = Input::post('type');
 			$field->description = Input::post('description');
 			$field->options = (Input::post('are_options_linked') == '1') ? "ID:".Input::post('linked_options') : Input::post('options');			

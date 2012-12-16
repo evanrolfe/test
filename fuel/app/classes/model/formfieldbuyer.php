@@ -21,6 +21,7 @@ class Model_Formfieldbuyer extends Evan\Model
 		'belongs_to',
 		'validation',
 		'public',
+		'volatile'
 	);
 
 	public function __construct(array $data = array(), $new = true, $view = null)

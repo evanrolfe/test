@@ -1,6 +1,18 @@
 <script type="text/javascript">
 var submitClicked = false;
 
+/*--------------------------------------------
+ | Has the form been changed?
+ *--------------------------------------------
+ *
+ * Prompt the user on exit/refresh if:
+ *
+ * 1. The form has been automatically filled out with the details of another boat (even if no changes have been made by user)
+ * 		i.e. /yachtshare/create/1
+ * 2. A change in one of the form fields has been made by the user
+ */
+
+
 $(document).ready(function(){
 	$('#create_form_submit').click(function() {
 		submitClicked = true;
@@ -32,6 +44,9 @@ $(document).ready(function(){
 		//If a dropdown has been changed
 		$("select").change( function() { has_form_input_changed_since_last_save = true; });
 
+		//If this a creating a new yachtshare from an already created one, we must assume the user wiill want ot save the changes
+		if(<?= (($saved_form_data['name']) == '') ? "false" : "true"; ?>)
+			has_form_input_changed_since_last_save = true;
 
 	var preventUnloadPrompt;
 	var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form and your data will remain there when you come back.";
@@ -133,7 +148,7 @@ function select_shares(n)
 		<div style='text-align: right;'>
 			<span id="text_bar2">
 			</span>
-			<button class="buttonS bBlue tipS" style="margin: 6px 6px;" type="submit" name="save_for_later" original-title="Click here if you want to finish the form later.">Save for Later</button>
+			<button class="buttonS bBlue tipS cancel" style="margin: 6px 6px;" type="submit" name="save_for_later" original-title="Click here if you want to finish the form later.">Save for Later</button>
 			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="submit" name="submit" original-title="Click here to finalize and submit the yacht share." id="create_form_submit">Submit</button>
 		</div>
 		<div class="clear"></div>

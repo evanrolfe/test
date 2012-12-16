@@ -393,6 +393,9 @@ class Controller_Yachtshare extends MyController
 				}
 			}				
 
+			if(!Input::post("share_1_num") and !Input::post("share_1_den"))
+					$shares[] = array('num' => 0, 'den' => 0, 'float' => 0.0);
+
 			//Check that the user has inputted a sharesize
 			if(count($shares)==0)
 			{
@@ -415,13 +418,6 @@ class Controller_Yachtshare extends MyController
 				//If the user clicked "Save for later" button then insert this as a temporary yachtshare_create_form
 				$save_for_later_clicked = (isset($_POST['save_for_later']));
 
-				if($save_for_later_clicked)
-				{
-					echo "Saving a yachtshare with temp=1";
-				}else{
-					echo "Saving a yachtshare with temp=0";
-				}
-
 				$yachtshare = Model_Yachtshare::forge(array(
 					"name" 				=> $name,
 					"make" 				=> Input::post("make"),
@@ -438,6 +434,10 @@ class Controller_Yachtshare extends MyController
 					"active"			=> true,
 					"temp"				=> $save_for_later_clicked,
 				));
+
+echo "<pre>";
+print_r($yachtshare);
+echo "</pre>";
 
 				//Save
 				($yachtshare->save()) or $errors++;

@@ -44,53 +44,91 @@ class Controller_Session extends MyController
 		Response::redirect('session/create');				
 	}
 
+	public function action_change_password($input=null)
+	{
+		//1. Parse the input parameters (GET)
+		if(is_null($input))
+			throw new HttpNotFoundException;
+
+		$input_arr = explode("-", $input);
+		$id = $input_arr[1];
+		$created_at = $input_arr[0];
+
+		$user = Model_User::find('first', array('where' => array('id' => $id, 'created_at' => $created_at)));
+
+		if($user==null)
+			throw new HttpNotFoundException;
+
+
+		if(Input::method() == 'POST')
+		{	
+			$hashed_password = crypt(Input::post('new_password'));
+			$user->password = $hashed_password;
+
+			if($user->save())
+			{	
+				Session::set_flash("success", "Successfully changed your password to: ".Input::post('new_password'));
+				Response::redirect("session/create");
+			}else{
+				Session::set_flash("error", "Error: could not change your password");
+				Response::redirect("session/change_password/".$input);
+			}
+		}
+
+
+		$this->template = \View::forge('public_template',array(),false);
+		$this->template->user = $user;
+		$this->template->title = 'Yacht Fractions: Change your Password';
+
+		$this->template->offline = $this->offline;
+		$this->template->content = View::forge('session/change_password', array('user' => $user, 'params' => $input));
+	}
+
 	public function action_forgot()
 	{
 		if (Input::method() == 'POST')
 		{
-			$users = Model_User::find()->where('email', Input::post('email'));
-			$user = $users->get_one();
+			$user = Model_User::find('first', array('where' => array('email' => Input::post('email'))));
 
 			if(!$user)
 			{
 				Session::set_flash('error', 'There is no user with the email: '.Input::post('email').' in our database!');
 				Response::redirect('session/forgot');
-			}
-
-			$new_password = $this->random_string();
-			$hashed_password = crypt($new_password);
-
-			$user->password = $hashed_password;
-
-			if($user->save()) 
-			{
-				// Create an instance
+			}else{
+				//1. Create an instance
 				$email = Email::forge();
 
+				//2. The url at which teh user can change their password
+				$url = Uri::create("session/change_password/".$user->created_at."-".$user->id);
+
+				//3. Populate the email object
 				$email->from($this->offline_config['from_email'], $this->offline_config['from_name']);
 				$email->to($user->email);
-				$email->subject('Password Reset');	
-				$email->body("Your password has been reset to: ".$new_password);
-
+				$email->subject('How to change your password');	
+				$email->body("Hello, ".$user->name.", it seems as though you have forgetten your password? To change it to a new password please click the following link:<br>".$url);
+/*
+				echo "<pre>";
+				print_r($email);
+				echo "</pre>";
+				exit;
+*/
+				//4. Send the email
 				try
 				{
 					$email->send();
 				}
 				catch(\EmailValidationFailedException $e)
 				{
-					Session::set_flash('error', 'Your email has not been sent.');				
+					Session::set_flash('error', 'Details of how to change your password have been sent to your email address: '.$user->email);
+					Response::redirect("session/forgot");
 				}
 				catch(\EmailSendingFailedException $e)
 				{
-					Session::set_flash('error', 'Your email has not been sent.');								
+					Session::set_flash('error', 'Your password cannot be recovered.');
+					Response::redirect("session/forgot");							
 				}
 
-				Session::set_flash('success', "Your new password has been sent to the email: ".$user->email."<br>Please make sure to check your JUNK MAIL if you do not receive an email within the next hour.");
-
-				Response::redirect('session/create');				
-			}else{
-				Session::set_flash('error', 'Your password could not be reset due to an error!');
-				Response::redirect('session/create');
+				Response::redirect("session/create");
 			}
 		}
 

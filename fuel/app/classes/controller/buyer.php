@@ -369,7 +369,10 @@ class Controller_Buyer extends MyController
 *  </ DEPRACATED>
 **=====================================================
 */
-		$data['yachtshares'] = Model_Yachtshare::find('all',array('order_by' => array('make' => 'ASC')));
+		$data['yachtshares'] = Model_Yachtshare::find('all',array(
+			'order_by' => array('make' => 'ASC'),
+			'where' => array('active' => 1),
+		));
 
 		$shares_for_json = array();
 		foreach($data['yachtshares'] as $share)

@@ -48,7 +48,7 @@ class Controller_Seller extends MyController
 		}
 
 		$this->template = \View::forge('public_template',array(),false);
-		$this->template->user = $this->user;
+		//$this->template->user = $this->user;
 		$this->template->title = 'Yacht Fractions: Seller Enquiry';
 		$this->template->content = View::forge('seller/create');
 	}

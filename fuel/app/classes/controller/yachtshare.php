@@ -8,6 +8,16 @@ class Controller_Yachtshare extends MyController
 		$this->formfields = Model_Formfieldbuyer::find('all', array('order_by' => array('order' => 'ASC'), 'where' => array('belongs_to' => 'seller')));
 	}
 
+	public function action_home()
+	{
+		if(isset($this->user))
+		{	
+			Response::redirect("yachtshare");
+		}else{	
+			Response::redirect("session/create");
+		}
+	}
+
 	public function action_index($all = null)
 	{
 		$this->logged_in_as(array('admin'));

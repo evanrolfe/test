@@ -77,15 +77,33 @@ class Controller_Formfieldbuyer extends MyController
 
 				echo "DROPDOWN LINKED: ".Input::post('dropdown_linked');
 
-				$public = (Input::post('public')) ? 1 : 0;	
-				$required = (Input::post('required')) ? 'required' : '';	
+				$public = (Input::post('public')) ? 1 : 0;
+
+				if(Input::post('type')=='terms_and_conditions')
+				{	
+					$required = 'required';
+					$label = 'Terms and Conditions';
+					$description = Input::post('terms_and_conditions');
+					$tag = 'terms_and_conditions';
+
+					if(count(Model_Formfieldbuyer::find('all',array('where' => array('belongs_to' => Input::post('belongs_to'), 'tag' => 'terms_and_conditions')))) > 0)
+					{
+						Session::set_flash('error', 'You may only have one terms and conditions field for the buyer form and seller form.');
+						Response::redirect('formfieldbuyer/create');
+					}
+				}else{
+					$required = (Input::post('required')) ? 'required' : '';
+					$label = Input::post('label');
+					$description = Input::post('description');
+					$tag = Input::post("tag");
+				}
 
 				$formfield = Model_Formfieldbuyer::forge(array(
-					'label' => Input::post('label'),
-					'tag' => Input::post('tag'),
+					'label' => $label,
+					'tag' => $tag,
 					'type' => Input::post('type'),
 					'belongs_to' => Input::post('belongs_to'),
-					'description' => Input::post('description'),
+					'description' => $description,
 					'validation' => $required,
 					'options' => $options,
 					'search_field' => 0,

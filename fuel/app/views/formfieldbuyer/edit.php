@@ -110,6 +110,25 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 		<div class="clear"></div>
 	</div>
 
+<? if($field->type=='terms_and_conditions'): ?>
+
+    <div class="formRow">
+        <div class="grid3"><label>Type:</label></div>
+        <div class="grid9">
+        	Terms and Conditions
+		</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow" id="textarea">
+        <div class="grid3"><label>Terms and Conditions that the user must agree to:</label></div>
+        <div class="grid9">
+			<textarea name='description'><?=$field->description;?></textarea>
+		</div>
+        <div class="clear"></div>
+    </div>
+<? else: ?>
+
     <div class="formRow">
         <div class="grid3"><label>Label:</label></div>
         <div class="grid9"><input type='text' name='label' value="<?=$field->label;?>"/>
@@ -121,15 +140,7 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
     <div class="formRow">
         <div class="grid3"><label>Type:</label></div>
         <div class="grid9">
-			<select class="" onchange="select_type(this.value)" name="type">
-					<option value="text" <?if($field->type == "text"):?>selected="yes"<?endif;?>>Single line text field</option>
-					<option value="textarea" <?if($field->type == "textarea"):?>selected="yes"<?endif;?>>Mutli line text field</option>
-					<option value="text_fraction" <?if($field->type == "text_fraction"):?>selected="yes"<?endif;?>>Single line text field for fractions (i.e. share size)</option>
-					<option value="dropdown" <?if($field->type == "dropdown"):?>selected="yes"<?endif;?>>Dropdown box</option>
-
-					<option value="length" <?if($field->type == "length"):?>selected="yes"<?endif;?>>Measure of length</option>
-					<option value="terms_and_conditions" <?if($field->type == "terms_and_conditions"):?>selected="yes"<?endif;?>>Terms and conditions checkbox</option>
-			</select>
+        	<?= $field->type; ?>
 		</div>
         <div class="clear"></div>
     </div>
@@ -225,6 +236,8 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
 		</div>
         <div class="clear"></div>
     </div>
+
+<? endif; ?>
 
     <div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>

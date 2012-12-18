@@ -4,41 +4,66 @@ function select_type(type)
 	switch(type)
 	{
 		case "text":
+			$("#label").show();
 			$("#text").show();
 			$("#textarea").hide();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
 			$("#dropdown_linked").hide();
+			$("#required").show();
+			$("#public").show();
+			$("#description").show();
 		break;
 
 		case "textarea":
+			$("#label").show();
 			$("#text").hide();
 			$("#textarea").show();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
 			$("#dropdown_linked").hide();
+			$("#required").show();
+			$("#public").show();
+			$("#description").show();
 		break;
 
 		case "text_fraction":
+			$("#label").show();
 			$("#text").hide();
 			$("#textarea").hide();
 			$("#dropdown").hide();
 			$("#dropdown2").hide();
 			$("#dropdown_linked").hide();
+			$("#required").show();
+			$("#public").show();
+			$("#description").show();
 		break;
 
 		case "dropdown":
+			$("#label").show();
 			$("#text").hide();
 			$("#textarea").hide();
 			$("#dropdown").show();
 			$("#dropdown2").show();
 			$("#dropdown_linked").show();
-		break;    
-	}
+			$("#required").show();
+			$("#public").show();
+			$("#description").show();
+		break;
 
-	$("#required").show();
-	$("#public").show();
-	$("#description").show();
+		case "terms_and_conditions":
+			$("#label").hide();
+			$("#text").hide();
+			$("#textarea").hide();
+			$("#dropdown").hide();
+			$("#dropdown2").hide();
+			$("#dropdown_linked").hide();
+			$("#required").hide();
+			$("#public").hide();
+			$("#description").hide();
+			$("#terms_and_conditions").show();
+		break;
+	}
 }
 
 function replace_tag(label)
@@ -72,24 +97,7 @@ function add_option()
 	</div>
 
     <div class="formRow">
-        <div class="grid3"><label>Label:</label></div>
-        <div class="grid9"><input type='text' name='label' onkeyup="replace_tag(this.value)"/>
-			<span class="note">This is the label for the field which will be displayed to the users.
-			</span></div>
-        <div class="clear"></div>
-    </div>
-
-    <div class="formRow">
-        <div class="grid3"><label>Tag:</label></div>
-        <div class="grid9"><input type='text' name='tag' />
-			<span class="note">Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
-			</span>
-		</div>
-        <div class="clear"></div>
-    </div>
-
-    <div class="formRow">
-        <div class="grid3"><label>Type:</label></div>
+        <div class="grid3"><label>Select formfield type:</label></div>
         <div class="grid9">
 			<select class="" onchange="select_type(this.value)" name="type">
 				<option value="">Select</option>
@@ -100,6 +108,23 @@ function add_option()
 					<option value="length">Measure of length</option>
 					<option value="terms_and_conditions">Terms and conditions checkbox</option>
 			</select>
+		</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow" id="label" style="display: none;">
+        <div class="grid3"><label>Label:</label></div>
+        <div class="grid9"><input type='text' name='label' onkeyup="replace_tag(this.value)"/>
+			<span class="note">This is the label for the field which will be displayed to the users.
+			</span></div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow" style="display: none;">
+        <div class="grid3"><label>Tag:</label></div>
+        <div class="grid9"><input type='text' name='tag' />
+			<span class="note">Value should contains NO spaces or non alpha-numeric characters. This is a technical field used by the program but whose value will not be displayed to the user. A value is automatically generated, do not modify if you are not sure of its meaning.
+			</span>
 		</div>
         <div class="clear"></div>
     </div>
@@ -141,6 +166,14 @@ function add_option()
         <div class="grid3"><label>Description:</label></div>
         <div class="grid9">
 			<textarea name='description'></textarea>
+		</div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="formRow" id="terms_and_conditions" style="display: none;">
+        <div class="grid3"><label>Terms and conditions that the user must agree to:</label></div>
+        <div class="grid9">
+			<textarea name='terms_and_conditions'></textarea>
 		</div>
         <div class="clear"></div>
     </div>

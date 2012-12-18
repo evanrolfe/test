@@ -42,6 +42,7 @@ class Model_Yachtshare extends \Orm\Model
 		'temp',
 		'reminder',
 		'reminder_expires_at',
+		'approved',
 	);
 
 	protected static $_observers = array(
@@ -53,7 +54,15 @@ class Model_Yachtshare extends \Orm\Model
 			'events' => array('before_save'),
 			'mysql_timestamp' => false,
 		),
+		'Orm\\Observer_Self' => array(
+			'before_insert'
+		),
 	);
+
+	public function _event_before_insert()
+	{	
+		$this->approved = 0;
+	}
 
 	public function __construct(array $data = array(), $new = true, $view = null)
 	{
@@ -99,6 +108,17 @@ class Model_Yachtshare extends \Orm\Model
 		$query = DB::query('SELECT * FROM `yachtshares` WHERE reminder_expires_at < UNIX_TIMESTAMP(NOW()) AND reminder_expires_at > 0');
 		return $query->as_object()->execute();
 	}
+
+/**
+* Fetch all yachtshares which are pending the approval of the admin
+*
+* @return array
+*/
+	public static function find_with_pending_approval()
+	{
+		$query = DB::query('SELECT * FROM `yachtshares` WHERE approved=0');
+		return $query->as_object()->execute();
+	}	
 
 /**
 * Find actionsteps that have still not been added to this yachtshare

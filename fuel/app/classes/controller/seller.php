@@ -32,7 +32,7 @@ class Controller_Seller extends MyController
 				if(count($matches)>0)
 				{
 					$this->template = \View::forge('public_template',array(),false);
-					$this->template->user = $this->user;
+					$this->template->user = $user;
 					$this->template->title = 'Yacht Fractions: Seller Registration';
 					$this->template->content = View::forge('seller/search_results',$data);
 					return new Response($this->template);

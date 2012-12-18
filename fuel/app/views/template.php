@@ -45,46 +45,52 @@
 		        </div>
 			</div> 
 
-		        <div class="divider"><span></span></div>
-
 		     <!-- Yachtshares on hold Sidebar -->      
 
 				<? if(sizeof($yachtshares_on_hold) > 0): ?>
-				<b>Yacht Shares on Hold:</b>
-				<ul class="">
-					<? foreach($yachtshares_on_hold as $yachtshare): ?>
-		            <li>
-		                    <span class="contactName">
-		                        		                <strong><a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>" title=""><?= $yachtshare->yachtshare_name; ?></a></strong>
-		                        <i><?= $yachtshare->hours_left; ?> hours left - 
-<? if($yachtshare->email_sent): ?>
-	(email sent)
-<? else: ?>
-<a href="<?=Uri::create('/emailnew/create/template/2/'.$yachtshare->buyer_id.'/'.$yachtshare->id.'/hold');?>">Send email</a>
-<? endif; ?>
-</i>
-		                    </span>
-		                    <span class="clear"></span>
-		            </li>
-					<? endforeach; ?>
-		        </ul>
-				<? else: ?>
-					There are no yacht shares currently on hold.
+			        <div class="divider"><span></span></div>				
+					<b>Yacht Shares on Hold:</b>
+					<ul class="">
+						<? foreach($yachtshares_on_hold as $yachtshare): ?>
+			            <li>
+			                    <span class="contactName">
+			                        		                <strong><a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>" title=""><?= $yachtshare->yachtshare_name; ?></a></strong>
+			                        <i><?= $yachtshare->hours_left; ?> hours left - 
+	<? if($yachtshare->email_sent): ?>
+		(email sent)
+	<? else: ?>
+	<a href="<?=Uri::create('/emailnew/create/template/2/'.$yachtshare->buyer_id.'/'.$yachtshare->id.'/hold');?>">Send email</a>
+	<? endif; ?>
+	</i>
+			                    </span>
+			                    <span class="clear"></span>
+			            </li>
+						<? endforeach; ?>
+			        </ul>
 				<? endif; ?>
 
 		     <!-- Yachtshares Reminder -->      
-		        <div class="divider"><span></span></div>
 				<? if(sizeof($yachtshares_remind) > 0): ?>
-
-				<b>Active Reminders for:</b>
-				<ul class="">
-					<? foreach($yachtshares_remind as $yachtshare): ?>
-					<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>"><li><?=$yachtshare->name;?></li></a>
-					<? endforeach; ?>
-		        </ul>
-				<? else: ?>
-					There are currently no active reminders.
+			        <div class="divider"><span></span></div>
+					<b>Active Reminders for:</b>
+					<ul class="">
+						<? foreach($yachtshares_remind as $yachtshare): ?>
+						<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>"><li><?=$yachtshare->name;?></li></a>
+						<? endforeach; ?>
+			        </ul>
 				<? endif; ?>
+
+		     <!-- Yachtshares Pending Approval -->      
+				<? if(sizeof($yachtshares_pending) > 0): ?>
+		        	<div class="divider"><span></span></div>
+
+					<b>The following yachtshares have been submitted but are pending your approval to be shown publicy:</b>
+					<ul class="">
+						<? foreach($yachtshares_pending as $yachtshare): ?>
+						<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>"><li><?=$yachtshare->name;?></li></a>
+						<? endforeach; ?>
+			        </ul>
+				<? endif; ?>				
        </div> 
        <div class="clear"></div>
    </div>

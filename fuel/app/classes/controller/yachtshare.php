@@ -1,5 +1,5 @@
 <?php
-
+//ALTER TABLE  `yachtshares` ADD  `approved` BOOLEAN NULL DEFAULT  '0'
 class Controller_Yachtshare extends MyController
 {
 	public function before()
@@ -591,6 +591,27 @@ echo "</pre>";
 			$this->template->links['shares']['current'] = true;
 			$this->template->content = View::forge('yachtshare/admin/edit',$data,false);
 		}
+	}
+
+	public function action_approve($id=null)
+	{
+		$this->logged_in_as(array('admin'));
+
+		if ($yachtshare = Model_Yachtshare::find($id))
+		{
+			$query = DB::query('UPDATE `yachtshares` SET approved=1 WHERE id='.$id);
+			
+			if($query->execute())
+			{
+				Session::set_flash('success', 'The yachtshare has been approved.');
+			}else{
+				Session::set_flash('error', 'Could not approve yachtshare #'.$id);
+			}
+		}else{
+			Session::set_flash('error', 'Could not approve yachtshare #'.$id);
+		}
+
+		Response::redirect('yachtshare/view/'.$id);		
 	}
 
 	public function action_deactivate($id = null)

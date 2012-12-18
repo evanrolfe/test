@@ -41,6 +41,10 @@ $(function(){
 			<? else: ?>
             	<li style="width: 90px;"><a href="<?=Uri::create('yachtshare/deactivate/'.$yachtshare->id);?>" class="bRed"><span class="iconb" data-icon=""></span><span>Deactivate</span></a></li>
 			<? endif; ?>
+
+			<? if($yachtshare->approved==0): ?>
+            	<li style="width: 90px;"><a href="<?=Uri::create('yachtshare/approve/'.$yachtshare->id);?>" class="bGreen"><span class="iconb" data-icon=""></span><span>Approve?</span></a></li>
+			<? endif; ?>
         </ul>
     </div>
 

@@ -19,7 +19,8 @@ class MyController extends Controller_Template
 										"settings" =>	array("uri" => "formfieldbuyer/", "name" => "Other", "current" => false, "icon" => "icon-settings"),
 										);
 
-		$this->user = Model_User::find(Session::get('user')->id);
+		if(Session::get('user'))
+			$this->user = Model_User::find(Session::get('user')->id);
 
 		$this->template->user = Session::get('user');
 
@@ -36,7 +37,7 @@ class MyController extends Controller_Template
 	public function logged_in_as($types=array())
 	{
 		// 1. Check that the user has logged in at all
-		if($this->user)
+		if(isset($this->user))
 		{
 			// 2. Check that the user has the right permissions
 			$right_type_count = 0;
@@ -59,7 +60,7 @@ class MyController extends Controller_Template
 
 	public function not_logged_in()
 	{
-		if($this->user)
+		if(isset($this->user))
 		{
 			//Session::set_flash('error', 'You are already logged in!');
 			$url = ($this->user->type == 'admin') ? 'yachtshare' : 'seller';

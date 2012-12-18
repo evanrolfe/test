@@ -1,0 +1,293 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"se",
+				"selected_buyer_cols"
+			],
+			[
+				"default",
+				"default_cols"
+			],
+			[
+				"select",
+				"selected_yacht_cols"
+			],
+			[
+				"yacht",
+				"yachtshare"
+			],
+			[
+				"save",
+				"saved_form_data"
+			],
+			[
+				"seller",
+				"seller/create"
+			],
+			[
+				"created",
+				"created_at"
+			],
+			[
+				"ya",
+				"yachtshare"
+			],
+			[
+				"ord",
+				"order_by"
+			],
+			[
+				"doc",
+				"doc_d	Constant Definition"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"selected_items":
+		[
+			[
+				"git log",
+				"Git: Log All"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git pu",
+				"Git: Pull"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git statu",
+				"Git: Status"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git rest",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"install p",
+				"Package Control: Install Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package i",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Git: Gui"
+			],
+			[
+				"git",
+				"Git: Amend Commit"
+			],
+			[
+				"git s",
+				"Git: Status"
+			],
+			[
+				"add rep",
+				"Package Control: Add Repository"
+			],
+			[
+				"add re",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/evan/.config/sublime-text-2/Packages/User/untitled.sublime-snippet",
+		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/views/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/views/session/login.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/_table.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/formfieldbuyer.php",
+		"/home/evan/www/yacht/fuel/app/classes/model/formfieldbuyer.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/edit.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/create.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/view.php",
+		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/index.php",
+		"/home/evan/www/yacht/fuel/app/views/formfield/index.php",
+		"/home/evan/www/yacht/public/assets/js/files/functions.js",
+		"/home/evan/www/yacht/main.sublime-project",
+		"/home/evan/www/yacht/fuel/app/config/development/db.php",
+		"/home/evan/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
+		"/home/evan/Documents/test.md",
+		"/home/evan/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"columns",
+			"replac",
+			"replace_",
+			"seller_first",
+			"header",
+			"table",
+			"boatname",
+			"Response",
+			"else"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 246.0,
+	"status_bar_visible": true
+}

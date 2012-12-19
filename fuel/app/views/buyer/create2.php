@@ -89,7 +89,10 @@ function save_form()
 	var request = $.ajax({
 		url: "<?=Uri::create('session/save_form');?>",
 		type: "POST",
-		data: { form : saved_form},
+		data: {
+			form : saved_form,
+			type : 'buyer'
+		},
 		success: function(data) {
 			$("#text_bar").html(data);
 			$("#text_bar2").html(data);
@@ -102,12 +105,13 @@ function save_form()
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
 		<h6>Buyer Enquiry Form</h6>
+		<div style='text-align: right; padding: 8px 14px 7px 14px;' id='text_bar'>
+		</div>			
 		<div class="clear"></div>
 	</div>
 
 <form action="<?= Uri::create('buyer/handle_post'); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <input type="hidden" name="insert" value="1" />
-<input type="hidden" name="form_type" value="buyer">
 <? foreach($fields_search as $field): ?>
 
 	<? if($field->type == 'text'): ?>

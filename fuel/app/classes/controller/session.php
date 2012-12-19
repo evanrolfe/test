@@ -151,14 +151,13 @@ class Controller_Session extends MyController
 				$form_arr[$row_arr['name']] = $row_arr['value'];
 			}
 
-			$type = $form_arr['form_type'];
+			$type = Input::post('type');
 
 			Session::delete($type.'_create_form');
 			Session::set($type.'_create_form',$form_arr);
 			//$this->save_form_session_to_db();
 			//Session::delete($type.'_create_form');
-				echo "Last saved at ".(Date::forge()->format("%H:%M:%S"));
-			exit;
+			exit("Last saved at ".(Date::forge()->format("%H:%M:%S")));
 		}
 	}
 

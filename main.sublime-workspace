@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"cre",
+				"create"
+			],
+			[
+				"form",
+				"formfieldbuyer"
+			],
+			[
+				"errr",
+				"error"
+			],
+			[
+				"bel",
+				"belongs_to"
+			],
+			[
+				"terms",
+				"terms_and_conditions"
+			],
+			[
+				"sess",
+				"session/change_password"
+			],
+			[
+				"new",
+				"new_password"
+			],
+			[
+				"input",
+				"input_arr"
+			],
+			[
+				"session",
+				"session/create"
+			],
+			[
 				"se",
 				"selected_buyer_cols"
 			],
@@ -47,23 +83,67 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "fuel/app/classes/controller/yachtshare.php",
+			"settings":
+			{
+				"buffer_size": 26170,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fuel/app/views/yachtshare/seller/create.php",
+			"settings":
+			{
+				"buffer_size": 5080,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fuel/app/classes/controller/buyer.php",
+			"settings":
+			{
+				"buffer_size": 14650,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 75.0,
+		"height": 348.0,
 		"selected_items":
 		[
 			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
 				"git log",
 				"Git: Log All"
+			],
+			[
+				"git statu",
+				"Git: Status"
+			],
+			[
+				"git rese",
+				"Git: Reset (hard) HEAD"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git stat",
+				"Git: Status"
 			],
 			[
 				"git push",
 				"Git: Push"
 			],
 			[
-				"git commit",
+				"git cmm",
 				"Git: Commit"
 			],
 			[
@@ -71,32 +151,44 @@
 				"Git: Add..."
 			],
 			[
-				"git status",
-				"Git: Status"
+				"git commt",
+				"Git: Commit"
 			],
 			[
-				"git pu",
-				"Git: Pull"
+				"git stash",
+				"Git: Stash Apply"
 			],
 			[
 				"git co",
 				"Git: Commit"
 			],
 			[
-				"git statu",
+				"git st",
 				"Git: Status"
 			],
 			[
-				"git p",
+				"gits",
+				"Git: Status"
+			],
+			[
+				"git pus",
 				"Git: Push"
-			],
-			[
-				"git stat",
-				"Git: Status"
 			],
 			[
 				"git com",
 				"Git: Commit"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git pu",
+				"Git: Pull"
+			],
+			[
+				"git p",
+				"Git: Push"
 			],
 			[
 				"git comm",
@@ -160,23 +252,48 @@
 	},
 	"file_history":
 	[
-		"/home/evan/.config/sublime-text-2/Packages/User/untitled.sublime-snippet",
+		"/home/evan/.config/sublime-text-2/Packages/Dayle Rees Color Schemes/Github.tmTheme",
+		"/home/evan/.config/sublime-text-2/Packages/Dayle Rees Color Schemes/Github.tmTheme.cache",
+		"/home/evan/www/yacht/fuel/app/views/public_template.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
-		"/home/evan/www/yacht/fuel/app/views/seller/create.php",
-		"/home/evan/www/yacht/fuel/app/views/session/login.php",
-		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/_table.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/formfieldbuyer.php",
-		"/home/evan/www/yacht/fuel/app/classes/model/formfieldbuyer.php",
-		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/edit.php",
 		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/create.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/edit.php",
+		"/home/evan/www/yacht/fuel/app/views/forms/_terms_and_conditions.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/view.php",
+		"/home/evan/www/yacht/fuel/app/views/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/views/session/forgot.php",
+		"/home/evan/www/yacht/fuel/app/views/session/change_password.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/emailnew.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/install.php",
+		"/home/evan/www/yacht/fuel/packages/orm/classes/model.php",
+		"/home/evan/www/yacht/fuel/packages/orm/classes/query.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/terms_and_conditions.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/order.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/_table.php",
+		"/home/evan/www/yacht/fuel/app/views/terms_and_conditions.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/data.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/buyer.php",
+		"/home/evan/www/yacht/fuel/app/config/routes.php",
+		"/home/evan/www/yacht/fuel/app/classes/model/yachtshare.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/_nav.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/_nav.php",
+		"/home/evan/www/yacht/fuel/app/views/template.php",
 		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
+		"/home/evan/www/yacht/fuel/app/classes/mytemplate.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/index.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/seller.php",
+		"/home/evan/www/yacht/fuel/app/config/production/db.php",
+		"/home/evan/www/yacht/fuel/app/config/development/db.php",
+		"/home/evan/www/yacht/CONTRIBUTING.md",
+		"/home/evan/.config/sublime-text-2/Packages/User/untitled.sublime-snippet",
+		"/home/evan/www/yacht/fuel/app/views/session/login.php",
+		"/home/evan/www/yacht/fuel/app/classes/model/formfieldbuyer.php",
 		"/home/evan/www/yacht/fuel/app/views/formfield/index.php",
 		"/home/evan/www/yacht/public/assets/js/files/functions.js",
 		"/home/evan/www/yacht/main.sublime-project",
-		"/home/evan/www/yacht/fuel/app/config/development/db.php",
 		"/home/evan/.config/sublime-text-2/Packages/User/Package Control.sublime-settings",
 		"/home/evan/Documents/test.md",
 		"/home/evan/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
@@ -197,6 +314,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"saved_form_data",
+			"tag",
+			"select_type",
+			"offline_config",
+			"there is no",
+			"order",
+			"search_term",
+			"search_t",
 			"columns",
 			"replac",
 			"replace_",
@@ -213,6 +338,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"form"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -223,8 +349,90 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "fuel/app/classes/controller/yachtshare.php",
+					"settings":
+					{
+						"buffer_size": 26170,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15812,
+								15812
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5731.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "fuel/app/views/yachtshare/seller/create.php",
+					"settings":
+					{
+						"buffer_size": 5080,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2754,
+								2754
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1387.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "fuel/app/classes/controller/buyer.php",
+					"settings":
+					{
+						"buffer_size": 14650,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 6696.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -265,7 +473,7 @@
 	},
 	"replace":
 	{
-		"height": 0.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":

@@ -147,7 +147,7 @@ class Controller_Yachtshare extends MyController
 
 	public function action_view($id = null)
 	{
-		$this->logged_in_as(array('admin', 'seller'));
+		//$this->logged_in_as(array('admin', 'seller'));
 
 		if(is_null($id))
 			throw new HttpNotFoundException;
@@ -167,14 +167,14 @@ class Controller_Yachtshare extends MyController
 		$name = $name_arr[0];
 		$data['similar'] = DB::query('SELECT * FROM `yachtshares` WHERE name LIKE "%'.$name.'%" AND name NOT IN ("'.$data['yachtshare']->name.'")')->as_object()->execute();
 
-		if($this->user->type == 'admin') 
+		if(isset($this->user) and $this->user->type == 'admin') 
 		{
 			$this->template->content = View::forge('yachtshare/admin/view',$data,false);			
 		}else{
-		$this->template = \View::forge('public_template',array(),false);
-		$this->template->user = $this->user;
-		$this->template->title = 'Yacht Fractions: Viewing Yachtshare';
-		$this->template->content = View::forge('yachtshare/seller/view',$data,false);
+			$this->template = \View::forge('public_template',array(),false);
+			//$this->template->user = $this->user;
+			$this->template->title = 'Yacht Fractions: Viewing Yachtshare';
+			$this->template->content = View::forge('yachtshare/seller/view',$data,false);
 		}
 
 	}
@@ -364,7 +364,7 @@ class Controller_Yachtshare extends MyController
 		return $yachtshare;		
 	}
 
-	public function action_create()
+	public function action_create_new($id = null)
 	{
 		if(Input::method() == 'POST')
 		{
@@ -407,16 +407,6 @@ class Controller_Yachtshare extends MyController
 				}
 			}				
 
-			if(!Input::post("share_1_num") and !Input::post("share_1_den"))
-					$shares[] = array('num' => 0, 'den' => 0, 'float' => 0.0);
-
-			//Check that the user has inputted a sharesize
-			if(count($shares)==0)
-			{
-				Session::set_flash('error', 'You must enter a share size!');
-				Response::redirect('yachtshare/create');																
-			}
-
 			//2.2 Now insert each share into the DB
 			$i=1;
 			$errors=0;
@@ -444,7 +434,7 @@ class Controller_Yachtshare extends MyController
 					"share_size_num" 	=> $share_size['num'],
 					"share_size_den" 	=> $share_size['den'],
 					"boat_details"		=> json_encode($input),
-					"user_id"			=> $this->user->id,
+					//"user_id"			=> $this->user->id,
 					"active"			=> true,
 					"temp"				=> $save_for_later_clicked,
 				));
@@ -452,7 +442,7 @@ class Controller_Yachtshare extends MyController
 echo "<pre>";
 print_r($yachtshare);
 echo "</pre>";
-
+//exit;
 				//Save
 				($yachtshare->save()) or $errors++;
 			}
@@ -485,21 +475,79 @@ echo "</pre>";
 					}
 					catch(\EmailValidationFailedException $e)
 					{
-						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
+						Session::set_flash('error', 'Your email has not been sent.<br>'.$e);				
 					}
 					catch(\EmailSendingFailedException $e)
 					{
-						//Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
+						Session::set_flash('error', 'Your email has not been sent.<br>'.$e);								
 					}
 				}
 
 				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
-				$url = ($this->user->type == 'seller') ? 'seller' : 'yachtshare/view/'.$yachtshare->id;
-				Response::redirect($url);						
+				Response::redirect('yachtshare/view/'.$yachtshare->id);						
 			}			
 		}
+
+		//1. Check if there is saved data in the session
+		if(Session::get("yachtshare_create_form"))
+		{
+			$data['form'] = Session::get("yachtshare_create_form");
+
+		//2. If not then check if there is a predefined boat specified in the parameters
+		}elseif($id)
+		{
+			$yachtshare = Model_Yachtshare::find($id);				
+
+			//Check the yachtshare actually exists!
+			if(!$yachtshare)
+				throw new HttpNotFoundException;
+
+			//Handle each form field differently depending on itself
+			foreach($this->formfields as $field)
+			{
+				$tag = $field->tag;
+					//echo "This field ID#: ".$field->id." (".$field->label.") has a public value of ".$field->public." and so will be set to ";
+				//If this is getting the data from an already entered "Live" yachtshare and the field is private then skip this row
+				if($field->public == 0)
+				{
+					//echo "BLANK";
+					$data['form'][$tag] = '';
+				}elseif($field->search_field)
+				{
+					//echo "a value";
+					$data['form'][$tag] = $yachtshare->$tag;
+				}else{
+					//echo "a value from an array";
+					$data['form'][$tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
+				}
+			}
+		}else{
+			foreach($this->formfields as $field)
+			{
+				$data['form'][$field->tag] = '';
+			}			
+		}
+
+
+//echo "<pre>";
+//print_r($data['form']);
+//exit;
+
+		//3. Display the page
+		$this->template->title = "Yachtshare: Create";
+		$this->template = \View::forge('public_template',array(),false);
+		//$this->template->user = $this->user;
+		$this->template->form_page = true;					//To set the html body to display "are you sure" popup on exit
+		$data['formfields'] = $this->formfields;
+
+		$this->template->title = 'Yacht Fractions: Create Yachtshare';
+		$this->template->content = View::forge('yachtshare/seller/create',$data,false);
+	}
+
+	public function action_create()
+	{
 		//Session::delete('yachtshare_create_form');
-		$this->logged_in_as(array('seller', 'admin'));
+		//$this->logged_in_as(array('seller', 'admin'));
 
 		$this->template->title = "Yachtshare: Create";
 		$data['yachtshare'] = ($this->param('boat_id')) ? Model_Yachtshare::find((int) $this->param('boat_id')): Model_Yachtshare::forge();

@@ -235,6 +235,10 @@ class Controller_Yachtshare extends MyController
 				//2.2 Now insert each share into the DB
 				$i=1;
 				$errors=0;
+
+				//This will later be used to associate each yachtshare with each other if # shares > 1
+				$associated_ids = array();
+
 				foreach($shares as $share_size)
 				{
 					//If there are more than one shares to be inserted the append (#) to the name
@@ -289,6 +293,8 @@ class Controller_Yachtshare extends MyController
 
 					//Save
 					($yachtshare->save()) or $errors++;
+
+					$associated_ids[] = $yachtshare->id;
 				}
 
 				//Redirect
@@ -297,11 +303,17 @@ class Controller_Yachtshare extends MyController
 					Session::set_flash('error', 'The yachtshare could not be created due to an error!');
 					Response::redirect('yachtshare/create');											
 				}else{
+					//Update each yachtshares group_id's so that they are now associated with each other in the DB
+					if(count($associated_ids)>1)
+					{	
+						$ids = implode(',',$associated_ids);
+						DB::query("UPDATE `yachtshares` SET group_ids='".$ids."' WHERE id IN (".$ids.")")->execute();
+					}
 					//Delete the saved_form session
-					Session::delete('buyer_create_form');
+					Session::delete('yachtshare_create_form');
 
 					Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
-					$url = ($this->user->type == 'seller') ? 'seller' : 'yachtshare/view/'.$yachtshare->id;
+					$url = 'yachtshare/view/'.$yachtshare->id;
 					Response::redirect($url);						
 				}
 
@@ -310,24 +322,43 @@ class Controller_Yachtshare extends MyController
 			}elseif(Input::post('update')){
 				$yachtshare = Model_Yachtshare::find(Input::post('yachtshare_id'));
 
-				$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
+				$associated_ids = explode(',', $yachtshare->group_ids);
+				if(count($associated_ids) < 1)
+				{
+					$associated_ids = array($yachtshare->id);
+				}
 
-				$yachtshare->name 				= Input::post('name');
-				$yachtshare->make 				= Input::post('make');		
-				$yachtshare->type 				= Input::post('type');		
-				$yachtshare->location_general 	= Input::post('location_general');
-				$yachtshare->location_specific 	= Input::post('location_specific');
-				$yachtshare->length 			= $length;		
-				$yachtshare->price 				= preg_replace("/,/","",Input::post("price"));		
+				$errors = 0;
 
-				$yachtshare->share_size_num = Input::post("share_size_num");
-				$yachtshare->share_size_den = Input::post("share_size_den");
-				$yachtshare->share_size = $this->toFloat($yachtshare->share_size_num."/".$yachtshare->share_size_den);	
+				foreach($associated_ids as $id)
+				{
+					$yachtshare = Model_Yachtshare::find($id);
 
-				$yachtshare->boat_details = json_encode($input);							
+					$length = (Input::post('length_unit') == 'm') ? Input::post("length") : round(Input::post("length")*0.3048,2);
 
-				//Redirect
-				if($yachtshare->save())
+					//Only edit the name if it is the yachtshare with the ID of the one being edited.
+					if($yachtshare->id == Input::post('yachtshare_id'))
+						$yachtshare->name = Input::post('name');
+
+					$yachtshare->make 				= Input::post('make');		
+					$yachtshare->type 				= Input::post('type');		
+					$yachtshare->location_general 	= Input::post('location_general');
+					$yachtshare->location_specific 	= Input::post('location_specific');
+					$yachtshare->length 			= $length;		
+					$yachtshare->price 				= preg_replace("/,/","",Input::post("price"));		
+
+					$yachtshare->share_size_num = Input::post("share_size_num");
+					$yachtshare->share_size_den = Input::post("share_size_den");
+					$yachtshare->share_size = $this->toFloat($yachtshare->share_size_num."/".$yachtshare->share_size_den);	
+
+					$yachtshare->boat_details = json_encode($input);							
+
+					//Redirect
+					$yachtshare->save() or $errors++;
+
+				}
+
+				if($errors == 0)
 				{
 					Session::set_flash('success', 'The yacht share has been successfully updated!');
 					Response::redirect('yachtshare/view/'.$yachtshare->id);											
@@ -410,6 +441,10 @@ class Controller_Yachtshare extends MyController
 			//2.2 Now insert each share into the DB
 			$i=1;
 			$errors=0;
+
+			//This will later be used to associate each yachtshare with each other if # shares > 1
+			$associated_ids = array();
+
 			foreach($shares as $share_size)
 			{
 				//If there are more than one shares to be inserted the append (#) to the name
@@ -439,12 +474,10 @@ class Controller_Yachtshare extends MyController
 					"temp"				=> $save_for_later_clicked,
 				));
 
-echo "<pre>";
-print_r($yachtshare);
-echo "</pre>";
-//exit;
 				//Save
 				($yachtshare->save()) or $errors++;
+
+				$associated_ids[] = $yachtshare->id;
 			}
 
 			//Redirect
@@ -454,7 +487,14 @@ echo "</pre>";
 				Response::redirect('yachtshare/create');											
 			}else{
 				//Delete the saved_form session
-				Session::delete('buyer_create_form');
+				Session::delete('yachtshare_create_form');
+
+				//Update each yachtshares group_id's so that they are now associated with each other in the DB
+				if(count($associated_ids)>1)
+				{	
+					$ids = implode(',',$associated_ids);
+					DB::query("UPDATE `yachtshares` SET group_ids='".$ids."' WHERE id IN (".$ids.")")->execute();
+				}
 
 				if($yachtshare->temp == false)
 				{
@@ -483,8 +523,8 @@ echo "</pre>";
 					}
 				}
 
-				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
-				Response::redirect('yachtshare/view/'.$yachtshare->id);						
+				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database, you may now upload images for this yachtshare.');
+				Response::redirect('file/yachtshare/'.$yachtshare->id);						
 			}			
 		}
 

@@ -43,6 +43,7 @@ class Model_Yachtshare extends \Orm\Model
 		'reminder',
 		'reminder_expires_at',
 		'approved',
+		'group_ids',
 	);
 
 	protected static $_observers = array(

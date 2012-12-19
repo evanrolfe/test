@@ -126,42 +126,62 @@ Also each file can be of the type:
 			(Upload::is_valid()) and Upload::save();
 
 			foreach(Upload::get_files() as $file)
-			{				
-				//4. Insert the file details into DB
+			{
+				//4. Resize if the file is an image with width > 800px
+				$file_loc = $file['saved_to'].$file['saved_as'];
+
+
+				//IF it is an image
+				$mime_arr = explode('/',$file['mimetype']);
+				if($mime_arr[0] == 'image')
+				{
+					$sizes = Image::sizes($file_loc);
+
+					//IF it is too big
+					if($sizes->width > 800)
+					{
+						Image::load($file_loc)->resize(800)->save($file_loc);
+					}
+				}
+
+				//5. Insert the file details into DB
 				$public = (Input::post('type') == 'private') ? 0 : 1;
 
-				$file_db = Model_Image::forge(array(
-					'belongs_to_id' => Input::post('belongs_to_id'),
-					'belongs_to' => Input::post('belongs_to'),
-					'public_image' => $public,
-					'url' => $file['saved_as'],
-					'type' => Input::post('type'),
-				));
-
-		//5. Resize if the file is an image with width > 800px
-			$file_loc = $file['saved_to'].$file['saved_as'];
-
-
-			//IF it is an image
-			$mime_arr = explode('/',$file['mimetype']);
-			if($mime_arr[0] == 'image')
-			{
-				$sizes = Image::sizes($file_loc);
-
-				//IF it is too big
-				if($sizes->width > 800)
+				if(Input::post('belongs_to') == "yachtshare")
 				{
-					Image::load($file_loc)->resize(800)->save($file_loc);
-				}
-			}
+					$yachtshare = Model_Yachtshare::find(Input::post('belongs_to_id'));
 
-				if($file_db and $file_db->save())
+					if($yachtshare->group_ids != null)
+					{
+						$belongs_to_ids = explode(',',$yachtshare->group_ids);						
+					}else{
+						$belongs_to_ids = array(Input::post('belongs_to_id'));
+					}
+				}else{
+					$belongs_to_ids = array(Input::post('belongs_to_id'));
+				}
+
+				$errors = 0;
+
+				foreach($belongs_to_ids as $id)
+				{
+					$file_db = Model_Image::forge(array(
+						'belongs_to_id' => $id,
+						'belongs_to' => Input::post('belongs_to'),
+						'public_image' => $public,
+						'url' => $file['saved_as'],
+						'type' => Input::post('type'),
+					));
+
+					$file_db->save() or $errors++;	
+				}
+
+				if($errors == 0)
 				{
 					Session::set_flash('success', 'Your '.$type_arr[0].' has been successfully uploaded.');
 				}else{
 					Session::set_flash('error', 'Your '.$type_arr[0].' was not uploaded due to an error.');					
-				}
-
+				}	
 				Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
 			}
 		}

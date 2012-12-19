@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"Model",
+				"Model_Formfieldbuyer"
+			],
+			[
+				"yacht",
+				"yachtshare"
+			],
+			[
 				"location",
 				"location_specific"
 			],
@@ -26,10 +34,6 @@
 			[
 				"bel",
 				"belongs_to_ids"
-			],
-			[
-				"Model",
-				"Model_Yachtshare"
 			],
 			[
 				"belongs",
@@ -108,10 +112,6 @@
 				"selected_yacht_cols"
 			],
 			[
-				"yacht",
-				"yachtshare"
-			],
-			[
 				"save",
 				"saved_form_data"
 			],
@@ -139,38 +139,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "fuel/app/classes/controller/yachtshare.php",
-			"settings":
-			{
-				"buffer_size": 31974,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "fuel/app/classes/controller/seller.php",
-			"settings":
-			{
-				"buffer_size": 3431,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "fuel/app/views/yachtshare/seller/create.php",
-			"settings":
-			{
-				"buffer_size": 7449,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "fuel/app/config/routes.php",
-			"settings":
-			{
-				"buffer_size": 1832,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -183,15 +151,15 @@
 				"Git: Status"
 			],
 			[
+				"git status",
+				"Git: Status"
+			],
+			[
 				"git add",
 				"Git: Add..."
 			],
 			[
 				"git statu",
-				"Git: Status"
-			],
-			[
-				"git status",
 				"Git: Status"
 			],
 			[
@@ -307,7 +275,7 @@
 				"Package Control: Add Repository"
 			]
 		],
-		"width": 575.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -324,24 +292,26 @@
 	},
 	"file_history":
 	[
-		"/home/evan/www/yacht/fuel/app/config/routes.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
+		"/home/evan/www/yacht/fuel/app/views/session/login.php",
 		"/home/evan/www/yacht/fuel/app/views/buyer/create2.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/seller.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
+		"/home/evan/www/yacht/fuel/app/config/routes.php",
+		"/home/evan/www/yacht/fuel/app/views/forms/_dropdown.php",
+		"/home/evan/www/yacht/fuel/app/views/_includes.php",
+		"/home/evan/www/yacht/fuel/app/classes/model/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/views/seller/search_results.php",
 		"/home/evan/www/yacht/fuel/app/views/seller/find_by_name.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/seller.php",
-		"/home/evan/www/yacht/fuel/app/views/session/login.php",
 		"/home/evan/www/yacht/fuel/app/views/install.php",
 		"/home/evan/www/yacht/fuel/app/views/front/view.php",
 		"/home/evan/www/yacht/fuel/app/views/front/index.php",
 		"/home/evan/www/yacht/fuel/app/views/front_end_template.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/front.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
-		"/home/evan/www/yacht/fuel/app/classes/model/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/file.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/create.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/edit.php",
-		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/create.php",
 		"/home/evan/www/yacht/fuel/app/views/file/seller/index.php",
 		"/home/evan/www/yacht/fuel/app/views/file/index.php",
@@ -402,6 +372,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"submitClicked",
+			"var has",
 			"select",
 			"div",
 			"Control",
@@ -441,117 +413,8 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "fuel/app/classes/controller/yachtshare.php",
-					"settings":
-					{
-						"buffer_size": 31974,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								21566,
-								21566
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 245.0,
-						"translation.y": 8394.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "fuel/app/classes/controller/seller.php",
-					"settings":
-					{
-						"buffer_size": 3431,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2655,
-								2655
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 900.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "fuel/app/views/yachtshare/seller/create.php",
-					"settings":
-					{
-						"buffer_size": 7449,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4013,
-								4013
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 70.0,
-						"translation.y": 1800.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "fuel/app/config/routes.php",
-					"settings":
-					{
-						"buffer_size": 1832,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

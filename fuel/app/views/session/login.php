@@ -8,7 +8,7 @@
 	</div>
 
     <div class="formRow">
-        <div class="grid3"><label>Email:</label></div>
+        <div class="grid3"><label>Username:</label></div>
         <div class="grid9"><input type='text' name='email' /></div>
         <div class="clear"></div>
     </div>
@@ -19,12 +19,6 @@
         <div class="clear"></div>
     </div>
 
-    <div class="formRow" align="left">
-<a href="<?= Uri::create('session/forgot');?>">Forgot Password?</a>
-<br>
-<a href="<?= Uri::create('yachtshare/create');?>">Register a yachtshare as a seller</a>
-        <div class="clear"></div>
-    </div>
 	<div class="whead">
         <div class="grid6" align="left"></div>
 		

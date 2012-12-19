@@ -16,10 +16,26 @@ var has_form_input_changed_since_last_save = false;
 var yachtshares = <?=json_encode($yachtshares_for_json);?>;
 
 $(document).ready(function(){
-	$("#yachtshares_dropdown").change(function(){
-		var id = $("#yachtshares_dropdown").val();
+	var shares = <?= json_encode($yachtshares_titles_for_json); ?>;
 
-		var form_data = yachtshares[id];
+	$( "#search_yachtshares" ).autocomplete({
+		source: shares
+	});	
+
+	$("#select_yachtshares_button").click(function(){
+		var name_make = $("#search_yachtshares").val();
+		var id_of_selected;
+		//Pick out the desire yachtshare according to the name and make given
+		for(var id in yachtshares)
+		{
+			if(yachtshares[id]['name']+" - "+yachtshares[id]['make'] == name_make)
+			{
+				id_of_selected = id;
+				break;
+			}
+		}
+
+		var form_data = yachtshares[id_of_selected];
 		has_form_input_changed_since_last_save = true;
 
 		for(var tag in form_data)
@@ -160,18 +176,17 @@ function save_form(display_results)
 	</div>
 
 	<div class="formRow">
-		<div class="searchDrop">
-			<select id="yachtshares_dropdown" class="select">
-					<option value="">Select a yachtshare to be copied to the form</option>
-				<? foreach($yachtshares as $yachtshare): ?>
-					<option value="<?=$yachtshare->id;?>"><?=$yachtshare->name;?> - <?=$yachtshare->make;?> (Location: <?=$yachtshare->location_specific;?>)</option>
-				<? endforeach; ?>
-			</select>
-			<button class="buttonS bRed" onclick="$('#create_form')[0].reset();" id="clear_form_button" style="display: none;">Reset form</button>
+		<div>
+		<div class="searchLine" style="width: 500px;">
+				<input type="text" id="search_yachtshares" placeholder="Enter search text..." autocomplete="off">
+				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
+				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
+			</div>
+			<br>
+			<button class="buttonS bGold" id="select_yachtshares_button">Copy this boat to form</button>
 		</div>
-			
 		<div class="clear"></div>		
-	</div>
+	</div>	
 
 </div>
 

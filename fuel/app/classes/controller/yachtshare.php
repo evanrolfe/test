@@ -546,9 +546,13 @@ class Controller_Yachtshare extends MyController
 
 		//Format the yachtshares to be used inline with javascript
 		$data['yachtshares_for_json'] = array();
+		$data['yachtshares_titles_for_json'] = array();
+
 		foreach($data['yachtshares'] as $yachtshare)
 		{
 			$data['yachtshares_for_json'][$yachtshare->id] = array();
+
+			$data['yachtshares_titles_for_json'][] = $yachtshare->name." - ".$yachtshare->make;
 
 			foreach($this->formfields as $field)
 			{

@@ -1,3 +1,4 @@
+
 <script type="text/javascript">
 $(function(){
 	var $dialog = $('<div></div>')
@@ -30,7 +31,7 @@ $(function(){
     <div class="whead">
 		<h6>Details</h6>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('seller'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;">Back</button></a>
+			<a href="http://www.yachtfractions.co.uk/"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Done</button></a>
 		</div>
 		<div class="clear"></div>
 	</div>

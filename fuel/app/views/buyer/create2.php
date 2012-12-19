@@ -96,7 +96,7 @@ function save_form()
 		success: function(data) {
 			$("#text_bar").html(data);
 			$("#text_bar2").html(data);
-			//setTimeout(function(){ save_form(); },3000);
+			setTimeout(function(){ save_form(); },2*60*1000);	//Autosave every 2 minutes
 			has_form_input_changed_since_last_save = false;
 		}
 	});

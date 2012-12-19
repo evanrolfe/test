@@ -70,7 +70,7 @@ class Controller_Seller extends MyController
 
 	public function action_search()
 	{
-		$this->logged_in_as(array('seller'));
+		//$this->logged_in_as(array('seller'));
 		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('temp' => 0)));
 
 		if(Input::method() == 'POST')
@@ -84,12 +84,12 @@ class Controller_Seller extends MyController
 			$data['yachtshares'] = $matches;
 
 			$this->template = \View::forge('public_template',array(),false);
-			$this->template->user = $this->user;
+			//$this->template->user = $this->user;
 			$this->template->title = 'Yacht Fractions: Seller Panel';
 			$this->template->content = View::forge('seller/search_results',$data,false);	
 		}else{
 			$this->template = \View::forge('public_template',array(),false);
-			$this->template->user = $this->user;
+			//$this->template->user = $this->user;
 			$this->template->title = 'Yacht Fractions: Seller Panel';
 			$this->template->content = View::forge('seller/find_by_name',$data,false);	
 		}

@@ -527,37 +527,7 @@ class Controller_Yachtshare extends MyController
 		}
 
 
-		//1. If not then check if there is a predefined boat specified in the parameters
-		if($id)
-		{
-			$yachtshare = Model_Yachtshare::find($id);				
-
-			//Check the yachtshare actually exists!
-			if(!$yachtshare)
-				throw new HttpNotFoundException;
-
-			//Handle each form field differently depending on itself
-			foreach($this->formfields as $field)
-			{
-				$tag = $field->tag;
-					//echo "This field ID#: ".$field->id." (".$field->label.") has a public value of ".$field->public." and so will be set to ";
-				//If this is getting the data from an already entered "Live" yachtshare and the field is private then skip this row
-				if($field->public == 0)
-				{
-					//echo "BLANK";
-					$data['form'][$tag] = '';
-				}elseif($field->search_field)
-				{
-					//echo "a value";
-					$data['form'][$tag] = $yachtshare->$tag;
-				}else{
-					//echo "a value from an array";
-					$data['form'][$tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
-				}
-			}
-
-		//2. Check if there is saved data in the session
-		}elseif(Session::get("yachtshare_create_form"))
+		if(Session::get("yachtshare_create_form"))
 		{
 			$data['form'] = Session::get("yachtshare_create_form");
 
@@ -572,6 +542,31 @@ class Controller_Yachtshare extends MyController
 //echo "<pre>";
 //print_r($data['form']);
 //exit;
+		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('temp' => 0, 'approved' => 1, 'active' => 1), 'order_by' => array('name' => 'ASC')));
+
+		//Format the yachtshares to be used inline with javascript
+		$data['yachtshares_for_json'] = array();
+		foreach($data['yachtshares'] as $yachtshare)
+		{
+			$data['yachtshares_for_json'][$yachtshare->id] = array();
+
+			foreach($this->formfields as $field)
+			{
+				$tag = $field->tag;
+				if($field->public == 0)
+				{
+					//echo "BLANK";
+					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = '';
+				}elseif($field->search_field)
+				{
+					//echo "a value";
+					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = $yachtshare->$tag;
+				}else{
+					//echo "a value from an array";
+					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
+				}
+			}			
+		}
 
 		//3. Display the page
 		$this->template->title = "Yachtshare: Create";
@@ -584,6 +579,11 @@ class Controller_Yachtshare extends MyController
 		$this->template->content = View::forge('yachtshare/seller/create',$data,false);
 	}
 
+/*
+ *---------------------------------------------
+ |	DEPRACATED - SEE action_create_new()
+ *---------------------------------------------
+ */
 	public function action_create()
 	{
 		Response::redirect("yachtshare/create_new");

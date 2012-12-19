@@ -39,7 +39,7 @@
 	        <tr class="boat">
 	            <td><?= $yachtshare->name; ?></td>
 	            <td><?= $yachtshare->location_specific; ?></td>
-	            <td><a href="<?= Uri::create('yachtshare/create/'.$yachtshare->id); ?>">This is my boat - copy the details!</a></td>
+	            <td><a href="<?= Uri::create('yachtshare/create_new/'.$yachtshare->id); ?>">This is my boat - copy the details!</a></td>
 	        </tr>
 	<?php endforeach; ?>
 <?php else: ?>

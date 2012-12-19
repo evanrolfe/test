@@ -261,4 +261,18 @@ class Model_Yachtshare extends \Orm\Model
 			return "Available";
 		}
 	}
+
+
+/**
+* Get the first public header image for use in the front end site
+*
+* @return string
+*/
+	public function get_header_image_url()
+	{
+		$query = DB::query("SELECT url FROM `images` WHERE belongs_to='yachtshare' AND belongs_to_id=".$this->id);
+		$result = $query->as_assoc()->execute(); 
+		return $result[0]['url'];
+	}	
 }
+

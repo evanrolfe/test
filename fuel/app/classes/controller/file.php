@@ -4,7 +4,7 @@ class Controller_File extends MyController
 {
 	public function action_index()
 	{
-		$this->logged_in_as(array('admin','seller'));
+		//$this->logged_in_as(array('admin','seller'));
 
 		if(is_null($this->param('item')) || !in_array($this->param('item'), array('yachtshare','buyer')))
 			throw new HttpNotFoundException;
@@ -34,12 +34,12 @@ class Controller_File extends MyController
 
 		$data['files'] = Model_Image::find('all', array('where' => array('belongs_to' => $data['type'], 'belongs_to_id' => $id)));
 
-		if($this->user->type == 'admin')
+		if(isset($this->user) and $this->user->type == 'admin')
 		{
 			$this->template->content = View::forge('file/index',$data,false);				
 		}else{
 			$this->template = \View::forge('public_template',array(),false);
-			$this->template->user = $this->user;
+			//$this->template->user = $this->user;
 			$this->template->title = 'Yacht Fractions: Seller Panel';
 			$this->template->content = View::forge('file/seller/index',$data,false);	
 		}
@@ -85,7 +85,7 @@ Also each file can be of the type:
 */
 	public function action_upload()
 	{
-		$this->logged_in_as(array('admin','seller'));
+		//$this->logged_in_as(array('admin','seller'));
 		if(Input::method() == 'POST')
 		{
 		//1. process the uploaded files in $_FILES
@@ -126,8 +126,8 @@ Also each file can be of the type:
 			(Upload::is_valid()) and Upload::save();
 
 			foreach(Upload::get_files() as $file)
-			{
-		//4. Insert the file details into DB
+			{				
+				//4. Insert the file details into DB
 				$public = (Input::post('type') == 'private') ? 0 : 1;
 
 				$file_db = Model_Image::forge(array(
@@ -137,7 +137,7 @@ Also each file can be of the type:
 					'url' => $file['saved_as'],
 					'type' => Input::post('type'),
 				));
-				
+
 		//5. Resize if the file is an image with width > 800px
 			$file_loc = $file['saved_to'].$file['saved_as'];
 

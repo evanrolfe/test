@@ -496,8 +496,7 @@ class Controller_Yachtshare extends MyController
 					DB::query("UPDATE `yachtshares` SET group_ids='".$ids."' WHERE id IN (".$ids.")")->execute();
 				}
 
-				if($yachtshare->temp == false)
-				{
+
 					//Send the automated email
 					//1. Create an instance
 					$email = Email::forge();
@@ -524,17 +523,12 @@ class Controller_Yachtshare extends MyController
 				}
 
 				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database, you may now upload images for this yachtshare.');
-				Response::redirect('file/yachtshare/'.$yachtshare->id);						
-			}			
+				Response::redirect('file/yachtshare/'.$yachtshare->id);									
 		}
 
-		//1. Check if there is saved data in the session
-		if(Session::get("yachtshare_create_form"))
-		{
-			$data['form'] = Session::get("yachtshare_create_form");
 
-		//2. If not then check if there is a predefined boat specified in the parameters
-		}elseif($id)
+		//1. If not then check if there is a predefined boat specified in the parameters
+		if($id)
 		{
 			$yachtshare = Model_Yachtshare::find($id);				
 
@@ -561,6 +555,12 @@ class Controller_Yachtshare extends MyController
 					$data['form'][$tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
 				}
 			}
+
+		//2. Check if there is saved data in the session
+		}elseif(Session::get("yachtshare_create_form"))
+		{
+			$data['form'] = Session::get("yachtshare_create_form");
+
 		}else{
 			foreach($this->formfields as $field)
 			{

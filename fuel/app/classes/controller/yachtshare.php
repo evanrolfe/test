@@ -586,6 +586,7 @@ class Controller_Yachtshare extends MyController
 
 	public function action_create()
 	{
+		Response::redirect("yachtshare/create_new");
 		//Session::delete('yachtshare_create_form');
 		//$this->logged_in_as(array('seller', 'admin'));
 

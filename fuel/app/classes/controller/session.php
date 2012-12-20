@@ -29,7 +29,7 @@ class Controller_Session extends MyController
 
 		$this->template = \View::forge('public_template',array(),false);
 		$this->template->user = false;
-		$this->template->title = 'Yacht Fractions: Login';
+		$this->template->title = 'Yacht Fractions';
 
 		$this->template->offline = $this->offline;
 		$this->template->content = View::forge('session/login');

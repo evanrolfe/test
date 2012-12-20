@@ -122,7 +122,7 @@ $(document).ready(function(){
 	});
 
 	//AUTOSAVE STARTS IN 2 MINUTE
-	setTimeout(function(){ save_form(); },2*60*1000);		
+	setTimeout(function(){ save_form(); },5*60*1000);		
 
 	//DISPLAY TIME AGO (from last save)
 	jQuery("abbr.timeago").timeago();

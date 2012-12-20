@@ -84,7 +84,7 @@
 				<? if(sizeof($yachtshares_pending) > 0): ?>
 		        	<div class="divider"><span></span></div>
 
-					<b>New submissions pending approval.</b>
+					<b>New submissions pending approval to publish:</b>
 					<ul class="">
 						<? foreach($yachtshares_pending as $yachtshare): ?>
 						<a href="<?= Uri::create('yachtshare/view/'.$yachtshare->id);?>"><li><?=$yachtshare->name;?></li></a>

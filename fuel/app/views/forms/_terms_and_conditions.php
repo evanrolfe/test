@@ -23,7 +23,10 @@
 	</script>
 
 	<div class="formRow">
-	    <div class="grid3"><label>I agree to Yachtfractions <a href="#" id="open_terms_and_conditions">Terms and Conditions</a></label></div>
+	    <div class="grid3"><label>
+	    	I agree to Yachtfractions <a href="#" id="open_terms_and_conditions">Terms and Conditions</a>
+	    	<font color="red">*</font>
+	    </label></div>
 	    <div class="grid9" align="left">
 			<input type="checkbox" name="terms" id="" class="required">
 			<br>

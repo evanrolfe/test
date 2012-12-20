@@ -1,5 +1,8 @@
 	<div class="formRow">
-	    <div class="grid3"><label><?= $field->label; ?></label></div>
+	    <div class="grid3"><label>
+	    	<?= $field->label; ?>
+	    	<? if(strpos($field->validation,'required') !== false):?><font color="red">*</font><?endif;?>
+	    </label></div>
 	    <div class="grid9" align="left">
 			<select class="<?=$field->validation;?>" name="<?=$field->tag;?>" id="<?=$field->tag;?>" <? if(isset($width)):?>style="width: <?=$width;?>px;"<? endif; ?>>
 					<option value="">Any</option>

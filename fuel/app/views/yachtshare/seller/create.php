@@ -233,7 +233,7 @@ function save_form(display_results)
 
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
-		<h6>New Yacht Share</h6>
+		<h6>Yacht Share Details Form</h6>
 
 		<div style='text-align: right;'>
 			Last saved: <span class="never_saved">not saved.</span><span class="timeago"></span>
@@ -261,7 +261,7 @@ function save_form(display_results)
 		<?= render('forms/_terms_and_conditions',array('field'=>$field),false); ?>
 	<? elseif($field->tag == 'share_size'): ?>
 		<div class="formRow">
-			<div class="grid3"><label>Share Size:</label></div>
+			<div class="grid3"><label>Share Size<font color="red">*</font>:</label></div>
 			<div class="grid9" align="left">
 				Number of Shares: 
 				<select class='' onchange="select_shares(this.value)" id="select_share">

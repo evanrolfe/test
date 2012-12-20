@@ -8,11 +8,27 @@ $(function(){
 <input type="hidden" name="belongs_to_id" value="<?=$item->id;?>" />
 <input type="hidden" name="belongs_to" value="<?=$type;?>" />
 
-<div class="widget fluid" style="width: 450px;">
+<div class="widget fluid" style="width: 75%;">
     <div class="whead">
 		<h6>Files</h6>
 		<div align="right">
 			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Finish Yachtshare Submission</button></a>
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<div class="formRow">
+		<div align="left">
+			Here you can upload photographs or documents relating to your yacht. Good photographs greatly enhance your listing.
+			<ol>
+				<li>Click the [+] button to select a file from your computer</li>
+				<li>Select the type of file that this represents</li>
+				<li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
+				<li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
+				<li>Public gallery photo – additional images that will be displayed in the detailed listing</li>
+				<li>Click UPLOAD - this may take a minute or two</li>
+			</ol>
+			Repeat the process for additional files.		
 		</div>
 		<div class="clear"></div>
 	</div>

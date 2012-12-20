@@ -521,7 +521,7 @@ class Controller_Yachtshare extends MyController
 					}
 				}
 
-				Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database, you may now upload images for this yachtshare.');
+				Session::set_flash('success', 'Thank you for submitting your yacht share. You will be contacted shortly. You may now upload images for this yachtshare and click "Finish Yachtshare Submission" to view the details we have recorded.');
 				Response::redirect('file/yachtshare/'.$yachtshare->id);									
 		}
 

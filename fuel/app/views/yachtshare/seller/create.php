@@ -52,7 +52,7 @@ $(document).ready(function(){
 	});
 
 	var $dialog = $('<div></div>')
-		.html('Are you sure you want to submit this yachtshare? Once you have submitted you cannot make any more changes.')
+		.html('Are you sure you want to submit this yacht share? You cannot edit the form once it’s submitted.')
 		.dialog({
 			autoOpen: false,
 			title: "Are you sure?",
@@ -200,7 +200,21 @@ function save_form(display_results)
 	</div>
 
 	<div class="formRow">
-		If you think we already have, in our database, the the details of the yachtshare you wish to enter in the form then you may find in the dropdown right below and have the details automatically copied over to the form by clicking on your desired yachtshare from the dropdown. Be careful though! Selecting a boat from this dropdown will delete any data you have already entered into the database! 
+		<div align="left">
+			Please complete this form as fully as possible, noting that:
+			<ul class="liTip">
+				<li>Questions marked with a red star are required</li>
+				<li>The form will be automatically saved to your computer every five minutes and also when you click the button "Save and keep working"</li>
+				<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
+				<li>After clicking submit, you will be able to </li>	
+				<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - chris@yachtfractions.co.uk (Tel: 01326 37443)</li>
+				<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
+			</ul>
+		</div>
+		<br>
+		<b>Save time if your yacht is already in our database!</b>
+		<br>
+		If your yacht was previously registered with us, we can save you time by copying the data to this form. Type in the name of your yacht; if your boat shows up, click on the name and then click on button right below that says "Copy this boat to form".
 			<div class="searchLine" style="width: 500px;">
 				<input type="text" id="search_yachtshares" placeholder="Enter the name of your boat..." autocomplete="off">
 				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>

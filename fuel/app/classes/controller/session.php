@@ -157,7 +157,7 @@ class Controller_Session extends MyController
 			Session::set($type.'_create_form',$form_arr);
 			//$this->save_form_session_to_db();
 			//Session::delete($type.'_create_form');
-			exit("Last saved at ".(Date::forge()->format("%H:%M:%S")));
+			exit(Date::forge()->format("%Y-%m-%dT%H:%M:%SZ"));		//Return date in ISO 8601 format
 		}
 	}
 
@@ -199,7 +199,7 @@ class Controller_Session extends MyController
 
 			if($yachtshare->save())
 			{
-				echo "Last saved at ".(Date::forge()->format("%H:%M:%S"));
+				echo Date::forge()->format("%H:%M:%S");
 			}else{
 				echo "Error: form data could not be saved!";
 			}

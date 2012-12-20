@@ -1,5 +1,4 @@
 <?php
-//ALTER TABLE  `yachtshares` ADD  `approved` BOOLEAN NULL DEFAULT  '0'
 class Controller_Yachtshare extends MyController
 {
 	public function before()
@@ -395,7 +394,7 @@ class Controller_Yachtshare extends MyController
 		return $yachtshare;		
 	}
 
-	public function action_create_new($id = null)
+	public function action_create($id = null)
 	{
 		if(Input::method() == 'POST')
 		{
@@ -526,7 +525,6 @@ class Controller_Yachtshare extends MyController
 				Response::redirect('file/yachtshare/'.$yachtshare->id);									
 		}
 
-
 		if(Session::get("yachtshare_create_form"))
 		{
 			$data['form'] = Session::get("yachtshare_create_form");
@@ -538,10 +536,6 @@ class Controller_Yachtshare extends MyController
 			}			
 		}
 
-
-//echo "<pre>";
-//print_r($data['form']);
-//exit;
 		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('temp' => 0, 'approved' => 1, 'active' => 1), 'order_by' => array('name' => 'ASC')));
 
 		//Format the yachtshares to be used inline with javascript
@@ -581,81 +575,6 @@ class Controller_Yachtshare extends MyController
 
 		$this->template->title = 'Yacht Fractions: Create Yachtshare';
 		$this->template->content = View::forge('yachtshare/seller/create',$data,false);
-	}
-
-/*
- *---------------------------------------------
- |	DEPRACATED - SEE action_create_new()
- *---------------------------------------------
- */
-	public function action_create()
-	{
-		Response::redirect("yachtshare/create_new");
-		//Session::delete('yachtshare_create_form');
-		//$this->logged_in_as(array('seller', 'admin'));
-
-		$this->template->title = "Yachtshare: Create";
-		$data['yachtshare'] = ($this->param('boat_id')) ? Model_Yachtshare::find((int) $this->param('boat_id')): Model_Yachtshare::forge();
-
-		if($this->param('boat_id') and !$data['yachtshare'])
-			throw new HttpNotFoundException;
-
-		$data['location_general'] = array("UK","Mediterranean","Northern Europe","Caribbean","Only define specific area");
-		$data['location_specific'] = array("UK: south-east","UK: south coast", "UK: west", "UK: Wales", "Greece", "Turkey", "Croatia", "France (Med Coast)", "France (Atlantic Coast)", "Spain");
-
-		$data['user'] = $this->user;
-		$data['formfields'] = $this->formfields;
-
-		//If the user has specified which boat details are to be copied then retreive the details
-		if($this->param('boat_id'))
-		{
-			$yachtshare = Model_Yachtshare::find($this->param('boat_id'));				
-
-			foreach($this->formfields as $field)
-			{
-				$tag = $field->tag;
-					//echo "This field ID#: ".$field->id." (".$field->label.") has a public value of ".$field->public." and so will be set to ";
-				//If this is getting the data from an already entered "Live" yachtshare and the field is private then skip this row
-				if($field->public == 0)
-				{
-					//echo "BLANK";
-					$data['saved_form_data'][$tag] = '';
-				}elseif($field->search_field)
-				{
-					//echo "a value";
-					$data['saved_form_data'][$tag] = $yachtshare->$tag;
-				}else{
-					//echo "a value from an array";
-					$data['saved_form_data'][$tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
-				}
-				//echo "<br>";
-			}
-		}else{
-			foreach($this->formfields as $field)
-			{
-				$data['saved_form_data'][$field->tag] = '';				
-			}			
-		}
-
-		if($this->user->type == 'seller')
-		{
-			$this->template = \View::forge('public_template',array(),false);
-			$this->template->user = $this->user;
-			$this->template->form_page = true;												//To set the html body to display "are you sure" popup on exit
-
-			if($data['yachtshare']->temp)
-			{
-				$this->template->title = 'Yacht Fractions: Your saved (but incomplete) yachtshare';
-				$this->template->content = View::forge('yachtshare/seller/update_incomplete_form',$data,false);				
-			}else{
-				$this->template->title = 'Yacht Fractions: Create Yachtshare';
-				$this->template->content = View::forge('yachtshare/seller/create',$data,false);
-			}
-		}else{
-			$data['types'] = array("Sailing boats shares UK", "Sailing boat shares overseas", "Motor boat shares UK", "Used Yacht on brokerage", "Used yacht in Greece", "Used yacht - private sale");
-			$this->template->links['shares']['current'] = true;
-			$this->template->content = View::forge('yachtshare/admin/create',$data, false);
-		}
 	}
 
 	public function action_edit($id = null)

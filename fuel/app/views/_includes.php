@@ -60,3 +60,4 @@
 <script type="text/javascript" src="<?= Uri::create('public/assets/js/files/functions.js'); ?>"></script>
 
 <script type="text/javascript" src="<?= Uri::create('public/assets/js/jquery.ui.autocomplete.js'); ?>"></script>
+<script type="text/javascript" src="<?= Uri::create('public/assets/js/jquery.timeago.js'); ?>"></script>

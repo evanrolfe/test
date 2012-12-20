@@ -121,7 +121,11 @@ $(document).ready(function(){
 		}
 	});
 
-	setTimeout(function(){ save_form(); },2*60*1000);	
+	//AUTOSAVE STARTS IN 2 MINUTE
+	setTimeout(function(){ save_form(); },2*60*1000);		
+
+	//DISPLAY TIME AGO (from last save)
+	jQuery("abbr.timeago").timeago();
 });
 
 function select_shares(n)
@@ -139,8 +143,26 @@ function select_shares(n)
 
 function clear_form()
 {
-	$("input[type=text], select").val("");
-	$("textarea").html("");
+	var $clear_dialog = $('<div></div>')
+		.html('Are you sure you want to clear the entire form?')
+		.dialog({
+			autoOpen: false,
+			title: "Clearing the form",
+			modal: true,
+			width: 300,
+			buttons: {
+			    "No": function () {
+			        $(this).dialog("close");
+			    },					
+			    "Yes, I'm sure.": function () {
+			        $(this).dialog("close");			    	
+					$("input[type=text], select").val("");
+					$("textarea").html("");
+			    }								
+			}
+		});
+
+	$clear_dialog.dialog('open');
 }
 
 function save_form(display_results)
@@ -157,12 +179,10 @@ function save_form(display_results)
 			form : saved_form,
 			type : 'yachtshare'
 		},
-		success: function(data) {
-			if(display_results)
-			{	
-				$("#text_bar").html(data);
-				$("#text_bar2").html(data);
-			}
+		success: function(isotimestamp) {
+			$(".never_saved").hide();
+			$(".timeago").attr("title", isotimestamp).data("timeago",null).timeago();
+
 			setTimeout(function(){ save_form(); },2*60*1000);	//Autosave every 2 minutes
 			has_form_input_changed_since_last_save = false;
 		}
@@ -187,8 +207,8 @@ function save_form(display_results)
 				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
 			</div>
 			<br>
-			<button class="buttonS bLightBlue" id="clear_form_button" style="display: none;" onclick="clear_form()">Clear Form</button>
-			<button class="buttonS bGold" id="select_yachtshares_button">Copy this boat to form</button>
+			<button class="buttonS bLightBlue" id="clear_form_button" style="display: none;" onclick="clear_form()" type="button">Clear Form</button>
+			<button class="buttonS bGold" id="select_yachtshares_button" type="button">Copy this boat to form</button>
 		<div class="clear"></div>		
 	</div>	
 
@@ -199,14 +219,13 @@ function save_form(display_results)
 		<h6>New Yacht Share</h6>
 
 		<div style='text-align: right;'>
-			<span id="text_bar">
-			</span>
+			Last saved: <span class="never_saved">not saved.</span><span class="timeago"></span>
 			<button class="buttonS bBlue tipS cancel" style="margin: 6px 6px;" type="button" onclick="save_form()" original-title="Click here if you want to finish the form later.">Save and keep working</button>
 		</div>				
 		<div class="clear"></div>
 	</div>
 
-<form action="<?= Uri::create('yachtshare/create_new'); ?>" method="POST" accept-charset="utf-8" id="create_form">
+<form action="<?= Uri::create('yachtshare/create'); ?>" method="POST" accept-charset="utf-8" id="create_form">
 <!-- <input type="hidden" name="user_id" value="<?= $user->id; ?>"> -->
 <input type="hidden" name="insert" value="1">
 <input type="hidden" name="form_type" value="yachtshare">
@@ -247,8 +266,7 @@ function save_form(display_results)
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
-			<span id="text_bar2">
-			</span>
+			Last saved: <span class="never_saved">not saved.</span><span class="timeago"></span>
 			<button class="buttonS bBlue tipS cancel" style="margin: 6px 6px;" type="button" onclick="save_form()" original-title="Click here if you want to finish the form later.">Save and keep working</button>
 			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="button" original-title="Click here to finalize and submit the yacht share." id="create_form_submit" onclick="submitClicked=true;">Submit</button>
 		</div>

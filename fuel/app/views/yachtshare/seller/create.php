@@ -5,12 +5,12 @@ var has_form_input_changed_since_last_save = false;
 /*--------------------------------------------
  | Has the form been changed?
  *--------------------------------------------
- *
- * Prompt the user on exit/refresh if:
- *
- * 1. The form has been automatically filled out with the details of another boat (even if no changes have been made by user)
- * 		i.e. /yachtshare/create/1
- * 2. A change in one of the form fields has been made by the user
+ |
+ | Prompt the user on exit/refresh if:
+ |
+ | 1. The form has been automatically filled out with the details of another boat (even if no changes have been made by user)
+ | 		i.e. /yachtshare/create/1
+ | 2. A change in one of the form fields has been made by the user
  */
 
 var yachtshares = <?=json_encode($yachtshares_for_json);?>;
@@ -19,10 +19,13 @@ $(document).ready(function(){
 	var shares = <?= json_encode($yachtshares_titles_for_json); ?>;
 
 	$( "#search_yachtshares" ).autocomplete({
-		source: shares
+		source: shares,
+
 	});	
 
 	$("#select_yachtshares_button").click(function(){
+		$("#clear_form_button").show();
+
 		var name_make = $("#search_yachtshares").val();
 		var id_of_selected;
 		//Pick out the desire yachtshare according to the name and make given
@@ -118,7 +121,7 @@ $(document).ready(function(){
 		}
 	});
 
-	save_form(false);	
+	setTimeout(function(){ save_form(); },2*60*1000);	
 });
 
 function select_shares(n)
@@ -134,10 +137,16 @@ function select_shares(n)
 	}
 }
 
+function clear_form()
+{
+	$("input[type=text], select").val("");
+	$("textarea").html("");
+}
+
 function save_form(display_results)
 {
 	//Set the default value of display_results to true
-	display_results = typeof display_results !== 'undefined' ? display_results : true;	
+	display_results = true;//typeof display_results !== 'undefined' ? display_results : true;	
 
 	var saved_form = $("#create_form").serializeArray();
 
@@ -172,19 +181,14 @@ function save_form(display_results)
 
 	<div class="formRow">
 		If you think we already have, in our database, the the details of the yachtshare you wish to enter in the form then you may find in the dropdown right below and have the details automatically copied over to the form by clicking on your desired yachtshare from the dropdown. Be careful though! Selecting a boat from this dropdown will delete any data you have already entered into the database! 
-		<div class="clear"></div>		
-	</div>
-
-	<div class="formRow">
-		<div>
-		<div class="searchLine" style="width: 500px;">
-				<input type="text" id="search_yachtshares" placeholder="Enter search text..." autocomplete="off">
+			<div class="searchLine" style="width: 500px;">
+				<input type="text" id="search_yachtshares" placeholder="Enter the name of your boat..." autocomplete="off">
 				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
 				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
 			</div>
 			<br>
+			<button class="buttonS bLightBlue" id="clear_form_button" style="display: none;" onclick="clear_form()">Clear Form</button>
 			<button class="buttonS bGold" id="select_yachtshares_button">Copy this boat to form</button>
-		</div>
 		<div class="clear"></div>		
 	</div>	
 

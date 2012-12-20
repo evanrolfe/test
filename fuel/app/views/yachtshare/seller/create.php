@@ -104,7 +104,7 @@ $(document).ready(function(){
 			has_form_input_changed_since_last_save = true;
 
 	var preventUnloadPrompt=false;
-	var messageBeforeUnload = "Closing this browser will mean that all the data you entered is lost. If you want to close the browser without loosing the data you have entered press 'Save for later' at the bottom of the form and your data will remain there when you come back.";
+	var messageBeforeUnload = 'You have unsaved data! If you wish to save that data, please select "Stay on this page", then click the blue "Save and keep working" button before closing the browser.';
 
 	//var redirectAfterPrompt = "http://www.google.co.in";
 	$('form').live('submit', function() { preventUnloadPrompt = true; });
@@ -193,27 +193,31 @@ function save_form(display_results)
 <div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
-		<h6>Is your yachtshare already in our database?</h6>
-		<div style='text-align: right; padding: 8px 14px 7px 14px;'>
-		</div>		
+		<h6>Instructions</h6>	
+		<div class="clear"></div>
+	</div>
+
+	<div class="formRow" align="left">
+		Please complete this form as fully as possible, noting that:
+		<ul class="liTip">
+			<li>Questions marked with a red star are required</li>
+			<li>The form will be automatically saved to your computer every five minutes and also when you click the button "Save and keep working"</li>
+			<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
+			<li>After clicking submit, you will be able to </li>	
+			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - chris@yachtfractions.co.uk (Tel: 01326 37443)</li>
+			<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
+		</ul>
+	</div>	
+</div>
+
+<div class="widget fluid" style="width: 75%;">
+
+    <div class="whead">
+		<h6>Save time if your yacht is already in our database!</h6>		
 		<div class="clear"></div>
 	</div>
 
 	<div class="formRow">
-		<div align="left">
-			Please complete this form as fully as possible, noting that:
-			<ul class="liTip">
-				<li>Questions marked with a red star are required</li>
-				<li>The form will be automatically saved to your computer every five minutes and also when you click the button "Save and keep working"</li>
-				<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
-				<li>After clicking submit, you will be able to </li>	
-				<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - chris@yachtfractions.co.uk (Tel: 01326 37443)</li>
-				<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
-			</ul>
-		</div>
-		<br>
-		<b>Save time if your yacht is already in our database!</b>
-		<br>
 		If your yacht was previously registered with us, we can save you time by copying the data to this form. Type in the name of your yacht; if your boat shows up, click on the name and then click on button right below that says "Copy this boat to form".
 			<div class="searchLine" style="width: 500px;">
 				<input type="text" id="search_yachtshares" placeholder="Enter the name of your boat..." autocomplete="off">
@@ -221,7 +225,6 @@ function save_form(display_results)
 				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
 			</div>
 			<br>
-			<button class="buttonS bLightBlue" id="clear_form_button" style="display: none;" onclick="clear_form()" type="button">Clear Form</button>
 			<button class="buttonS bGold" id="select_yachtshares_button" type="button">Copy this boat to form</button>
 		<div class="clear"></div>		
 	</div>	

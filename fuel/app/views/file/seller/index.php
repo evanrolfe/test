@@ -4,16 +4,9 @@ $(function(){
 });
 </script>
 
-<form action="<?= Uri::create('file/upload'); ?>" method="POST" enctype="multipart/form-data" id="upload_form">
-<input type="hidden" name="belongs_to_id" value="<?=$item->id;?>" />
-<input type="hidden" name="belongs_to" value="<?=$type;?>" />
-
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
-		<h6>Files</h6>
-		<div align="right">
-			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Finish Yachtshare Submission</button></a>
-		</div>
+		<h6>Instructions</h6>
 		<div class="clear"></div>
 	</div>
 
@@ -23,12 +16,23 @@ $(function(){
 			<ol>
 				<li>Click the [+] button to select a file from your computer</li>
 				<li>Select the type of file that this represents</li>
-				<li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
-				<li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
-				<li>Public gallery photo – additional images that will be displayed in the detailed listing</li>
 				<li>Click UPLOAD - this may take a minute or two</li>
 			</ol>
 			Repeat the process for additional files.		
+		</div>
+		<div class="clear"></div>
+	</div>	
+</div>
+
+<form action="<?= Uri::create('file/upload'); ?>" method="POST" enctype="multipart/form-data" id="upload_form">
+<input type="hidden" name="belongs_to_id" value="<?=$item->id;?>" />
+<input type="hidden" name="belongs_to" value="<?=$type;?>" />
+
+<div class="widget fluid" style="width: 75%;">
+    <div class="whead">
+		<h6>Files</h6>
+		<div align="right">
+			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Finish Yachtshare Submission</button></a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -62,6 +66,19 @@ $(function(){
 	  </div>
 	   <div class="clear"></div>
   </div>
+
+	<div class="formRow">
+		<div class="grid3">&nbsp;
+		</div>
+		<div class="grid9" align="left">
+			<ul class="liInfo">
+				<li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
+				<li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
+				<li>Public gallery photo – additional images that will be displayed in the detailed listing</li>
+			<ul>
+		</div>
+	   <div class="clear"></div>		
+	</div>
 
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>

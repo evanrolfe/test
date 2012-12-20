@@ -152,18 +152,9 @@
 	"buffers":
 	[
 		{
-			"file": "fuel/app/views/yachtshare/seller/create.php",
 			"settings":
 			{
-				"buffer_size": 9583,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "fuel/app/classes/controller/session.php",
-			"settings":
-			{
-				"buffer_size": 6306,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -175,6 +166,26 @@
 		"selected_items":
 		[
 			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add..."
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
 				"git push",
 				"Git: Push"
 			],
@@ -183,15 +194,7 @@
 				"Git: Commit"
 			],
 			[
-				"git add",
-				"Git: Add Current File"
-			],
-			[
 				"status",
-				"Git: Status"
-			],
-			[
-				"git status",
 				"Git: Status"
 			],
 			[
@@ -217,10 +220,6 @@
 			[
 				"git sta",
 				"Git: Status"
-			],
-			[
-				"git commit",
-				"Git: Commit"
 			],
 			[
 				"packa",
@@ -307,7 +306,7 @@
 				"Package Control: Add Repository"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -324,23 +323,24 @@
 	},
 	"file_history":
 	[
-		"/home/evan/www/yacht/fuel/app/views/_includes.php",
-		"/home/evan/www/yacht/fuel/app/config/routes.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
+		"/home/evan/www/yacht/fuel/app/views/file/seller/index.php",
+		"/home/evan/www/yacht/fuel/app/views/session/login.php",
+		"/home/evan/www/yacht/fuel/app/config/routes.php",
+		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
+		"/home/evan/www/yacht/fuel/app/views/_includes.php",
 		"/home/evan/www/yacht/public/assets/js/files/functions.js",
 		"/home/evan/www/yacht/public/assets/css/styles.css",
 		"/home/evan/www/yacht/public/assets/css/plugins.css",
 		"/home/evan/www/resources/jquery-autocomplete/demo/index.html",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/view.php",
-		"/home/evan/www/yacht/fuel/app/views/file/seller/index.php",
 		"/home/evan/www/yacht/fuel/app/views/buyer/thankyou.php",
-		"/home/evan/www/yacht/fuel/app/views/session/login.php",
 		"/home/evan/www/yacht/fuel/app/config/production/db.php",
 		"/home/evan/www/yacht/fuel/app/config/development/db.php",
 		"/home/evan/www/yacht/fuel/app/views/buyer/create2.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/seller.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
 		"/home/evan/www/yacht/fuel/app/views/forms/_dropdown.php",
 		"/home/evan/www/yacht/fuel/app/classes/model/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/views/seller/search_results.php",
@@ -380,7 +380,6 @@
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/_nav.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/_nav.php",
 		"/home/evan/www/yacht/fuel/app/views/template.php",
-		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
 		"/home/evan/www/yacht/fuel/app/classes/mytemplate.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/index.php",
 		"/home/evan/www/yacht/CONTRIBUTING.md",
@@ -457,54 +456,25 @@
 			[
 				{
 					"buffer": 0,
-					"file": "fuel/app/views/yachtshare/seller/create.php",
 					"settings":
 					{
-						"buffer_size": 9583,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3900,
-								3900
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 1556.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "fuel/app/classes/controller/session.php",
-					"settings":
-					{
-						"buffer_size": 6306,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4830,
-								4830
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2055.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

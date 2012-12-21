@@ -41,11 +41,24 @@ $(document).ready(function(){
 		var form_data = yachtshares[id_of_selected];
 		has_form_input_changed_since_last_save = true;
 
+		//When copying over templates, the formfields with tags in this array will be skipped
+		var excluded_fields = ["name","location_general","location_specific","lying","price"];
+
 		for(var tag in form_data)
 		{
-			$("input[name="+tag+"]").val(form_data[tag]);
-			$("select[name="+tag+"]").val(form_data[tag]);
-			$("textarea[name="+tag+"]").html(form_data[tag]);
+			if(form_data['name'].charAt(0)=="*")
+			{
+				if($.inArray(tag,excluded_fields)==-1)
+				{
+					$("input[name="+tag+"]").val(form_data[tag]);
+					$("select[name="+tag+"]").val(form_data[tag]);
+					$("textarea[name="+tag+"]").html(form_data[tag]);
+				}
+			}else{
+				$("input[name="+tag+"]").val(form_data[tag]);
+				$("select[name="+tag+"]").val(form_data[tag]);
+				$("textarea[name="+tag+"]").html(form_data[tag]);				
+			}	
 		}
 
 		$("#clear_form_button").show();

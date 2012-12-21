@@ -89,7 +89,9 @@ Also each file can be of the type:
 		if(Input::method() == 'POST')
 		{
 		//0. Check that a file has been inputted
-			if(empty(Input::file('file')['name']))
+			$input_file = Input::file('file');
+			$file_name = $input_file['name'];
+			if(empty($file_name))
 			{
 				Session::set_flash('error', 'Please follow the instructions and select a file by clicking the [+] button next to the "Select a File:" row.');	
 				Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));

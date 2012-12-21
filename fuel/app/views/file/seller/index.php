@@ -1,6 +1,6 @@
 <script type="text/javascript">
 $(function(){
-	$("#upload_form").validate();
+
 });
 </script>
 
@@ -82,8 +82,11 @@ $(function(){
 
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
-		<div style='text-align: right;'>
-			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit">Upload</button>
+		<div style='text-align: right; margin: 6px 6px; display: none;' id="loading">		
+			<img src="<?=Uri::create('public/assets/images/elements/loaders/4s.gif');?>"/>Please wait while your file uploads.
+		</div>
+		<div style='text-align: right;' id="submit_div">
+			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" onclick="$('#loading').show();$('#submit_div').hide();">Upload</button>
 		</div>
 		<div class="clear"></div>
 	</div>

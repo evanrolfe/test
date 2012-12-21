@@ -5,7 +5,7 @@
 4. Go through all emailtemplates and check that the right formfields are being used and are functional (https://github.com/evanrolfe/test/issues/19)
 5. Finish front-end site
 6. ~~Get a loading screen up while the user's file is being uploaded~~ (Completed Fri 17:30)
-7. Have yacht default specification in autocomplete dropdown
+7. ~~Have yacht default specification in autocomplete dropdown~~ (Completed Fri 19:00)
 
 ##Installation
 See INSTALL.md in project root

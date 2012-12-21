@@ -43,10 +43,11 @@ $(document).ready(function(){
 
 		//When copying over templates, the formfields with tags in this array will be skipped
 		var excluded_fields = ["name","location_general","location_specific","lying","price"];
+		var exclude_str = "*";
 
 		for(var tag in form_data)
 		{
-			if(form_data['name'].charAt(0)=="*")
+			if(form_data['name'].charAt(0)==exclude_str)
 			{
 				if($.inArray(tag,excluded_fields)==-1)
 				{
@@ -88,7 +89,16 @@ $(document).ready(function(){
 		return false;
 	});
 
+	jQuery.validator.addMethod("notEqual", function(value, element, param) {
+	  return this.optional(element) || value != param;
+	}, "Please specify a different (non-default) value");
+
+
 	$("#create_form").validate({
+		rules: {
+			share_1_num : { notEqual : 0 },
+			share_1_den : { notEqual : 0 }			
+		},
 		errorPlacement: function(error, element)
 		{
 			if (element.attr("name") != "share_1_num" )

@@ -32,7 +32,7 @@ $(function(){
     <div class="whead">
 		<h6>Files</h6>
 		<div align="right">
-			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Finish Yachtshare Submission</button></a>
+			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>" class="buttonS bBlue" style="margin: 6px 6px;" >Finish Yachtshare Submission</a>
 		</div>
 		<div class="clear"></div>
 	</div>

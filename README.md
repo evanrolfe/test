@@ -1,3 +1,11 @@
+#Evan's Todo: Dec 21
+1. Sort out yachtshare/edit error
+2. Fix formatting glitch (https://github.com/evanrolfe/test/issues/17)
+3. Go through each formfield, make volatile the ones that should be, make first/last names for both buyer/seller (https://github.com/evanrolfe/test/issues/19)
+4. Go through all emailtemplates and check that the right formfields are being used and are functional (https://github.com/evanrolfe/test/issues/19)
+5. Finish front-end site
+6. Get a loading screen up while the user's file is being uploaded
+
 ### Important Notes (for evan)
 * Check that the formfields have the right public/private settings (for copying private data in yachtshare/create)
 * Check the values of columns: active,temp in table: yachtshares

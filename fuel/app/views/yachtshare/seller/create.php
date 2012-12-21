@@ -91,7 +91,7 @@ $(document).ready(function(){
 
 	jQuery.validator.addMethod("notEqual", function(value, element, param) {
 	  return this.optional(element) || value != param;
-	}, "Please specify a different (non-default) value");
+	}, "Error: 0/0 is not a defined number!");
 
 
 	$("#create_form").validate({

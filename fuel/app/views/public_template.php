@@ -22,7 +22,6 @@
 </head>
 <body <? if(isset($form_page) and $form_page): ?>onbeforeunload="return confirmExit()"<? endif; ?>>
 <div style="width: 100%; padding-top: 20px;" align="center">
-
 	<h1><?= $title; ?></h1>
 
 	<? if(isset($offline) and $offline): ?>
@@ -33,9 +32,7 @@
 		</div>
 	<? endif;?>
 
-	<div style="width: 75%;">
 		<?php echo render('_flash_messages'); ?>
-	</div>
 
 	<?= $content; ?>
 

@@ -31,7 +31,7 @@ $(document).ready(function(){
 		//Pick out the desire yachtshare according to the name and make given
 		for(var id in yachtshares)
 		{
-			if(yachtshares[id]['name']+" - "+yachtshares[id]['make'] == name_make)
+			if(yachtshares[id]['make']+" - "+yachtshares[id]['name'] == name_make)
 			{
 				id_of_selected = id;
 				break;
@@ -212,7 +212,6 @@ function save_form(display_results)
 	});
 }
 </script>
-
 <div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
@@ -243,7 +242,7 @@ function save_form(display_results)
 	<div class="formRow">
 		If your yacht was previously registered with us, we can save you time by copying the data to this form. Type in the name of your yacht; if your boat shows up, click on the name and then click on button right below that says "Copy this boat to form".
 			<div class="searchLine" style="width: 500px;">
-				<input type="text" id="search_yachtshares" placeholder="Enter the name of your boat..." autocomplete="off">
+				<input type="text" id="search_yachtshares" placeholder="Enter the make/model of your boat..." autocomplete="off">
 				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
 				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
 			</div>

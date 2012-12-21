@@ -547,7 +547,7 @@ class Controller_Yachtshare extends MyController
 		{
 			$data['yachtshares_for_json'][$yachtshare->id] = array();
 
-			$data['yachtshares_titles_for_json'][] = $yachtshare->name." - ".$yachtshare->make;
+			$data['yachtshares_titles_for_json'][] = $yachtshare->make." - ".$yachtshare->name;
 
 			foreach($this->formfields as $field)
 			{

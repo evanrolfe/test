@@ -6,9 +6,14 @@
 5. Finish front-end site
 6. Get a loading screen up while the user's file is being uploaded
 
-### Important Notes (for evan)
-* Check that the formfields have the right public/private settings (for copying private data in yachtshare/create)
-* Check the values of columns: active,temp in table: yachtshares
+
+
+
+
+
+
+
+
 
 #Testing
 

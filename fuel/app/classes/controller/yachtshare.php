@@ -321,9 +321,10 @@ class Controller_Yachtshare extends MyController
 			}elseif(Input::post('update')){
 				$yachtshare = Model_Yachtshare::find(Input::post('yachtshare_id'));
 
-				$associated_ids = explode(',', $yachtshare->group_ids);
-				if(count($associated_ids) < 1)
+				if(!is_null($yachtshare->group_ids))
 				{
+					$associated_ids = explode(',', $yachtshare->group_ids);		
+				}else{
 					$associated_ids = array($yachtshare->id);
 				}
 
@@ -536,7 +537,7 @@ class Controller_Yachtshare extends MyController
 			}			
 		}
 
-		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('temp' => 0, 'approved' => 1, 'active' => 1), 'order_by' => array('name' => 'ASC')));
+		$data['yachtshares'] = Model_Yachtshare::find('all',array('where' => array('approved' => 1), 'order_by' => array('name' => 'ASC')));
 
 		//Format the yachtshares to be used inline with javascript
 		$data['yachtshares_for_json'] = array();
@@ -579,7 +580,7 @@ class Controller_Yachtshare extends MyController
 
 	public function action_edit($id = null)
 	{
-		$this->logged_in_as(array('seller', 'admin'));
+		$this->logged_in_as(array('admin'));
 		if(is_null($id))
 			throw new HttpNotFoundException;
 
@@ -593,16 +594,8 @@ class Controller_Yachtshare extends MyController
 		$data['user'] = $this->user;
 		$this->template->title = "Yachtshare: ".$data['yachtshare']->name;
 
-		if($this->user->type == 'seller')
-		{
-			$this->template = \View::forge('public_template',array(),false);
-			$this->template->user = $this->user;
-			$this->template->title = 'Yacht Fractions: Viewing Yachtshare';
-			$this->template->content = View::forge('yachtshare/seller/edit',$data,false);
-		}elseif($this->user->type == 'admin'){
-			$this->template->links['shares']['current'] = true;
-			$this->template->content = View::forge('yachtshare/admin/edit',$data,false);
-		}
+		$this->template->links['shares']['current'] = true;
+		$this->template->content = View::forge('yachtshare/admin/edit',$data,false);
 	}
 
 	public function action_approve($id=null)

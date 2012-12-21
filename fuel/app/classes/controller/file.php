@@ -88,6 +88,21 @@ Also each file can be of the type:
 		//$this->logged_in_as(array('admin','seller'));
 		if(Input::method() == 'POST')
 		{
+		//0. Check that a file has been inputted
+			if(empty(Input::file('file')['name']))
+			{
+				Session::set_flash('error', 'Please follow the instructions and select a file by clicking the [+] button next to the "Select a File:" row.');	
+				Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
+			}
+		//0.1. Check that a file type has been selected
+			$type = Input::post('type');
+			if(empty($type))
+			{
+				Session::set_flash('error', 'Please follow the instructions and select a file type from the dropdown in the form below.');	
+				Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
+			}
+
+
 		//1. process the uploaded files in $_FILES
 
 			$config = array(

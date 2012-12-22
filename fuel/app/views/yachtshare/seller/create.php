@@ -42,7 +42,7 @@ $(document).ready(function(){
 		has_form_input_changed_since_last_save = true;
 
 		//When copying over templates, the formfields with tags in this array will be skipped
-		var excluded_fields = ["name","location_general","location_specific","lying","price"];
+		var excluded_fields = ["name","type","location_general","location_specific","lying","price"];
 		var exclude_str = "*";
 
 		for(var tag in form_data)

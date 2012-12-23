@@ -29,16 +29,15 @@ $(document).ready(function(){
 
 		var name_make = $("#search_yachtshares").val();
 
-		alert("RECEIVED: "+name_make+"\nLOOKING IT UP IN ARRAY");
-
 		var form_data = yachtshares[name_make];
 
-		alert("FOUND: "+form_data['name'])
 		has_form_input_changed_since_last_save = true;
 
 		//When copying over templates, the formfields with tags in this array will be skipped
 		var excluded_fields = ["name","type","location_general","location_specific","lying","price"];
 		var exclude_str = "*";
+
+alert(form_data['equipment']);
 
 		for(var tag in form_data)
 		{
@@ -57,7 +56,7 @@ $(document).ready(function(){
 			}	
 		}
 
-		$("#clear_form_button").show();
+		$("#clear_form_button").show();		//DEPRACATED
 	});
 
 	var $dialog = $('<div></div>')
@@ -203,6 +202,9 @@ function save_form(display_results)
 
 			setTimeout(function(){ save_form(); },2*60*1000);	//Autosave every 2 minutes
 			has_form_input_changed_since_last_save = false;
+		},
+		failure: function() {
+			alert("Error: your form could not be saved!");
 		}
 	});
 }

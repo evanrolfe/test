@@ -546,8 +546,9 @@ class Controller_Yachtshare extends MyController
 		foreach($data['yachtshares'] as $yachtshare)
 		{
 			$data['yachtshares_for_json'][$yachtshare->id] = array();
-
-			$data['yachtshares_titles_for_json'][] = $yachtshare->make." - ".$yachtshare->name;
+			$identifier = $yachtshare->make." - ".$yachtshare->name;
+			
+			$data['yachtshares_titles_for_json'][] = $identifier;
 
 			foreach($this->formfields as $field)
 			{
@@ -555,14 +556,14 @@ class Controller_Yachtshare extends MyController
 				if($field->public == 0)
 				{
 					//echo "BLANK";
-					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = '';
+					$data['yachtshares_for_json'][$identifier][$field->tag] = '';
 				}elseif($field->search_field)
 				{
 					//echo "a value";
-					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = $yachtshare->$tag;
+					$data['yachtshares_for_json'][$identifier][$field->tag] = $yachtshare->$tag;
 				}else{
 					//echo "a value from an array";
-					$data['yachtshares_for_json'][$yachtshare->id][$field->tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
+					$data['yachtshares_for_json'][$identifier][$field->tag] = (isset($yachtshare->boat_details[$tag])) ? $yachtshare->boat_details[$tag] : '';
 				}
 			}			
 		}

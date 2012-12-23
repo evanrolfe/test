@@ -17,6 +17,7 @@ var yachtshares = <?=json_encode($yachtshares_for_json);?>;
 
 $(document).ready(function(){
 	var shares = <?= json_encode($yachtshares_titles_for_json); ?>;
+	var shares_lookup = <?= json_encode($yachtshares_titles_for_json); ?>;
 
 	$( "#search_yachtshares" ).autocomplete({
 		source: shares,
@@ -27,18 +28,12 @@ $(document).ready(function(){
 		$("#clear_form_button").show();
 
 		var name_make = $("#search_yachtshares").val();
-		var id_of_selected;
-		//Pick out the desire yachtshare according to the name and make given
-		for(var id in yachtshares)
-		{
-			if(yachtshares[id]['make']+" - "+yachtshares[id]['name'] == name_make)
-			{
-				id_of_selected = id;
-				break;
-			}
-		}
 
-		var form_data = yachtshares[id_of_selected];
+		alert("RECEIVED: "+name_make+"\nLOOKING IT UP IN ARRAY");
+
+		var form_data = yachtshares[name_make];
+
+		alert("FOUND: "+form_data['name'])
 		has_form_input_changed_since_last_save = true;
 
 		//When copying over templates, the formfields with tags in this array will be skipped

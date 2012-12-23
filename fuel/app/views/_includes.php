@@ -61,3 +61,4 @@
 
 <script type="text/javascript" src="<?= Uri::create('public/assets/js/jquery.ui.autocomplete.js'); ?>"></script>
 <script type="text/javascript" src="<?= Uri::create('public/assets/js/jquery.timeago.js'); ?>"></script>
+<script type="text/javascript" src="<?= Uri::create('public/assets/js/jquery.blockUI.js'); ?>"></script>

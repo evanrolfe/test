@@ -3,7 +3,7 @@ class Controller_Session extends MyController
 {
 	public function action_create()
 	{
-		$this->not_logged_in();
+		//$this->not_logged_in();
 
 		if (Input::method() == 'POST')
 		{
@@ -31,8 +31,11 @@ class Controller_Session extends MyController
 		$this->template->user = false;
 		$this->template->title = 'Yacht Fractions';
 
+		if(isset($this->user))
+			$data['user'] = $this->user;
+		
 		$this->template->offline = $this->offline;
-		$this->template->content = View::forge('session/login');
+		$this->template->content = View::forge('session/login', $data);
 	}
 
 	//Make sure this doesn't delete save forms

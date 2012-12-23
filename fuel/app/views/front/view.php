@@ -15,14 +15,14 @@
         <script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.pack.js"></script>
         <script type="text/javascript" src="http://sailfractions.co.uk/include/js/functions.js"></script>
         <script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.easing.1.3.js"></script>
-<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/runonload.js"></script>
-<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/function.js"></script>
-<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.galleryview-1.1.js"></script>
-<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.timers-1.1.2.js"></script>
-<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/tutorial.js"></script>
-<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/galleryview.css" />
-<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/tutorial.css" />
-</head>
+		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/runonload.js"></script>
+		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/function.js"></script>
+		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.galleryview-1.1.js"></script>
+		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.timers-1.1.2.js"></script>
+		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/tutorial.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/galleryview.css" />
+		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/tutorial.css" />
+	</head>
 <body>
 <div id="wrapper1">
 <div id="page_wrapper">
@@ -47,31 +47,18 @@
 					<div id='photos_wrapper'>
 						<div id='photos' class='galleryview'>
 							<!--gallery images-->
-							
-							<div class="panel" >
-								<table><tr><td><a class="zoom2" href="http://sailfractions.co.uk/images/uploads/big-home-1-1292330530.jpg"><img  src="http://sailfractions.co.uk/images/uploads/home-1-1292330530.jpg"    alt=""  /></a> <a class="zoom2 glass" href="http://sailfractions.co.uk/images/uploads/big-home-1-1292330530.jpg"><img  src="../parts/zoom.png" alt=""  /></a></td></tr></table>
-							</div>
 
-							<div class="panel" >
-								<table>
-									<tr>
-										<td>
-											<a class="zoom2" href="http://sailfractions.co.uk/images/uploads/big-home-2-1292330546.jpg"><img  src="http://sailfractions.co.uk/images/uploads/home-2-1292330546.jpg"    alt=""  />
-											</a>
-											<a class="zoom2 glass" href="http://sailfractions.co.uk/images/uploads/big-home-2-1292330546.jpg">
-												<img  src="../parts/zoom.png" alt=""  />
-											</a>
-										</td>
-									</tr>
-								</table>
-							</div>
-
-							<ul class='filmstrip'>
-								<li ><img src="http://sailfractions.co.uk/images/uploads/thumbs/home-1-1292330530.jpg" alt=""/></li>
-								<li ><img src="http://sailfractions.co.uk/images/uploads/thumbs/home-2-1292330546.jpg" alt=""/></li>
-								<li ><img src="http://sailfractions.co.uk/images/uploads/thumbs/home-3-1292330567.jpg" alt=""/></li>
-								<li ><img src="http://sailfractions.co.uk/images/uploads/thumbs/home-4-1292330582.jpg" alt=""/></li>
-							<</ul>
+							<? foreach($yachtshare->get_public_image_urls() as $row): ?>
+								<div class="panel" >
+									<table>
+										<tr>
+											<td>
+												<img height="400px" src="http://yacht-fractions.co.uk/public/uploads/<?=$row['url'];?>"/>
+											</td>
+										</tr>
+									</table>
+								</div>						
+							<? endforeach; ?>
 						</div><!-- photos -->
 					</div><!--photos wrapper -->
 
@@ -81,45 +68,54 @@
 								<span><strong>Price: </strong>&pound;<?=$yachtshare->price;?></span><br /> 
 								<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br />
 								<span><strong>LOA: </strong> <?=$yachtshare->length;?>m</span><br /> 
-								<span><strong>LWL: </strong> </span><br /> 
-								<span><strong>Beam:</strong> 5.8m</span><br /> 
-								<span><strong>Draft: </strong> 3.1m</span><br /> 
-								<span><strong>Keel: </strong> Deep fin keel</span><br />
-								<span><strong>Number of Cabins: </strong> 4</span><br />
-								<span><strong>Number of Berths: </strong> 8/9</span><br />
-								<span><strong>Built: </strong> 2007</span><br /> 
-								<span><strong>Sail Area: </strong> Med/Caribbean     All Year</span><br /> 
-								<span><strong>Lying: </strong> Med and Caribbean</span><br /><br />
-								
-								<p><a class='learn_more login_to_reg' href='../buyers-registration?boat_id=10'><span>login to register inrerest in this boat</span></a></p>
-								<a class='up' id ='up' href='./' >&laquo; Back to Yacht Shares For Sale</a> 		
+								<span><strong>LWL: </strong> <?=$yachtshare->boat_details['lwl'];?></span><br /> 
+								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?>m</span><br /> 
+								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?>m</span><br /> 
+								<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br />
+								<span><strong>Number of Cabins: </strong> <?=$yachtshare->boat_details['num_cabins'];?></span><br />
+								<span><strong>Number of Berths: </strong> <?=$yachtshare->boat_details['num_berths'];?></span><br />
+								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
+								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 
+								<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?></span><br /><br />
+			
+								<a class='up' id ='up' href="<?=Uri::create('front');?>" >&laquo; Back to Yacht Shares For Sale</a> 		
 							</div>
 						</div>
 						<div class='long_details'><h2 class='grey'>SUMMARY</h2>
 							<p>
-							An awesomely beautiful yacht built by Oyster marine in the UK in 2007 giving luxurious accommodation for owner/guests. Totally equipped with state of the art navigation, communication and entertainment equipment. Professional skipper and haut cuisine trained chef. See also owner's website
-							<a href="http://www.cookie72.com"target="_blank">http://www.cookie72.com/</a>
+								<?=$yachtshare->boat_details['teaser'];?>
+							</p>
 
-							</p><h2 class='grey'>SAILING EQUIPMENT</h2>
-							<p>Cutter sloop rigged with <br />Fully battened loose footed mainsail with slab reefing<br />Staysail on roller furling<br />Genoa on roller furling<br />Spinnaker<br />Assymetric<br />24v electric Genoa winches Lewmar 88-3EST<br />Manual secondary cockpit winches Lewmar 66CST<br />24v electric halyard winch Lewmar 64CEST<br />Hydraulic headsail and staysail furling systems by Reckman<br />Hydraulic vang<br />Hydraulic backstay tensioners x 2<br />Hydraulic mainsail outhaul tensioner<br />Discontinuous rod rigging<br />Lewmar racing blocks</p>
-							<h2 class='grey'>NAVIGATION AND SAFETY</h2>
-							<p>Raymarine autopilot<br />ST60 log/speed/depth/wind<br />Raymarine 240 VHF<br />Raymarine LCD display Radar/GRP plotter with 4kw randome interfaced to autopilot<br />Iriduim phone<br />Internet and email<br />Fax machine<br />Sprayhood<br />Main cockpit bimini<br />Helmsman's cockpit bimini<br />Side opening gates with hinged ladders<br />SS transom ladder<br />Full ocean safety gear</p>
-							
+							<h2 class='grey'>SAILING EQUIPMENT</h2>
+							<p>
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['equipment']);?>
+							</p>
+
 							<h2 class='grey'>ENGINE, BATTERIES AND TANKS</h2>
-							<p>Perkins M225Ti 225hp diesel<br />average speed 9kn<br />4 blade Varifold prop<br />Aquadrive engine coupling system<br />Electric engine room fans x 3<br />Auto fire extinguisers<br />Onan 22.5KW diesel generator 220v AC<br />Fuel and water capacity guages<br />Racor water seperator<br />Fuel tanks x 2 total 2100 Litres<br />Manual and electric bilge pumps<br />Lewmar commander 400<br />Sleipner 285, 20ho electric tunnel bow thruster<br />820 a/h domestic batttery bank at 24V in 6V deep cycle batteries<br />88a/h engine starter battery 24V<br />88 a/h generator starter battery 12V<br />Mastervolt gel cells 12V for navigation equipment<br />110 a/h alternator<br />150 a/h 24V alternator<br />Alpha pro regulator<br />Engine starter battery alternator 40 a/h</p>
-							
+							<p>
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['engine']);?>
+							</p>
+
 							<h2 class='grey'>ACCOMMODATION</h2>
-							<p>Forward double cabin with full sized berth to port, dressing table, wardrobes and lockers to S'board, ensuite heads forward with electric WC, shower in sperate stall, vanity area with basin<br />Mast section : Galley to port with Force 10 4 burner gas cooker, grill and oven, Frigoboat 24v front opening fridge and top loading freezer. Mirowave, cockpit fridge. <br />Deck Saloon with large panoramic side/front windows. Large U shaped dinette with dining table, will convert to double berth to port<br />Forward facing navigation station with seat, fullsized chart table, instruments and electronics<br />Desk/office area with 2 swivel chairs, deck and lockers<br />Steps down to aft end of hull&nbsp; and up to cockpit:<br />Aft starboard twin (crew) cabin<br />Aft port double cabin with double berth, seat, storage and hanging<br />Aft heads with electric WC, shower and basin (shared by aft double as ensuite and Crew cabin)<br />Owners stateroom with vast central double bed. Seating and vanity areas, large fitted wardrobes. <br />Ensuite heads with electric WC, shower in separate stall, vanity area with basin.<br />Stern lazarette<br />Leisure cockpit with large dining table with cold storage and fridge<br />Sailing cockpit <br />Bathing platform<br />CD player and library<br />DVD player and library<br />Stereo system with internal/external speakers<br />Local TV<br />Full air conditioned<br />Lots of water based toys</p>
-							
-							<h2 class='grey'>DINGHY</h2>
-							<p>4m Rib on davits<br />50hp outboard</p>
-							
+							<p>
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['accomodation']);?>
+							</p>
+														
+							<h2 class='grey'>NAVIGATION AND SAFETY</h2>
+							<p>
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['navigation']);?>
+							</p>
+														
 							<h2 class='grey'>OWNERS COMMENTS</h2>
-							<p>Specified and ordered from new by the current owner from Oyster marine in Ipswich, launched in Spring 2007 and delivered to the Med. Having looked at the market we decided that the only way we could have the yacht we wanted was to order it from new and share. During the early part of the formation of the group the boat will be chartered to help to cover the running costs. The partners may decide to continue this arrangement. We have a full time skipper with extensive experience and a mate/chef who will produce 5* meals (Trained with Rick Stein) and also assist in the sailing. Partners do not need to be experienced in sailing a yacht of this type and size. The boat will sail the Med and Caribbean alternately. Partners may own more than one share.</p>
-							<p>For more details and photos please go to <a href="http://cookie72.com" target="_blank">http://cookie72.com</a>.</p>
-							
+							<p>
+								<?=$yachtshare->boat_details['owners_comments'];?>
+							</p>
+														
 							<h2 class='grey'>ANNUAL RUNNING COSTS</h2>
-							<p>Approximately &pound;60000 per 1/4 share per year to include all running costs, crew salaries and replacement provision. This will be reduced by any profits made from charter.</p>
+							<p>
+								<?=$yachtshare->boat_details['annual_costs'];?>
+							</p>
+
 						</div><!-- long details -->		                
 					</div><!--content-->				
 				</div><!--content_wrap-->

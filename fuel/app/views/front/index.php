@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/jquery-1.3.2.min.js"></script>
         <script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.pack.js"></script>
         <script type="text/javascript" src="http://sailfractions.co.uk/include/js/functions.js"></script>
-        </head>
+    </head>
 <body>
 <div id="wrapper1">
 	<div id="page_wrapper">
@@ -21,11 +21,27 @@
 				<div id="content" class="clearfix">
 					<div id="header">
 						<div id="logo">
-							<a href="http://sailfractions.co.uk/">&nbsp;</a>
+							<a href="<?=Uri::create('front');?>">&nbsp;</a>
 						</div>
 						<hr>
 	                </div>
 
+					<div class="sort">
+							<form method="POST" action="<?=Uri::create($form_action_url);?>">Choose Sail Area:
+								<select name="location" onchange="form.submit()">
+									<option value="">Any</option>
+									<? foreach($locations as $loc): ?>
+										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
+									<? endforeach; ?>
+								</select>
+							</form>
+					</div>
+
+					<div class='sort'>Sort by:
+						<? foreach($sort_options as $op): ?>
+							<a class='flex <?=$op[2];?>' href="<?=Uri::create('front/sort_by/'.$op[1]);?>"><em><?=$op[0];?></em></a>
+						<? endforeach;?>
+					</div>
 
 					<div class='inner_cont'>
 						<? foreach($yachtshares as $yachtshare): ?>
@@ -41,11 +57,13 @@
 							</div>
 
 							<div class="caption">
-								<p>
-									<span><strong>LOA: </strong><?=$yachtshare->length;?> ft</span> 
-									<span><strong>Price: </strong>£<?=$yachtshare->price;?></span>
-									<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span>
-								</p>
+									<p>
+										<span><strong>LOA: </strong><?=$yachtshare->length;?> ft</span> 
+										<span><strong>Price: </strong>£<?=$yachtshare->price;?></span>
+										<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span>
+										<span><strong>Location: </strong><?=$yachtshare->location_specific;?></span>
+										<span><strong>Date added: </strong><?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y");?></span>
+									</p>
 									<p>
 										<strong>Details: <?=$yachtshare->boat_details['teaser'];?></strong>
 									</p>
@@ -54,7 +72,6 @@
 							</div>
 													
 						</div>
-							<?=$yachtshare->name;?><br>
 						<? endforeach; ?>
 					</div>
 

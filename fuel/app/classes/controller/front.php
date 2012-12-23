@@ -9,10 +9,78 @@ class Controller_Front extends MyController
 		//$this->template->content = View::forge('session/login');
 	}
 
-	public function action_index($all = null)
+	//Route structure
+	//'front/list/loc/:location/type/:type/sort/:sort' => 'front/index'
+	//Default (display all) route:
+	///front/list/loc/-/type/-/sort/-
+
+	public function action_index()
 	{
+		$data['sort_options'] = array(
+			array('Newest', 'created_at', 'grey'),
+			array('Price', 'price', 'grey'),
+			array('LOA', 'length', 'grey'),
+			array('Share Size', 'share_size', 'grey'),				
+		);
+
+		$loc_specific = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_specific','belongs_to'=>'seller')));
+		$loc_general = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_general','belongs_to'=>'seller')));
+
+		if($this->param('sort_col'))
+		{
+			switch($this->param('sort_col'))
+			{
+				case 'created_at':
+					$order = array('created_at'=>'DESC');
+					$data['sort_options'][0][2]='red';
+				break;
+
+				case 'price':
+					$order = array('price'=>'ASC');
+					$data['sort_options'][1][2]='red';
+				break;
+
+				case 'length':
+					$order = array('length'=>'ASC');
+					$data['sort_options'][2][2]='red';
+				break;
+
+				case 'share_size':
+					$order = array('share_size'=>'DESC');
+					$data['sort_options'][3][2]='red';
+				break;
+
+				default:
+					$order = array();
+			}
+
+			$form_action_url = 'front/sort_by'.$this->param('sort_col');
+		}else{
+			$order = array();
+			$form_action_url = 'front/index';
+		}
+
+		if(Input::method()=='POST')
+		{
+			//Is the location general or specific?
+			$loc_col = (in_array(Input::post('location'), $loc_general->options)) ? 'location_general' : 'location_specific';
+
+			$data['yachtshares'] = Model_Yachtshare::find('all', array(
+				'where' => array('approved'=>1, 'active'=>1, $loc_col =>Input::post('location')),
+				'order_by' => $order,
+				));
+		}else{
+			$data['yachtshares'] = Model_Yachtshare::find('all', array(
+				'where' => array('approved'=>1, 'active'=>1),
+				'order_by' => $order,
+			));
+		}
+
+		$data['locations'] = array();
+		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
+		$data['selected_location'] = Input::post('location');
+
 		//Find the yachtshares according to any user defined filter preferences
-		$data['yachtshares'] = Model_Yachtshare::find('all', array('where' => array('approved'=>1, 'active'=>1)));
 		$this->template->content = View::forge('front/index',$data);
 	}
 

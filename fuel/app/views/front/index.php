@@ -47,11 +47,11 @@
 						<? foreach($yachtshares as $yachtshare): ?>
 						<div class="thumbs_cont">
 							<div class="details">
-								<a href="http://sailfractions.co.uk/boats/Alfin-del-Mundo" class="more"><?=$yachtshare->name;?></a>
+								<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
 							</div>
 
 							<div class="thumbs_img">
-								<a href="http://sailfractions.co.uk/boats/Alfin-del-Mundo" title="Alfin del Mundo">
+								<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>">
 									<img class="float_left" src="<?=('http://yacht-fractions.co.uk/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
 								</a>
 							</div>

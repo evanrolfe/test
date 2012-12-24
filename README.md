@@ -12,3 +12,5 @@
 
 ##Installation
 See INSTALL.md in project root
+
+This has been added by chris.

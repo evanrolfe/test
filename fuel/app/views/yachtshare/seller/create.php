@@ -13,7 +13,7 @@ var has_form_input_changed_since_last_save = false;
  | 2. A change in one of the form fields has been made by the user
  */
 
-var yachtshares = <?=json_encode($yachtshares_for_json);?>;
+var yachtshares = <?=json_encode(str_replace("\r\n","\n\r",$yachtshares_for_json));?>;
 
 $(document).ready(function(){
 	var shares = <?= json_encode($yachtshares_titles_for_json); ?>;
@@ -220,10 +220,10 @@ function save_form(display_results)
 		Please complete this form as fully as possible, noting that:
 		<ul class="liTip">
 			<li>Questions marked with a red star are required</li>
-			<li>The form will be automatically saved to your computer every five minutes and also when you click the button "Save and keep working"</li>
+			<li>The form will be automatically saved to your computer every two minutes and also when you click the button "Save and keep working"</li>
 			<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
-			<li>After clicking submit, you will be able to </li>	
-			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - chris@yachtfractions.co.uk (Tel: 01326 37443)</li>
+			<li>After clicking submit, you will be able to upload photos and documents </li>	
+			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 37443)</li>
 			<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
 		</ul>
 	</div>	
@@ -232,12 +232,14 @@ function save_form(display_results)
 <div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
-		<h6>Save time if your yacht is already in our database!</h6>		
+		<h6>Save time with our autocomplete feature</h6>		
 		<div class="clear"></div>
 	</div>
 
 	<div class="formRow">
-		If your yacht was previously registered with us, we can save you time by copying the data to this form. Type in the name of your yacht; if your boat shows up, click on the name and then click on button right below that says "Copy this boat to form".
+		<div align="left">
+			We may already have the details of your yacht in our database. Just type in the name or model (e.g. "Bavaria 36" or "Titanic"): if your boat shows up, click on the name and then click on "Copy this boat to form".
+		</div>
 			<div class="searchLine" style="width: 500px;">
 				<input type="text" id="search_yachtshares" placeholder="Enter the make/model of your boat..." autocomplete="off">
 				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>

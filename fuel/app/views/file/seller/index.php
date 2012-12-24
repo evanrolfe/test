@@ -31,9 +31,6 @@ $(function(){
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
 		<h6>Files</h6>
-		<div align="right">
-			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>" class="buttonS bBlue" style="margin: 6px 6px; color: white;" >Finish Yachtshare Submission</a>
-		</div>
 		<div class="clear"></div>
 	</div>
 
@@ -87,6 +84,7 @@ $(function(){
 		</div>
 		<div style='text-align: right;' id="submit_div">
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" onclick="$('#loading').show();$('#submit_div').hide();">Upload</button>
+			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>" class="buttonS bBlue" style="margin: 6px 6px; color: white;" >Finish Yachtshare Submission</a>
 		</div>
 		<div class="clear"></div>
 	</div>

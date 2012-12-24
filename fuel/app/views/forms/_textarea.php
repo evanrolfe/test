@@ -1,5 +1,5 @@
 <div class="formRow">
-    <div class="grid3"><label><?= $field->label; ?>
+    <div class="grid3" align="left"><label><?= $field->label; ?>
 	    	<? if(strpos($field->validation,'required') !== false):?><font color="red">*</font><?endif;?>
     </label></div>
     <div class="grid9 noSearch" align="left">

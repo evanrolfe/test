@@ -13,7 +13,37 @@
         <link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/style/menu.css" />
 		<script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/jquery-1.3.2.min.js"></script>
         <script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.pack.js"></script>
-        <script type="text/javascript" src="http://sailfractions.co.uk/include/js/functions.js"></script>
+        <script type="text/javascript">
+			$(document).ready(function(){
+					$('#photos').galleryView({
+						panel_width: 565,
+						panel_height: 385,
+						//frame_width: 100,
+						//frame_height: 99,
+						// panel_width: 800,
+					   // panel_height: 300,
+						frame_width: 55,
+						frame_height: 40,
+						transition_speed: 5000,
+						background_color: '#fff',
+						border: 'none',
+						easing: 'easeInOutBack',
+						pause_on_hover: true,
+					   // nav_theme: 'custom',
+						overlay_height: 52,
+						filmstrip_position: 'bottom',
+						overlay_position: 'bottom'
+							});
+					
+					$('.panel .zoom2 img').hover(function(){
+						$('.glass').show();
+					});
+					$('.panel .zoom2 img').mouseout(function(){
+						$('.glass').hide();
+					});
+					
+				});
+        </script>
         <script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/runonload.js"></script>
 		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/function.js"></script>

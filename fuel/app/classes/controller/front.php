@@ -76,8 +76,8 @@ class Controller_Front extends MyController
 			));
 		}
 
-		$data['locations'] = array();
-		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
+		//$data['locations'] = array();
+		$data['locations'] = $loc_general->options; //array_merge($loc_general->options, $loc_specific->options);
 		$data['selected_location'] = Input::post('location');
 
 		//Find the yachtshares according to any user defined filter preferences

@@ -2,6 +2,10 @@
 var submitClicked = false;
 var has_form_input_changed_since_last_save = false;
 
+function normalizeNewlines(input)
+{
+    return input;//.replace(/(\r\n|\r|\n)/g, '\r\n');
+}
 /*--------------------------------------------
  | Has the form been changed?
  *--------------------------------------------
@@ -13,7 +17,7 @@ var has_form_input_changed_since_last_save = false;
  | 2. A change in one of the form fields has been made by the user
  */
 
-var yachtshares = <?=json_encode(str_replace("\r\n","\n\r",$yachtshares_for_json));?>;
+var yachtshares = <?=json_encode($yachtshares_for_json);?>;
 
 $(document).ready(function(){
 	var shares = <?= json_encode($yachtshares_titles_for_json); ?>;
@@ -37,8 +41,6 @@ $(document).ready(function(){
 		var excluded_fields = ["name","type","location_general","location_specific","lying","price"];
 		var exclude_str = "*";
 
-alert(form_data['equipment']);
-
 		for(var tag in form_data)
 		{
 			if(form_data['name'].charAt(0)==exclude_str)
@@ -47,12 +49,12 @@ alert(form_data['equipment']);
 				{
 					$("input[name="+tag+"]").val(form_data[tag]);
 					$("select[name="+tag+"]").val(form_data[tag]);
-					$("textarea[name="+tag+"]").html(form_data[tag]);
+					$("textarea[name="+tag+"]").text(normalizeNewlines(form_data[tag]));
 				}
 			}else{
 				$("input[name="+tag+"]").val(form_data[tag]);
 				$("select[name="+tag+"]").val(form_data[tag]);
-				$("textarea[name="+tag+"]").html(form_data[tag]);				
+				$("textarea[name="+tag+"]").text(normalizeNewlines(form_data[tag]));				
 			}	
 		}
 

@@ -1,12 +1,14 @@
-#Evan's Todo: Dec 21
-1. ~~Sort out yachtshare/edit error~~ (Completed Fri 16:30)
-2. Fix formatting glitch (https://github.com/evanrolfe/test/issues/17)
-3. Go through each formfield, make volatile the ones that should be, make first/last names for both buyer/seller (https://github.com/evanrolfe/test/issues/19)
-4. ~~Go through all emailtemplates and check that the right formfields are being used and are functional (https://github.com/evanrolfe/test/issues/19)~~ (Completed Sat 15:30)
-5. Finish front-end site
-6. ~~Get a loading screen up while the user's file is being uploaded~~ (Completed Fri 17:30)
-7. ~~Have yacht default specification in autocomplete dropdown~~ (Completed Fri 19:00)
-8. Go through each button which is also a link and make sure it works in IE
+#FINAL Todo (Dec 24th)
+1. Fix IE formatting glitch (Issue #17)
+2. Make sure formfields are setup correctly in database (volatile if need be)
+3. THEN check email template that the correct formfields are being used in them
+4. Go through each button which is also a link and make sure it works in IE 
+
+##Check IE Buttons
+* formfieldbuyer/edit "Cancel"
+
+##Notes for Production
+* Get rid of "Only search specific area" from formieldbuyer->options ID #56
 
 ##Installation
 See INSTALL.md in project root

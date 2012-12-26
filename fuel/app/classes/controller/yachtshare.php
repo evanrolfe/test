@@ -311,7 +311,7 @@ class Controller_Yachtshare extends MyController
 					//Delete the saved_form session
 					Session::delete('yachtshare_create_form');
 
-					Session::set_flash('success', 'Your yacht share(s) has been successfully added to the database!');
+					Session::set_flash('success', 'Your yacht share(s) (details below) has been successfully added to the database!');
 					$url = 'yachtshare/view/'.$yachtshare->id;
 					Response::redirect($url);						
 				}

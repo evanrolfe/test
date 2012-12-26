@@ -18,8 +18,8 @@ function insert_var(val)
 	</div>
 
     <div class="formRow">
-		Click on the following to insert the variable into the body:<br>
-		<? foreach($tags as $tag): ?><a href="#" onclick="insert_var('<?= $tag; ?>')"><?= $tag; ?></a>, <? endforeach; ?>
+		You may use the following variables in the body:<br>
+		<? foreach($tags as $tag): ?><?= substr($tag,1,strlen($tag)-2); ?>, <? endforeach; ?>
 		<a href="#" onclick="insert_var('<buyer_name>')">buyer_name</a>
         <div class="clear"></div>
 	</div>

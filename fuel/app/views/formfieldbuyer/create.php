@@ -103,9 +103,9 @@ function add_option()
 				<option value="">Select</option>
 					<option value="text">Single line text field</option>
 					<option value="textarea">Mutli line text field</option>
-					<option value="text_fraction">Single line text field for fractions (i.e. share size)</option>
+					<!-- <option value="text_fraction">Single line text field for fractions (i.e. share size)</option> -->
 					<option value="dropdown">Dropdown box</option>
-					<option value="length">Measure of length</option>
+					<!-- <option value="length">Measure of length</option> -->
 					<option value="terms_and_conditions">Terms and conditions checkbox</option>
 			</select>
 		</div>

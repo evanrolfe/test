@@ -75,8 +75,6 @@ class Controller_Formfieldbuyer extends MyController
 					break;							
 				}
 
-				echo "DROPDOWN LINKED: ".Input::post('dropdown_linked');
-
 				$public = (Input::post('public')) ? 1 : 0;
 
 				if(Input::post('type')=='terms_and_conditions')
@@ -97,6 +95,11 @@ class Controller_Formfieldbuyer extends MyController
 					$description = Input::post('description');
 					$tag = Input::post("tag");
 				}
+
+				//If there is another formfield with the same tag then append the current timestamp so as to make it unique
+				$query = Model_Formfieldbuyer::query()->where('belongs_to',Input::post('belongs_to'))->where('tag',$tag);
+				if($query->count() > 0)
+					$tag = $tag."_".Date::forge()->get_timestamp();
 
 				$formfield = Model_Formfieldbuyer::forge(array(
 					'label' => $label,
@@ -215,8 +218,6 @@ class Controller_Formfieldbuyer extends MyController
 		if(Input::method() == 'POST')
 		{
 			$field->label = Input::post('label');
-			//$field->tag = Input::post('tag');
-			$field->type = Input::post('type');
 			$field->description = Input::post('description');
 			$field->options = (Input::post('are_options_linked') == '1') ? "ID:".Input::post('linked_options') : Input::post('options');			
 			$field->public = (Input::post('public')) ? 1 : 0;

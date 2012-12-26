@@ -277,8 +277,9 @@ class Model_Yachtshare extends \Orm\Model
 
 	public function get_public_image_urls()
 	{
-		$query = DB::query("SELECT url FROM `images` WHERE belongs_to='yachtshare' AND belongs_to_id=".$this->id." AND type IN ('public_header','public_gallery')");
-		$result = $query->as_assoc()->execute(); 
+		$query = DB::query("SELECT url FROM `images` WHERE belongs_to='yachtshare' AND belongs_to_id=".$this->id."");
+		$result = $query->as_assoc()->execute();
+		return $result;
 	}
 
 }

@@ -1,5 +1,5 @@
 #FINAL Todo (Dec 24th)
-1. Fix IE formatting glitch (Issue #17)
+1. ~~Fix IE formatting glitch (Issue #17)~~
 2. Make sure formfields are setup correctly in database (volatile if need be)
 3. THEN check email template that the correct formfields are being used in them
 4. FOR EVAN: Go through each button which is also a link and make sure it works in IE 

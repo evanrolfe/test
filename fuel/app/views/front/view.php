@@ -18,10 +18,6 @@
 					$('#photos').galleryView({
 						panel_width: 565,
 						panel_height: 385,
-						//frame_width: 100,
-						//frame_height: 99,
-						// panel_width: 800,
-					   // panel_height: 300,
 						frame_width: 55,
 						frame_height: 40,
 						transition_speed: 5000,
@@ -33,16 +29,15 @@
 						overlay_height: 52,
 						filmstrip_position: 'bottom',
 						overlay_position: 'bottom'
-							});
+					});
 					
 					$('.panel .zoom2 img').hover(function(){
 						$('.glass').show();
 					});
 					$('.panel .zoom2 img').mouseout(function(){
 						$('.glass').hide();
-					});
-					
-				});
+					});			
+		});
         </script>
         <script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/runonload.js"></script>

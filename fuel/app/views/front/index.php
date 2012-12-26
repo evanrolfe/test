@@ -65,7 +65,7 @@
 										<span><strong>Date added: </strong><?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y");?></span>
 									</p>
 									<p>
-										<strong>Details: <?=$yachtshare->boat_details['teaser'];?></strong>
+										<strong>Details: </strong><?=$yachtshare->boat_details['teaser'];?>
 									</p>
 									<p><span class=""><a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="m_details">MORE DETAILS »</a></span>
 								</p>

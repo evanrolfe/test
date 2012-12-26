@@ -13,7 +13,7 @@
 	<script type="text/javascript">
 	$(function(){
 		var $dialog = $('<div></div>')
-			.html('Are you sure you want to delete this form field?<br><?=$formfield->label;?>')
+			.html('Are you sure you want to delete the form field called <?=$field->label; ?>?<br>Please ONLY delete if you are sure that any data stored in this field is no longer needed.')
 			.dialog({
 				autoOpen: false,
 				title: "Deleting formfield",

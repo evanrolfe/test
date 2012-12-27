@@ -26,39 +26,36 @@ class Controller_Front extends MyController
 		$loc_specific = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_specific','belongs_to'=>'seller')));
 		$loc_general = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_general','belongs_to'=>'seller')));
 
-		if($this->param('sort_col'))
+
+		switch($this->param('sort_col'))
 		{
-			switch($this->param('sort_col'))
-			{
-				case 'created_at':
-					$order = array('created_at'=>'DESC');
-					$data['sort_options'][0][2]='red';
-				break;
+			case 'created_at':
+				$order = array('created_at'=>'DESC');
+				$data['sort_options'][0][2]='red';
+			break;
 
-				case 'price':
-					$order = array('price'=>'ASC');
-					$data['sort_options'][1][2]='red';
-				break;
+			case 'price':
+				$order = array('price'=>'ASC');
+				$data['sort_options'][1][2]='red';
+			break;
 
-				case 'length':
-					$order = array('length'=>'ASC');
-					$data['sort_options'][2][2]='red';
-				break;
+			case 'length':
+				$order = array('length'=>'ASC');
+				$data['sort_options'][2][2]='red';
+			break;
 
-				case 'share_size':
-					$order = array('share_size'=>'DESC');
-					$data['sort_options'][3][2]='red';
-				break;
+			case 'share_size':
+				$order = array('share_size'=>'DESC');
+				$data['sort_options'][3][2]='red';
+			break;
 
-				default:
-					$order = array();
-			}
-
-			$form_action_url = 'front/sort_by'.$this->param('sort_col');
-		}else{
-			$order = array();
-			$form_action_url = 'front/index';
+			default:
+				$order = array('created_at'=>'DESC');
+				$data['sort_options'][0][2]='red';					
 		}
+
+		$form_action_url = 'front/sort_by'.$this->param('sort_col');
+
 
 		if(Input::method()=='POST')
 		{

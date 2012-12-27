@@ -31,7 +31,7 @@ $(function(){
     <div class="whead">
 		<h6>Details</h6>
 		<div style='text-align: right'>
-			<a href="http://www.yachtfractions.co.uk/"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Done</button></a>
+			<a href="http://www.yachtfractions.co.uk/" class="buttonS bBlue" style="margin: 6px 6px; color:white;">Done</a>
 		</div>
 		<div class="clear"></div>
 	</div>

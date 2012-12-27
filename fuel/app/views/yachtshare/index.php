@@ -154,7 +154,7 @@ $(function(){
 		</div>
 		<? if(isset($show_new_button)): ?>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('yachtshare/create'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button"><span class="icon-add"></span><span>New</span></button></a>
+			<a href="<?= Uri::create('yachtshare/create'); ?>" class="buttonS bBlue" style="margin: 6px 6px;"><span class="icon-add"></span><span>New</span></a>
 		</div>
 		<? endif; ?>
 		<div class="clear"></div>

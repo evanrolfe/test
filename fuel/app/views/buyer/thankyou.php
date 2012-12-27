@@ -2,7 +2,7 @@
     <div class="whead">
 		<h6>Enquiry Successful</h6>
 		<div align="right">
-			<a href="http://www.yachtfractions.co.uk/"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button">Done</button></a>
+			<a href="http://www.yachtfractions.co.uk/" class="buttonS bBlue" style="margin: 6px 6px;">Done</a>
 		</div>
 		<div class="clear"></div>
 	</div>

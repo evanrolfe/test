@@ -101,7 +101,7 @@ $(function(){
 					</div>			
 
 					<div class="formRow" align="right">
-<a href="<?=Uri::create('buyer');?>"><button class="buttonS bGreen" style="margin: 3px 0px;" type="button">List All Buyers</button></a>
+<a href="<?=Uri::create('buyer');?>" class="buttonS bGreen" style="margin: 3px 0px; color: white;">List All Buyers</a>
 						<button id="search_button" class="buttonS bBlue" style="margin: 3px 0px;" type="submit"><span class="icon-search"></span><span>Update Filter</span></button>
 					</div>
 				</form>
@@ -126,7 +126,7 @@ $(function(){
 			<h6>Listing Buyers</h6>
 		</div>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('buyer/create'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;"><span class="icon-add"></span><span>New</span></button></a>
+			<a href="<?= Uri::create('buyer/create'); ?>" class="buttonS bBlue" style="margin: 6px 6px; color: white;"><span class="icon-add"></span><span>New</span></a>
 		</div>
 		<div class="clear"></div>
 	</div>

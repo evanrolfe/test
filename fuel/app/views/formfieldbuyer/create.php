@@ -91,7 +91,7 @@ function add_option()
     <div class="whead">
 		<h6>New Buyer Form Field</h6>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('formfieldbuyer'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button">Back</button></a>
+			<a href="<?= Uri::create('formfieldbuyer'); ?>" class="buttonS bRed" style="margin: 6px 6px;">Back</a>
 		</div>
 		<div class="clear"></div>
 	</div>

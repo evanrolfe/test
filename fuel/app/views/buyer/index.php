@@ -126,7 +126,7 @@ $(function(){
 			<h6>Listing Buyers</h6>
 		</div>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('buyer/create'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;"><span class="icon-add"></span><span>New</span></button></a>
+			<a href="<?= Uri::create('buyer/create'); ?>" class="buttonS bBlue" style="margin: 6px 6px; color: white;"><span class="icon-add"></span><span>New</span></a>
 		</div>
 		<div class="clear"></div>
 	</div>

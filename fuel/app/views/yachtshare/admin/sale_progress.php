@@ -19,7 +19,7 @@
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
-			<a href="<?= Uri::create('actionstep/create/'.$yachtshare->id.'/'.$yachtshare->active_buyer()->id); ?>"><button class="buttonS bGreen" style="margin: 6px 6px;">Add Action Step</button></a>
+			<a href="<?= Uri::create('actionstep/create/'.$yachtshare->id.'/'.$yachtshare->active_buyer()->id); ?>" class="buttonS bGreen" style="margin: 6px 6px; color:white;">Add Action Step</a>
 		</div>
 		<div class="clear"></div>
 	</div>

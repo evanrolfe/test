@@ -30,8 +30,8 @@ html>body #sortable li { height: 1.5em; line-height: 1.2em; }
     <div class="whead">
 		<h6>Listing Buyer Fields</h6>
 		<div style='text-align: right'>
-			<a href="<?= Uri::create('formfieldbuyer'); ?>"><button class="buttonS bRed" style="margin: 6px 6px;" type="button">Back</button></a> 
-<button class="buttonS bGreen" style="margin: 6px 6px; display: none;" id="save" type="submit">Save</button>
+			<a href="<?= Uri::create('formfieldbuyer'); ?>" class="buttonS bRed" style="margin: 6px 6px;">Back</a> 
+			<button class="buttonS bGreen" style="margin: 6px 6px; display: none;" id="save" type="submit">Save</button>
 		</div>
 		<div class="clear"></div>
 	</div>

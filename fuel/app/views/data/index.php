@@ -5,7 +5,7 @@
 		<h6>Data</h6>
 		<div style='text-align: right'>
 		<? if($offline): ?>
-			<a href="<?= Uri::create('data/import'); ?>"><button class="buttonS bBlue" style="margin: 6px 6px;" type="button"><span class="icon-upload"></span><span>Import</span></button></a>
+			<a href="<?= Uri::create('data/import'); ?>" class="buttonS bBlue" style="margin: 6px 6px;" ><span class="icon-upload"></span><span>Import</span></a>
 		<? endif; ?>
 		</div>
 		<div class="clear"></div>

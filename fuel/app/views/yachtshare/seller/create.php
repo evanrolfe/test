@@ -225,7 +225,7 @@ function save_form(display_results)
 			<li>The form will be automatically saved to your computer every two minutes and also when you click the button "Save and keep working"</li>
 			<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
 			<li>After clicking submit, you will be able to upload photos and documents </li>	
-			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 37443)</li>
+			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 374435)</li>
 			<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
 		</ul>
 	</div>	

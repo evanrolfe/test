@@ -225,7 +225,7 @@ function save_form(display_results)
 			<li>The form will be automatically saved to your computer every two minutes and also when you click the button "Save and keep working"</li>
 			<li>You can exit the form and complete it later using the same computer and browser. Press CTRL + D on the keyboard to add this form to your favorites so you can access it later</li>
 			<li>After clicking submit, you will be able to upload photos and documents </li>	
-			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 37443)</li>
+			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 374435)</li>
 			<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
 		</ul>
 	</div>	
@@ -245,7 +245,7 @@ function save_form(display_results)
 			<div class="searchLine" style="width: 500px;">
 				<input type="text" id="search_yachtshares" placeholder="Enter the make/model of your boat..." autocomplete="off">
 				<span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span>
-				<button type="submit" name="find" value=""><span class="icos-search"></span></button>
+				
 			</div>
 			<br>
 			<button class="buttonS bGold" id="select_yachtshares_button" type="button">Copy this boat to form</button>

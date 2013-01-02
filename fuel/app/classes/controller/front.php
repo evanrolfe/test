@@ -17,65 +17,127 @@ class Controller_Front extends MyController
 	public function action_index()
 	{
 		$data['sort_options'] = array(
-			array('Newest', 'created_at', 'grey'),
-			array('Price', 'price', 'grey'),
-			array('LOA', 'length', 'grey'),
-			array('Share Size', 'share_size', 'grey'),				
+			array('Newest', 'created_at', 'grey',''),
+			array('Price', 'price', 'grey',''),
+			array('LOA', 'length', 'grey',''),
+			array('Share Size', 'share_size', 'grey',''),				
 		);
 
 		$loc_specific = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_specific','belongs_to'=>'seller')));
 		$loc_general = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_general','belongs_to'=>'seller')));
 
 
-		switch($this->param('sort_col'))
-		{
-			case 'created_at':
-				$order = array('created_at'=>'DESC');
-				$data['sort_options'][0][2]='red';
-			break;
-
-			case 'price':
-				$order = array('price'=>'ASC');
-				$data['sort_options'][1][2]='red';
-			break;
-
-			case 'length':
-				$order = array('length'=>'ASC');
-				$data['sort_options'][2][2]='red';
-			break;
-
-			case 'share_size':
-				$order = array('share_size'=>'DESC');
-				$data['sort_options'][3][2]='red';
-			break;
-
-			default:
-				$order = array('created_at'=>'DESC');
-				$data['sort_options'][0][2]='red';					
-		}
-
-		$form_action_url = 'front/sort_by'.$this->param('sort_col');
-
-
 		if(Input::method()=='POST')
 		{
-			//Is the location general or specific?
-			$loc_col = (in_array(Input::post('location'), $loc_general->options)) ? 'location_general' : 'location_specific';
+		
+			$where = array(array('approved','=',1), array('active','=',1));
+			//LOCATION OPTIONS:
+			if(Input::post('location'))	
+			{	
+				//Is the location general or specific?
+				$loc_col = (in_array(Input::post('location'), $loc_general->options)) ? 'location_general' : 'location_specific';
 
+				$where[] = array($loc_col, '=', Input::post('location'));
+			}
+
+			//TYPE OPTIONS
+			if(Input::post('type'))
+			{
+				$type = Input::post('type');
+
+				switch(Input::post('type'))
+				{
+					case "Sailing Yacht Shares":
+						$where[] = array('type', 'IN', array("Sailing boat shares UK","Sailing boat shares overseas"));					
+					break;
+
+					case "Motor Yacht Shares":
+						$where[] = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
+					break;
+
+					case "Brokerage":
+						$where[] = array('type','=',"Used Yacht on brokerage");
+					break;
+				}
+			}
+
+			//ORDER OPTIONS
+			if(Input::post('created_at'))
+			{
+				$order = array('created_at'=>'DESC');
+				$data['sort_options'][0][2]='red';
+				$data['sort_options'][0][3]='1';				
+			}elseif(Input::post('price'))
+			{
+				$order = array('price'=>'ASC');
+				$data['sort_options'][1][2]='red';
+				$data['sort_options'][1][3]='1';				
+			}elseif(Input::post('length'))
+			{
+				$order = array('length'=>'ASC');
+				$data['sort_options'][2][2]='red';
+				$data['sort_options'][2][3]='1';
+			}elseif(Input::post('share_size'))				
+			{
+				$order = array('share_size'=>'DESC');
+				$data['sort_options'][3][2]='red';
+				$data['sort_options'][3][3]='1';
+			}else{
+				$order = array('created_at'=>'DESC');
+				$data['sort_options'][0][2]='red';
+				$data['form_action_url'] = 'front';									
+			}			
+
+/*
+			echo "WHERE:<br>";
+			echo "<pre>";
+			print_r($where);
+			echo "</pre><br>ORDER:<br><pre>";
+			print_r($order);
+			exit;
+*/
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
-				'where' => array('approved'=>1, 'active'=>1, $loc_col =>Input::post('location')),
+				'where' => $where,
 				'order_by' => $order,
 				));
 		}else{
+			//Sort by newest as defualt:
+			$data['sort_options'][0][2]='red';
+			$data['form_action_url'] = 'front';									
+			$where = array('approved'=>1, 'active'=>1);
+
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
-				'where' => array('approved'=>1, 'active'=>1),
-				'order_by' => $order,
+				'where' => $where,
+				'order_by' => array('created_at'=>'DESC'),
 			));
 		}
 
 		//$data['locations'] = array();
 		$data['locations'] = $loc_general->options; //array_merge($loc_general->options, $loc_specific->options);
+
+		$data['types'] = array("Sailing Yacht Shares","Motor Yacht Shares", "Brokerage");
+
+		$data['selected_type'] = Input::post('type');		
 		$data['selected_location'] = Input::post('location');
+
+		//Find the id of the first five newest yachtshares
+		$yachtshares_sorted_by_newest = Model_Yachtshare::find('all', array(
+			'where' => $where,
+			'order_by' => array('created_at'=>'DESC'),
+		));
+
+		$data['newest_ids'] = array();
+		$i=0;
+		if(count($yachtshares_sorted_by_newest) > 5)
+		{
+			foreach($yachtshares_sorted_by_newest as $yachtshare)
+			{
+				if($i<5)
+					$data['newest_ids'][] = $yachtshare->id;
+
+				$i++;
+			}
+		}
 
 		//Find the yachtshares according to any user defined filter preferences
 		$this->template->content = View::forge('front/index',$data);

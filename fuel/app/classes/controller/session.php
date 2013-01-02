@@ -31,6 +31,7 @@ class Controller_Session extends MyController
 		$this->template->user = false;
 		$this->template->title = 'Yacht Fractions';
 
+		$data = array();
 		if(isset($this->user))
 			$data['user'] = $this->user;
 		

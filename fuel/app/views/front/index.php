@@ -25,54 +25,88 @@
 						</div>
 						<hr>
 	                </div>
-
+	        <form method="POST" action="<?=Uri::create('front');?>" id="form">
 					<div class="sort">
-							<form method="POST" action="<?=Uri::create($form_action_url);?>">Choose Sail Area:
+							Location:
 								<select name="location" onchange="form.submit()">
 									<option value="">Any</option>
 									<? foreach($locations as $loc): ?>
 										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
 									<? endforeach; ?>
-								</select>
-							</form>
+								</select>,
+
+							Type:
+								<select name="type" onchange="form.submit()">
+									<option value="">Any</option>
+									<? foreach($types as $type): ?>
+										<option value="<?=$type;?>" <?if($selected_type==$type):?>selected="yes"<?endif;?>><?=$type;?></option>
+									<? endforeach; ?>
+								</select>								
 					</div>
+
+					<div class="sort">
+
+					</div>					
+
+<script type="text/javascript">
+function sort_by(col)
+{
+	$('.sort_button').val('');
+	$('#'+col).val('1');
+	$('#form').submit();
+}
+</script>
 
 					<div class='sort'>Sort by:
 						<? foreach($sort_options as $op): ?>
-							<a class='flex <?=$op[2];?>' href="<?=Uri::create('front/sort_by/'.$op[1]);?>"><em><?=$op[0];?></em></a>
+						<input type="hidden" name="<?=$op[1];?>" id="<?=$op[1];?>" class="sort_button" value="<?=$op[3];?>">
+							<a class='flex <?=$op[2];?>' href="#" onclick="sort_by('<?=$op[1];?>');"><em><?=$op[0];?></em></a>
 						<? endforeach;?>
 					</div>
+					</form>
 
 					<div class='inner_cont'>
-						<? foreach($yachtshares as $yachtshare): ?>
-						<div class="thumbs_cont">
-							<div class="details">
-								<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
-							</div>
+						<? if(count($yachtshares)>0): ?>
+							<? foreach($yachtshares as $yachtshare): ?>
+							<div class="thumbs_cont">
+								<div class="details">
+									<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
 
-							<div class="thumbs_img">
-								<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>">
-									<img class="float_left" src="<?=('http://yacht-fractions.co.uk/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
-								</a>
-							</div>
+									<? if(in_array($yachtshare->id, $newest_ids)): ?>
+										<font color="red">New!</font>
+									<? endif; ?>
+								</div>
 
-							<div class="caption">
-									<p>
-										<span><strong>LOA: </strong><?=$yachtshare->length;?> ft</span> 
-										<span><strong>Price: </strong>£<?=$yachtshare->price;?></span>
-										<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span>
-										<span><strong>Location: </strong><?=$yachtshare->location_specific;?></span>
-										<span><strong>Date added: </strong><?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y");?></span>
+								<div class="thumbs_img">
+									<? if(file_exists(Uri::create('public/uploads/'.$yachtshare->get_header_image_url()))): ?>
+									<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>">
+										<img class="float_left" src="<?=('http://yacht-fractions.co.uk/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
+									</a>
+									<? else: ?>
+										No image available.
+									<? endif; ?>
+								</div>
+
+								<div class="caption">
+										<p>
+											<span><strong>LOA: </strong><?=$yachtshare->length;?> m</span> 
+											<span><strong>Price: </strong>£<?=$yachtshare->price;?></span>
+											<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span>
+											<span><strong>Location: </strong><?=$yachtshare->location_specific;?></span>
+											<span><strong>Date added: </strong><?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y");?></span>
+										</p>
+										<p>
+											<strong>Details: </strong><?=$yachtshare->boat_details['teaser'];?>
+										</p>
+										<p><span class=""><a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="m_details">MORE DETAILS »</a></span>
 									</p>
-									<p>
-										<strong>Details: </strong><?=$yachtshare->boat_details['teaser'];?>
-									</p>
-									<p><span class=""><a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="m_details">MORE DETAILS »</a></span>
-								</p>
+								</div>
+														
 							</div>
-													
-						</div>
-						<? endforeach; ?>
+							<? endforeach; ?>
+						<? else: ?>
+						No yachtshares were found, try changing the search parameters.
+						<? endif;?>
 					</div>
 
 				</div><!--content-->

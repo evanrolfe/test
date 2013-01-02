@@ -212,8 +212,16 @@ Also each file can be of the type:
 		if ($image = Model_Image::find($id))
 		{
 			$url = 'file/'.$image->belongs_to.'/'.$image->belongs_to_id;
-			File::delete(DOCROOT.'uploads/'.$image->url);
 
+			//Delete it only if the file actually exists
+			try
+			{
+				File::delete(DOCROOT.'uploads/'.$image->url);
+			}catch(InvalidPathException $e)
+			{
+
+			}
+			
 			$image->delete();
 
 			Session::set_flash('success', 'Deleted image #'.$id);

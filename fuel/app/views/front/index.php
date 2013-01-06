@@ -70,7 +70,7 @@ function sort_by(col)
 							<? foreach($yachtshares as $yachtshare): ?>
 							<div class="thumbs_cont">
 								<div class="details">
-									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
+									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?> - <?=$yachtshare->make;?></a>
 
 									<? if($yachtshare->is_newly_listed()): ?>
 										<font color="red">New!</font>

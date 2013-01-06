@@ -27,10 +27,33 @@ class Controller_Search extends MyController
 		$loc_specific = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_specific','belongs_to'=>'seller')));
 		$loc_general = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_general','belongs_to'=>'seller')));
 
+		//TYPE FILTERING FROM URL
+		$where_from_url = array();
+		if($this->param('type'))
+		{
+			switch($this->param('type'))
+			{
+				case "sail":
+					$where_from_url = array('type', 'IN', array("Sailing boat shares UK","Sailing boat shares overseas"));					
+				break;
+
+				case "motor":
+					$where_from_url = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
+				break;
+
+				case "brokerage":
+					$where_from_url = array('type','=',"Used Yacht on brokerage");
+				break;
+			}
+		}		
 
 		if(Input::method()=='POST')
 		{
 			$where = array(array('approved','=',1), array('active','=',1));
+
+			if(count($where_from_url) > 0)
+				$where[] = $where_from_url;
+
 			//LOCATION OPTIONS:
 			if(Input::post('location'))	
 			{	
@@ -132,8 +155,12 @@ class Controller_Search extends MyController
 		}else{
 			//Sort by newest as defualt:
 			$data['sort_options'][0][2]='red';
-			$data['form_action_url'] = 'front';									
-			$where = array('approved'=>1, 'active'=>1);
+			$data['form_action_url'] = 'front';	
+
+			$where = array(array('approved','=',1), array('active','=',1));
+
+			if(count($where_from_url) > 0)
+				$where[] = $where_from_url;
 
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
 				'where' => $where,
@@ -143,14 +170,12 @@ class Controller_Search extends MyController
 
 		//$data['locations'] = array();
 		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
-		$data['types'] = array("Sailing Yacht Shares","Motor Yacht Shares", "Brokerage");
+		$data['types'] = array("Sailing Yacht Shares", "Motor Yacht Shares", "Brokerage");
 		$data['prices'] = array("less than £10,000", "£10,000 - £20,000", "£20,000 - £30,000", "greater than £30,000");
 
 		$data['selected_type'] = Input::post('type');		
 		$data['selected_location'] = Input::post('location');
 		$data['selected_price'] = Input::post('filter_price');		
-
-
 
 		//Find the yachtshares according to any user defined filter preferences
 		$this->template->content = View::forge('front/index',$data, false);

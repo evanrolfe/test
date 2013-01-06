@@ -23,7 +23,7 @@ return array(
 	 *
 	 * Set this to null to have it automatically detected.
 	 */
-	'base_url'  => 'http://192.168.0.2/yacht/',
+	'base_url'  => 'http://localhost/yacht/',
 
 	/**
 	 * url_suffix - Any suffix that needs to be added to

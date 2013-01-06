@@ -41,7 +41,15 @@
 									<? foreach($types as $type): ?>
 										<option value="<?=$type;?>" <?if($selected_type==$type):?>selected="yes"<?endif;?>><?=$type;?></option>
 									<? endforeach; ?>
-								</select>								
+								</select>
+
+							Price:
+								<select name="filter_price" onchange="form.submit()">
+									<option value="">Any</option>
+									<? foreach($prices as $price): ?>
+										<option value="<?=$price;?>" <?if($selected_price==$price):?>selected="yes"<?endif;?>><?=$price;?></option>
+									<? endforeach; ?>
+								</select>																
 					</div>
 
 					<div class="sort">

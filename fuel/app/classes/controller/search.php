@@ -30,7 +30,6 @@ class Controller_Search extends MyController
 
 		if(Input::method()=='POST')
 		{
-		
 			$where = array(array('approved','=',1), array('active','=',1));
 			//LOCATION OPTIONS:
 			if(Input::post('location'))	
@@ -62,6 +61,30 @@ class Controller_Search extends MyController
 				}
 			}
 
+			//PRICE OPTIONS
+			if(Input::post('filter_price'))
+			{
+				switch(Input::post('filter_price'))
+				{
+					case "less than £10,000":
+						$where[] = array('price', '<', 10000);					
+					break;
+
+					case "£10,000 - £20,000":
+						$where[] = array('price', '>', 10000);	
+						$where[] = array('price', '<', 20000);										
+					break;
+
+					case "£20,000 - £30,000":
+						$where[] = array('price', '>', 20000);	
+						$where[] = array('price', '<', 30000);					
+					break;
+
+					case "greater than £30,000":
+						$where[] = array('price', '>', 30000);						
+					break;
+				}
+			}
 			//ORDER OPTIONS
 			if(Input::post('created_at'))
 			{
@@ -120,14 +143,17 @@ class Controller_Search extends MyController
 
 		//$data['locations'] = array();
 		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
-
 		$data['types'] = array("Sailing Yacht Shares","Motor Yacht Shares", "Brokerage");
+		$data['prices'] = array("less than £10,000", "£10,000 - £20,000", "£20,000 - £30,000", "greater than £30,000");
 
 		$data['selected_type'] = Input::post('type');		
 		$data['selected_location'] = Input::post('location');
+		$data['selected_price'] = Input::post('filter_price');		
+
+
 
 		//Find the yachtshares according to any user defined filter preferences
-		$this->template->content = View::forge('front/index',$data);
+		$this->template->content = View::forge('front/index',$data, false);
 	}
 
 	public function action_yachtshare($id = null)

@@ -162,6 +162,4 @@ class Controller_Boat extends MyController
 		$this->import("http://www.yachtfractions.co.uk/UK/sail.asp","Sailing boat shares UK","UK", "UK: south coast");
 		$this->import("http://www.yachtfractions.co.uk/MY/sail.asp","Motor boat shares UK","UK", "UK: south coast");
 	}
-
-
 }

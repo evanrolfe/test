@@ -72,7 +72,7 @@ function sort_by(col)
 								<div class="details">
 									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
 
-									<? if(in_array($yachtshare->id, $newest_ids)): ?>
+									<? if($yachtshare->is_newly_listed()): ?>
 										<font color="red">New!</font>
 									<? endif; ?>
 								</div>

@@ -282,4 +282,8 @@ class Model_Yachtshare extends \Orm\Model
 		return $result;
 	}
 
+	public function is_newly_listed()
+	{
+		return ($this->created_at > strtotime("-1 month"));
+	}
 }

@@ -126,25 +126,6 @@ class Controller_Search extends MyController
 		$data['selected_type'] = Input::post('type');		
 		$data['selected_location'] = Input::post('location');
 
-		//Find the id of the first five newest yachtshares
-		$yachtshares_sorted_by_newest = Model_Yachtshare::find('all', array(
-			'where' => $where,
-			'order_by' => array('created_at'=>'DESC'),
-		));
-
-		$data['newest_ids'] = array();
-		$i=0;
-		if(count($yachtshares_sorted_by_newest) > 5)
-		{
-			foreach($yachtshares_sorted_by_newest as $yachtshare)
-			{
-				if($i<5)
-					$data['newest_ids'][] = $yachtshare->id;
-
-				$i++;
-			}
-		}
-
 		//Find the yachtshares according to any user defined filter preferences
 		$this->template->content = View::forge('front/index',$data);
 	}

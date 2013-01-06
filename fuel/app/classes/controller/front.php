@@ -20,7 +20,8 @@ class Controller_Front extends MyController
 			array('Newest', 'created_at', 'grey',''),
 			array('Price', 'price', 'grey',''),
 			array('LOA', 'length', 'grey',''),
-			array('Share Size', 'share_size', 'grey',''),				
+			array('Share Size', 'share_size', 'grey',''),
+			array('Location', 'location_specific', 'grey',''),							
 		);
 
 		$loc_specific = Model_Formfieldbuyer::find('first', array('where'=>array('tag'=>'location_specific','belongs_to'=>'seller')));
@@ -82,6 +83,11 @@ class Controller_Front extends MyController
 				$order = array('share_size'=>'DESC');
 				$data['sort_options'][3][2]='red';
 				$data['sort_options'][3][3]='1';
+			}elseif(Input::post('location_specific'))				
+			{
+				$order = array('location_specific'=>'ASC');
+				$data['sort_options'][4][2]='red';
+				$data['sort_options'][4][3]='1';
 			}else{
 				$order = array('created_at'=>'DESC');
 				$data['sort_options'][0][2]='red';
@@ -113,7 +119,7 @@ class Controller_Front extends MyController
 		}
 
 		//$data['locations'] = array();
-		$data['locations'] = $loc_general->options; //array_merge($loc_general->options, $loc_specific->options);
+		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
 
 		$data['types'] = array("Sailing Yacht Shares","Motor Yacht Shares", "Brokerage");
 

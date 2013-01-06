@@ -2,17 +2,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-	     <link rel="icon" href="http://sailfractions.co.uk/favicon.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="http://sailfractions.co.uk/favicon.ico" />
-		<title>Sail Fractions - Oyster 72 - Cookielicious</title>
+	     <link rel="icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" type="image/x-icon" />
+		<link rel="shortcut icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" />
+		<title>Sail Fractions</title>
 		<meta name="description" content="shares offered in oyster 72 sailing cruiser based Med and Caribbean" />
 		<meta name="keywords" content="Yacht Shares For Sale" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/style/layout_en.css" />
-        <link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.css" />
-        <link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/style/menu.css" />
-		<script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.pack.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/layout_en.css');?>" />
+        <link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/jquery.fancybox-1.2.5.css');?>" />
+        <link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/menu.css');?>" />
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery-1.3.2.min.js');?>"></script>
+        <script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery.fancybox-1.2.5.pack.js');?>"></script>
+
         <script type="text/javascript">
 			$(document).ready(function(){
 					$('#photos').galleryView({
@@ -39,14 +40,14 @@
 					});			
 		});
         </script>
-        <script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.easing.1.3.js"></script>
-		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/runonload.js"></script>
-		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/function.js"></script>
-		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.galleryview-1.1.js"></script>
-		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/jquery.timers-1.1.2.js"></script>
-		<script type="text/javascript" src="http://sailfractions.co.uk/plugins/boats/js/tutorial.js"></script>
-		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/galleryview.css" />
-		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/plugins/boats/css/tutorial.css" />
+        <script type="text/javascript" src="<?=Uri::create('public/assets/front/details/jquery.easing.1.3.js');?>"></script>
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/runonload.js');?>"></script>
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/function.js');?>"></script>
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/jquery.galleryview-1.1.js');?>"></script>
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/jquery.timers-1.1.2.js');?>"></script>
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/tutorial.js');?>"></script>
+		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/details/galleryview.css');?>" />
+		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/details/tutorial.css');?>" />
 	</head>
 <body>
 <div id="wrapper1">
@@ -147,12 +148,6 @@
 			
             <div id="footer">
 <div id="footer_content"><a href='mailto: chris@sailfractions.co.uk'>Chris@sailfractions.co.uk</a>   |   <strong>Tel. 00 44 1326 374435</strong>   |   Fax.  00 44 1326 374625   |   PO Box 196, Falmouth, Cornwall TR11 5WD, UK</div>
-<ul id="foot_nav">
-<li><a href='http://sailfractions.co.uk/' >Home</a>|</li>
-<li><a href='http://sailfractions.co.uk/Aboutus-Services' >About us</a>|</li>
-<li><a href='http://sailfractions.co.uk/contact' >Contact us</a></li>
-
-</ul>
 <div id="copyrights">
 <p>
 © Copyrights 2010 Sailfractions. All rights reserved.</p>

@@ -1,18 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-	     <link rel="icon" href="http://sailfractions.co.uk/favicon.ico" type="image/x-icon" />
-		<link rel="shortcut icon" href="http://sailfractions.co.uk/favicon.ico" />
+	     <link rel="icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" type="image/x-icon" />
+		<link rel="shortcut icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" />
 		<title>Sail Fractions - Fractional Yacht Ownership</title>
 		<meta name="description" content="Learn more about yacht sharing through fractional yacht ownership." />
 		<meta name="keywords" content="fractional yacht ownership, boat shares, yacht sharing" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/style/layout_en.css" />
-        <link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.css" />
-        <link rel="stylesheet" type="text/css" href="http://sailfractions.co.uk/style/menu.css" />
-		<script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/jquery-1.3.2.min.js"></script>
-        <script type="text/javascript" src="http://sailfractions.co.uk/include/jquery/fancybox/jquery.fancybox-1.2.5.pack.js"></script>
-        <script type="text/javascript" src="http://sailfractions.co.uk/include/js/functions.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/layout_en.css');?>" />
+        <link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/jquery.fancybox-1.2.5.css');?>" />
+        <link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/menu.css');?>" />
+		<script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery-1.3.2.min.js');?>"></script>
+        <script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery.fancybox-1.2.5.pack.js');?>"></script>
+        <script type="text/javascript" src="<?=Uri::create('public/assets/front/functions.js');?>"></script>
     </head>
 <body>
 <div id="wrapper1">
@@ -93,7 +93,6 @@ function sort_by(col)
 											<span><strong>Price: </strong>£<?=$yachtshare->price;?></span>
 											<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span>
 											<span><strong>Location: </strong><?=$yachtshare->location_specific;?></span>
-											<span><strong>Date added: </strong><?=Date::forge($yachtshare->created_at)->format("%d/%m/%Y");?></span>
 										</p>
 										<p>
 											<strong>Details: </strong><?=$yachtshare->boat_details['teaser'];?>

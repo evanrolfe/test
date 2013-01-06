@@ -159,6 +159,6 @@ class Controller_Front extends MyController
 		if(!$data['yachtshare'])
 			throw new HttpNotFoundException;
 
-		$this->template->content = View::forge('front/view',$data);
+		$this->template->content = View::forge('front/view',$data,false);
 	}
 }

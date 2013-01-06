@@ -24,7 +24,7 @@ class Backup
 			try
 			{
 				$email->send();
-				$return = "Backup successfully sent to: ".$to_email;
+				$return = "Backup successfully sent to: ".$to_email."\nOn: ".$date;
 			}
 			catch(\EmailValidationFailedException $e)
 			{
@@ -49,7 +49,7 @@ class Backup
 			if(in_array($table, array('shares','sessions', 'migration','backups','users'))) //'yachtshares','buyers','formfields_buyer','emailtemplates',
 				continue;
 
-			$out .= "TRUNCATE `".$table."`;";
+			$out .= "\n\n\nTRUNCATE `".$table."`;\n";
 
 			$out .= "INSERT INTO `".$table."` (";
 			$columns = \DB::list_columns($table);

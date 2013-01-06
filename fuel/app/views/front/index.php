@@ -21,7 +21,7 @@
 				<div id="content" class="clearfix">
 					<div id="header">
 						<div id="logo">
-							<a href="<?=Uri::create('search');?>">&nbsp;</a>
+							<a href="http://www.yachtfractions.co.uk"></a>
 						</div>
 						<hr>
 	                </div>
@@ -80,7 +80,7 @@ function sort_by(col)
 								<div class="thumbs_img">
 									<? if(file_exists(Uri::create('public/uploads/'.$yachtshare->get_header_image_url()))): ?>
 									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>">
-										<img class="float_left" src="<?=('http://yacht-fractions.co.uk/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
+										<img class="float_left" src="<?=Uri::create('/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
 									</a>
 									<? else: ?>
 										No image available.

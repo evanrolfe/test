@@ -56,7 +56,7 @@
 				<div id="content_wrap" class="clearfix">
                     <div id="header" style="height:100px;">
 						<div id="logo">
-							<a href="http://sailfractions.co.uk/">&nbsp;</a>
+							<a href="http://www.yachtfractions.co.uk"></a>
 						</div>
 	                </div>
                 	<hr>
@@ -98,8 +98,6 @@
 								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?>m</span><br /> 
 								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?>m</span><br /> 
 								<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br />
-								<span><strong>Number of Cabins: </strong> <?=$yachtshare->boat_details['num_cabins'];?></span><br />
-								<span><strong>Number of Berths: </strong> <?=$yachtshare->boat_details['num_berths'];?></span><br />
 								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
 								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 
 								<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?></span><br /><br />

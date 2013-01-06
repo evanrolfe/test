@@ -1,7 +1,7 @@
 <ul class="middleNavA">
     <li><a href="<?=Uri::create('yachtshare/create');?>" title="Upload files"><img src="<?= Uri::create('public/assets/images/icons/color/suppliers.png');?>"><span>Seller Form</span></a></li>    
     <li><a href="<?=Uri::create('buyer/create');?>" title="Add an article"><img src="<?= Uri::create('public/assets/images/icons/color/donate.png');?>"><span>Buyer Enquiry</span></a></li>
-    <li><a href="<?=Uri::create('front');?>" title="Upload files"><img src="<?= Uri::create('public/assets/images/icons/color/world.png');?>"><span>Front End Site</span></a></li>            
+    <li><a href="<?=Uri::create('search');?>" title="Upload files"><img src="<?= Uri::create('public/assets/images/icons/color/world.png');?>"><span>Front End Site</span></a></li>            
 </ul>
 
 <? if(isset($user) and $user): ?>

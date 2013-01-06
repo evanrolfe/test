@@ -1,6 +1,6 @@
 <?php
 //ALTER TABLE  `yachtshares` ADD  `approved` BOOLEAN NULL DEFAULT  '0'
-class Controller_Front extends MyController
+class Controller_Search extends MyController
 {
 	public function before()
 	{

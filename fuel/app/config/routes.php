@@ -31,7 +31,5 @@ return array(
 	//'yachtshare/:all'			=> 'yachtshare/index',
 	//'buyer/:all'			=> 'buyer/index',
 	//'step/create/:yachtshare_id/:buyer_id' => 'actionstep/create',
-
-	'search' => 'front',
 	//'front/type/(:sort_col)' => 'front/index',
 );

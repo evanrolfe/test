@@ -104,7 +104,7 @@
 								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 
 								<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?></span><br /><br />
 			
-								<a class='up' id ='up' href="<?=Uri::create('front');?>" >&laquo; Back to Yacht Shares For Sale</a> 		
+								<a class='up' id ='up' href="<?=Uri::create('search');?>" >&laquo; Back to Yacht Shares For Sale</a> 		
 							</div>
 						</div>
 						<div class='long_details'><h2 class='grey'>SUMMARY</h2>

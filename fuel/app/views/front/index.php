@@ -21,11 +21,11 @@
 				<div id="content" class="clearfix">
 					<div id="header">
 						<div id="logo">
-							<a href="<?=Uri::create('front');?>">&nbsp;</a>
+							<a href="<?=Uri::create('search');?>">&nbsp;</a>
 						</div>
 						<hr>
 	                </div>
-	        <form method="POST" action="<?=Uri::create('front');?>" id="form">
+	        <form method="POST" action="<?=Uri::create('search');?>" id="form">
 					<div class="sort">
 							Location:
 								<select name="location" onchange="form.submit()">
@@ -70,7 +70,7 @@ function sort_by(col)
 							<? foreach($yachtshares as $yachtshare): ?>
 							<div class="thumbs_cont">
 								<div class="details">
-									<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
+									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>" class="more"><?=$yachtshare->name;?></a>
 
 									<? if(in_array($yachtshare->id, $newest_ids)): ?>
 										<font color="red">New!</font>
@@ -79,7 +79,7 @@ function sort_by(col)
 
 								<div class="thumbs_img">
 									<? if(file_exists(Uri::create('public/uploads/'.$yachtshare->get_header_image_url()))): ?>
-									<a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>">
+									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>">
 										<img class="float_left" src="<?=('http://yacht-fractions.co.uk/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
 									</a>
 									<? else: ?>
@@ -97,7 +97,7 @@ function sort_by(col)
 										<p>
 											<strong>Details: </strong><?=$yachtshare->boat_details['teaser'];?>
 										</p>
-										<p><span class=""><a href="<?=Uri::create('front/yachtshare/'.$yachtshare->id);?>" class="m_details">MORE DETAILS »</a></span>
+										<p><span class=""><a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>" class="m_details">MORE DETAILS »</a></span>
 									</p>
 								</div>
 														

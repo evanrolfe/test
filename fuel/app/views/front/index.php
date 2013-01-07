@@ -3,7 +3,7 @@
 	<head>
 	     <link rel="icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" type="image/x-icon" />
 		<link rel="shortcut icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" />
-		<title>Sail Fractions - Fractional Yacht Ownership</title>
+		<title>Yacht Fractions - Fractional Yacht Ownership</title>
 		<meta name="description" content="Learn more about yacht sharing through fractional yacht ownership." />
 		<meta name="keywords" content="fractional yacht ownership, boat shares, yacht sharing" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

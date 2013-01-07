@@ -51,17 +51,18 @@ class Controller_Search extends MyController
 		{
 			$where = array(array('approved','=',1), array('active','=',1));
 
-			if(count($where_from_url) > 0)
+			//if(count($where_from_url) > 0)
 				//$where[] = $where_from_url;
 
 			//LOCATION OPTIONS:
-			if(Input::post('location'))	
-			{	
+			if(Input::post('filter_location'))
+			{
 				//Is the location general or specific?
-				$loc_col = (in_array(Input::post('location'), $loc_general->options)) ? 'location_general' : 'location_specific';
+				$loc_col = (in_array(Input::post('filter_location'), $loc_general->options)) ? 'location_general' : 'location_specific';
 
-				$where[] = array($loc_col, '=', Input::post('location'));
+				$where[] = array($loc_col, '=', Input::post('filter_location'));
 			}
+
 
 			//TYPE OPTIONS
 			if(Input::post('type'))
@@ -140,14 +141,14 @@ class Controller_Search extends MyController
 				$data['form_action_url'] = 'front';									
 			}			
 
-/*
-			echo "WHERE:<br>";
-			echo "<pre>";
-			print_r($where);
-			echo "</pre><br>ORDER:<br><pre>";
-			print_r($order);
-			exit;
-*/
+			//echo "WHERE:<br>";
+			//echo "<pre>";
+			//print_r(Input::post());
+			//print_r($where);
+			//echo "</pre><br>ORDER:<br><pre>";
+			//print_r($order);
+			//exit;
+
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
 				'where' => $where,
 				'order_by' => $order,
@@ -169,12 +170,13 @@ class Controller_Search extends MyController
 		}
 
 		//$data['locations'] = array();
-		$data['locations'] = array_merge($loc_general->options, $loc_specific->options);
+		$data['loc_general'] = $loc_general->options;
+		$data['loc_specific'] = $loc_specific->options;
 		$data['types'] = array("Sailing Yacht Shares", "Motor Yacht Shares", "Brokerage");
 		$data['prices'] = array("less than £10,000", "£10,000 - £20,000", "£20,000 - £30,000", "greater than £30,000");
 
 		$data['selected_type'] = Input::post('type');		
-		$data['selected_location'] = Input::post('location');
+		$data['selected_location'] = Input::post('filter_location');
 		$data['selected_price'] = Input::post('filter_price');		
 
 		$data['path'] = DOCROOT;

@@ -31,11 +31,18 @@
 	        <form method="POST" action="<?=Uri::create('search');?>" id="form">
 					<div class="sort">
 							Location:
-								<select name="location" onchange="form.submit()">
+								<select name="filter_location" onchange="form.submit()">
 									<option value="">Any</option>
-									<? foreach($locations as $loc): ?>
+										<option value="">General Area</option>
+										<option value="">============</option>									
+									<? foreach($loc_general as $loc): ?>
 										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
 									<? endforeach; ?>
+										<option value="">Specific Area</option>
+										<option value="">============</option>
+									<? foreach($loc_specific as $loc): ?>
+										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
+									<? endforeach; ?>									
 								</select>,
 
 							Type:

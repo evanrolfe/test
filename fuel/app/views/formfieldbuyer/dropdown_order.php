@@ -95,6 +95,9 @@
 <h3>Drag the options to the desired order then click "Save"</h3>
 <br>
 <form action="<?= Uri::create('formfieldbuyer/dropdown/'.$field->id); ?>" method="POST" accept-charset="utf-8" id="order_form">
+	<div align="right">
+		<button type="submit" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
+	</div>	
 <input type='hidden' name='options' id='options'>
 	<ul id="sortable" style="width: 80%;">
 		<? $i=0; ?>
@@ -103,6 +106,8 @@
 			<? $i++; ?>
 		<? endforeach; ?>
 	</ul>
-	<button type="submit" onclick="">Save</button>
+	<div align="right">
+		<button type="submit" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
+	</div>
 </form>
 </body>

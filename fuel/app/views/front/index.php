@@ -19,9 +19,12 @@
 	<div id="page_wrapper">
 		<div id="page" class="clearfix">			 
 				<div id="content" class="clearfix">
-					<div id="header">
+					<div id="header" style="height:150px;">
 						<div id="logo">
 							<a href="http://www.yachtfractions.co.uk"></a>
+						</div>
+						<div align="right">
+							<a href="http://www.yachtfractions.co.uk">Back to www.yachtfractions.co.uk</a>
 						</div>
 						<hr>
 	                </div>

@@ -54,12 +54,15 @@
 <div id="page_wrapper">
 		<div id="page" class="clearfix">			 	
 				<div id="content_wrap" class="clearfix">
-                    <div id="header" style="height:100px;">
+                    <div id="header" style="height:125px;">
 						<div id="logo">
 							<a href="http://www.yachtfractions.co.uk"></a>
 						</div>
+						<div align="right">
+							<a href="http://www.yachtfractions.co.uk">Back to www.yachtfractions.co.uk</a>
+						</div>
+						<hr>						
 	                </div>
-                	<hr>
 					<div id="content" class="clearfix">
                 
 					<div class='header'>

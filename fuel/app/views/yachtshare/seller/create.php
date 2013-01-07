@@ -214,6 +214,20 @@ function save_form(display_results)
 <div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
+		<h6>EU Cookie Compliance Statement</h6>	
+		<div class="clear"></div>
+	</div>
+
+	<div class="formRow" align="left">
+		
+This page uses a small text file called a cookie that is saved to your computer. The cookie saves the information you type in so that you can complete the form at a later stage. Once you have submitted your entry, the cookie is permanently deleted. We do not recommend leaving a partially completed form on a public computer as this could give other users access to the data you typed in.  You can still use this page if you disable cookies in your browser, but should then finish it at one sitting as the auto-save feature will be disabled. 
+Entering data on this page is considered as implied consent to the use of a cookie as described. This site does not use cookies nor track any user data on any other website pages. This site is operated by Yacht Fractions Ltd., PO Box 196 Falmouth, Cornwall, TR11 5WD United Kingdom
+
+	</div>	
+</div>
+<div class="widget fluid" style="width: 75%;">
+
+    <div class="whead">
 		<h6>Instructions</h6>	
 		<div class="clear"></div>
 	</div>

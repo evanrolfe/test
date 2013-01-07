@@ -177,6 +177,8 @@ class Controller_Search extends MyController
 		$data['selected_location'] = Input::post('location');
 		$data['selected_price'] = Input::post('filter_price');		
 
+		$data['path'] = DOCROOT;
+
 		//Find the yachtshares according to any user defined filter preferences
 		$this->template->content = View::forge('front/index',$data, false);
 	}

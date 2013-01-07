@@ -22,5 +22,6 @@
 	</div>
 	<? else: ?>
 		This site is running in offline mode so you can only import data. To do so, click the "Import" button above right.
+		<div class="clear"></div>		
 	<? endif; ?>
 </div>

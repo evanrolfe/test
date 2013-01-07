@@ -66,8 +66,14 @@
 		}
 
 		$(function() {
-			$( "#sortable" ).sortable({update : updateForm});
+			$( "#sortable" ).sortable();//{update : updateForm});
 		});
+
+		function submit_it()
+		{
+			updateForm();
+			$("#order_form").submit();
+		}
 
 		window.onload = function () {
 				//1. Parse the dropdown options from mysql into javascript (via json)
@@ -96,9 +102,11 @@
 <br>
 <form action="<?= Uri::create('formfieldbuyer/dropdown/'.$field->id); ?>" method="POST" accept-charset="utf-8" id="order_form">
 	<div align="right">
-		<button type="submit" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
+		<button type="button" onclick="submit_it()" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
 	</div>	
-<input type='hidden' name='options' id='options'>
+	
+<input type='hidden' name='options' id='options' width="20">
+
 	<ul id="sortable" style="width: 80%;">
 		<? $i=0; ?>
 		<? foreach(json_decode($field->options) as $option): ?>
@@ -107,7 +115,7 @@
 		<? endforeach; ?>
 	</ul>
 	<div align="right">
-		<button type="submit" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
+		<button type="button" onclick="submit_it()" class="buttonS bGreen" style="margin: 6px 6px; color: white;">Save</button>
 	</div>
 </form>
 </body>

@@ -82,7 +82,7 @@
 									<table>
 										<tr>
 											<td>
-												<img height="400px" src="http://yacht-fractions.co.uk/public/uploads/<?=$row['url'];?>"/>
+												<img height="400px" src="<?=Uri::create('public/uploads/'.$row['url']);?>"/>
 											</td>
 										</tr>
 									</table>

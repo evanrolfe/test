@@ -91,7 +91,7 @@ function sort_by(col)
 								<div class="thumbs_img">
 									<? if(file_exists(Uri::create('public/uploads/'.$yachtshare->get_header_image_url()))): ?>
 									<a href="<?=Uri::create('search/yachtshare/'.$yachtshare->id);?>">
-										<img class="float_left" src="<?=Uri::create('/public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
+										<img class="float_left" src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" alt="">
 									</a>
 									<? else: ?>
 										No image available.

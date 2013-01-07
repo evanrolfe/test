@@ -33,11 +33,13 @@
 							Location:
 								<select name="filter_location" onchange="form.submit()">
 									<option value="">Any</option>
+										<option value="">============</option>																		
 										<option value="">General Area</option>
 										<option value="">============</option>									
 									<? foreach($loc_general as $loc): ?>
 										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
 									<? endforeach; ?>
+										<option value="">============</option>																		
 										<option value="">Specific Area</option>
 										<option value="">============</option>
 									<? foreach($loc_specific as $loc): ?>

@@ -4,7 +4,7 @@
 	<head>
 	     <link rel="icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" type="image/x-icon" />
 		<link rel="shortcut icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" />
-		<title>Sail Fractions</title>
+		<title>Yacht Fractions</title>
 		<meta name="description" content="shares offered in oyster 72 sailing cruiser based Med and Caribbean" />
 		<meta name="keywords" content="Yacht Shares For Sale" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

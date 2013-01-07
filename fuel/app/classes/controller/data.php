@@ -60,8 +60,9 @@ class Controller_Data extends MyController
 
 		$backup->save();
 		$filename = "backup.sql";
-		File::update(DOCROOT, $filename, $this->get_sql_string());
-		Response::redirect(Uri::create('public/'.$filename));
+		//File::update(DOCROOT, $filename, $this->get_sql_string());
+		//Response::redirect(Uri::create('public/'.$filename));
+		exit($this->get_sql_string());
 	}
 
 	public function action_export_old()

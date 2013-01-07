@@ -33,4 +33,5 @@ return array(
 	//'step/create/:yachtshare_id/:buyer_id' => 'actionstep/create',
 	//'front/type/(:sort_col)' => 'front/index',
 	'search/type/:type' => 'search/index',
+	"data/backup" => 'data/export',
 );

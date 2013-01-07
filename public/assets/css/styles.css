@@ -1551,7 +1551,7 @@ ul.ruler li:last-child { width: 34%; }
 
 .formRow { border-bottom: 1px solid #ddd; border-top: 1px solid #fff; padding: 8px 16px; }
 .formRow:first-child { border-top: none; }
-.formRow input[type=text], .formRow input[type=password], /*.formRow*/ textarea { width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; font-size: 15px; color: #858585; box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; -moz-box-shadow: 0 1px 0 #fff; padding: 10px 7px 10px 6px; border: 1px solid #d7d7d7; display: inline-block; background: #fdfdfd; height: 32px; }
+.formRow input[type=text], .formRow input[type=password], /*.formRow*/ textarea { width: 100%; box-sizing: border-box; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; font-size: 15px; color: #858585; box-shadow: 0 1px 0 #fff; -webkit-box-shadow: 0 1px 0 #fff; -moz-box-shadow: 0 1px 0 #fff; padding: 6px 7px; border: 1px solid #d7d7d7; display: inline-block; background: #fdfdfd; height: 32px; }
 textarea { height: auto; }
 .formRow  [class*="grid"] > label { float: left; display: block; padding-top: 1px; }
 .formRow label > span { margin-top: -2px; padding: 0; }

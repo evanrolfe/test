@@ -1,7 +1,8 @@
 <?php
 class Controller_Data extends MyController 
 {
-	public function before(){
+	public function before()
+	{
 		parent::before();
 
 		$this->template->links['settings']['current'] = true;
@@ -58,11 +59,17 @@ class Controller_Data extends MyController
 			'type' => 'export',
 		));
 
+		//$t = (is_writable(DOCROOT)) ? "YES" : "NO";
+		//exit(DOCROOT." : ".$t);
+
 		$backup->save();
 		$filename = "backup.sql";
-		//File::update(DOCROOT, $filename, $this->get_sql_string());
-		//Response::redirect(Uri::create('public/'.$filename));
-		exit($this->get_sql_string());
+		File::delete(DOCROOT.'/'.$filename);
+		File::create(DOCROOT, $filename, $this->get_sql_string());
+		Response::redirect(Uri::create('public/'.$filename));
+		echo $this->get_sql_string();
+		File::delete(DOCROOT.'/'.$filename);		
+		exit;
 	}
 
 	public function action_export_old()

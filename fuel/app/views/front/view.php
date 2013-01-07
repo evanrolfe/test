@@ -68,11 +68,7 @@
 					<div class='header'>
 						<h1 class='grey'><?=$yachtshare->make;?> - <?=$yachtshare->name;?></h1>
 					</div>
-
-					<div class='print'>
-						<a class='print' onclick="CallPrint('content')">Print Page</a>
-					</div>
-
+			
 					<div id='photos_wrapper'>
 						<div id='photos' class='galleryview'>
 							<!--gallery images-->
@@ -98,8 +94,8 @@
 								<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br />
 								<span><strong>LOA: </strong> <?=$yachtshare->length;?>m</span><br /> 
 								<span><strong>LWL: </strong> <?=$yachtshare->boat_details['lwl'];?></span><br /> 
-								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?>m</span><br /> 
-								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?>m</span><br /> 
+								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?></span><br /> 
+								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br /> 
 								<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br />
 								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
 								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 

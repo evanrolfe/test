@@ -26,6 +26,13 @@ function del_option(index)
 	refresh_options();
 }
 
+function sort_alpha()
+{
+	options.sort();
+	changes_made = true;	
+	refresh_options();
+}
+
 function refresh_options()
 {
 	//2. Set input value as these options

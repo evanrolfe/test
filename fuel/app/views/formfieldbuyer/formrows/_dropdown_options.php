@@ -37,6 +37,7 @@
 		<div class="grid9">
 			<input type='text' id="option_add_input" style="width: 150px;" />
 			 <button class="buttonS bBlue" type="button" onclick="add_option()">Add</button>
+			 <button class="buttonS bGreen" type="button" onclick="sort_alpha()">Sort Alphabetically</button>
 			 <a href="<?=Uri::create('formfieldbuyer/dropdown/'.$field->id);?>" class="popup"><button class="buttonS bGreen" type="button">Change Order</button></a>
 			<div id='options_display'>
 			</div>

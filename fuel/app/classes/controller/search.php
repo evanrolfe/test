@@ -52,7 +52,7 @@ class Controller_Search extends MyController
 			$where = array(array('approved','=',1), array('active','=',1));
 
 			if(count($where_from_url) > 0)
-				$where[] = $where_from_url;
+				//$where[] = $where_from_url;
 
 			//LOCATION OPTIONS:
 			if(Input::post('location'))	

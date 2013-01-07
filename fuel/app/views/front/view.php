@@ -148,14 +148,13 @@
 				</div><!--content_wrap-->
 			
             <div id="footer">
-<div id="footer_content"><a href='mailto: chris@sailfractions.co.uk'>Chris@sailfractions.co.uk</a>   |   <strong>Tel. 00 44 1326 374435</strong>   |   Fax.  00 44 1326 374625   |   PO Box 196, Falmouth, Cornwall TR11 5WD, UK</div>
+<div id="footer_content">
+	<a href='mailto: chris@sailfractions.co.uk'>Chris@sailfractions.co.uk</a>   |   <strong>Tel. 00 44 1326 374435</strong>   |   Fax.  00 44 1326 374625   |   PO Box 196, Falmouth, Cornwall TR11 5WD, UK</div>
 <div id="copyrights">
-<p>
-© Copyrights 2010 Sailfractions. All rights reserved.</p>
 </div>
 <div id="credits">
 <p>
-<a href="http://www.stotlandesigns.com">web design</a> &amp; <a href="http://www.stotlandesigns.com">web development</a> by <strong>stotlandesigns</strong>
+Developed by <a href='http://evanrolfe.info'>Evan Rolfe</a>.
 </p>
 </div>
 

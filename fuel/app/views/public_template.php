@@ -37,7 +37,8 @@
 	<?= $content; ?>
 
 	<br>
-
+	Developed by <a href='http://evanrolfe.info'>Evan Rolfe</a>.
+	<br>
 	Chris Hawes, Yacht Fractions Ltd., PO Box 196, Falmouth, Cornwall. TR11 5WD Tel: 01326 374435 Fax 01326 374625 Email chris@yachtfractions.co.uk
 
 	<? if(isset($user) and $user): ?>

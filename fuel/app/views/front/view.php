@@ -77,17 +77,17 @@
 						<div id='photos' class='galleryview'>
 							<!--gallery images-->
 
-							<? foreach($yachtshare->get_public_image_urls() as $row): ?>
+<? if($yachtshare->get_header_image_url() and file_exists(DOCROOT.'uploads/'.$yachtshare->get_header_image_url())): ?>
 								<div class="panel" >
 									<table>
 										<tr>
 											<td>
-												<img height="400px" src="<?=Uri::create('public/uploads/'.$row['url']);?>"/>
+												<img height="400px" src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>"/>
 											</td>
 										</tr>
 									</table>
 								</div>						
-							<? endforeach; ?>
+<? endif; ?>
 						</div><!-- photos -->
 					</div><!--photos wrapper -->
 
@@ -104,7 +104,8 @@
 								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
 								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 
 								<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?></span><br /><br />
-			
+
+<a class='up' id ='up' href="<?=Uri::create('search/images/'.$yachtshare->id);?>">View Photos for this yacht</a>			
 								<a class='up' id ='up' href="#" onclick="javascript:history.back(-1)" >&laquo; Back to Yacht Shares For Sale</a> 		
 							</div>
 						</div>

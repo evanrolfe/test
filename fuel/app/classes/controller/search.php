@@ -197,4 +197,17 @@ class Controller_Search extends MyController
 
 		$this->template->content = View::forge('front/view',$data,false);
 	}
+
+	public function action_images($id = null)
+	{
+		if(is_null($id))
+			throw new HttpNotFoundException;
+
+		$data['yachtshare'] = Model_Yachtshare::find($id);
+
+		if(!$data['yachtshare'])
+			throw new HttpNotFoundException;
+
+		$this->template->content = View::forge('front/images',$data,false);
+	}	
 }

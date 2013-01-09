@@ -4,7 +4,7 @@
 	<head>
 	     <link rel="icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" type="image/x-icon" />
 		<link rel="shortcut icon" href="<?=Uri::create('public/assets/images/favicon.ico');?>" />
-		<title>Sail Fractions</title>
+		<title>Yacht Fractions</title>
 		<meta name="description" content="shares offered in oyster 72 sailing cruiser based Med and Caribbean" />
 		<meta name="keywords" content="Yacht Shares For Sale" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,11 +68,7 @@
 					<div class='header'>
 						<h1 class='grey'><?=$yachtshare->make;?> - <?=$yachtshare->name;?></h1>
 					</div>
-
-					<div class='print'>
-						<a class='print' onclick="CallPrint('content')">Print Page</a>
-					</div>
-
+			
 					<div id='photos_wrapper'>
 						<div id='photos' class='galleryview'>
 							<!--gallery images-->
@@ -98,8 +94,8 @@
 								<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br />
 								<span><strong>LOA: </strong> <?=$yachtshare->length;?>m</span><br /> 
 								<span><strong>LWL: </strong> <?=$yachtshare->boat_details['lwl'];?></span><br /> 
-								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?>m</span><br /> 
-								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?>m</span><br /> 
+								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?></span><br /> 
+								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br /> 
 								<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br />
 								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
 								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 

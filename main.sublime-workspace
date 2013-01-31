@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"offlin",
+				"offline_config"
+			],
+			[
+				"newest",
+				"newest_ids"
+			],
+			[
+				"yacht",
+				"yachtshare"
+			],
+			[
+				"yach",
+				"yachtshare"
+			],
+			[
+				"newe",
+				"newest_ids"
+			],
+			[
+				"new",
+				"newest_ids"
+			],
+			[
+				"Model",
+				"Model_Yachtshare"
+			],
+			[
 				"ti",
 				"timeago"
 			],
@@ -12,20 +40,8 @@
 				"clear_form"
 			],
 			[
-				"yach",
-				"yachtshares"
-			],
-			[
 				"json",
 				"json_encode"
-			],
-			[
-				"Model",
-				"Model_Formfieldbuyer"
-			],
-			[
-				"yacht",
-				"yachtshare"
 			],
 			[
 				"location",
@@ -100,10 +116,6 @@
 				"session/change_password"
 			],
 			[
-				"new",
-				"new_password"
-			],
-			[
 				"input",
 				"input_arr"
 			],
@@ -152,10 +164,26 @@
 	"buffers":
 	[
 		{
-			"contents": "<?php\n	class components_Lead\n	{\n		private $data;\n		\n		private $status;\n		\n		private $fields = array(\n			'name' 			=> array('mandatory' => true, 'validate' => ''),\n			'address1' 		=> array('mandatory' => false, 'validate' => ''),\n			'address2' 		=> array('mandatory' => false, 'validate' => ''),\n			'address3' 		=> array('mandatory' => false, 'validate' => ''),\n			'city' 			=> array('mandatory' => false, 'validate' => ''),\n			'county' 		=> array('mandatory' => false, 'validate' => ''),\n			'postcode' 		=> array('mandatory' => false, 'validate' => ''),\n			'email' 		=> array('mandatory' => true, 'validate' => 'email'),\n			'phone_number' 	=> array('mandatory' => false, 'validate' => ''),\n			'orientation'  	=> array('mandatory' => false, 'validate' => ''),\n			'solarsize'    	=> array('mandatory' => true, 'validate' => ''),\n			'housetype'    	=> array('mandatory' => true, 'validate' => ''),\n			'obstructions'	=> array('mandatory' => true, 'validate' => ''),\n			'lat' 		    => array('mandatory' => true, 'validate' => ''),\n			'lng' 			=> array('mandatory' => true, 'validate' => ''),\n			'installer_id'	=> array('mandatory' => true, 'validate' => ''),\n			'udid'			=> array('mandatory' => true, 'validate' => ''),\n		);\n			\n		public function create(array $data)\n		{  \n			$this->status = 'new';			\n			//Store the lead, check required fields have been sent\n			foreach($this->fields as $key => $value)\n			{\n				if($value['mandatory'])\n				{\n					if(! array_key_exists($key, $data) || empty($data[$key]))\n					{\n						$this->status = 'rejected';\n						continue;\n					}\n				}\n				\n				if(isset($data[$key]) && !empty($data[$key]))\n				{\n					$this->data['lead'][$key] = $data[$key];							\n				}\n				else\n				{\n					$this->data['lead'][$key] = '';\n				}\n			}\n\n			if($this->status == 'rejected')\n            {     \n                throw new exceptions_CoreException('Mandatory fields missing', 301);\n            }   \n		}\n		\n		public function validate()\n		{\n			$validateCols = array();\n			foreach($this->fields as $key => $value)\n			{\n				//mandatory and is not empty, then validate\n			   if($value['mandatory'] && !empty($this->data['lead'][$key]))\n			   {\n					if($value['validate'] != '')\n					{\n						if(method_exists(new components_Validator(), $value['validate']))\n						{\n							if(! call_user_func('components_Validator::' . $value['validate'], $this->data['lead'][$key]))\n							{							   \n							   $this->status = 'validate'; //Flag that this lead not passed validation    \n							   $validateCols[] = $key;                  \n							}					\n						}\n					}\n				}\n			}\n\n			if($this->status == 'validate')\n            {     \n				throw new exceptions_CoreException('Email not valid', 301);\n            }  			\n			\n		}\n		\n		public function isDuplicate()\n		{\n			//Duplication checks works like (refine these?):\n			//	Firstname & lastname \n			// 	email\n			//	position (within 10metres)\n			//The above will allow for the same person to have multiple houses\n			\n			//the SQL\n			$sql = '\n				SELECT\n					count(*)\n				FROM leads \n				WHERE\n					installer_id	= :i_id\n				AND email_lower		= LOWER(:email)\n				AND   ( ( ( Acos(Sin((:lat * Pi() / 180 )) * Sin((lat * Pi() / 180 )) + Cos((:lat * Pi() / 180 )) * Cos((lat * Pi() / 180 )) * Cos(((:lng - lng ) * Pi() / 180 )))) * 180 / Pi()) * 60 * 1.1515 * 1.609344 * 1000 ) <= 20\n				AND workflow_status = \"new\"\n				-- HAVING METERS >= 20			\n			';\n			$qry = mysql_DB::getInstantce()->prepare($sql);\n            $qry->execute(array(':lat'   		=> $this->data['lead']['lat'], \n                                ':lng'   		=> $this->data['lead']['lng'],\n                                ':email'   		=> $this->data['lead']['email'],\n                                ':i_id'   		=> $this->data['lead']['installer_id'],\n								));\n			//print_r($qry->fetchAll());\n            $dupeCount = $qry->fetchColumn();\n			if($dupeCount != 0)\n			{\n				$this->status = 'dupe';\n				return true;\n			}\n			\n			return false;\n		}\n\n		public function store()\n		{\n			$sqlVars = $this->getSqlReadyArr();\n			$sql = ' INSERT INTO leads\n						(' . implode(',', $sqlVars['names']) . '\n						 ,workflow_status,\n						 cpl,\n						 date\n						)\n						VALUES(' . implode(',', array_pad(array(), count($sqlVars['names']) + 2, '?')) . ', NOW())';\n			$qry = mysql_DB::getInstantce()->prepare($sql);\n			$qry->execute(array_merge($sqlVars['vals'], array($this->status, '15.00')));\n			//print_r($qry->errorInfo());\n		}\n		\n        private function getSqlReadyArr()\n        {            \n            $colNames = array();\n            $colVals = array();\n            foreach($this->fields as $key => $value)\n            {\n				//Store name vlaues in the arrays\n				//Store the original\n				$colNames[] = $key;\n				$colVals[] = ( (empty($this->data['lead'][$key])) ? '' : $this->data['lead'][$key] );\n				\n				//email, firstname, address1, postcode and surname need lowering to insert into database, for faster indexing.\n				if($key == 'email' || \n				   $key == 'name')\n				{                        \n					//Store the lower versions\n					$colNames[] = $key . \"_lower\";\n					$colVals[] = ( (empty($this->data['lead'][$key])) ? '' : strtolower($this->data['lead'][$key]) );\n				}\n              \n            }\n                        \n            return array('names' => $colNames, 'vals' => $colVals);\n        }\n		\n	}\n?>",
+			"file": "fuel/app/classes/mycontroller.php",
 			"settings":
 			{
-				"buffer_size": 5304,
+				"buffer_size": 12854,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fuel/app/classes/controller/session.php",
+			"settings":
+			{
+				"buffer_size": 6387,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "fuel/app/classes/controller/seller.php",
+			"settings":
+			{
+				"buffer_size": 3431,
 				"line_ending": "Unix"
 			}
 		}
@@ -163,16 +191,36 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 75.0,
+		"height": 96.0,
 		"selected_items":
 		[
 			[
-				"install",
+				"instal",
 				"Package Control: Install Package"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add Current File"
+			],
+			[
+				"git status",
+				"Git: Status"
 			],
 			[
 				"commit",
 				"Git: Commit"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
 			],
 			[
 				"add",
@@ -187,20 +235,8 @@
 				"Git: Push"
 			],
 			[
-				"git add",
-				"Git: Add..."
-			],
-			[
-				"git status",
-				"Git: Status"
-			],
-			[
 				"git commit",
 				"Git: Commit"
-			],
-			[
-				"git push",
-				"Git: Push"
 			],
 			[
 				"git co",
@@ -220,10 +256,6 @@
 			],
 			[
 				"git com",
-				"Git: Commit"
-			],
-			[
-				"comm",
 				"Git: Commit"
 			],
 			[
@@ -311,7 +343,7 @@
 				"Package Control: Add Repository"
 			]
 		],
-		"width": 449.0
+		"width": 575.0
 	},
 	"console":
 	{
@@ -328,10 +360,34 @@
 	},
 	"file_history":
 	[
+		"/home/evan/www/yacht/fuel/app/classes/controller/formfieldbuyer.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/search.php",
+		"/home/evan/www/yacht/fuel/app/views/front/view.php",
+		"/home/evan/.config/sublime-text-2/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/evan/www/yacht/fuel/app/views/front/images.php",
+		"/home/evan/www/yacht/fuel/app/views/front/index.php",
+		"/home/evan/www/yacht/fuel/app/views/images.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/front.php",
+		"/home/evan/www/yacht/fuel/app/config/config.php",
+		"/home/evan/www/evanrolfe/index.html",
+		"/home/evan/www/yacht/fuel/app/classes/controller/boat.php",
+		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/formrows/_dropdown_options.php",
+		"/home/evan/www/yacht/fuel/app/tasks/backup.php",
+		"/home/evan/www/resources/themeforest-2760049-lxportfolio/Site-Green/index.html",
+		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/data.php",
+		"/home/evan/www/yacht/fuel/app/classes/controller/file.php",
+		"/home/evan/www/yacht/fuel/app/config/offline.php",
+		"/home/evan/www/yacht/oil",
+		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
+		"/home/evan/www/yacht/fuel/app/views/file/index.php",
+		"/home/evan/www/resources/xampp/logs/2013/01/01.php",
+		"/home/evan/www/yacht/fuel/app/views/public_template.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
+		"/home/evan/www/yacht/fuel/app/views/yachtshare/index.php",
+		"/home/evan/www/yacht/fuel/app/views/_includes.php",
 		"/home/evan/www/yacht/fuel/app/classes/model/image.php",
 		"/home/evan/www/yacht/fuel/app/classes/model/yachtshare.php",
-		"/home/evan/www/yacht/fuel/app/views/front/view.php",
-		"/home/evan/www/yacht/fuel/app/views/yachtshare/seller/create.php",
 		"/home/evan/www/yacht/fuel/app/views/forms/_textarea.php",
 		"/home/evan/www/yacht/fuel/app/views/forms/_text_fraction.php",
 		"/home/evan/www/yacht/fuel/app/views/forms/_text.php",
@@ -339,13 +395,9 @@
 		"/home/evan/www/yacht/fuel/app/views/forms/_dropdown.php",
 		"/home/evan/www/yacht/fuel/app/views/forms/_length.php",
 		"/home/evan/www/yacht/fuel/app/views/file/seller/index.php",
-		"/home/evan/www/yacht/fuel/app/views/file/index.php",
 		"/home/evan/www/yacht/fuel/app/classes/controller/yachtshare.php",
 		"/home/evan/www/yacht/fuel/app/views/session/login.php",
 		"/home/evan/www/yacht/fuel/app/config/routes.php",
-		"/home/evan/www/yacht/fuel/app/classes/mycontroller.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/session.php",
-		"/home/evan/www/yacht/fuel/app/views/_includes.php",
 		"/home/evan/www/yacht/public/assets/js/files/functions.js",
 		"/home/evan/www/yacht/public/assets/css/styles.css",
 		"/home/evan/www/yacht/public/assets/css/plugins.css",
@@ -359,10 +411,7 @@
 		"/home/evan/www/yacht/fuel/app/views/seller/search_results.php",
 		"/home/evan/www/yacht/fuel/app/views/seller/find_by_name.php",
 		"/home/evan/www/yacht/fuel/app/views/install.php",
-		"/home/evan/www/yacht/fuel/app/views/front/index.php",
 		"/home/evan/www/yacht/fuel/app/views/front_end_template.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/front.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/file.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/create.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/edit.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/create.php",
@@ -371,8 +420,6 @@
 		"/home/evan/www/yacht/fuel/app/views/view.php",
 		"/home/evan/.config/sublime-text-2/Packages/Dayle Rees Color Schemes/Github.tmTheme",
 		"/home/evan/.config/sublime-text-2/Packages/Dayle Rees Color Schemes/Github.tmTheme.cache",
-		"/home/evan/www/yacht/fuel/app/views/public_template.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/formfieldbuyer.php",
 		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/edit.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/view.php",
 		"/home/evan/www/yacht/fuel/app/views/seller/create.php",
@@ -386,12 +433,10 @@
 		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/order.php",
 		"/home/evan/www/yacht/fuel/app/views/formfieldbuyer/_table.php",
 		"/home/evan/www/yacht/fuel/app/views/terms_and_conditions.php",
-		"/home/evan/www/yacht/fuel/app/classes/controller/data.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/admin/_nav.php",
 		"/home/evan/www/yacht/fuel/app/views/yachtshare/_nav.php",
 		"/home/evan/www/yacht/fuel/app/views/template.php",
 		"/home/evan/www/yacht/fuel/app/classes/mytemplate.php",
-		"/home/evan/www/yacht/fuel/app/views/yachtshare/index.php",
 		"/home/evan/www/yacht/CONTRIBUTING.md",
 		"/home/evan/.config/sublime-text-2/Packages/User/untitled.sublime-snippet",
 		"/home/evan/www/yacht/fuel/app/classes/model/formfieldbuyer.php",
@@ -417,6 +462,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"Back to",
+			"DB",
+			"ft",
+			"form_action_url",
+			"button",
 			".ac",
 			"ui-autocomplete-input",
 			"auto",
@@ -466,26 +516,345 @@
 			[
 				{
 					"buffer": 0,
+					"file": "fuel/app/classes/mycontroller.php",
 					"settings":
 					{
-						"buffer_size": 5304,
+						"buffer_size": 12854,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3094,
-								3094
+								774,
+								774
 							]
 						],
 						"settings":
 						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
 							"syntax": "Packages/PHP/PHP.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1406.0,
+						"translation.y": 527.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "fuel/app/classes/controller/session.php",
+					"settings":
+					{
+						"buffer_size": 6387,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1262,
+								1262
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 195.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "fuel/app/classes/controller/seller.php",
+					"settings":
+					{
+						"buffer_size": 3431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								125,
+								125
+							]
+						],
+						"settings":
+						{
+							"annotations":
+							[
+								"TODO",
+								"README",
+								"FIXME"
+							],
+							"csslint_options":
+							{
+								"adjoining-classes": "warning",
+								"box-model": true,
+								"box-sizing": "warning",
+								"compatible-vendor-prefixes": "warning",
+								"display-property-grouping": true,
+								"duplicate-background-images": "warning",
+								"duplicate-properties": true,
+								"empty-rules": true,
+								"errors": true,
+								"fallback-colors": "warning",
+								"floats": "warning",
+								"font-faces": "warning",
+								"font-sizes": "warning",
+								"gradients": "warning",
+								"ids": "warning",
+								"import": "warning",
+								"important": "warning",
+								"known-properties": true,
+								"outline-none": "warning",
+								"overqualified-elements": "warning",
+								"qualified-headings": "warning",
+								"regex-selectors": "warning",
+								"rules-count": "warning",
+								"shorthand": "warning",
+								"star-property-hack": "warning",
+								"text-indent": "warning",
+								"underscore-property-hack": "warning",
+								"unique-headings": "warning",
+								"universal-selector": "warning",
+								"vendor-prefix": true,
+								"zero-units": "warning"
+							},
+							"gjslint_ignore":
+							[
+								110
+							],
+							"gjslint_options":
+							[
+							],
+							"javascript_linter": "jshint",
+							"jshint_options":
+							{
+								"browser": true,
+								"evil": true,
+								"regexdash": true,
+								"sub": true,
+								"trailing": true,
+								"wsh": true
+							},
+							"pep8": true,
+							"pep8_ignore":
+							[
+								"E501"
+							],
+							"perl_linter": "perlcritic",
+							"pyflakes_ignore":
+							[
+							],
+							"pyflakes_ignore_import_*": true,
+							"sublimelinter": true,
+							"sublimelinter_delay": 2,
+							"sublimelinter_disable":
+							[
+							],
+							"sublimelinter_executable_map":
+							{
+							},
+							"sublimelinter_fill_outlines": false,
+							"sublimelinter_gutter_marks": false,
+							"sublimelinter_mark_style": "outline",
+							"sublimelinter_notes": false,
+							"sublimelinter_objj_check_ascii": false,
+							"sublimelinter_popup_errors_on_save": false,
+							"sublimelinter_syntax_map":
+							{
+								"C++": "c",
+								"Python Django": "python",
+								"Ruby on Rails": "ruby"
+							},
+							"sublimelinter_wrap_find": true,
+							"syntax": "Packages/PHP/PHP.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -552,7 +921,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 50.0,
+	"side_bar_visible": false,
+	"side_bar_width": 204.0,
 	"status_bar_visible": true
 }

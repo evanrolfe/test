@@ -190,6 +190,13 @@ Also each file can be of the type:
 						'type' => Input::post('type'),
 					));
 
+					//6. Check that if it is a public_header image, there is not already a public_header image uploaded for that yacht
+					if(Input::post('type')=='public_header' and !is_null($yachtshare->get_header_image_url()))
+					{
+						Session::set_flash('error', 'There is already a header image uploaded for that yacht! There can only be one header image per yacht. Please select "Public gallery photo for website" instead.');	
+						Response::redirect('file/'.Input::post('belongs_to').'/'.Input::post('belongs_to_id'));
+					}
+
 					$file_db->save() or $errors++;	
 				}
 

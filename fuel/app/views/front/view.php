@@ -35,7 +35,7 @@
 				/**
 				*	Site-specific configuration settings for Highslide JS
 				*/
-			    hs.graphicsDir = "<?=Uri::create('public/assets/highslide/graphics');?>";
+			    hs.graphicsDir = "../../public/assets/highslide/graphics/";
 				hs.showCredits = false;
 				hs.outlineType = 'custom';
 				hs.dimmingOpacity = 0.75;
@@ -124,20 +124,16 @@
 
 				<div class="highslide-gallery">
 
-					<a id="thumb1" href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" class="highslide " title="" onclick="return hs.expand(this, config1 )">
-						<img src="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" alt="" width="500" height="375">
+					<a id="thumb1" href="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" class="highslide " title="" onclick="return hs.expand(this, config1 )">
+						<img src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" alt="" width="500" height="375">
 					</a>
 
 					<div class="hidden-container">
-
-						<a href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" class="highslide" title="" onclick="return hs.expand(this, config1 )">
-							<img src="./view_dad_files/aquilasaloon.jpg" alt="">
-						</a>
-
-						<a href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilamoored.jpg" class="highslide" title="" onclick="return hs.expand(this, config1 )">
-							<img src="./view_dad_files/aquilamoored.jpg" alt="">
-						</a>
-
+						<? foreach($yachtshare->get_public_image_urls_except_header() as $row): ?>
+							<a href="<?=Uri::create('public/uploads/'.$row['url']);?>" class="highslide" title="" onclick="return hs.expand(this, config1 )">
+								<img src="<?=Uri::create('public/uploads/'.$row['url']);?>" alt="">
+							</a>
+						<? endforeach; ?>
 					</div>
 				</div>
 

@@ -14,32 +14,6 @@
 		<script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery-1.3.2.min.js');?>"></script>
         <script type="text/javascript" src="<?=Uri::create('public/assets/front/jquery.fancybox-1.2.5.pack.js');?>"></script>
 
-        <script type="text/javascript">
-			$(document).ready(function(){
-					$('#photos').galleryView({
-						panel_width: 565,
-						panel_height: 385,
-						frame_width: 55,
-						frame_height: 40,
-						transition_speed: 5000,
-						background_color: '#fff',
-						border: 'none',
-						easing: 'easeInOutBack',
-						pause_on_hover: true,
-					   // nav_theme: 'custom',
-						overlay_height: 52,
-						filmstrip_position: 'bottom',
-						overlay_position: 'bottom'
-					});
-					
-					$('.panel .zoom2 img').hover(function(){
-						$('.glass').show();
-					});
-					$('.panel .zoom2 img').mouseout(function(){
-						$('.glass').hide();
-					});			
-		});
-        </script>
         <script type="text/javascript" src="<?=Uri::create('public/assets/front/details/jquery.easing.1.3.js');?>"></script>
 		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/runonload.js');?>"></script>
 		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/function.js');?>"></script>
@@ -48,6 +22,78 @@
 		<script type="text/javascript" src="<?=Uri::create('public/assets/front/details/tutorial.js');?>"></script>
 		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/details/galleryview.css');?>" />
 		<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/front/details/tutorial.css');?>" />
+
+		<!-- HIGHSLIDE GALLERY - added by Evan 31/02/13 -->
+
+			<script type="text/javascript" src="<?=Uri::create('public/assets/highslide/highslide-with-gallery.js');?>"></script>
+			
+			<link rel="stylesheet" type="text/css" href="<?=Uri::create('public/assets/highslide/highslide.css');?>" />
+
+			<script type="text/javascript">
+			    // override Highslide settings here
+			    // instead of editing the highslide.js file
+				/**
+				*	Site-specific configuration settings for Highslide JS
+				*/
+			    hs.graphicsDir = "<?=Uri::create('public/assets/highslide/graphics');?>";
+				hs.showCredits = false;
+				hs.outlineType = 'custom';
+				hs.dimmingOpacity = 0.75;
+				hs.fadeInOut = true;
+				hs.align = 'center';
+				hs.marginBottom = 105;
+				hs.numberOfImagesToPreload = 15;
+				hs.captionEval = 'this.a.title';
+
+
+				// Add the slideshow controller
+				hs.addSlideshow({
+					slideshowGroup: 'group1',
+					interval: 5000,
+					repeat: false,
+					useControls: true,
+					fixedControls: false,
+					overlayOptions: {
+						className: 'text-controls',
+						opacity: 1,
+						position: 'bottom center',
+						offsetX: 0,
+						offsetY: -60,
+						relativeTo: 'viewport',
+						hideOnMouseOut: false
+					},
+					thumbstrip: {
+						mode: 'horizontal',
+						position: 'bottom center',
+						relativeTo: 'viewport'
+					}
+
+				});
+
+				// gallery config object
+				var config1 = {
+					slideshowGroup: 'group1',
+					thumbnailId: 'thumb1',
+					numberPosition: 'caption',
+					transitions: ['expand', 'crossfade']
+				};			    
+			</script>
+
+			<style type="text/css">
+				.highslide img {
+					cursor: url(highslide/graphics/zoomin.cur), pointer !important;
+				}
+				.highslide-viewport-size {
+					position: fixed;
+					width: 100%;
+					height: 100%;
+					left: 0;
+					top: 0;
+				}
+			</style>
+
+
+		<!-- / HIGHSLIDE GALLERY -->		
 	</head>
 <body>
 <div id="wrapper1">
@@ -69,42 +115,56 @@
 						<h1 class='grey'><?=$yachtshare->make;?> - <?=$yachtshare->name;?></h1>
 					</div>
 			
-					<div id='photos_wrapper'>
-						<div id='photos' class='galleryview'>
-							<!--gallery images-->
+<!-- NEW STUFF to include the highslide gallery -->
 
-<? if($yachtshare->get_header_image_url() and file_exists(DOCROOT.'uploads/'.$yachtshare->get_header_image_url())): ?>
-								<div class="panel" >
-									<table>
-										<tr>
-											<td>
-												<img height="400px" src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>"/>
-											</td>
-										</tr>
-									</table>
-								</div>						
-<? endif; ?>
-						</div><!-- photos -->
-					</div><!--photos wrapper -->
+<table width="100%" border="0">
+	<tbody>
+  		<tr>
+			<td width="68%">
 
-						<div class='fast_details'>		
-							<div>
-								<span><strong>Type: </strong><?=$yachtshare->make;?></span><br />
-								<span><strong>Price: </strong>&pound;<?=$yachtshare->price;?></span><br /> 
-								<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br />
-								<span><strong>LOA: </strong> <?=$yachtshare->length;?>m</span><br /> 
-								<span><strong>LWL: </strong> <?=$yachtshare->boat_details['lwl'];?></span><br /> 
-								<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?></span><br /> 
-								<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br /> 
-								<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br />
-								<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br /> 
-								<span><strong>Sail Area: </strong> <?=$yachtshare->location_specific;?></span><br /> 
-								<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?></span><br /><br />
+				<div class="highslide-gallery">
 
-<a class='up' id ='up' href="<?=Uri::create('search/images/'.$yachtshare->id);?>">View Photos for this yacht</a>			
-								<a class='up' id ='up' href="#" onclick="javascript:history.back(-1)" >&laquo; Back to Yacht Shares For Sale</a> 		
-							</div>
-						</div>
+					<a id="thumb1" href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" class="highslide " title="" onclick="return hs.expand(this, config1 )">
+						<img src="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" alt="" width="500" height="375">
+					</a>
+
+					<div class="hidden-container">
+
+						<a href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilasaloon.jpg" class="highslide" title="" onclick="return hs.expand(this, config1 )">
+							<img src="./view_dad_files/aquilasaloon.jpg" alt="">
+						</a>
+
+						<a href="http://yacht-fractions.co.uk/public/crolfe/highslide/images/large/aquilamoored.jpg" class="highslide" title="" onclick="return hs.expand(this, config1 )">
+							<img src="./view_dad_files/aquilamoored.jpg" alt="">
+						</a>
+
+					</div>
+				</div>
+
+				<p>Click the image to view more photographs of this yacht.</p>
+			</td>
+    		<td width="32%" align="left" valign="top"><div class="fast_details">		
+				  <div>
+						<span><strong>Type: </strong>Elan Impression 434</span><br>
+						<span><strong>Price: </strong>£30000</span><br> 
+						<span><strong>Share Size: </strong>1/4</span><br>
+						<span><strong>LOA: </strong> 13m</span><br> 
+						<span><strong>LWL: </strong> </span><br> 
+						<span><strong>Beam:</strong> 4.18</span><br> 
+						<span><strong>Draft: </strong> 1.9</span><br> 
+						<span><strong>Keel: </strong> Fin</span><br>
+						<span><strong>Built: </strong> 2007</span><br> 
+						<span><strong>Sail Area: </strong> Turkey</span><br> 
+						<span><strong>Lying: </strong> Marmaris</span><br><br>
+				  </div>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<!-- / NEW STUFF to include the highslide gallery -->
+
+
 						<div class='long_details'><h2 class='grey'>SUMMARY</h2>
 							<p>
 								<?=$yachtshare->boat_details['teaser'];?>

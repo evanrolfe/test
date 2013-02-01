@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
@@ -141,7 +140,7 @@
 				<div class="highslide-gallery">
 
 					<a id="thumb1" href="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" class="highslide " title="" onclick="return hs.expand(this, config1 )">
-						<img src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" alt="" width="500" height="375">
+						<img src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" alt="" width="500">
 					</a>
 
 					<div class="hidden-container">

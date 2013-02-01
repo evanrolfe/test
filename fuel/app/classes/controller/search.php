@@ -33,17 +33,28 @@ class Controller_Search extends MyController
 		{
 			switch($this->param('type'))
 			{
-				case "sail":
-					$where_from_url = array('type', 'IN', array("Sailing boat shares UK","Sailing boat shares overseas"));					
+				case "uk_yachts":
+					$where_from_url = array('type', '=', "Sailing boat shares UK");
+					$data['heading'] = "Sailing boat shares UK";
+				break;
+
+				case "overseas_yachts":
+					$where_from_url = array('type', '=', "Sailing boat shares overseas");
+					$data['heading'] = "Sailing boat shares overseas";					
 				break;
 
 				case "motor":
 					$where_from_url = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
+					$data['heading'] = "Motor boat shares";										
 				break;
 
-				case "brokerage":
-					$where_from_url = array('type','=',"Used Yacht on brokerage");
+				case "brokerages":
+					$where_from_url = array('type', '=', "Used Yacht on brokerage");
+					$data['heading'] = "Brokerages";										
 				break;
+
+				default:
+					throw new HttpNotFoundException;									
 			}
 		}		
 

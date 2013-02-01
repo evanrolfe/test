@@ -1,0 +1,9 @@
+NOTES FOR DAD:
+
+Pretty much all images have are listed in the DB as "public_header" - there can only be one public_header image per yacht. I have added this validation but the images in the DB are still like that. The rest of the images need to be type="public_gallery" if they are to be displayed in the highslide gallery.
+
+For the static front page url's 
+	yacht/search/type/uk_yachts 		=> "Sailing boat shares UK"
+	yacht/search/type/overseas_yachts 	=> "Sailing boat shares overseas"
+	yacht/search/type/motor 			=> "Motor boat shares UK", "Motor boat shares O/S"
+	yacht/search/type/brokerages 		=> "Used Yacht on brokerage"

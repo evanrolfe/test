@@ -28,6 +28,12 @@
 						</div>
 						<hr>
 	                </div>
+
+	                <? if(isset($heading)): ?>
+					<div class="sort">
+						<h2><?=$heading;?></h2>
+					</div>
+					<? endif; ?>
 	        <form method="POST" action="<?=Uri::create('search');?>" id="form">
 					<div class="sort">
 							Location:
@@ -63,10 +69,7 @@
 									<? endforeach; ?>
 								</select>																
 					</div>
-
-					<div class="sort">
-
-					</div>					
+					
 
 <script type="text/javascript">
 function sort_by(col)

@@ -90,6 +90,19 @@
 					left: 0;
 					top: 0;
 				}
+				#top_menu_CMR a {
+					color: #939393;
+					margin: 0;
+					text-decoration: none;
+					font-size: 15px;
+				}
+
+				#credits_evan a {
+					color: #939393;
+					margin: 0;
+					text-decoration: none;
+					font-size: 10px;
+				}
 			</style>
 
 
@@ -100,15 +113,18 @@
 <div id="page_wrapper">
 		<div id="page" class="clearfix">			 	
 				<div id="content_wrap" class="clearfix">
-                    <div id="header" style="height:125px;">
-						<div id="logo">
-							<a href="http://www.yachtfractions.co.uk"></a>
+                    <div id="header" style="height:140px;">
+						<p>&nbsp;</p>
+						<div align="left">
+						  <p><a href="http://www.yachtfractions.co.uk"><img src="<?=Uri::create('public/assets/images/logo.gif');?>" alt="logo" vspace="22" /></a> </p>
+						 <div id="top_menu_CMR"> <a href="http://www.yachtfractions.co.uk/" >HOME</a> </div>			    </p>
 						</div>
-						<div align="right">
-							<a href="http://www.yachtfractions.co.uk">Back to www.yachtfractions.co.uk</a>
-						</div>
-						<hr>						
+						      <div align="right"><a class="up" id="up" href="#" onclick="javascript:history.back(-1)">« Back to Yacht Listing</a>
+		                  </div>
+               
+						<hr>							
 	                </div>
+
 					<div id="content" class="clearfix">
                 
 					<div class='header'>
@@ -203,13 +219,7 @@
             <div id="footer">
 <div id="footer_content">
 	<a href='mailto: chris@sailfractions.co.uk'>Chris@sailfractions.co.uk</a>   |   <strong>Tel. 00 44 1326 374435</strong>   |   Fax.  00 44 1326 374625   |   PO Box 196, Falmouth, Cornwall TR11 5WD, UK</div>
-<div id="copyrights">
-</div>
-<div id="credits">
-<p>
-Developed by <a href='http://evanrolfe.info'>Evan Rolfe</a>.
-</p>
-</div>
+
 
 </div><!--footer-->	
             </div><!--page-->
@@ -218,5 +228,9 @@ Developed by <a href='http://evanrolfe.info'>Evan Rolfe</a>.
 </div><!--page_wrapper-->
 </div><!--wrapper1-->
 
-<div id="fancy_overlay"></div><div id="fancy_loading"><div></div></div><div id="fancy_outer"><div id="fancy_inner"><div id="fancy_close"></div><div id="fancy_bg"><div class="fancy_bg" id="fancy_bg_n"></div><div class="fancy_bg" id="fancy_bg_ne"></div><div class="fancy_bg" id="fancy_bg_e"></div><div class="fancy_bg" id="fancy_bg_se"></div><div class="fancy_bg" id="fancy_bg_s"></div><div class="fancy_bg" id="fancy_bg_sw"></div><div class="fancy_bg" id="fancy_bg_w"></div><div class="fancy_bg" id="fancy_bg_nw"></div></div><a href="javascript:;" id="fancy_left"><span class="fancy_ico" id="fancy_left_ico"></span></a><a href="javascript:;" id="fancy_right"><span class="fancy_ico" id="fancy_right_ico"></span></a><div id="fancy_content"></div></div></div><div id="fancy_title"><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="fancy_title" id="fancy_title_left"></td><td class="fancy_title" id="fancy_title_main"><div></div></td><td class="fancy_title" id="fancy_title_right"></td></tr></tbody></table></div><div class="highslide-container" style="padding: 0px; border: none; margin: 0px; position: absolute; left: 0px; top: 0px; width: 100%; z-index: 1001; direction: ltr;"><a class="highslide-loading" title="Click to cancel" href="javascript:;" style="position: absolute; top: -9999px; opacity: 0.75; z-index: 1;">Loading...</a><div style="display: none;"></div><div class="highslide-viewport highslide-viewport-size" style="padding: 0px; border: none; margin: 0px; visibility: hidden; display: none;"></div><div class="highslide-dimming highslide-viewport-size" style="padding: 0px; border: none; margin: 0px; visibility: visible; opacity: 0; display: none;"></div><table cellspacing="0" style="padding: 0px; border: none; margin: 0px; visibility: hidden; position: absolute; border-collapse: collapse; width: 0px;"><tbody style="padding: 0px; border: none; margin: 0px;"><tr style="padding: 0px; border: none; margin: 0px; height: auto;"><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: 0px 0px; background-repeat: initial initial;"></td><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: 0px -56px; background-repeat: initial initial;"></td><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: -28px 0px; background-repeat: initial initial;"></td></tr><tr style="padding: 0px; border: none; margin: 0px; height: auto;"><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: 0px -112px; background-repeat: initial initial;"></td><td style="padding: 0px; border: none; margin: 0px; position: relative;" class="custom highslide-outline"></td><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: -28px -112px; background-repeat: initial initial;"></td></tr><tr style="padding: 0px; border: none; margin: 0px; height: auto;"><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: 0px -28px; background-repeat: initial initial;"></td><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: 0px -84px; background-repeat: initial initial;"></td><td style="padding: 0px; border: none; margin: 0px; line-height: 0; font-size: 0px; background-image: url(http://yacht-fractions.co.uk/public/crolfe/highslide/graphics/outlines/custom.png); height: 28px; width: 28px; background-position: -28px -28px; background-repeat: initial initial;"></td></tr></tbody></table></div><div id="window-resizer-tooltip" style="display: block;"><a href="http://yacht-fractions.co.uk/public/crolfe/aquila2.htm#" title="Edit settings" style="background-image: url(chrome-extension://kkelicaakdanhinjdeammmilcgefonfh/images/icon_19.png);"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1920</span> x <span class="tooltipHeight" id="winHeight">1055</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1920</span> x <span class="tooltipHeight" id="vpHeight">946</span></div></body><style type="text/css"></style>
+<div id="credits_evan" style="color: #939393;">
+  <div align="center">Website development by <a href="http://evanrolfe.info/">Evan Rolfe</a>.</div>
+</div>
+
+</body>
 </html>

@@ -14,4 +14,7 @@ return array(
 	//Set the percentage of the width of the content box on public pages
 	//IGNORE if you dont know what this is
 	'content_width' => 50,
+
+  //The amount of time that a yachtshare must have been added in order for it to be considered "Newly Listed" on the front page
+  'newly_listed_time' => '-3 weeks',
 );

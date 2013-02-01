@@ -19,14 +19,13 @@
 	<div id="page_wrapper">
 		<div id="page" class="clearfix">			 
 				<div id="content" class="clearfix">
-					<div id="header" style="height:150px;">
-						<div id="logo">
-							<a href="http://www.yachtfractions.co.uk"></a>
-						</div>
-						<div align="right">
-							<a href="http://www.yachtfractions.co.uk">Back to www.yachtfractions.co.uk</a>
-						</div>
+					<div id="header" style="height:150px; margin-bottom: 10px;">
+						<p>&nbsp;</p>
+						<div align="left">
+						  <p><a href="http://www.yachtfractions.co.uk"><img src="<?=Uri::create('public/assets/images/logo.gif');?>" alt="logo" vspace="22" /></a> </p>          
 						<hr>
+						</div>
+
 	                </div>
 
 	                <? if(isset($heading)): ?>
@@ -34,40 +33,52 @@
 						<h2><?=$heading;?></h2>
 					</div>
 					<? endif; ?>
-	        <form method="POST" action="<?=Uri::create('search');?>" id="form">
+
+			<? if(isset($heading)): ?>
+	        	<form method="POST" action="<?=Uri::create('search/type/'.$type_url);?>" id="form">			
+	        <? else: ?>
+	        	<form method="POST" action="<?=Uri::create('search');?>" id="form">	        
+	   	 	<? endif; ?>
+	   	 			<input type="hidden" name="show_all" value="<?=$show_all;?>">
 					<div class="sort">
 							Location:
 								<select name="filter_location" onchange="form.submit()">
-									<option value="">Any</option>
-										<option value="">============</option>																		
-										<option value="">General Area</option>
-										<option value="">============</option>									
-									<? foreach($loc_general as $loc): ?>
-										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
-									<? endforeach; ?>
-										<option value="">============</option>																		
-										<option value="">Specific Area</option>
-										<option value="">============</option>
-									<? foreach($loc_specific as $loc): ?>
-										<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
-									<? endforeach; ?>									
-								</select>,
 
-							Type:
+									<? if(isset($heading)): ?>
+										<option value="">Any</option>
+										<? foreach($locations as $loc): ?>
+
+											<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
+
+										<? endforeach; ?>
+
+									<? else: ?>
+											<option value="">Any</option>
+											<option value="">============</option>																		
+											<option value="">General Area</option>
+											<option value="">============</option>									
+										<? foreach($loc_general as $loc): ?>
+											<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
+										<? endforeach; ?>
+											<option value="">============</option>																		
+											<option value="">Specific Area</option>
+											<option value="">============</option>
+										<? foreach($loc_specific as $loc): ?>
+											<option value="<?=$loc;?>" <?if($selected_location==$loc):?>selected="yes"<?endif;?>><?=$loc;?></option>
+										<? endforeach; ?>
+									<? endif; ?>								
+								</select>
+
+						<? if(!isset($heading)): ?>
+
+							, Type:
 								<select name="type" onchange="form.submit()">
 									<option value="">Any</option>
 									<? foreach($types as $type): ?>
 										<option value="<?=$type;?>" <?if($selected_type==$type):?>selected="yes"<?endif;?>><?=$type;?></option>
 									<? endforeach; ?>
 								</select>
-
-							Price:
-								<select name="filter_price" onchange="form.submit()">
-									<option value="">Any</option>
-									<? foreach($prices as $price): ?>
-										<option value="<?=$price;?>" <?if($selected_price==$price):?>selected="yes"<?endif;?>><?=$price;?></option>
-									<? endforeach; ?>
-								</select>																
+						<? endif; ?>															
 					</div>
 					
 
@@ -76,6 +87,12 @@ function sort_by(col)
 {
 	$('.sort_button').val('');
 	$('#'+col).val('1');
+	$('#form').submit();
+}
+
+function show_all()
+{
+	$("input[name=show_all]").val("1");
 	$('#form').submit();
 }
 </script>
@@ -127,6 +144,10 @@ function sort_by(col)
 						<? else: ?>
 						No yachtshares were found, try changing the search parameters.
 						<? endif;?>
+
+						<div align="center">
+							<a href="#" onclick="show_all()"> >>> View all yacht shares >>> </a>
+						</div>
 					</div>
 
 				</div><!--content-->

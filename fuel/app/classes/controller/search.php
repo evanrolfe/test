@@ -17,8 +17,8 @@ class Controller_Search extends MyController
 	public function action_index()
 	{
 		$data['sort_options'] = array(
+			array('Price', 'price', 'grey',''),			
 			array('Newest', 'created_at', 'grey',''),
-			array('Price', 'price', 'grey',''),
 			array('LOA', 'length', 'grey',''),
 			array('Share Size', 'share_size', 'grey',''),
 			array('Location', 'location_specific', 'grey',''),							
@@ -31,26 +31,45 @@ class Controller_Search extends MyController
 		$where_from_url = array();
 		if($this->param('type'))
 		{
+			$data['locations'] = [];
+			$data['type_url'] = $this->param('type');
+
 			switch($this->param('type'))
 			{
 				case "uk_yachts":
 					$where_from_url = array('type', '=', "Sailing boat shares UK");
 					$data['heading'] = "Sailing boat shares UK";
+
+					//Only show the UK specific locations
+					foreach($loc_specific->options as $loc)
+					{
+						if(substr($loc, 0,3) == "UK:")
+							$data['locations'][] = $loc;
+					}
 				break;
 
 				case "overseas_yachts":
 					$where_from_url = array('type', '=', "Sailing boat shares overseas");
-					$data['heading'] = "Sailing boat shares overseas";					
+					$data['heading'] = "Sailing boat shares overseas";
+
+					//List ALL general locations EXCEPT "UK"
+					foreach($loc_general->options as $loc)
+					{
+						if(substr($loc, 0,2) != "UK")
+							$data['locations'][] = $loc;
+					}								
 				break;
 
 				case "motor":
 					$where_from_url = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
-					$data['heading'] = "Motor boat shares";										
+					$data['heading'] = "Motor boat shares";
+					$data['locations'] = $loc_general->options;
 				break;
 
 				case "brokerages":
 					$where_from_url = array('type', '=', "Used Yacht on brokerage");
-					$data['heading'] = "Brokerages";										
+					$data['heading'] = "Brokerages";
+					$data['locations'] = $loc_general->options;															
 				break;
 
 				default:
@@ -60,10 +79,11 @@ class Controller_Search extends MyController
 
 		if(Input::method()=='POST')
 		{
+			//echo "<pre>";
+			//print_r(Input::post());
+			//echo "</pre>";
 			$where = array(array('approved','=',1), array('active','=',1));
 
-			//if(count($where_from_url) > 0)
-				//$where[] = $where_from_url;
 
 			//LOCATION OPTIONS:
 			if(Input::post('filter_location'))
@@ -73,6 +93,9 @@ class Controller_Search extends MyController
 
 				$where[] = array($loc_col, '=', Input::post('filter_location'));
 			}
+
+			if($this->param('type'))
+				$where[] = $where_from_url;
 
 
 			//TYPE OPTIONS
@@ -124,13 +147,13 @@ class Controller_Search extends MyController
 			if(Input::post('created_at'))
 			{
 				$order = array('created_at'=>'DESC');
-				$data['sort_options'][0][2]='red';
-				$data['sort_options'][0][3]='1';				
+				$data['sort_options'][1][2]='red';
+				$data['sort_options'][1][3]='1';				
 			}elseif(Input::post('price'))
 			{
 				$order = array('price'=>'ASC');
-				$data['sort_options'][1][2]='red';
-				$data['sort_options'][1][3]='1';				
+				$data['sort_options'][0][2]='red';
+				$data['sort_options'][0][3]='1';				
 			}elseif(Input::post('length'))
 			{
 				$order = array('length'=>'ASC');
@@ -147,9 +170,9 @@ class Controller_Search extends MyController
 				$data['sort_options'][4][2]='red';
 				$data['sort_options'][4][3]='1';
 			}else{
-				$order = array('created_at'=>'DESC');
+				$order = array('price'=>'ASC');
 				$data['sort_options'][0][2]='red';
-				$data['form_action_url'] = 'front';									
+				$data['sort_options'][0][3]='1';				
 			}			
 
 			//echo "WHERE:<br>";
@@ -160,15 +183,28 @@ class Controller_Search extends MyController
 			//print_r($order);
 			//exit;
 
-			$data['yachtshares'] = Model_Yachtshare::find('all', array(
+			$params = array(
 				'where' => $where,
 				'order_by' => $order,
-				));
+			);
+
+			//TODO:
+			if(!Input::post('show_all'))
+			{
+				$params['limit'] = 15;
+				$data['show_all'] = '';				
+			}else{
+				$data['show_all'] = 1;
+			}
+
+			$data['yachtshares'] = Model_Yachtshare::find('all', $params);
 		}else{
 			//Sort by newest as defualt:
 			$data['sort_options'][0][2]='red';
 			$data['form_action_url'] = 'front';	
 
+			$data['show_all'] = '';
+			
 			$where = array(array('approved','=',1), array('active','=',1));
 
 			if(count($where_from_url) > 0)
@@ -176,7 +212,8 @@ class Controller_Search extends MyController
 
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
 				'where' => $where,
-				'order_by' => array('created_at'=>'DESC'),
+				'order_by' => array('price'=>'ASC'),
+				'limit' => 15,
 			));
 		}
 

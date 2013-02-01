@@ -297,6 +297,8 @@ class Model_Yachtshare extends \Orm\Model
 
 	public function is_newly_listed()
 	{
-		return ($this->created_at > strtotime("-1 month"));
+		Config::load('offline');
+		$time = Config::get('newly_listed_time');
+		return ($this->created_at > strtotime($time));
 	}
 }

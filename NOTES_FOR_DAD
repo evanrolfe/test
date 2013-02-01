@@ -7,3 +7,6 @@ For the static front page url's
 	yacht/search/type/overseas_yachts 	=> "Sailing boat shares overseas"
 	yacht/search/type/motor 			=> "Motor boat shares UK", "Motor boat shares O/S"
 	yacht/search/type/brokerages 		=> "Used Yacht on brokerage"
+
+Change the time for a yachtshare to be newly listed in:
+	fuel/app/config/offline.php

@@ -162,5 +162,9 @@ function show_all()
 			</div><!--page-->
 	</div><!--page_wrapper-->
 </div><!--wrapper1-->
+<div id="credits_evan" style="color: #939393;">
+  <div align="center">Website development by <a href="http://evanrolfe.info/">Evan Rolfe</a>.</div>
+  </div>
+  
 </body>
 </html>

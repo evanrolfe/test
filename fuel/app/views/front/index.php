@@ -145,9 +145,11 @@ function show_all()
 						No yachtshares were found, try changing the search parameters.
 						<? endif;?>
 
-						<div align="center">
-							<a href="#" onclick="show_all()"> >>> View all yacht shares >>> </a>
-						</div>
+						<? if($show_all!=1): ?>
+							<div align="center">
+								<a href="#" onclick="show_all()"> >>> View all yacht shares >>> </a>
+							</div>
+						<? endif; ?>
 					</div>
 
 				</div><!--content-->

@@ -61,6 +61,26 @@ $(document).ready(function(){
 		$("#clear_form_button").show();		//DEPRACATED
 	});
 
+	var $cdialog = $('<div></div>')
+		.html("This page uses a small text file called a cookie that is saved to your computer. The cookie saves the information you type in so that you can complete the form at a later stage. Once you have submitted your entry, the cookie is permanently deleted. We do not recommend leaving a partially completed form on a public computer as this could give other users access to the data you typed in. You can still use this page if you disable cookies in your browser, but should then finish it at one sitting as the auto-save feature will be disabled. Entering data on this page is considered as implied consent to the use of a cookie as described. This site does not use cookies nor track any user data on any other website pages. This site is operated by Yacht Fractions Ltd., PO Box 196 Falmouth, Cornwall, TR11 5WD United Kingdom")
+		.dialog({
+			autoOpen: false,
+			title: "EU Cookie Compliance Statement",
+			modal: true,
+			width: 600,
+			buttons: {
+			    "Okay": function () {
+			        $(this).dialog("close");
+			    },												
+			}
+		});
+
+	$('#cookie_dialog').click(function() {
+		$cdialog.dialog('open');
+		// prevent the default action, e.g., following a link
+		return false;
+	});
+
 	var $dialog = $('<div></div>')
 		.html('Are you sure you want to submit this yacht share? You cannot edit the form once it’s submitted.')
 		.dialog({
@@ -211,20 +231,7 @@ function save_form(display_results)
 	});
 }
 </script>
-<div class="widget fluid" style="width: 75%;">
 
-    <div class="whead">
-		<h6>EU Cookie Compliance Statement</h6>	
-		<div class="clear"></div>
-	</div>
-
-	<div class="formRow" align="left">
-		
-This page uses a small text file called a cookie that is saved to your computer. The cookie saves the information you type in so that you can complete the form at a later stage. Once you have submitted your entry, the cookie is permanently deleted. We do not recommend leaving a partially completed form on a public computer as this could give other users access to the data you typed in.  You can still use this page if you disable cookies in your browser, but should then finish it at one sitting as the auto-save feature will be disabled. 
-Entering data on this page is considered as implied consent to the use of a cookie as described. This site does not use cookies nor track any user data on any other website pages. This site is operated by Yacht Fractions Ltd., PO Box 196 Falmouth, Cornwall, TR11 5WD United Kingdom
-
-	</div>	
-</div>
 <div class="widget fluid" style="width: 75%;">
 
     <div class="whead">
@@ -241,6 +248,7 @@ Entering data on this page is considered as implied consent to the use of a cook
 			<li>After clicking submit, you will be able to upload photos and documents </li>	
 			<li>Should you need to makes any changes after the form has been submitted, please contact Chris Hawes - <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> (Tel: 01326 374435)</li>
 			<li>Your entry will be published to the Yacht Fractions website after it has been reviewed by the administrator</li>
+			<li>Click <a href="#" id="cookie_dialog">here</a> to view the cookie policy.</li>
 		</ul>
 	</div>	
 </div>

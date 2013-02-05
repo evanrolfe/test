@@ -37,7 +37,7 @@ class Controller_Search extends MyController
 			switch($this->param('type'))
 			{
 				case "uk_yachts":
-					$where_from_url = array('type', '=', "Sailing boat shares UK");
+					$where_from_url = array('type', '=', "Sailing yacht shares UK");
 					$data['heading'] = "Sailing boat shares UK";
 
 					//Only show the UK specific locations
@@ -49,7 +49,7 @@ class Controller_Search extends MyController
 				break;
 
 				case "overseas_yachts":
-					$where_from_url = array('type', '=', "Sailing boat shares overseas");
+					$where_from_url = array('type', '=', "Sailing yacht shares overseas");
 					$data['heading'] = "Sailing boat shares overseas";
 
 					//List ALL general locations EXCEPT "UK"
@@ -61,13 +61,13 @@ class Controller_Search extends MyController
 				break;
 
 				case "motor":
-					$where_from_url = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
+					$where_from_url = array('type', 'IN', array("Motor yacht shares UK","Motor boat shares O/S"));
 					$data['heading'] = "Motor boat shares";
 					$data['locations'] = $loc_general->options;
 				break;
 
 				case "brokerages":
-					$where_from_url = array('type', '=', "Used Yacht on brokerage");
+					$where_from_url = array('type', '=', "Used Yachts on brokerage");
 					$data['heading'] = "Brokerages";
 					$data['locations'] = $loc_general->options;															
 				break;

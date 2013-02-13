@@ -31,7 +31,7 @@ class Controller_Search extends MyController
 		$where_from_url = array();
 		if($this->param('type'))
 		{
-			$data['locations'] = [];
+			$data['locations'] = array();
 			$data['type_url'] = $this->param('type');
 
 			switch($this->param('type'))
@@ -61,13 +61,13 @@ class Controller_Search extends MyController
 				break;
 
 				case "motor":
-					$where_from_url = array('type', 'IN', array("Motor boat shares UK","Motor boat shares O/S"));
+					$where_from_url = array('type', 'LIKE', "%Motor%");
 					$data['heading'] = "Motor boat shares";
 					$data['locations'] = $loc_general->options;
 				break;
 
 				case "brokerages":
-					$where_from_url = array('type', '=', "Used Yacht on brokerage");
+					$where_from_url = array('type', 'LIKE', "%brokerage%");
 					$data['heading'] = "Brokerages";
 					$data['locations'] = $loc_general->options;															
 				break;
@@ -75,6 +75,10 @@ class Controller_Search extends MyController
 				default:
 					throw new HttpNotFoundException;									
 			}
+
+			echo "<pre>";
+			print_r($where_from_url);
+			echo "</pre>";
 		}		
 
 		if(Input::method()=='POST')
@@ -174,14 +178,6 @@ class Controller_Search extends MyController
 				$data['sort_options'][0][2]='red';
 				$data['sort_options'][0][3]='1';				
 			}			
-
-			//echo "WHERE:<br>";
-			//echo "<pre>";
-			//print_r(Input::post());
-			//print_r($where);
-			//echo "</pre><br>ORDER:<br><pre>";
-			//print_r($order);
-			//exit;
 
 			$params = array(
 				'where' => $where,

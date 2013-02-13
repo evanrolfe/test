@@ -75,10 +75,6 @@ class Controller_Search extends MyController
 				default:
 					throw new HttpNotFoundException;									
 			}
-
-			echo "<pre>";
-			print_r($where_from_url);
-			echo "</pre>";
 		}		
 
 		if(Input::method()=='POST')

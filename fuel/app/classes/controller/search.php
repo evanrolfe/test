@@ -38,7 +38,7 @@ class Controller_Search extends MyController
 			{
 				case "uk_yachts":
 					$where_from_url = array('type', '=', "Sailing boat shares UK");
-					$data['heading'] = "Sailing boat shares UK";
+					$data['heading'] = "Sailing yacht shares UK";
 
 					//Only show the UK specific locations
 					foreach($loc_specific->options as $loc)
@@ -50,7 +50,7 @@ class Controller_Search extends MyController
 
 				case "overseas_yachts":
 					$where_from_url = array('type', '=', "Sailing boat shares overseas");
-					$data['heading'] = "Sailing boat shares overseas";
+					$data['heading'] = "Sailing yacht shares overseas";
 
 					//List ALL general locations EXCEPT "UK"
 					foreach($loc_general->options as $loc)

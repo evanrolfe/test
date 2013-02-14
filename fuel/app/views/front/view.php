@@ -165,7 +165,7 @@
 						<span><strong>Draft: </strong> 1.9</span><br> 
 						<span><strong>Keel: </strong> Fin</span><br>
 						<span><strong>Built: </strong> 2007</span><br> 
-						<span><strong>Sail Area: </strong> Turkey</span><br> 
+						<span><strong>Location: </strong> Turkey</span><br> 
 						<span><strong>Lying: </strong> Marmaris</span><br><br>
 				  </div>
 			</td>

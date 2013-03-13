@@ -62,13 +62,13 @@ class Controller_Search extends MyController
 
 				case "motor":
 					$where_from_url = array('type', 'LIKE', "%Motor%");
-					$data['heading'] = "Motor boat shares";
+					$data['heading'] = "Motor yacht shares";
 					$data['locations'] = $loc_general->options;
 				break;
 
 				case "brokerages":
 					$where_from_url = array('type', 'LIKE', "%brokerage%");
-					$data['heading'] = "Brokerages";
+					$data['heading'] = "Used yachts for sale on brokerage";
 					$data['locations'] = $loc_general->options;															
 				break;
 

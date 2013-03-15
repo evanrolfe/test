@@ -575,7 +575,7 @@ class Controller_Yachtshare extends MyController
 		$this->template->form_page = true;					//To set the html body to display "are you sure" popup on exit
 		$data['formfields'] = $this->formfields;
 
-		$this->template->title = 'Yacht Fractions: Create Yachtshare';
+		$this->template->title = 'Create Advert to Sell a Yacht Share';
 		$this->template->content = View::forge('yachtshare/seller/create',$data,false);
 	}
 

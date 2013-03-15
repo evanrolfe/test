@@ -44,7 +44,7 @@ class Controller_Session extends MyController
 	{
 		$this->user = null;
 		Session::delete('user');
-		Session::set_flash('success', "You are not logged out.");
+		Session::set_flash('success', "You are now logged out.");
 		Response::redirect('session/create');				
 	}
 

@@ -18,7 +18,7 @@ class Controller_Search extends MyController
 	{
 		$data['sort_options'] = array(
 			array('Price', 'price', 'grey',''),			
-			array('Newest', 'created_at', 'grey',''),
+			array('Date Listed', 'created_at', 'grey',''),
 			array('LOA', 'length', 'grey',''),
 			array('Share Size', 'share_size', 'grey',''),
 			array('Location', 'location_specific', 'grey',''),							

@@ -156,17 +156,16 @@
 			</td>
     		<td width="32%" align="left" valign="top"><div class="fast_details">		
 				  <div>
-						<span><strong>Type: </strong>Elan Impression 434</span><br>
-						<span><strong>Price: </strong>£30000</span><br> 
-						<span><strong>Share Size: </strong>1/4</span><br>
-						<span><strong>LOA: </strong> 13m</span><br> 
-						<span><strong>LWL: </strong> </span><br> 
-						<span><strong>Beam:</strong> 4.18</span><br> 
-						<span><strong>Draft: </strong> 1.9</span><br> 
-						<span><strong>Keel: </strong> Fin</span><br>
-						<span><strong>Built: </strong> 2007</span><br> 
-						<span><strong>Location: </strong> Turkey</span><br> 
-						<span><strong>Lying: </strong> Marmaris</span><br><br>
+						<span><strong>Type: </strong><?=$yachtshare->make;?></span><br>
+						<span><strong>Price: </strong>£<?=$yachtshare->price;?></span><br> 
+						<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br>
+						<span><strong>LOA: </strong> <?=$yachtshare->length;?> m</span><br> 
+						<span><strong>LWL: </strong> <?=$yachtshare->boat_details['lwl'];?></span><br> 
+						<span><strong>Beam:</strong> <?=$yachtshare->boat_details['beam'];?></span><br> 
+						<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br> 
+						<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br>
+						<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br> 
+						<span><strong>Lying: </strong> <?=$yachtshare->location_specific;?></span><br><br>
 				  </div>
 			</td>
 		</tr>
@@ -200,7 +199,13 @@
 							<p>
 								<?=str_replace("\n", "<br>",$yachtshare->boat_details['navigation']);?>
 							</p>
-														
+							
+							<h2 class='grey'>DINGHY</h2>
+							<p>
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['dinghy']);?><br />
+								<?=str_replace("\n", "<br>",$yachtshare->boat_details['outboard_motor']);?>
+							</p>
+							
 							<h2 class='grey'>OWNERS COMMENTS</h2>
 							<p>
 								<?=$yachtshare->boat_details['owners_comments'];?>

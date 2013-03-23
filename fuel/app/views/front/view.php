@@ -165,7 +165,7 @@
 						<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br> 
 						<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br>
 						<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br> 
-						<span><strong>Lying: </strong> <?=$yachtshare->location_specific;?></span><br><br>
+						<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?>, <?=$yachtshare->location_specific;?></span><br><br>
 				  </div>
 			</td>
 		</tr>

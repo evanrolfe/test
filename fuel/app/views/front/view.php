@@ -156,7 +156,7 @@
 			</td>
     		<td width="32%" align="left" valign="top"><div class="fast_details">		
 				  <div>
-						<span><strong>Type: </strong><?=$yachtshare->make;?></span><br>
+						<span><strong>Type </strong><?=$yachtshare->make;?></span><br>
 						<span><strong>Price: </strong>£<?=$yachtshare->price;?></span><br> 
 						<span><strong>Share Size: </strong><?=$yachtshare->share_size_num;?>/<?=$yachtshare->share_size_den;?></span><br>
 						<span><strong>LOA: </strong> <?=$yachtshare->length;?> m</span><br> 

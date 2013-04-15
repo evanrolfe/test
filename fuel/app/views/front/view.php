@@ -135,9 +135,10 @@
 <table width="100%" border="0">
 	<tbody>
   		<tr>
-			<td width="68%">
-
-				<div class="highslide-gallery">
+			<td width="68%"><p>Click the photograph to view more images of this yacht.
+			    
+			    </p>
+			  <div class="highslide-gallery">
 
 					<a id="thumb1" href="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" class="highslide " title="" onclick="return hs.expand(this, config1 )">
 						<img src="<?=Uri::create('public/uploads/'.$yachtshare->get_header_image_url());?>" alt="" width="500">
@@ -152,7 +153,7 @@
 					</div>
 				</div>
 
-				<p>Click the image to view more photographs of this yacht.</p>
+				<p>&nbsp;</p>
 			</td>
     		<td width="32%" align="left" valign="top"><div class="fast_details">		
 				  <div>
@@ -165,7 +166,8 @@
 						<span><strong>Draft: </strong> <?=$yachtshare->boat_details['draft'];?></span><br> 
 						<span><strong>Keel: </strong> <?=$yachtshare->boat_details['keel'];?></span><br>
 						<span><strong>Built: </strong> <?=$yachtshare->boat_details['built'];?></span><br> 
-						<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?>, <?=$yachtshare->location_specific;?></span><br><br>
+						<span><strong>Lying: </strong> <?=$yachtshare->boat_details['lying'];?>, <?=$yachtshare->location_specific;?></span><br>
+						<strong>Additional Images</strong>: please click on the photograph to view<br>
 				  </div>
 			</td>
 		</tr>

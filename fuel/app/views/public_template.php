@@ -48,7 +48,7 @@
 
 
 	    <br>
-	Chris Hawes, Yacht Fractions Ltd., PO Box 196, Falmouth, Cornwall. TR11 5WD Tel: 01326 374435 Fax 01326 374625 Email chris@yachtfractions.co.uk	</p>
+	Chris Hawes, Yacht Fractions Ltd., PO Box 196, Falmouth, Cornwall. TR11 5WD Tel: 01326 374435 Fax 01326 374625 Email <a href="mailto:chris@yachtfractions.co.uk">chris@yachtfractions.co.uk</a> </p>
 	    <p>
 	      <span class="style1">Website Development by <a href='http://evanrolfe.info'>Evan Rolfe</a></span><span class="style2">.</span>
 	      <? if(isset($user) and $user): ?>

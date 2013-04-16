@@ -19,6 +19,15 @@
 </script>
 
 	<? endif; ?>
+    <style type="text/css">
+<!--
+.style1 {
+	color: #999999;
+	font-size: x-small;
+}
+.style2 {font-size: small}
+-->
+    </style>
 </head>
 <body <? if(isset($form_page) and $form_page): ?>onbeforeunload="return confirmExit()"<? endif; ?>>
 <div style="width: 100%; padding-top: 20px;" align="center">
@@ -30,19 +39,21 @@
 			<br>
 			Login just as you would on the online site.
 		</div>
-	<? endif;?>
+	    <p>
+		<? endif;?>
 
 		<?php echo render('_flash_messages'); ?>
 
-	<?= $content; ?>
+	    <?= $content; ?>
 
-	<br>
-	Developed by <a href='http://evanrolfe.info'>Evan Rolfe</a>.
-	<br>
-	Chris Hawes, Yacht Fractions Ltd., PO Box 196, Falmouth, Cornwall. TR11 5WD Tel: 01326 374435 Fax 01326 374625 Email chris@yachtfractions.co.uk
 
-	<? if(isset($user) and $user): ?>
-	  <div>
+	    <br>
+	Chris Hawes, Yacht Fractions Ltd., PO Box 196, Falmouth, Cornwall. TR11 5WD Tel: 01326 374435 Fax 01326 374625 Email chris@yachtfractions.co.uk	</p>
+	    <p>
+	      <span class="style1">Website Development by <a href='http://evanrolfe.info'>Evan Rolfe</a></span><span class="style2">.</span>
+	      <? if(isset($user) and $user): ?>
+            </p>
+<div>
 	  <a href="<?= Uri::create('session/logout'); ?>" class="buttonS bLightBlue ">
 	    Logout
 	  </a>

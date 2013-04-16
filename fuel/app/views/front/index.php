@@ -16,6 +16,19 @@
 		     												                		                        <style type="text/css">
 		     												                		                        <!--
 		     												                		                        .style1 {font-size: medium}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+	color: #FF0000;
+}
+a:active {
+	text-decoration: none;
+}
 		     												                		                        -->
 		     												                		                                </style>
 		     												                		                                </head>
@@ -24,12 +37,13 @@
 		     												                		                                	<div id="page_wrapper">
 		     												                		                                			<div id="page" class="clearfix">			 
 		     												                		                                							<div id="content" class="clearfix">
-		     												                		                                												<div id="header" style="height:150px; margin-bottom: 10px;">
-		     												                		                                																		<p>&nbsp;</p>
+		     												                		                                											<div id="header" style="height:150px; margin-bottom: 10px;">
+		     												                		                                																		
 		     												                		                                																								<div align="left">
-		     												                		                                																														  <p><a href="http://www.yachtfractions.co.uk"><img src="<?=Uri::create('public/assets/images/logo.gif');?>" alt="logo" vspace="22" /></a> </p>          
-		     												                		                                																														  						<hr>
-		     												                		                                																														  												</div>
+		     												                		                                																														 <a href="http://www.yachtfractions.co.uk"><img src="<?=Uri::create('public/assets/images/logo.gif');?>" alt="logo" vspace="22" /></a>   
+                                                                                                                                                                                    <div id="top_menu_CMR"> <a href="http://www.yachtfractions.co.uk/" >HOME</a>    |    <a href="../../search/type/uk_yachts">UK YACHTS</a>    |    <a href="../../search/type/overseas_yachts">OVERSEAS YACHTS</a>    |    <a href="../../search/type/motor">MOTOR YACHTS</a>    |    <a href="../../search/type/brokerages">BROKERAGE</a>    |    <a href="http://www.yachtfractions.co.uk/howtobuy.pdf">HOW TO BUY</a>    |   <a href="../../buyer/create"> BUYER REGISTRATION</a></div>
+                                                                                                                                                                                    </p>     		                                																														  						<hr>
+																												  												  </div>
 		     												                		                                																														  												
 		     												                		                                																														  													                </div>
 		     												                		                                																														  													                

@@ -34,14 +34,7 @@ $(function(){
 		<div class="clear"></div>
 	</div>
 
-	<? if(count($files) > 0): ?>
-	<div class="formRow">
-			<? foreach($files as $file): ?>
-				<a href="<?=Uri::create('public/uploads/'.$file->url);?>" target="_blank"><?= $file->url; ?></a><br>
-			<? endforeach; ?>
-		 <div class="clear"></div>
-	</div>
-	<? endif; ?>
+
 
 	<div class="formRow">
 		<div class="grid3"><label>Select a File:</label></div>
@@ -56,10 +49,11 @@ $(function(){
       <div class="grid9" align="left">
 		  <select name="type" class="required">
         		<option value="">Select</option>
-				<option value="private">Private document or photo</option>
-				<option value="public_header">Public header photo for website</option>
 				<option value="public_gallery">Public gallery photo for website</option>
-		  </select>
+                <option value="public_header">Public header photo for website</option>
+            <option value="private">Private document or photo</option>
+				
+	    </select>
 	  </div>
 	   <div class="clear"></div>
   </div>
@@ -69,10 +63,10 @@ $(function(){
 		</div>
 		<div class="grid9" align="left">
 			<ul class="liInfo">
-				<li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
-				<li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
 				<li>Public gallery photo – additional images that will be displayed in the detailed listing</li>
-			<ul>
+                <li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
+  <li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
+							<ul>
 		</div>
 	   <div class="clear"></div>		
 	</div>
@@ -91,3 +85,25 @@ $(function(){
 </div>
 
 </form>
+<div class="widget fluid" style="width: 75%;">
+    <div class="whead">
+		<h6>Files Already Uploaded</h6>
+		<div class="clear"></div>
+	</div>
+
+	<? if(count($files) > 0): ?>
+	<div class="formRow">
+			<? foreach($files as $file): ?>
+				
+                <table width="400" border="1" align="left">
+                  <tr align="left" valign="top">
+                    <td><img src="<?=Uri::create('public/uploads/'.$file->url);?>" width="100" height="100" /></td>
+                    <td></a>  <a href="<?=Uri::create('public/uploads/'.$file->url);?>" target="_blank"><?= $file->url; ?></a></td>
+                    </tr>
+                </table>
+                
+                
+			<? endforeach; ?>
+		 <div class="clear"></div>
+</div>
+	<? endif; ?>

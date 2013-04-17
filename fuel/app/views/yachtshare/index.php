@@ -206,9 +206,7 @@ $(function(){
 
 						<? elseif($col == 'seller_name'): ?>
 
-							<? if(isset($yachtshare->boat_details['seller_first_name']) and isset($yachtshare->boat_details['seller_last_name'])): ?>
-								<?=$yachtshare->boat_details['seller_first_name']; ?> <?=$yachtshare->boat_details['seller_last_name']; ?>
-							<? endif; ?>
+								<?=$yachtshare->boat_details['first_name']; ?> <?=$yachtshare->boat_details['seller_name']; ?>
 
 						<? elseif($col == 'created_at'): ?>
 

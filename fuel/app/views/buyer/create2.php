@@ -168,12 +168,11 @@ function save_form()
 	<div class="whead">
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right;'>
-			<span id="text_bar2">
-			</span>
-			<button class="buttonS bBlue tipS" original-title="Click here and the data that you entered in the form will be saved so that you can close the browser and come back to this page later." style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
+			<span id="text_bar2">You will receive email confirmation after clicking submit. If this does not arrive, please check your junk email or contact Chris Hawes (contact listed below)</span>
+            <button class="buttonS bBlue tipS" original-title="Click here and the data that you entered in the form will be saved so that you can close the browser and come back to this page later." style="margin: 6px 6px;" onclick="save_form()" type="button">Save for Later</button>
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" id="create_form_submit">Submit</button>
 		</div>
-		<div class="clear"></div>
+	  <div class="clear"></div>
 	</div>
 </div>
 </form>

@@ -183,9 +183,9 @@ class Controller_Search extends MyController
 			//TODO:
 			if(!Input::post('show_all'))
 			{
-				$params['limit'] = 15;
+			$params['limit'] = 15;
 				$data['show_all'] = '';				
-			}else{
+		}else{
 				$data['show_all'] = 1;
 			}
 
@@ -204,9 +204,10 @@ class Controller_Search extends MyController
 
 			$data['yachtshares'] = Model_Yachtshare::find('all', array(
 				'where' => $where,
-				'order_by' => array('price'=>'ASC'),
-				'limit' => 15,
+				'order_by' => array('price'=>'ASC')
+//				'limit' => 15,
 			));
+			$data['show_all']=1;
 		}
 
 		//$data['locations'] = array();

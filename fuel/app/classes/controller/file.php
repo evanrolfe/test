@@ -83,8 +83,10 @@ Also each file can be of the type:
 	2. Public header image		"public_header"
 	3. Public gallery image		"public_gallery"
 */
+
 	public function action_upload()
 	{
+
 		//$this->logged_in_as(array('admin','seller'));
 		if(Input::method() == 'POST')
 		{
@@ -111,6 +113,10 @@ Also each file can be of the type:
 				'path' => DOCROOT.'uploads',
 				'randomize' => true,
 			);
+
+		//Check that the uploads dir exists or create it
+		if(!is_dir(DOCROOT.'uploads'))
+			File::create_dir(DOCROOT, 'uploads', 0755);
 
 			//Save as file name: yachtshare_id_+_num_+.*
 			Upload::register('before', function (&$file) {
@@ -141,6 +147,12 @@ Also each file can be of the type:
 
 		//3. Otherwise upload them to the public/assets/uploads directory
 			(Upload::is_valid()) and Upload::save();
+			
+			//FOR DEBUGGING:
+			//echo "<pre>";
+			//print_r(Upload::get_errors());
+			//exit;
+
 
 			foreach(Upload::get_files() as $file)
 			{

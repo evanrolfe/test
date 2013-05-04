@@ -82,7 +82,7 @@ $(document).ready(function(){
 	});
 
 	var $dialog = $('<div></div>')
-		.html('Are you sure you want to submit this yacht share? You cannot edit the form once it’s submitted.')
+		.html('Are you sure? You cannot edit the form once you continue. The next stage is to upload photographs.')
 		.dialog({
 			autoOpen: false,
 			title: "Are you sure?",
@@ -92,7 +92,7 @@ $(document).ready(function(){
 			    "No, go back to editing the form.": function () {
 			        $(this).dialog("close");
 			    },					
-			    "Yes, I'm sure. Submit the form.": function () {
+			    "YES: CONTINUE TO PHOTO UPLOAD": function () {
 			        $(this).dialog("close");			    	
 			        $("#create_form").submit();
 			    }								
@@ -160,8 +160,8 @@ $(document).ready(function(){
 		}
 	});
 
-	//AUTOSAVE STARTS IN 2 MINUTE
-	setTimeout(function(){ save_form(); },5*60*1000);		
+	//AUTOSAVE STARTS IN 10 seconds
+	setTimeout(function(){ save_form(); },10*1000);		
 
 	//DISPLAY TIME AGO (from last save)
 	jQuery("abbr.timeago").timeago();
@@ -222,7 +222,7 @@ function save_form(display_results)
 			$(".never_saved").hide();
 			$(".timeago").attr("title", isotimestamp).data("timeago",null).timeago();
 
-			setTimeout(function(){ save_form(); },2*60*1000);	//Autosave every 2 minutes
+			setTimeout(function(){ save_form(); },10*1000);	//Autosave every 10s
 			has_form_input_changed_since_last_save = false;
 		},
 		failure: function() {
@@ -330,7 +330,7 @@ function save_form(display_results)
 		<div style='text-align: right;'>
 			Last saved: <span class="never_saved">not saved.</span><span class="timeago"></span>
 			<button class="buttonS bBlue tipS cancel" style="margin: 6px 6px;" type="button" onclick="save_form()" original-title="Click here if you want to finish the form later.">Save and keep working</button>
-			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="button" original-title="Click here to finalize and submit the yacht share." id="create_form_submit" onclick="submitClicked=true;">Submit</button>
+			<button class="buttonS bGreen tipS" style="margin: 6px 6px;" type="button" original-title="Click here to continue to the next page where you will upload photos." id="create_form_submit" onclick="submitClicked=true;">GO TO NEXT STAGE</button>
 		</div>
 		<div class="clear"></div>
 	</div>

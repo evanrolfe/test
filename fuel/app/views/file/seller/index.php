@@ -5,39 +5,24 @@ $(function(){
 </script>
 
 <div class="widget fluid" style="width: 75%;">
-    <div class="whead">
-		<h6>Instructions</h6>
-		<div class="clear"></div>
-	</div>
-
-	<div class="formRow">
-		<div align="left">
-			Here you can upload photographs or documents relating to your yacht. Good photographs greatly enhance your listing.
-			<ol>
-				<li>Click the [+] button to select a file from your computer</li>
-				<li>Select the type of file that this represents</li>
-				<li>Click UPLOAD - this may take a minute or two</li>
-			</ol>
-			Repeat the process for additional files.		
-		</div>
-		<div class="clear"></div>
-	</div>	
-</div>
+ 
 
 <form action="<?= Uri::create('file/upload'); ?>" method="POST" enctype="multipart/form-data" id="upload_form">
 <input type="hidden" name="belongs_to_id" value="<?=$item->id;?>" />
 <input type="hidden" name="belongs_to" value="<?=$type;?>" />
-
+<p>&nbsp; </p>
+<h3>Photographs</h3>
 <div class="widget fluid" style="width: 75%;">
     <div class="whead">
-		<h6>Files</h6>
+		<h6>Upload Photographs and Files Here</h6>
 		<div class="clear"></div>
 	</div>
 
 
 
 	<div class="formRow">
-		<div class="grid3"><label>Select a File:</label></div>
+		<div class="grid3" align="left">
+		  <label>1. Click the [+] button to select a file from your computer</label></div>
 		<div class="grid9" align="left">
 			<input type='file' name="file" class="required"/>
 		</div>
@@ -45,12 +30,13 @@ $(function(){
 	</div>
 
   <div class="formRow">
-      <div class="grid3"><label>File Type:</label></div>
+      <div class="grid3" align="left"><label>2. What type of file or photo is this?</label>
+        </div>
       <div class="grid9" align="left">
 		  <select name="type" class="required">
         		<option value="">Select</option>
-				<option value="public_gallery">Public gallery photo for website</option>
-                <option value="public_header">Public header photo for website</option>
+				<option value="public_gallery">An additional gallery photo for website listing (public)</option>
+                <option value="public_header">The main photo for website listing (public)</option>
             <option value="private">Private document or photo</option>
 				
 	    </select>
@@ -59,34 +45,40 @@ $(function(){
   </div>
 
 	<div class="formRow">
-		<div class="grid3">&nbsp;
+		<div class="grid3" align="left">3. Click the green UPLOAD button and repeat the process for other photos.
 		</div>
 		<div class="grid9" align="left">
-			<ul class="liInfo">
-				<li>Public gallery photo – additional images that will be displayed in the detailed listing</li>
-                <li>Public header photo for the website - this will be the main photograph that is displayed with your yacht’s listing</li>
-  <li>Private document or photo – this will not be published to the website (e.g. survey, share agreement or insurance policy)</li>
-							<ul>
+			
 		</div>
 	   <div class="clear"></div>		
 	</div>
-
+	<div class="formRow">
+		<div class="grid9" align="left">4. When done with the photos, click the blue button to finish.
+		</div>
+		<div class="grid9" align="left">
 	<div class="whead">
+    
 		<h6 style="opacity: 0.0;">-</h6>
 		<div style='text-align: right; margin: 6px 6px; display: none;' id="loading">		
 			<img src="<?=Uri::create('public/assets/images/elements/loaders/4s.gif');?>"/>Please wait while your file uploads.
 		</div>
-		<div style='text-align: right;' id="submit_div">
+		<div style='text-align: center;' id="submit_div">
 			<button class="buttonS bGreen" style="margin: 6px 6px;" type="submit" onclick="$('#loading').show();$('#submit_div').hide();">Upload</button>
 			<a href="<?=Uri::Create($type.'/view/'.$item->id);?>" class="buttonS bBlue" style="margin: 6px 6px; color: white;" >Finish Yachtshare Submission</a>
 		</div>
 		<div class="clear"></div>
 	</div>
 </div>
+</div>
+</div>
 
 </form>
+
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+
 <div class="widget fluid" style="width: 75%;">
-    <div class="whead">
+ <div class="whead">
 		<h6>Files Already Uploaded</h6>
 		<div class="clear"></div>
 	</div>
@@ -97,13 +89,18 @@ $(function(){
 				
                 <table width="400" border="1" align="left">
                   <tr align="left" valign="top">
-                    <td><img src="<?=Uri::create('public/uploads/'.$file->url);?>" width="100" height="100" /></td>
+                    <td><img src="<?=Uri::create('public/uploads/'.$file->url);?>" height="100" /></td>
                     <td></a>  <a href="<?=Uri::create('public/uploads/'.$file->url);?>" target="_blank"><?= $file->url; ?></a></td>
                     </tr>
                 </table>
+                </td>
                 
                 
 			<? endforeach; ?>
+            <p>&nbsp; </p>
 		 <div class="clear"></div>
 </div>
+</div>
+</div>
 	<? endif; ?>
+    
